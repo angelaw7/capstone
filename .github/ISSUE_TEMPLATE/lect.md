@@ -13,11 +13,11 @@ assignees: ''
 
 **Attendance**
 
-- [ ] Jason Tan
-- [ ] Fondson Lu
-- [ ] Angela Wang
-- [ ] Eric Chen
 - [ ] Payton Chan
+- [ ] Eric Chen
+- [ ] Fondson Lu
+- [ ] Jason Tan
+- [ ] Angela Wang
 
 **Questions to Ask**
 

@@ -11,11 +11,11 @@ assignees: ''
 
 **Attendance**
 
-- [ ] team member1
-- [ ] team member2
-- [ ] team member3
-- [ ] team member4
-- [ ] team member5
+- [ ] Payton Chan
+- [ ] Eric Chen
+- [ ] Fondson Lu
+- [ ] Jason Tan
+- [ ] Angela Wang
 
 **Agenda**
 
