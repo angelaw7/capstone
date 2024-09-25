@@ -1,8 +1,17 @@
 \documentclass{article}
+
+\usepackage{booktabs}
+\usepackage{tabularx}
 \usepackage{enumitem}
 \usepackage{hyperref}
 
-\title{Development Plan}
+\setlength {\topmargin} {-.5in}
+\setlength {\textheight} {9.0in}
+\setlength {\oddsidemargin} {-.2in}
+\setlength {\textwidth} {6.5in}
+
+\title{Development Plan\\\progname}
+
 \date{}
 
 \begin{document}
@@ -17,6 +26,8 @@ There is no Intellectual Property (IP) to protect.
 
 \section{Copyright License}
 We are adopting the MIT license, which enables the free distribution of our work. The license can be found here: \href{https://github.com/PlutosCapstone/Plutos/blob/main/LICENSE}{MIT License}.
+
+\newpage
 
 \section{Team Meeting Plan}
 
@@ -81,36 +92,40 @@ Additionally, these roles should not be seen as limiting the tasks or responsibi
 \\
 \textbf{Meeting Chair}: The meeting chair’s job is to ensure the group meetings are being conducted in an organized fashion and to facilitate the procedure for internal conflicts.
 \\
+\\
 \textbf{Meeting Secretary}: The meeting secretary is responsible for preparing meeting agendas and taking notes during all group discussions. These notes are to be used for future reference and to keep track of thought processes that should be provided in the project documentation.
+\\
 \\
 \textbf{Milestone Coordinator}: The milestone coordinator has the responsibility of facilitating the creation and completion of deliverables. They are also responsible for assuring that each deliverable meets the criteria provided and that the standard of excellence is being maintained throughout the duration of the project.
 \\
+\\
 \textbf{Documentation Coordinator}: The documentation coordinator reviews documentation as the project progresses, ensuring that documents have a consistent level of quality and reflects the current state of the project. They work with team members to update, organize, and maintain a variety of documents, while also implementing best practices and managing version control.
+\\
 \\
 \textbf{QA Tester}: The QA tester is responsible for evaluating software to identify bugs and ensure it meets quality standards. They design and execute test plans and collaborate with the development team to address issues, ensuring a high-quality user experience.
 \\
+\\
 \textbf{Systems Architect}: The systems architect is responsible for designing the overall architecture of a software system, ensuring that it meets both technical and business requirements.
+\\
 \\
 \textbf{Frontend Specialist}: The frontend specialist focuses on creating the user interface and user experience of a web application, using technologies like HTML, CSS, and JavaScript. They work to ensure that the application is visually appealing, responsive, and user-friendly, collaborating closely with designers and backend developers.
 \\
+\\
 \textbf{Backend Specialist}: The backend specialist is responsible for server-side logic, database interactions, and application functionality. They build and maintain the core application infrastructure using programming languages and frameworks, ensuring that the frontend and backend communicate seamlessly to deliver a smooth and efficient user experience.
+\\
 \\
 \textbf{User Researcher}: The user researcher conducts studies to understand user behaviors, needs, and motivations through methods like interviews, surveys, and usability testing. They analyze the findings to provide insights that enhance product design and development, ensuring that the final product aligns with user expectations
 
-\section{Workflow Plan}
+\newpage
 
-\begin{itemize}
-    \item How will you be using git, including branches, pull request, etc.?
-    \item How will you be managing issues, including template issues, issue classification, etc.?
-    \item Use of CI/CD
-\end{itemize}
+\section{Workflow Plan}
 
 \subsection{GitHub Issues}
 \begin{itemize}
-    \item will be used to track and manage all development tasks.
+    \item GitHub Issues will be used to track and manage all development tasks.
     \begin{itemize}
-        \item An Issue will be created for each task -- each task should be small enough such that one developer can finish it within a time frame of one week. If the task is too large, it should be broken down into smaller tasks.
-        \item All Issues must include the following fields:
+        \item An issue will be created for each task -- each task should be small enough such that one developer can finish it within a time frame of one week. If the task is too large, it should be broken down into smaller tasks.
+        \item All issues must include the following fields:
         \begin{itemize}
             \item \textbf{Assignee(s)} - Indicates who has/will be working on the issue.
             \item \textbf{Labels} - Information regarding the category the ticket falls under (e.g., Feature, Bug, Tech Debt, Version Bump, etc.)
@@ -121,17 +136,15 @@ Additionally, these roles should not be seen as limiting the tasks or responsibi
 
 \subsection{GitHub Projects}
 \begin{itemize}
-    \item will be used as the project management tool to manage the roadmap and plan the project.
+    \item GitHub Projects will be used as the project management tool to manage the roadmap and plan the project.
     \begin{itemize}
         \item All issues should be placed in the appropriate column (Backlog, In Progress, In Review, Complete) and updated as soon as changes are made.
     \end{itemize}
 \end{itemize}
 
-\newpage
-
 \subsection{Git Branches}
 \begin{itemize}
-    \item will be used to make changes to the project.
+    \item Git Branches will be used to make changes to the project.
     \begin{itemize}
         \item The type of development work should be noted as a prefix to the branch
         \begin{itemize}
@@ -148,6 +161,8 @@ Additionally, these roles should not be seen as limiting the tasks or responsibi
         \item Once desired changes are complete on a branch, the author should open a pull request (PR) and follow the below PR guidelines.
     \end{itemize}
 \end{itemize}
+
+\newpage
 
 \subsection{Pull Request (PR) Guidelines}
 \begin{itemize}
@@ -166,7 +181,7 @@ Additionally, these roles should not be seen as limiting the tasks or responsibi
 
 \subsection{GitHub Actions}
 \begin{itemize}
-    \item will be utilized for CI/CD to continuously deploy the application and keep it running at all times.
+    \item GitHub Actions will be utilized for CI/CD to continuously deploy the application and keep it running at all times.
     \begin{itemize}
         \item Tests, linters, and formatters will be run on each push to a PR and the main branch.
         \item If a PR causes a GitHub Action to fail, it is the responsibility of the PR implementer and reviewer to resolve the issue as soon as possible so that it does not bottleneck other developers’ code integrations and implementations.
@@ -175,7 +190,7 @@ Additionally, these roles should not be seen as limiting the tasks or responsibi
 
 \subsection{GitHub Tags}
 \begin{itemize}
-    \item will be used to mark Revision 0 and Revision 1 versions of the project for each milestone. These should only be used for final versions of each revision and not draft work.
+    \item GitHub Tags will be used to mark Revision 0 and Revision 1 versions of the project for each milestone. These should only be used for final versions of each revision and not draft work.
 \end{itemize}
 
 \newpage
@@ -201,8 +216,6 @@ The project will be decomposed into seven milestones over the duration of the te
     \item \textbf{Estimated Time:} 2 weeks
     \item All team members must convene to collaboratively discuss and refine the system design. This meeting will encompass the development of high-level designs (HLDs), data flow diagrams (DFDs), and proof of concepts (POCs). The objective is to ensure a cohesive architectural framework and to establish a well-defined workflow that will guide subsequent phases of the project.
 \end{itemize}
-
-\newpage
 
 \subsubsection*{Milestone 2 - Project Initialization \& Development Environment Setup}
 \begin{itemize}
@@ -289,8 +302,9 @@ Demonstrate a working mobile application on a mobile device that can perform the
     \item \textbf{Privacy and Data Security:} Handling sensitive financial data (such as purchase histories and personal information) poses the risk of data breaches or unauthorized access.
     \begin{itemize}
         \item \textbf{Risk level:} Low, as we do not plan to release the application before the POC. We will only be testing locally with our team of developers, so there would be no unauthorized access.
+         \item \textbf{Mitigation Plan:} To mitigate privacy and data security risks during the POC, sensitive financial data will be encrypted both at rest and in transit, with access restricted to authorized developers using role-based controls. Anonymized or synthetic data will be used for testing, and local development environments will be hardened with strong passwords, disk encryption, and up-to-date software. 
     \end{itemize}
-    
+
     \item \textbf{User Experience:} If the app struggles with receipt clarity, formatting inconsistencies, or unusual items, users might become frustrated.
     \begin{itemize}
         \item \textbf{Risk level:} Low, as we plan to make user experience a priority.
@@ -303,6 +317,8 @@ Demonstrate a working mobile application on a mobile device that can perform the
         \item \textbf{Mitigation plan:} We will run load testing and stress testing simulations to show the app’s capacity to handle increasing numbers of users and transactions without degradation in response time or accuracy. This does not apply for the POC demonstration but is important to consider for future development.
     \end{itemize}
 \end{itemize}
+
+\newpage
 
 \section{Expected Technology}
 
