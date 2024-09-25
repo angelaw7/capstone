@@ -5,27 +5,53 @@
 \usepackage{enumitem}
 \usepackage{hyperref}
 
-\setlength {\topmargin} {-.5in}
-\setlength {\textheight} {9.0in}
-\setlength {\oddsidemargin} {-.2in}
-\setlength {\textwidth} {6.5in}
-
 \title{Development Plan\\\progname}
 
 \date{}
+
+\input{../Comments}
+\input{../Common}
 
 \begin{document}
 
 \maketitle
 
-\section{Confidential Information?}
-This project does not have confidential information from industry to protect. However, we all personally identifiable information (PII) will be kept confidential. Personal data will not be disclosed or made accessible to the public, and is securely stored within each user's account, accessible only to the account holder. We adhere to stringent security protocols to protect user information in compliance with applicable data protection regulations.
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+09/24/2024 & Payton Chan, Eric Chen, Fondson Lu & Revision 0\\
+09/24/2024 & Jason Tan, Angela Wang & Revision 0\\
+... & ... & ...\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\newpage{}
+
+% \wss{Put your introductory blurb here.  Often the blurb is a brief roadmap of
+% what is contained in the report.}
+
+% This document contains the development plan for Plutos.
+
+
+\section{Confidential Information}
+This project does not have confidential information from industry to protect.
+However, we all personally identifiable information (PII) will be kept
+confidential. Personal data will not be disclosed or made accessible to the
+public, and is securely stored within each user's account, accessible only to
+the account holder. We adhere to stringent security protocols to protect user
+information in compliance with applicable data protection regulations.
 
 \section{IP to Protect}
 There is no Intellectual Property (IP) to protect.
 
 \section{Copyright License}
-We are adopting the MIT license, which enables the free distribution of our work. The license can be found here: \href{https://github.com/PlutosCapstone/Plutos/blob/main/LICENSE}{MIT License}.
+We are adopting the MIT license, which enables the free distribution of our
+work. The license can be found here:
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/LICENSE}{MIT License}.
 
 \newpage
 
@@ -34,23 +60,47 @@ We are adopting the MIT license, which enables the free distribution of our work
 \subsection{Meeting Schedules and Locations}
 
 \begin{itemize}
-    \item Every \textbf{Monday} (excluding breaks \& holidays) from \textbf{2:30 PM to 4:20 PM} (2 hours) at the designated tutorial time. All team members are required to attend, be punctual, and come prepared with updates or questions.
+    \item Every \textbf{Monday} (excluding breaks \& holidays) from \textbf{2:30
+    PM to 4:20 PM} (2 hours) at the designated tutorial time. All team members
+    are required to attend, be punctual, and come prepared with updates or
+    questions.
     
-    \item The meeting will be held in person in one of the following buildings: \textbf{MDCL, LRW, Gerald Hatch Center, or Mills Library}. Consult the team the weekend before the meeting to choose a suitable tutorial/meeting room and if necessary, reserve it for a 2 hour time period.
+    \item The meeting will be held in person in one of the following buildings:
+    \textbf{MDCL, LRW, Gerald Hatch Center, or Mills Library}. Consult the team
+    the weekend before the meeting to choose a suitable tutorial/meeting room
+    and if necessary, reserve it for a 2 hour time period.
     
-    \item \textbf{Contingency for in-person meetings}: If extenuating circumstances (e.g., severe weather) prevent meeting in person, the meeting will be held virtually or postponed to the next available date based on group consensus. Meetings may also be held virtually if discussed and agreed upon by the majority of the members. Virtual meetings will take place on our shared Discord server.
+    \item \textbf{Contingency for in-person meetings}: If extenuating
+    circumstances (e.g., severe weather) prevent meeting in person, the meeting
+    will be held virtually or postponed to the next available date based on
+    group consensus. Meetings may also be held virtually if discussed and agreed
+    upon by the majority of the members. Virtual meetings will take place on our
+    shared Discord server.
 
-    \item When required, the team can host additional meetings throughout the week that align with each member’s schedules to address certain roadblocks/issues encountered throughout the working week. The meeting will take place in the same buildings listed above or virtual if there is no seating available.
+    \item When required, the team can host additional meetings throughout the
+    week that align with each member’s schedules to address certain
+    roadblocks/issues encountered throughout the working week. The meeting will
+    take place in the same buildings listed above or virtual if there is no
+    seating available.
 \end{itemize}
 
 \subsection{Meeting Structure}
-Each meeting will be scheduled in advance with an agenda prepared by the Meeting Secretary (more details on roles discussed in Section 4.3.). Attendance will be recorded at the start of each meeting, after which agenda items will be discussed. A list of action items will be noted at the bottom of the agenda, where each item will be assigned a specific team member for implementation.
-\\
+Each meeting will be scheduled in advance with an agenda prepared by the Meeting
+Secretary (more details on roles discussed in Section 4.3.). Attendance will be
+recorded at the start of each meeting, after which agenda items will be
+discussed. A list of action items will be noted at the bottom of the agenda,
+where each item will be assigned a specific team member for implementation. \\
 \\
 The weekly Monday meetings will be conducted in an agile/scrum-like approach. 
 \begin{itemize}
-    \item The first \textbf{15-30 minutes} will be dedicated to a standup, where each person will be giving a brief update on their progress for the prior week, their current plan/task/actions items for the upcoming week, and any roadblocks or questions they may have that concerns other parts of the system.
-    \item The remaining time meeting is allotted for additional development work, peer programming and/or tech debt. Time should be used effectively based on the upcoming deadlines for that week.
+    \item The first \textbf{15-30 minutes} will be dedicated to a standup, where
+    each person will be giving a brief update on their progress for the prior
+    week, their current plan/task/actions items for the upcoming week, and any
+    roadblocks or questions they may have that concerns other parts of the
+    system.
+    \item The remaining time meeting is allotted for additional development
+    work, peer programming and/or tech debt. Time should be used effectively
+    based on the upcoming deadlines for that week.
 \end{itemize}
 
 \newpage
@@ -58,26 +108,35 @@ The weekly Monday meetings will be conducted in an agile/scrum-like approach.
 \section{Team Communication Plan}
 
 \begin{itemize}
-    \item The main source of communication between the team will be via \textbf{Discord}. Meetings that need to be conducted virtually will be done through the dedicated voice channel (\textit{General}) within the team server.
+    \item The main source of communication between the team will be via
+    \textbf{Discord}. Meetings that need to be conducted virtually will be done
+    through the dedicated voice channel (\textit{General}) within the team
+    server.
     
-    \item All development-related issues will be hosted via the project’s GitHub Issues tab.
+    \item All development-related issues will be hosted via the project’s GitHub
+    Issues tab.
     \begin{itemize}
-        \item This provides us a source of traceability for every task completion along with an interface to receive instructional feedback.
+        \item This provides us a source of traceability for every task
+        completion along with an interface to receive instructional feedback.
     \end{itemize}
 
-    \item GitHub Projects will be used as our primary project management tool. This board will be reviewed every week during Monday meetings and regularly updated throughout the week.
+    \item GitHub Projects will be used as our primary project management tool.
+    This board will be reviewed every week during Monday meetings and regularly
+    updated throughout the week.
 \end{itemize}
 
 \begin{table}[h!]
 \centering
 \begin{tabular}{|l|l|l|l|}
 \hline
-\textbf{Member Name} & \textbf{Discord (primary contact)} & \textbf{MacID} & \textbf{GitHub} \\ \hline
-Payton Chan   & @paytchan    & chanp29  & paytonchan \\ \hline
-Eric Chen     & @Er._.ic     & chene40  & chene40    \\ \hline
-Fondson Lu    & @chubbydukki & luh57    & fondsonlu  \\ \hline
-Jason Tan     & @jason\_tan  & tanj60   & tan-jason  \\ \hline
-Angela Wang   & @ziyuna      & wanga91  & angelaw7   \\ \hline
+\textbf{Member Name} & \textbf{Discord (primary contact)} & \textbf{MacID} &
+\textbf{GitHub} \\ 
+ Payton Chan   & @paytchan    & chanp29  & paytonchan \\ 
+%  Eric Chen     & @Er._.ic     & chene40  & chene40    \\ 
+% \hline Fondson Lu    & @chubbydukki &
+% luh57    & fondsonlu  \\ \hline Jason Tan     & @jason\_tan  & tanj60   &
+% tan-jason  \\ \hline Angela Wang   & @ziyuna      & wanga91  & angelaw7   \\
+% \hline
 \end{tabular}
 \caption{Team contact information}
 \end{table}
@@ -85,36 +144,65 @@ Angela Wang   & @ziyuna      & wanga91  & angelaw7   \\ \hline
 \newpage
 
 \section{Team Member Roles}
-The roles listed below may be subject to change at any point throughout the term, as deemed necessary to best accommodate the needs of the project and the overall team objectives. They are currently unassigned; assignment of roles will be done every few weeks during Monday meetings to ensure that everyone has a chance at taking on certain responsibilities.
+The roles listed below may be subject to change at any point throughout the
+term, as deemed necessary to best accommodate the needs of the project and the
+overall team objectives. They are currently unassigned; assignment of roles will
+be done every few weeks during Monday meetings to ensure that everyone has a
+chance at taking on certain responsibilities.
 
-Additionally, these roles should not be seen as limiting the tasks or responsibilities one can take on. Team members are expected to step up and assume additional tasks when necessary, particularly when their expertise or skills align with the project’s demands. It may also be necessary at certain times for members to “wear multiple hats” and assume more than one role.
+Additionally, these roles should not be seen as limiting the tasks or
+responsibilities one can take on. Team members are expected to step up and
+assume additional tasks when necessary, particularly when their expertise or
+skills align with the project’s demands. It may also be necessary at certain
+times for members to “wear multiple hats” and assume more than one role. \\
 \\
+\textbf{Meeting Chair}: The meeting chair’s job is to ensure the group meetings
+are being conducted in an organized fashion and to facilitate the procedure for
+internal conflicts. \\
 \\
-\textbf{Meeting Chair}: The meeting chair’s job is to ensure the group meetings are being conducted in an organized fashion and to facilitate the procedure for internal conflicts.
+\textbf{Meeting Secretary}: The meeting secretary is responsible for preparing
+meeting agendas and taking notes during all group discussions. These notes are
+to be used for future reference and to keep track of thought processes that
+should be provided in the project documentation. \\
 \\
+\textbf{Milestone Coordinator}: The milestone coordinator has the responsibility
+of facilitating the creation and completion of deliverables. They are also
+responsible for assuring that each deliverable meets the criteria provided and
+that the standard of excellence is being maintained throughout the duration of
+the project. \\
 \\
-\textbf{Meeting Secretary}: The meeting secretary is responsible for preparing meeting agendas and taking notes during all group discussions. These notes are to be used for future reference and to keep track of thought processes that should be provided in the project documentation.
+\textbf{Documentation Coordinator}: The documentation coordinator reviews
+documentation as the project progresses, ensuring that documents have a
+consistent level of quality and reflects the current state of the project. They
+work with team members to update, organize, and maintain a variety of documents,
+while also implementing best practices and managing version control. \\
 \\
+\textbf{QA Tester}: The QA tester is responsible for evaluating software to
+identify bugs and ensure it meets quality standards. They design and execute
+test plans and collaborate with the development team to address issues, ensuring
+a high-quality user experience. \\
 \\
-\textbf{Milestone Coordinator}: The milestone coordinator has the responsibility of facilitating the creation and completion of deliverables. They are also responsible for assuring that each deliverable meets the criteria provided and that the standard of excellence is being maintained throughout the duration of the project.
+\textbf{Systems Architect}: The systems architect is responsible for designing
+the overall architecture of a software system, ensuring that it meets both
+technical and business requirements. \\
 \\
+\textbf{Frontend Specialist}: The frontend specialist focuses on creating the
+user interface and user experience of a web application, using technologies like
+HTML, CSS, and JavaScript. They work to ensure that the application is visually
+appealing, responsive, and user-friendly, collaborating closely with designers
+and backend developers. \\
 \\
-\textbf{Documentation Coordinator}: The documentation coordinator reviews documentation as the project progresses, ensuring that documents have a consistent level of quality and reflects the current state of the project. They work with team members to update, organize, and maintain a variety of documents, while also implementing best practices and managing version control.
+\textbf{Backend Specialist}: The backend specialist is responsible for
+server-side logic, database interactions, and application functionality. They
+build and maintain the core application infrastructure using programming
+languages and frameworks, ensuring that the frontend and backend communicate
+seamlessly to deliver a smooth and efficient user experience. \\
 \\
-\\
-\textbf{QA Tester}: The QA tester is responsible for evaluating software to identify bugs and ensure it meets quality standards. They design and execute test plans and collaborate with the development team to address issues, ensuring a high-quality user experience.
-\\
-\\
-\textbf{Systems Architect}: The systems architect is responsible for designing the overall architecture of a software system, ensuring that it meets both technical and business requirements.
-\\
-\\
-\textbf{Frontend Specialist}: The frontend specialist focuses on creating the user interface and user experience of a web application, using technologies like HTML, CSS, and JavaScript. They work to ensure that the application is visually appealing, responsive, and user-friendly, collaborating closely with designers and backend developers.
-\\
-\\
-\textbf{Backend Specialist}: The backend specialist is responsible for server-side logic, database interactions, and application functionality. They build and maintain the core application infrastructure using programming languages and frameworks, ensuring that the frontend and backend communicate seamlessly to deliver a smooth and efficient user experience.
-\\
-\\
-\textbf{User Researcher}: The user researcher conducts studies to understand user behaviors, needs, and motivations through methods like interviews, surveys, and usability testing. They analyze the findings to provide insights that enhance product design and development, ensuring that the final product aligns with user expectations
+\textbf{User Researcher}: The user researcher conducts studies to understand
+user behaviors, needs, and motivations through methods like interviews, surveys,
+and usability testing. They analyze the findings to provide insights that
+enhance product design and development, ensuring that the final product aligns
+with user expectations
 
 \newpage
 
@@ -124,21 +212,30 @@ Additionally, these roles should not be seen as limiting the tasks or responsibi
 \begin{itemize}
     \item GitHub Issues will be used to track and manage all development tasks.
     \begin{itemize}
-        \item An issue will be created for each task -- each task should be small enough such that one developer can finish it within a time frame of one week. If the task is too large, it should be broken down into smaller tasks.
+        \item An issue will be created for each task -- each task should be
+        small enough such that one developer can finish it within a time frame
+        of one week. If the task is too large, it should be broken down into
+        smaller tasks.
         \item All issues must include the following fields:
         \begin{itemize}
-            \item \textbf{Assignee(s)} - Indicates who has/will be working on the issue.
-            \item \textbf{Labels} - Information regarding the category the ticket falls under (e.g., Feature, Bug, Tech Debt, Version Bump, etc.)
-            \item \textbf{Milestone} - The milestone/deliverable that the ticket is associated with.
+            \item \textbf{Assignee(s)} - Indicates who has/will be working on
+            the issue.
+            \item \textbf{Labels} - Information regarding the category the
+            ticket falls under (e.g., Feature, Bug, Tech Debt, Version Bump,
+            etc.)
+            \item \textbf{Milestone} - The milestone/deliverable that the ticket
+            is associated with.
         \end{itemize}
     \end{itemize}
 \end{itemize}
 
 \subsection{GitHub Projects}
 \begin{itemize}
-    \item GitHub Projects will be used as the project management tool to manage the roadmap and plan the project.
+    \item GitHub Projects will be used as the project management tool to manage
+    the roadmap and plan the project.
     \begin{itemize}
-        \item All issues should be placed in the appropriate column (Backlog, In Progress, In Review, Complete) and updated as soon as changes are made.
+        \item All issues should be placed in the appropriate column (Backlog, In
+        Progress, In Review, Complete) and updated as soon as changes are made.
     \end{itemize}
 \end{itemize}
 
@@ -146,19 +243,24 @@ Additionally, these roles should not be seen as limiting the tasks or responsibi
 \begin{itemize}
     \item Git Branches will be used to make changes to the project.
     \begin{itemize}
-        \item The type of development work should be noted as a prefix to the branch
+        \item The type of development work should be noted as a prefix to the
+        branch
         \begin{itemize}
             \item \texttt{feat} for feature work.
             \item \texttt{bugfix} for bugfix.
             \item \texttt{chore} for chore or tech debt work.
         \end{itemize}
-        \item Branches should follow the naming convention: \texttt{<prefix>/<modId>/<desc>...-<desc>}. This is to avoid conflicting branch names and to make it clear on the topic of the change.
+        \item Branches should follow the naming convention:
+        \texttt{<prefix>/<modId>/<desc>...-<desc>}. This is to avoid conflicting
+        branch names and to make it clear on the topic of the change.
         \begin{itemize}
             \item E.g., \texttt{feat/chene40/update-dependencies}.
         \end{itemize}
-        \item Feature branches should always be branched off the updated main branch.
+        \item Feature branches should always be branched off the updated main
+        branch.
         \item Rebase branches whenever possible for pulling new updates.
-        \item Once desired changes are complete on a branch, the author should open a pull request (PR) and follow the below PR guidelines.
+        \item Once desired changes are complete on a branch, the author should
+        open a pull request (PR) and follow the below PR guidelines.
     \end{itemize}
 \end{itemize}
 
@@ -166,31 +268,49 @@ Additionally, these roles should not be seen as limiting the tasks or responsibi
 
 \subsection{Pull Request (PR) Guidelines}
 \begin{itemize}
-    \item All PRs must include a descriptive title and a small description of what the PR achieved/changed.
-    \item Upon opening a PR, the author(s) should inform the team that it is ready for review. One member of the team will be auto-assigned as a reviewer.
+    \item All PRs must include a descriptive title and a small description of
+    what the PR achieved/changed.
+    \item Upon opening a PR, the author(s) should inform the team that it is
+    ready for review. One member of the team will be auto-assigned as a
+    reviewer.
     \item All PRs must have at least one approved review before merging.
 \end{itemize}
 
 \begin{itemize}
-    \item Reviewers should review a requested PR within a \textbf{24 hr} time frame (\textbf{48 hrs max}).
-    \item PR should be listed as \texttt{Draft} if implementation/fixes have not been completed and converted to \texttt{Ready for Review} once a PR can be reviewed.
-    \item PR must be linked to an issue using the appropriate \texttt{keywords} at the end of the descriptions section.
-    \item All PRs are to be \textbf{squashed and merged}. This is important for ensuring the cleanliness of the commits on the main branch.
-    \item On push to an open PR, a GitHub Action should run which deploys the branch to a CI/CD pipeline in which all automated tests should run to ensure at least 90\% line coverage. If this condition isn’t met, the PR will not be allowed to be merged.
+    \item Reviewers should review a requested PR within a \textbf{24 hr} time
+    frame (\textbf{48 hrs max}).
+    \item PR should be listed as \texttt{Draft} if implementation/fixes have not
+    been completed and converted to \texttt{Ready for Review} once a PR can be
+    reviewed.
+    \item PR must be linked to an issue using the appropriate \texttt{keywords}
+    at the end of the descriptions section.
+    \item All PRs are to be \textbf{squashed and merged}. This is important for
+    ensuring the cleanliness of the commits on the main branch.
+    \item On push to an open PR, a GitHub Action should run which deploys the
+    branch to a CI/CD pipeline in which all automated tests should run to ensure
+    at least 90\% line coverage. If this condition isn’t met, the PR will not be
+    allowed to be merged.
 \end{itemize}
 
 \subsection{GitHub Actions}
 \begin{itemize}
-    \item GitHub Actions will be utilized for CI/CD to continuously deploy the application and keep it running at all times.
+    \item GitHub Actions will be utilized for CI/CD to continuously deploy the
+    application and keep it running at all times.
     \begin{itemize}
-        \item Tests, linters, and formatters will be run on each push to a PR and the main branch.
-        \item If a PR causes a GitHub Action to fail, it is the responsibility of the PR implementer and reviewer to resolve the issue as soon as possible so that it does not bottleneck other developers’ code integrations and implementations.
+        \item Tests, linters, and formatters will be run on each push to a PR
+        and the main branch.
+        \item If a PR causes a GitHub Action to fail, it is the responsibility
+        of the PR implementer and reviewer to resolve the issue as soon as
+        possible so that it does not bottleneck other developers’ code
+        integrations and implementations.
     \end{itemize}
 \end{itemize}
 
 \subsection{GitHub Tags}
 \begin{itemize}
-    \item GitHub Tags will be used to mark Revision 0 and Revision 1 versions of the project for each milestone. These should only be used for final versions of each revision and not draft work.
+    \item GitHub Tags will be used to mark Revision 0 and Revision 1 versions of
+    the project for each milestone. These should only be used for final versions
+    of each revision and not draft work.
 \end{itemize}
 
 \newpage
@@ -198,65 +318,125 @@ Additionally, these roles should not be seen as limiting the tasks or responsibi
 \section{Project Decomposition and Scheduling}
 
 \subsection{Project Management}
-We will be using GitHub projects as our project management tool. It will be used to organize and view Issues on a board organized by the status of the Issue (i.e., Backlog, Ready, In progress, In review, Done), as well as to keep track of the roadmap of the project. The project can be found here \href{https://github.com/orgs/PlutosCapstone/projects/1/views/1}{GitHub Project}.
+We will be using GitHub projects as our project management tool. It will be used
+to organize and view Issues on a board organized by the status of the Issue
+(i.e., Backlog, Ready, In progress, In review, Done), as well as to keep track
+of the roadmap of the project. The project can be found here
+\href{https://github.com/orgs/PlutosCapstone/projects/1/views/1}{GitHub
+Project}.
 
 \subsection{Project Decomposition}
-The project will be decomposed into seven milestones over the duration of the term. These milestones have provisional deadlines that may be subject to change depending on the project's progress.
+The project will be decomposed into seven milestones over the duration of the
+term. These milestones have provisional deadlines that may be subject to change
+depending on the project's progress.
 
 \subsubsection*{Milestone 0 - User Elicitation and Requirements Specification}
 \begin{itemize}
     \item \textbf{Deadline:} Friday, October 4, 2024 @ 11.59 PM
     \item \textbf{Estimated Time:} 2 weeks
-    \item All team members are expected to actively participate in distributing surveys and conducting in-person interviews across campus. The insights gathered from these user engagements will be crucial in defining and refining our project requirements, ensuring they are aligned with real user needs and expectations.
+    \item All team members are expected to actively participate in distributing
+    surveys and conducting in-person interviews across campus. The insights
+    gathered from these user engagements will be crucial in defining and
+    refining our project requirements, ensuring they are aligned with real user
+    needs and expectations.
 \end{itemize}
 
 \subsubsection*{Milestone 1 - System Design, HLDs, DFDs, and POCs of Ploutos}
 \begin{itemize}
     \item \textbf{Deadline:} Friday, October 4, 2024 @ 11.59 PM
     \item \textbf{Estimated Time:} 2 weeks
-    \item All team members must convene to collaboratively discuss and refine the system design. This meeting will encompass the development of high-level designs (HLDs), data flow diagrams (DFDs), and proof of concepts (POCs). The objective is to ensure a cohesive architectural framework and to establish a well-defined workflow that will guide subsequent phases of the project.
+    \item All team members must convene to collaboratively discuss and refine
+    the system design. This meeting will encompass the development of high-level
+    designs (HLDs), data flow diagrams (DFDs), and proof of concepts (POCs). The
+    objective is to ensure a cohesive architectural framework and to establish a
+    well-defined workflow that will guide subsequent phases of the project.
 \end{itemize}
 
 \subsubsection*{Milestone 2 - Project Initialization \& Development Environment Setup}
 \begin{itemize}
-    \item \textbf{Deadline:} Friday, October 11, 2024 @ 11.59 PM (Note: Last Day Before Reading Week)
+    \item \textbf{Deadline:} Friday, October 11, 2024 @ 11.59 PM (Note: Last Day
+    Before Reading Week)
     \item \textbf{Estimated Time:} 1 week
-    \item The work will be distributed evenly among team members, unless a consultation determines that another individual should take on additional responsibilities due to extenuating circumstances. The team member responsible for setting up the repository will also create the necessary onboarding documentation. Another individual will manage group-related accounts (e.g., AWS), while a designated member will oversee workflow management, including the creation of Git issue labels, milestones, and tasks. All team members are expected to follow the installation guide provided by the repository lead and ensure proper initialization of the development environment.
+    \item The work will be distributed evenly among team members, unless a
+    consultation determines that another individual should take on additional
+    responsibilities due to extenuating circumstances. The team member
+    responsible for setting up the repository will also create the necessary
+    onboarding documentation. Another individual will manage group-related
+    accounts (e.g., AWS), while a designated member will oversee workflow
+    management, including the creation of Git issue labels, milestones, and
+    tasks. All team members are expected to follow the installation guide
+    provided by the repository lead and ensure proper initialization of the
+    development environment.
 \end{itemize}
 
 \subsubsection*{Milestone 3 - Create Preliminary Figma Designs for Mobile App Workflow}
 \begin{itemize}
-    \item \textbf{Deadline:} Friday, November 1, 2024 @ 11.59 PM (Note: Due 2 Weeks After Reading Week)
+    \item \textbf{Deadline:} Friday, November 1, 2024 @ 11.59 PM (Note: Due 2
+    Weeks After Reading Week)
     \item \textbf{Estimated Time:} 2 weeks
-    \item All team members are expected to contribute to a collaborative Figma file to develop the necessary mockups and wireframes. Individuals with more experience in Figma may assume leadership roles to facilitate the design process, while those with less familiarity are encouraged to enhance their skills through active participation. It is essential that every team member provides valuable input, ensuring that the designs reflect a comprehensive and cohesive approach to the project’s objectives.
+    \item All team members are expected to contribute to a collaborative Figma
+    file to develop the necessary mockups and wireframes. Individuals with more
+    experience in Figma may assume leadership roles to facilitate the design
+    process, while those with less familiarity are encouraged to enhance their
+    skills through active participation. It is essential that every team member
+    provides valuable input, ensuring that the designs reflect a comprehensive
+    and cohesive approach to the project’s objectives.
 \end{itemize}
 
 \subsubsection*{Milestone 4 - Translate and Implement Figma Wireframes Into Front End Code}
 \begin{itemize}
-    \item \textbf{Deadline:} Sunday, December 1, 2024 @ 11.59 PM (Estimated Time: 3 Weeks Excluding Exam Season and Winter Break)
+    \item \textbf{Deadline:} Sunday, December 1, 2024 @ 11.59 PM (Estimated
+    Time: 3 Weeks Excluding Exam Season and Winter Break)
     \item \textbf{Estimated Time:} 4 weeks
-    \item All team members are expected to collaborate in translating the Figma wireframes into functional front-end code. Individuals with more experience in front-end development may take on leadership roles to guide the implementation process, while those with less familiarity are encouraged to deepen their understanding through active involvement. It is imperative that each team member contributes their insights and expertise, ensuring that the final product adheres to the design specifications and meets the project’s quality standards.
+    \item All team members are expected to collaborate in translating the Figma
+    wireframes into functional front-end code. Individuals with more experience
+    in front-end development may take on leadership roles to guide the
+    implementation process, while those with less familiarity are encouraged to
+    deepen their understanding through active involvement. It is imperative that
+    each team member contributes their insights and expertise, ensuring that the
+    final product adheres to the design specifications and meets the project’s
+    quality standards.
 \end{itemize}
 
 \subsubsection*{Milestone 5 - Build Out Back End API Services and Connect with Front End}
 \begin{itemize}
-    \item \textbf{Deadline:} Friday, February 1, 2025 @ 11.59 PM (Note: Exam Season Starts; Estimated Time: 3 Weeks)
+    \item \textbf{Deadline:} Friday, February 1, 2025 @ 11.59 PM (Note: Exam
+    Season Starts; Estimated Time: 3 Weeks)
     \item \textbf{Estimated Time:} 4 weeks
-    \item All team members are expected to collaborate in developing the necessary back-end API services and ensuring their integration with the front-end components. Those with more experience in back-end development may assume leadership roles to oversee the implementation process, while less experienced members are encouraged to enhance their skills through active participation. It is crucial that every team member contributes their knowledge and insights, ensuring that the final services are robust, efficient, and aligned with the overall project objectives.
+    \item All team members are expected to collaborate in developing the
+    necessary back-end API services and ensuring their integration with the
+    front-end components. Those with more experience in back-end development may
+    assume leadership roles to oversee the implementation process, while less
+    experienced members are encouraged to enhance their skills through active
+    participation. It is crucial that every team member contributes their
+    knowledge and insights, ensuring that the final services are robust,
+    efficient, and aligned with the overall project objectives.
 \end{itemize}
 
 \subsubsection*{Milestone 6 - E2E Test, Cleanup, Final Deploy and Showcase for Expo}
 \begin{itemize}
     \item \textbf{Deadline:} Friday, February 15, 2025 @ 11.59 PM
     \item \textbf{Estimated Time:} 2 weeks
-    \item All team members are expected to collaborate in performing end-to-end testing as a cohesive unit. This collaborative effort will provide an opportunity to identify and resolve any lingering bugs, refine necessary documentation, and collectively prepare for the Expo showcase. It is imperative that each member contributes their insights and expertise, ensuring that the final product is polished and ready for presentation.
+    \item All team members are expected to collaborate in performing end-to-end
+    testing as a cohesive unit. This collaborative effort will provide an
+    opportunity to identify and resolve any lingering bugs, refine necessary
+    documentation, and collectively prepare for the Expo showcase. It is
+    imperative that each member contributes their insights and expertise,
+    ensuring that the final product is polished and ready for presentation.
 \end{itemize}
 
 \subsubsection*{Milestone 7 - Final Documentation}
 \begin{itemize}
     \item \textbf{Deadline:} Wednesday, April 2, 2025 @ 11.59 PM
     \item \textbf{Estimated Time:} 2 weeks (Start March 16, 2025 or earlier)
-    \item It is crucial that the project team engages in a collaborative effort to aggregate and meticulously refine all pertinent documents, including the user guide, requirements, and design documentation, approximately two weeks prior to the submission deadline. This coordinated approach will facilitate thorough review and revision, ensuring that all materials are cohesive, accurately reflect the project’s objectives, and adhere to the highest standards of quality. Such diligence will be paramount for a successful final submission.
+    \item It is crucial that the project team engages in a collaborative effort
+    to aggregate and meticulously refine all pertinent documents, including the
+    user guide, requirements, and design documentation, approximately two weeks
+    prior to the submission deadline. This coordinated approach will facilitate
+    thorough review and revision, ensuring that all materials are cohesive,
+    accurately reflect the project’s objectives, and adhere to the highest
+    standards of quality. Such diligence will be paramount for a successful
+    final submission.
 \end{itemize}
 
 \newpage
@@ -264,7 +444,17 @@ The project will be decomposed into seven milestones over the duration of the te
 \subsubsection*{Milestone 3-6 - Integrate and Train Optical Character Recognition (OCR) Model Into Scanner (To Be Completed Concurrently Starting Milestone 3)}
 \begin{itemize}
     \item \textbf{Training Period:} October 21, 2024 - March 21, 2025
-    \item All team members are required to actively engage in the training of our OCR machine learning model. Each member must collect and retain receipts as inputs for the model whenever feasible, as these inputs are critical for facilitating continuous testing and refinement. These receipts should be uploaded to the shared Drive folder. This iterative training process is to be conducted concurrently with other development activities for the application, ensuring that the model not only evolves in response to real-world data but also integrates seamlessly with the overall project. By committing to this collaborative effort, the team will enhance the model’s accuracy and reliability, ultimately contributing to the success of the application.
+    \item All team members are required to actively engage in the training of
+    our OCR machine learning model. Each member must collect and retain receipts
+    as inputs for the model whenever feasible, as these inputs are critical for
+    facilitating continuous testing and refinement. These receipts should be
+    uploaded to the shared Drive folder. This iterative training process is to
+    be conducted concurrently with other development activities for the
+    application, ensuring that the model not only evolves in response to
+    real-world data but also integrates seamlessly with the overall project. By
+    committing to this collaborative effort, the team will enhance the model’s
+    accuracy and reliability, ultimately contributing to the success of the
+    application.
 \end{itemize}
 
 \newpage
@@ -272,49 +462,107 @@ The project will be decomposed into seven milestones over the duration of the te
 \section{Proof of Concept Demonstration Plan}
 
 \subsection{Plan for Proof of Concept Demonstration in November}
-Demonstrate a working mobile application on a mobile device that can perform the following functionalities:
+Demonstrate a working mobile application on a mobile device that can perform the
+following functionalities:
 \begin{enumerate}
-    \item When a button is pressed, the phone camera opens. The user can then take a picture of an itemized receipt.
-    \item Once the picture has been taken, the application runs it through the ML model, where it processes the image. The application should then list out the recognized items from the receipt. Items should also be tagged or grouped into predefined categories.
+    \item When a button is pressed, the phone camera opens. The user can then
+    take a picture of an itemized receipt.
+    \item Once the picture has been taken, the application runs it through the
+    ML model, where it processes the image. The application should then list out
+    the recognized items from the receipt. Items should also be tagged or
+    grouped into predefined categories.
 \end{enumerate}
 
 \subsection{Anticipated Risks and Mitigation Plan}
 
 \begin{itemize}
-    \item \textbf{Data Accuracy and Reliability:} The ML model might misinterpret or misclassify data from receipts, leading to incorrect financial records.
+    \item \textbf{Data Accuracy and Reliability:} The ML model might
+    misinterpret or misclassify data from receipts, leading to incorrect
+    financial records.
     \begin{itemize}
-        \item \textbf{Risk level:} High, as it might take more data than anticipated to train a model to recognize and classify items appropriately.
-        \item \textbf{Mitigation plan:} We will train the model using a large dataset of receipts that contains various items from different categories, and then test the model to verify the accuracy of the results. An alternative option to manually edit the price, category, date/time, and other metadata fields about the items recorded will be provided, and this would be used as feedback to improve the model.
+        \item \textbf{Risk level:} High, as it might take more data than
+        anticipated to train a model to recognize and classify items
+        appropriately.
+        \item \textbf{Mitigation plan:} We will train the model using a large
+        dataset of receipts that contains various items from different
+        categories, and then test the model to verify the accuracy of the
+        results. An alternative option to manually edit the price, category,
+        date/time, and other metadata fields about the items recorded will be
+        provided, and this would be used as feedback to improve the model.
     \end{itemize}
     
-    \item \textbf{Model Generalization and Adaptability:} The ML model may struggle with adapting to new types of receipts, retailers, or products that it hasn’t encountered during training, resulting in misclassifications.
+    \item \textbf{Model Generalization and Adaptability:} The ML model may
+    struggle with adapting to new types of receipts, retailers, or products that
+    it hasn’t encountered during training, resulting in misclassifications.
     \begin{itemize}
-        \item \textbf{Risk level:} Low, in terms of the POC demonstration. We plan to demonstrate using a receipt that lists commonly purchased items for the purpose of showing the feasibility of the model.
-        \item \textbf{Mitigation plan:} For the first iteration of the model, we plan to target specific stores near campus (e.g., Food Basics, Fortinos, Shoppers Drug Mart) as we will be able to collect the most amount of data from these locations and monitor the accuracy of the model. As the project progresses, we will expand to different categories and stores.
+        \item \textbf{Risk level:} Low, in terms of the POC demonstration. We
+        plan to demonstrate using a receipt that lists commonly purchased items
+        for the purpose of showing the feasibility of the model.
+        \item \textbf{Mitigation plan:} For the first iteration of the model, we
+        plan to target specific stores near campus (e.g., Food Basics, Fortinos,
+        Shoppers Drug Mart) as we will be able to collect the most amount of
+        data from these locations and monitor the accuracy of the model. As the
+        project progresses, we will expand to different categories and stores.
     \end{itemize}
     
-    \item \textbf{Optical Character Recognition (OCR) Limitations:} Poor-quality receipts (faded text, creases, or low resolution) may hinder OCR performance, leading to incomplete or inaccurate data extraction.
+    \item \textbf{Optical Character Recognition (OCR) Limitations:} Poor-quality
+    receipts (faded text, creases, or low resolution) may hinder OCR
+    performance, leading to incomplete or inaccurate data extraction.
      \begin{itemize}
-         \item \textbf{Risk level:} Medium, as we plan to use a good quality receipt (i.e., laid out flat on a table, newly printed) for the POC demonstration.
-        \item \textbf{Mitigation plan:} We will initially train the model using good quality receipts. Over the course of the training process, we plan to introduce lower-quality receipts and use advanced pre-processing techniques (e.g., noise reduction, image enhancement) to increase the accuracy of parsing lower-quality data. For the POC demonstration, we plan to use a good quality receipt for the purpose of showing the base functionality of the model.
+         \item \textbf{Risk level:} Medium, as we plan to use a good quality
+         receipt (i.e., laid out flat on a table, newly printed) for the POC
+         demonstration.
+        \item \textbf{Mitigation plan:} We will initially train the model using
+        good quality receipts. Over the course of the training process, we plan
+        to introduce lower-quality receipts and use advanced pre-processing
+        techniques (e.g., noise reduction, image enhancement) to increase the
+        accuracy of parsing lower-quality data. For the POC demonstration, we
+        plan to use a good quality receipt for the purpose of showing the base
+        functionality of the model.
       \end{itemize}
 
-    \item \textbf{Privacy and Data Security:} Handling sensitive financial data (such as purchase histories and personal information) poses the risk of data breaches or unauthorized access.
+    \item \textbf{Privacy and Data Security:} Handling sensitive financial data
+    (such as purchase histories and personal information) poses the risk of data
+    breaches or unauthorized access.
     \begin{itemize}
-        \item \textbf{Risk level:} Low, as we do not plan to release the application before the POC. We will only be testing locally with our team of developers, so there would be no unauthorized access.
-         \item \textbf{Mitigation Plan:} To mitigate privacy and data security risks during the POC, sensitive financial data will be encrypted both at rest and in transit, with access restricted to authorized developers using role-based controls. Anonymized or synthetic data will be used for testing, and local development environments will be hardened with strong passwords, disk encryption, and up-to-date software. 
+        \item \textbf{Risk level:} Low, as we do not plan to release the
+        application before the POC. We will only be testing locally with our
+        team of developers, so there would be no unauthorized access.
+         \item \textbf{Mitigation Plan:} To mitigate privacy and data security
+         risks during the POC, sensitive financial data will be encrypted both
+         at rest and in transit, with access restricted to authorized developers
+         using role-based controls. Anonymized or synthetic data will be used
+         for testing, and local development environments will be hardened with
+         strong passwords, disk encryption, and up-to-date software. 
     \end{itemize}
 
-    \item \textbf{User Experience:} If the app struggles with receipt clarity, formatting inconsistencies, or unusual items, users might become frustrated.
+    \item \textbf{User Experience:} If the app struggles with receipt clarity,
+    formatting inconsistencies, or unusual items, users might become frustrated.
     \begin{itemize}
-        \item \textbf{Risk level:} Low, as we plan to make user experience a priority.
-        \item \textbf{Mitigation plan:} We will conduct usability testing as part of our project, where users will test the app and give feedback on points of improvement for the receipt scanning workflow. For the POC demonstration, we plan to show the key functionality of taking a photo of a receipt and displaying the outputs of the model on the screen. Wireframes will be designed prior to development to ensure that the user interface and experience is well thought out.
+        \item \textbf{Risk level:} Low, as we plan to make user experience a
+        priority.
+        \item \textbf{Mitigation plan:} We will conduct usability testing as
+        part of our project, where users will test the app and give feedback on
+        points of improvement for the receipt scanning workflow. For the POC
+        demonstration, we plan to show the key functionality of taking a photo
+        of a receipt and displaying the outputs of the model on the screen.
+        Wireframes will be designed prior to development to ensure that the user
+        interface and experience is well thought out.
     \end{itemize}
     
-    \item \textbf{Scalability and Performance:} As the user base grows, handling a large volume of receipt uploads and processing requests in real-time could impact system performance and user experience.
+    \item \textbf{Scalability and Performance:} As the user base grows, handling
+    a large volume of receipt uploads and processing requests in real-time could
+    impact system performance and user experience.
     \begin{itemize}
-        \item \textbf{Risk level:} Medium, in terms of performance for the POC plan. We are unsure how fast the model would be able to process an image and return the information that we would need. Scalability is not a risk for the POC plan but is important to consider for future development.
-        \item \textbf{Mitigation plan:} We will run load testing and stress testing simulations to show the app’s capacity to handle increasing numbers of users and transactions without degradation in response time or accuracy. This does not apply for the POC demonstration but is important to consider for future development.
+        \item \textbf{Risk level:} Medium, in terms of performance for the POC
+        plan. We are unsure how fast the model would be able to process an image
+        and return the information that we would need. Scalability is not a risk
+        for the POC plan but is important to consider for future development.
+        \item \textbf{Mitigation plan:} We will run load testing and stress
+        testing simulations to show the app’s capacity to handle increasing
+        numbers of users and transactions without degradation in response time
+        or accuracy. This does not apply for the POC demonstration but is
+        important to consider for future development.
     \end{itemize}
 \end{itemize}
 
@@ -322,7 +570,9 @@ Demonstrate a working mobile application on a mobile device that can perform the
 
 \section{Expected Technology}
 
-The following lists the technology that we expect or are considering to use for the project. Note that these are subject to change over the course of the project.
+The following lists the technology that we expect or are considering to use for
+the project. Note that these are subject to change over the course of the
+project.
 
 \begin{itemize}
     \item \textbf{Programming languages}
@@ -333,7 +583,8 @@ The following lists the technology that we expect or are considering to use for 
     
     \item \textbf{Libraries}
     \begin{itemize}
-        \item Utility CSS Library: Tailwind, MUI, Bootstrap, Css-in-js, Styled Components
+        \item Utility CSS Library: Tailwind, MUI, Bootstrap, Css-in-js, Styled
+        Components
         \item Authentication: Auth0, Firebase
     \end{itemize}
     
@@ -366,7 +617,8 @@ The following lists the technology that we expect or are considering to use for 
     
     \item \textbf{Continuous integration (CI)}
     \begin{itemize}
-        \item GitHub Actions for running tests, linting, formatting. More details on CI plan can be found in Section 7.
+        \item GitHub Actions for running tests, linting, formatting. More
+        details on CI plan can be found in Section 7.
     \end{itemize}
     
     \item \textbf{Version control}
@@ -383,8 +635,12 @@ The following lists the technology that we expect or are considering to use for 
 \section{Coding Style/Standards}
 
 \begin{itemize}
-    \item Most of the code styling will be done via third party formatters and linters such as Prettier and ESLint. These formatters/linters will be implemented directly into the project itself via Git Hooks and will be triggered on every pre-commit via \textbf{Husky}.
-    \item As a basis for committing changes, every commit should be atomic and contain one change pertaining to a specific feature/fix.
+    \item Most of the code styling will be done via third party formatters and
+    linters such as Prettier and ESLint. These formatters/linters will be
+    implemented directly into the project itself via Git Hooks and will be
+    triggered on every pre-commit via \textbf{Husky}.
+    \item As a basis for committing changes, every commit should be atomic and
+    contain one change pertaining to a specific feature/fix.
     \item \textbf{Commit Messages:}
     \begin{itemize}
         \item All commit messages should be systematic and descriptive.
@@ -393,15 +649,19 @@ The following lists the technology that we expect or are considering to use for 
             \item \textbf{Correct:} "Fix typo in README"
             \item \textbf{Incorrect:} "Fixed typo in README"
         \end{itemize}
-        \item All commit messages should begin with one of the following prefixes:
+        \item All commit messages should begin with one of the following
+        prefixes:
         \begin{itemize}
-            \item \texttt{feat:} - for feature and enhancements related implementations
+            \item \texttt{feat:} - for feature and enhancements related
+            implementations
             \item \texttt{fix:} - for bug fixes and tech debt related fixes
-            \item \texttt{chore:} - for project related commits such as bumping project/dependency versions, file renames/relocations, etc.
+            \item \texttt{chore:} - for project related commits such as bumping
+            project/dependency versions, file renames/relocations, etc.
         \end{itemize}
         \item Example commit messages:
         \begin{itemize}
-            \item \texttt{feat: generate openapi ts client based on api\_spec.yaml}
+            \item \texttt{feat: generate openapi ts client based on
+            api\_spec.yaml}
             \item \texttt{fix: change color of CTA button from red to blue}
             \item \texttt{chore: reorganize file structure hierarchy}
         \end{itemize}
