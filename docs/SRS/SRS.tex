@@ -74,9 +74,14 @@
 \newcounter{nfrnum} %NFR Number
 \newcommand{\rthenfrnum}{NFR\thenfrnum}
 \newcommand{\nfrref}[1]{NFR\ref{#1}}
+
 \newcounter{lcnum} %Likely change number
 \newcommand{\lthelcnum}{LC\thelcnum}
 \newcommand{\lcref}[1]{LC\ref{#1}}
+
+\newcounter{ulcnum} %Unlikely change number
+\newcommand{\ltheulcnum}{ULC\theulcnum}
+\newcommand{\ulcref}[1]{ULC\ref{#1}}
 
 \usepackage{fullpage}
 
@@ -1162,15 +1167,22 @@ typical values.}
 	\item[LC\refstepcounter{lcnum}\thelcnum\label{Feedback Mechanism for Users}:] \textbf{Feedback Mechanism for Users:} Adding a feedback mechanism within the app (e.g., surveys or feedback forms) to gather user insights and suggestions for improvements is likely, ensuring continuous enhancement of the app based on user needs.
 \end{itemize}
 
+\newpage
+
 \section{Unlikely Changes}    
 
 \noindent \begin{itemize}
-
-\item[LC\refstepcounter{lcnum}\thelcnum\label{LC_meaningfulLabel}:] \plt{Give
-    the unlikely changes.  The design can assume that the changes listed will
-    not occur.}
-
+	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Complete Rewrite of the App}:] \textbf{Complete Rewrite of the App:} A complete rewrite of the app's codebase is unlikely unless there are significant fundamental flaws that cannot be addressed through refactoring.
+	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Change in Database Choice}:] \textbf{Change in Database Choice:} During the development phase, the initial database choice may need to change due to performance issues or scalability requirements (e.g., moving from SQLite to PostgreSQL or MongoDB).
+	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Switching Platforms}:] \textbf{Switching Platforms:} Transitioning from a mobile-first approach to a purely desktop application is unlikely if the initial target audience is primarily mobile users.
+	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Adopting a New Programming Language}:] \textbf{Adopting a New Programming Language:} Changing the programming language for the entire project (e.g., from JavaScript to Ruby) midway through development is unlikely due to the complexity and resource investment required.
+	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Elimination of Existing Features}:] \textbf{Elimination of Existing Features:} Removing core features that are central to the app's purpose (e.g., expense tracking) is unlikely, as these are fundamental to user expectations and functionality.
+	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Change in Target Audience}:] \textbf{Change in Target Audience:} A shift in the target audience (e.g., from personal budgeting to corporate finance management) is unlikely as it would require a fundamental reevaluation of the app's design and features.
+	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Discontinuation of Data Storage}:] \textbf{Discontinuation of Data Storage:} Completely removing any form of data storage (e.g., opting for a stateless application) is unlikely, as the core functionality relies on data retention for budgeting purposes.
+	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Pivot to a Social Networking Feature Set}:] \textbf{Pivot to a Social Networking Feature Set:} A major pivot to add social networking features (e.g., allowing users to connect with friends or share budgets) is unlikely, as it diverges from the core functionality of personal budgeting and may complicate the app's primary purpose.
 \end{itemize}
+
+\newpage
 
 \section{Traceability Matrices and Graphs}
 
