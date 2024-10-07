@@ -1076,56 +1076,69 @@ qualities that the software is expected to exhibit.
 
 \subsection{Nonfunctional Requirements}
 
-\plt{List your nonfunctional requirements.  You may consider using a fit
-  criterion to make them verifiable.}
-\plt{The goal is for the nonfunctional requirements to be unambiguous, abstract
-  and verifiable.  This isn't easy to show succinctly, so a good strategy may be
-to give a ``high level'' view of the requirement, but allow for the details to
-be covered in the Verification and Validation document.}
-\plt{An absolute requirement on a quality of the system is rarely needed.  For
-  instance, an accuracy of 0.0101 \% is likely fine, even if the requirement is
-  for 0.01 \% accuracy.  Therefore, the emphasis will often be more on
-  describing now well the quality is achieved, through experimentation, and
-  possibly theory, rather than meeting some bar that was defined a priori.}
-\plt{You do not need an entry for correctness in your NFRs.  The purpose of the
-  SRS is to record the requirements that need to be satisfied for correctness.
-  Any statement of correctness would just be redundant. Rather than discuss
-  correctness, you can characterize how far away from the correct (true)
-  solution you are allowed to be.  This is discussed under accuracy.}
-
 \noindent \begin{itemize}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:]
-  \textbf{Accuracy} \plt{Characterize the accuracy by giving the context/use for
-    the software.  Maybe something like, ``The accuracy of the computed
-    solutions should meet the level needed for $<$engineering or scientific
-    application$>$.  The level of accuracy achieved by \progname{} shall be
-    described following the procedure given in Section~X of the Verification and
-    Validation Plan.''  A link to the VnV plan would be a nice extra.}
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:] \textbf{Accuracy}
+	\begin{itemize}
+		\item \textbf{Receipt Parsing Accuracy:} The machine learning model must achieve at least 80\% accuracy in correctly identifying and extracting key information (e.g., item names, prices, dates) from receipts.
+		\item \textbf{Data Categorization Precision:} The app should categorize expenses into predefined categories (e.g., groceries, utilities, entertainment) with at least 90\% precision to ensure users' financial data is correctly organized.
+		\item \textbf{Currency Calculation Precision:} All monetary calculations (totals, budgets, currency conversions) must maintain a precision of up to 2 decimal places to ensure accurate financial reporting.
+		\item \textbf{OCR Model Accuracy:} The optical character recognition (OCR) model must correctly recognize text from images of receipts with a minimum accuracy rate of 95\%, ensuring minimal manual corrections by users.
+		\item \textbf{Expense Summation Accuracy:} The app must guarantee 100\% accuracy in summing up expenses, incomes, and savings across different periods and categories, ensuring no rounding or summation errors.
+		\item \textbf{Data Sync Consistency:} If the app syncs data across multiple devices or platforms, it should ensure 100\% consistency of financial data across all instances with no discrepancies or delays.
+	\end{itemize}
 
 \item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
-  \plt{Characterize the usability by giving the context/use for the software.
-    You should likely reference the user characteristics section.  The level of
-    usability achieved by the software shall be described following the
-    procedure given in Section~X of the Verification and Validation Plan.  A
-    link to the VnV plan would be a nice extra.}
+\begin{itemize}
+	\item \textbf{User Interface Simplicity:} The app must have a clean, intuitive, and easy-to-navigate interface, allowing users to perform common tasks (e.g., adding expenses, viewing budgets) within 2-3 clicks.
+	\item \textbf{Onboarding Process:} New users should be able to complete the account setup and understand core app features within 5 minutes, with interactive tutorials and tooltips provided during the first use.
+	\item \textbf{Responsive Design:} The app’s interface must be fully responsive, providing an optimal user experience across different devices (smartphones, tablets, desktops) and screen sizes without layout or performance issues.
+	\item \textbf{Error Prevention and Recovery:} The app should provide clear, informative error messages, and guide users through corrective actions when incorrect input is detected. Users should be able to recover from errors (e.g., wrong data entry) with no more than 2 steps.
+	\item \textbf{Task Completion Time:} Common user tasks, such as adding a new receipt or setting a budget limit, should be completable within 10 seconds on average, assuming all required information is readily available.
+	\item \textbf{Minimal Cognitive Load:} Information displayed to users must be concise and relevant, minimizing the cognitive effort needed to understand their financial data. Only essential details should be shown on the main dashboard, with advanced options tucked under menus.
+	\item \textbf{Performance:} The app must load within 2 seconds for all major screens and respond to user actions (e.g., adding an entry, generating a report) within 1 second to ensure a smooth and responsive experience.
+\end{itemize}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:]
-  \textbf{Maintainability} \plt{The effort required to make any of the likely
-    changes listed for \progname{} should be less than FRACTION of the original
-    development time.  FRACTION is then a symbolic constant that can be defined
-    at the end of the report.}
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:] \textbf{Maintainability}
+\begin{itemize}
+	\item \textbf{Continuous Integration (CI) Pipeline:} The project must implement a CI pipeline that automatically runs tests, checks code quality, and verifies builds with every commit, ensuring that code is always in a deployable state.
+	\item \textbf{Backward Compatibility:} New releases must maintain backward compatibility with previous versions, ensuring that users can seamlessly update the app without experiencing disruptions in their data or workflows.
+	\item \textbf{Dependency Management:} The system should use a dependency management tool (e.g., npm for JavaScript, pip for Python) to track external libraries, and dependencies must be regularly updated to prevent security vulnerabilities and maintain compatibility with new features.
+	\item \textbf{Automated Unit Testing Coverage:} At least 80\% of the codebase must be covered by automated unit tests to ensure maintainability and minimize the risk of introducing bugs when making changes.
+\end{itemize}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:]
-  \textbf{Portability} \plt{This NFR is easier to write than the others.  The
-    systems that \progname{} should run on should be listed here.  When possible
-    the specific versions of the potential operating environments should be
-    given.  To make the NFR verifiable a statement could be made that the tests
-    from a given section of the VnV plan can be successfully run on all of the
-    possible operating environments.}
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:] \textbf{Portability} 
+\begin{itemize}
+	\item \textbf{Cross-Platform Compatibility:} The software should be compatible with Android and iOS mobile devices running the latest software.
+	\item \textbf{Cloud-Based Data Storage:} The app must use cloud-based storage solutions (e.g., AWS S3, Google Cloud Storage) for user data to allow seamless access across devices without data loss or duplication.
+	\item \textbf{Use of Platform-Agnostic Technologies:} The app should be developed using platform-agnostic frameworks or languages (e.g., React Native, Flutter, or web-based technologies like HTML5) to ensure easy deployment across different operating systems.
+	\item \textbf{Portable Data Formats:} All data must be stored in platform-independent formats (e.g., JSON, CSV) for easy transfer and compatibility between devices, databases, and systems.
+	\item \textbf{API Compatibility:} Any external APIs or third-party services integrated into the app must support cross-platform usage, ensuring the app can access necessary services from any supported platform.
+	\item \textbf{Minimal Platform-Specific Dependencies:} The app should minimize reliance on platform-specific features or libraries, ensuring that any platform-dependent code can easily be replaced or adapted when porting the app to a new environment.
+\end{itemize}
 
-\item Other NFRs that might be discussed include verifiability,
-  understandability and reusability.
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Reuseability}:] \textbf{Reusability} 
+\begin{itemize}
+	\item \textbf{Component-Based Architecture:} The app must be developed using reusable components (e.g., UI components, API services), allowing those components to be easily reused across different parts of the app or in future projects.
+	\item \textbf{Separation of Concerns:} The app must adhere to the principle of separation of concerns, ensuring that business logic, data access, and presentation layers are kept separate, allowing individual layers to be reused independently.
+	\item \textbf{Reusable Libraries and Modules:} Common functionalities (e.g., receipt parsing, authentication, data validation) must be abstracted into reusable libraries or modules that can be shared across multiple applications or systems.
+	\item \textbf{Reusable Design Assets:} Design elements (e.g., icons, typography, color schemes) should be created as reusable assets, ensuring they can be reused consistently across multiple projects or platforms.
+\end{itemize}
+
+\newpage
+
+\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Understandability}:] \textbf{Understandability} 
+\begin{itemize}
+	\item \textbf{Clear Code Documentation:} All source code must be thoroughly documented using inline comments and external documentation (e.g., README files, docstrings) to ensure that developers can easily understand the purpose and behavior of code components.
+	\item \textbf{Consistent Naming Conventions:} Variables, functions, classes, and modules must follow consistent and meaningful naming conventions (e.g., camelCase, snake\_case) that clearly describe their functionality and usage, making the code easier to understand.
+	\item \textbf{User-Friendly Interface:} The app's user interface (UI) must be designed with simplicity and clarity in mind, using clear labels, icons, and tooltips to guide users through tasks such as adding expenses or reviewing their budgets, reducing confusion.
+	\item \textbf{Logical Code Structure:} The app's codebase must be organized logically, with related files and components grouped together in well-defined directories, so developers can easily navigate and locate specific functionality.
+	\item \textbf{Readable Code Formatting:} The code must follow industry-standard formatting guidelines (e.g., proper indentation, line length limits) to ensure that it remains readable and easy to follow, both for developers and code reviewers.
+	\item \textbf{Clear Error Messages:} The app must provide clear, descriptive error messages (both for users and in logs) that explain the cause of an issue and provide actionable steps to resolve it, improving user and developer understanding.
+	\item \textbf{Detailed API Documentation:} Any APIs developed for the app must include detailed and easy-to-understand documentation, describing available endpoints, request/response formats, and example usage scenarios, ensuring that developers can integrate with them easily.
+	\item \textbf{Version Control Documentation:} All major changes to the codebase should be accompanied by clear commit messages and detailed changelogs, explaining the purpose of changes and their impact, helping future developers understand the evolution of the project.
+	\item \textbf{User-Centric Terminology:} The language and terminology used throughout the app's UI must be aligned with the users' mental models and expectations, using non-technical and familiar terms to enhance understanding.
+\end{itemize}
 
 \end{itemize}
 
