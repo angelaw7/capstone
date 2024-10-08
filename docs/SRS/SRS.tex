@@ -280,12 +280,29 @@ expect in the Introduction section.}
 
 \subsection{Purpose of Document}
 
+The purpose of this SRS document is to describe the functional and non-functional requirements of the Plutos budgeting application. This document serves as a formal agreement between stakeholders, including developers, project managers, and end users, to ensure a shared understanding of the system's objectives, capabilities, and constraints. \\
+
+\noindent The SRS defines the expectations for the project, detailing the system features, behaviour, and performance requirements. It serves as a reference throughout the development lifecycle, guiding the design, implementation, testing, and validation phases to ensure the final product meets the agreed-upon specifications. Additionally, this document will support future maintenance and scalability of the application by providing clear and detailed requirements that facilitate ongoing enhancements.
 
 \subsection{Scope of Requirements} 
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 
 \subsection{Organization of Document}
+
+The following sections of the SRS will further describe the system and its requirements. The sections will be as follows:
+
+\begin{enumerate}
+	\setcounter{enumi}{2}
+	\item General System Description
+	\item Specific System Description
+	\item Requirements
+	\item Likely Changes
+	\item Unlikely Changes
+	\item Traceability Matrices and Graphs
+	\item Development Plan
+	\item Values of Auxiliary Constants
+\end{enumerate}
 
 \newpage
 
@@ -365,14 +382,38 @@ automotive hazard analyses.}
 \wss{The }
 \subsection{User Characteristics} \label{SecUserCharacteristics}
 
-\plt{This section summarizes the knowledge/skills expected of the user.
-  Measuring usability, which is often a required non-function requirement,
-  requires knowledge of a typical user.  As mentioned above, the user is a
-  different role from the ``intended reader,'' as given in
-  Section~\ref{sec_IntendedReader}.  As in Section~\ref{sec_IntendedReader}, the
-  user characteristics should be specific an unambiguous.  For instance, ``The
-  end user of \progname{} should have an understanding of undergraduate Level 1
-  Calculus and Physics.''}
+The users of the \textit{Plutos} budgeting application can be grouped into four main categories based on their financial experience and needs. These groups represent varying levels of financial literacy and desired interaction with budgeting tools.
+
+\begin{enumerate}
+	\item \textbf{First and Second-Year Undergraduate Students [Primary]} \\ 
+		This group consists of young adults who are new to managing their finances independently, such as those living away from home for the first time. The characteristics of these users are as follows:
+		\begin{itemize}
+			\item \textbf{Financial Knowledge:} Limited experience with budgeting, managing expenses like rent and groceries. Usually have limited financial independence.
+			\item \textbf{Time Management:} Busy schedules juggling school, work, and social commitments. Likely to prefer simple, intuitive interfaces that reduce time spent on budgeting.
+			\item \textbf{Pain Points:} Lack of education on budgeting, potential to overspend due to unfamiliarity with managing day-to-day expenses.
+		\end{itemize}
+	\item \textbf{Upper-Year Undergraduate and Post-Graduate Students [Secondary]}
+		This group includes more experienced students who have more financial independence as they have had experience managing their finances (in previous years living independently).  They have a better understanding of budgeting and have developed more mature spending habits.
+		\begin{itemize}
+			\item \textbf{Financial Knowledge:}  Some experience balancing school and work, likely to have a clearer understanding of budgeting needs and differentiating between wants and needs.
+			\item \textbf{Time Management:} Likely to have more experience managing limited time and money, though they may still struggle with large financial decisions such as housing or loans.
+			\item \textbf{Pain Points:}  May underestimate or overestimate budget needs, particularly with larger expenses.
+		\end{itemize}
+	\item \textbf{Early Career Professionals [Tertiary]}
+		New graduates or individuals recently introduced to the workforce fall into this category. They likely have more stable incomes and financial independence.
+		\begin{itemize}
+			\item \textbf{Financial Knowledge:} More knowledgeable about saving, budgeting, and managing recurring expenses but still learning to navigate significant financial decisions.
+			\item \textbf{Time Management:} May experience stress due to work-related issues and life changes such as moving to a new city and budgeting/tracking expenses may be another stress inducer on top of the new environment.
+			\item \textbf{Pain Points:} Struggles with planning for long-term financial goals or managing joint accounts with a partner.
+		\end{itemize}
+	\item \textbf{Retirees [Tertiary]}
+		Although retirees are not a primary focus, they may use the application to simplify financial tracking and planning for a fixed income.
+		\begin{itemize}
+			\item \textbf{Financial Knowledge:} Likely to have extensive experience with financial management but may struggle to adapt to modern budgeting tools.
+			\item \textbf{Time Management:} Older users may face physical limitations (e.g., difficulty typing or navigating) and slower adaptation to new technologies.
+			\item \textbf{Pain Points:} Difficulty managing finances without a steady income and adapting to increased living expenses.
+		\end{itemize}
+\end{enumerate}
 
 \subsection{System Constraints}
 
