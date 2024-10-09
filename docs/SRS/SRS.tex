@@ -71,6 +71,10 @@
 \newcounter{reqnum} %Requirement Number
 \newcommand{\rthereqnum}{R\thereqnum}
 \newcommand{\rref}[1]{R\ref{#1}}
+\newcounter{frnum}[subsection] %FR Number
+\renewcommand{\thefrnum}{\thesubsection.\arabic{frnum}}
+\newcommand{\rthefrnum}{\thefrnum} 
+\newcommand{\frref}[1]{\ref{#1}}
 \newcounter{nfrnum} %NFR Number
 \newcommand{\rthenfrnum}{NFR\thenfrnum}
 \newcommand{\nfrref}[1]{NFR\ref{#1}}
@@ -287,7 +291,15 @@ The purpose of this SRS document is to describe the functional and non-functiona
 \subsection{Scope of Requirements} 
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
-
+The primary audience for this SRS document is the group of undergraduate software engineering students who will 
+oversee and complete the project’s design and implementation. This group of specialists, which includes system architects, 
+software developers, and quality assurance testers, has extensive experience in the range of technologies needed for 
+the project. Through their coursework and personal experiences, they are familiar with the process of developing mobile 
+applications, and as they move through the project milestones, they will deepen their understanding of artificial intelligence 
+and machine learning. They will actively learn how to apply AI/ML technologies in real-world circumstances throughout 
+the project, which will advance their development as software engineers. The collaborative effort will help them improve 
+their real-world application development abilities as the project progresses through seven milestones, ensuring that they 
+are prepared to produce a practical and user-friendly budgeting solution.
 \subsection{Organization of Document}
 
 The following sections of the SRS will further describe the system and its requirements. The sections will be as follows:
@@ -986,7 +998,61 @@ software is expected to complete, and the nonfunctional requirements, the
 qualities that the software is expected to exhibit.
 
 \subsection{Functional Requirements}
+\noindent
 
+\refstepcounter{frnum}
+\label{fr1}
+\textbf{\rthefrnum: User Account Management}
+\begin{itemize}
+    \item Users must create an account using a name, email address, and password.
+    \item Users can update their information after account creation.
+    \item Users must log in using their registered email and password.
+\end{itemize}
+
+\refstepcounter{frnum}
+\label{fr2}
+\textbf{\rthefrnum: Receipt Scanning Input}
+\begin{itemize}
+    \item Users can take a picture of a receipt and upload it.
+    \item The system displays a preview for confirmation or retaking.
+\end{itemize}
+
+\refstepcounter{frnum}
+\label{fr3}
+\textbf{\rthefrnum: Manual Receipt Input}
+\begin{itemize}
+    \item Users can manually input receipt details such as date and items.
+    \item The system validates the input to ensure required fields are completed.
+\end{itemize}
+
+\refstepcounter{frnum}
+\label{fr4}
+\textbf{\rthefrnum: Database Management}
+\begin{itemize}
+    \item The system shall maintain a secure, account-specific database for storing identified products and their respective categories.
+\end{itemize}
+
+\refstepcounter{frnum}
+\label{fr5}
+\textbf{\rthefrnum: Item Recognition and Categorization}
+\begin{itemize}
+    \item The system shall identify and display item names, quantities, and costs from the uploaded receipt image.
+    \item The system shall sort the entered products into predefined categories.
+    \item The system shall prompt the user to confirm identified items and their corresponding categories.
+    \item The system shall allow the user to modify the name, quantity, price, and category of the identified items.
+    \item The system shall save the extracted data from the receipt input and the image of the receipt to the user’s profile.
+\end{itemize}
+
+\refstepcounter{frnum}
+\label{fr6}
+\textbf{\rthefrnum: Financial Tracking}
+\begin{itemize}
+    \item The system shall generate an overview of the user's spending history, including total spending by item category and trends over time.
+    \item Users shall be able to set up budgets for each spending category.
+    \item Users shall be able to view their spending in relation to their set budgets.
+    \item The system shall notify users when they reach 80\% of their set budget limit.
+    \item The system shall notify users when they achieve specified savings goals.
+\end{itemize}
 \noindent \begin{itemize}
 
 \item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] \plt{Requirements
