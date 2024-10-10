@@ -158,7 +158,9 @@
 \midrule
 10/07/2024 & 1.0 & Added in the following sections to the SRS: Reference Materials (1), NFRs (5.2), Likely Changes (6), Unlikely Changes (7), Development Plan (9), Auxiliary Constraints (10)\\
 10/08/2024 & 1.1 & Added in the following sections to the SRS: Purpose of Document (2.1), Organization of Document (2.4), User Characteristics (3.2)\\
-\bottomrule
+10/09/2024 & 1.2 & Added in the following sections to the SRS: Characteristics of Intended Reader (2.3), Functional Requirements (5.1)\\
+10/10/2024 & 1.3 & Added in the following sections to the SRS: System Constraints (3.3), Requirements Rationale (5.3)\\
+\bottomrule 
 \end{tabularx}
 
 ~\\
@@ -427,14 +429,46 @@ The users of the \textit{Plutos} budgeting application can be grouped into four 
 		\end{itemize}
 \end{enumerate}
 
+\newpage
+
 \subsection{System Constraints}
 
-\plt{System constraints differ from other type of requirements because they
-  limit the developers' options in the system design and they identify how the
-  eventual system must fit into the world. This is the only place in the SRS
-  where design decisions can be specified.  That is, the quality requirement for
-  abstraction is relaxed here.  However, system constraints should only be
-  included if they are truly required.}
+\subsubsection{Technical Constraints}
+
+\begin{itemize}
+	\item The system must be developed as a mobile application using a cross-platform framework (e.g., React Native, Flutter) to ensure compatibility with both iOS and Android devices.
+	\item The system must utilize a cloud-based backend technology (e.g., AWS, Firebase) to provide scalability and reliability.
+	\item The system must integrate with a third-party OCR library (e.g., Tesseract OCR, Google Vision API) to provide optical character recognition functionality.
+	\item The system must use a NoSQL database (e.g., MongoDB, Firebase) to store user account information and expense tracking data.	
+\end{itemize}
+
+\subsubsection{Performance Constraints}
+
+\begin{itemize}
+	\item The system must be able to process user inputs and generate budgeting data and analysis outputs within a reasonable time frame (e.g., 2-3 seconds).
+	\item The system must be able to handle a minimum of 10 concurrent users without significant performance degradation.	
+\end{itemize}
+
+\subsubsection{Security Constraints}
+
+\begin{itemize}
+	\item The system must implement secure password storage and authentication mechanisms using a third-party authentication service (e.g., Auth0, Firebase).
+	\item The system must ensure that all data transmitted between the client and server is encrypted using SSL/TLS protocol.
+\end{itemize}
+
+\subsubsection{Environmental Constraints}
+
+\begin{itemize}
+	\item The system must be designed to operate on a variety of mobile devices, including smartphones and tablets, with different screen sizes and operating systems.
+	\item The system must be able to operate in a variety of network environments, including Wi-Fi, cellular networks, and offline mode.	
+\end{itemize}
+
+\subsubsection{Regulatory Constraints}
+
+\begin{itemize}
+	\item The system must comply with relevant data protection regulations (e.g., GDPR, CCPA) to ensure the privacy and security of user data.
+	\item The system must comply with relevant financial regulations (e.g., PCI-DSS) to ensure the secure handling of financial information.	
+\end{itemize}
 
 \newpage
 
@@ -1153,9 +1187,66 @@ qualities that the software is expected to exhibit.
 
 \subsection{Rationale}
 
-\plt{Provide a rationale for the decisions made in the documentation.  Rationale
-should be provided for scope decisions, modelling decisions, assumptions and
-typical values.}
+In providing a rationale for the decisions made in the documentation for the smart budgeting app, the following elements need to be considered: \textbf{scope decisions}, \textbf{modeling decisions}, \textbf{assumptions}, and \textbf{typical values}. Below is a breakdown of the rationale for each:
+
+\subsubsection{Scope Decisions}
+
+The scope decisions were made with the intention of ensuring that the app delivers value to its target audience while remaining manageable within development constraints. The app focuses on personal budgeting features, including receipt scanning, expense categorization, budget tracking, and financial analysis. \\
+
+\noindent \textbf{Rationale}
+
+\begin{itemize}
+	\item \textbf{User-Centered Design:} The scope focuses on features that users expect from a smart budgeting app, aligning with current market demands for personal finance tools that offer automation (e.g., receipt scanning) and financial insights. 
+	\item \textbf{Technical Feasibility:} The decision to include features like machine learning for receipt parsing is scoped within the team's ability to implement using existing AI frameworks (e.g., OCR and NLP libraries).
+	\item \textbf{Time and Resource Constraints:} By narrowing the scope to core personal finance features, the team ensures that the project can be completed within the specified timeline and budget, avoiding feature creep.
+	\item \textbf{Single Currency Support at Launch:} Focusing on a single currency simplifies the design of financial calculations, data presentation, and reporting. Multi-currency support introduces complexity in areas such as exchange rate management, which can be deferred to a later phase.
+	\item \textbf{No Offline Mode in the Initial Version:} Implementing an offline mode adds complexity to data synchronization and storage. By focusing on online features initially, the development team can ensure that the core functionalities (e.g., receipt scanning and expense categorization) perform optimally without additional constraints.
+\end{itemize}
+
+\subsubsection{Modeling Decisions}
+
+The app's architecture follows a modular, service-oriented design, with key components such as receipt scanning, expense categorization, and budgeting reports being developed as independent, reusable modules. \\
+
+\newpage
+
+\noindent \textbf{Rationale}
+
+\begin{itemize}
+	\item \textbf{Scalability:} A modular approach allows the app to scale more easily by isolating functionalities into distinct services (e.g., a dedicated service for expense categorization). This reduces interdependencies and facilitates future growth.
+	\item \textbf{Maintainability:} Modular components are easier to update and test, as changes to one service do not necessarily impact others. This also allows the app to accommodate feature updates and bug fixes more efficiently.
+	\item \textbf{Reusability:} By designing reusable components (e.g., UI elements, API services), the app can easily extend its capabilities or integrate with other systems in the future.
+	\item \textbf{Use of JSON for Data Exchange:} JSON is lightweight, human-readable, and widely used for web and mobile applications. Its simplicity makes it ideal for transmitting structured data between the client and server, ensuring smooth communication with minimal overhead.
+\end{itemize}
+
+\subsubsection{Assumptions}
+
+Several assumptions were made during the development and design process. These assumptions include the expectation that users will regularly scan receipts, that mobile users are the primary audience, and that financial data privacy is of utmost importance. \\
+
+\noindent \textbf{Rationale}
+
+\begin{itemize}
+	\item \textbf{Receipt Scanning:} The assumption that users will consistently scan receipts underpins the app’s core functionality. This assumption is based on trends observed in personal finance apps where automation is a key value proposition for users.
+	\item \textbf{Mobile-First Audience:} It is assumed that the majority of users will access the app via mobile devices. This assumption is driven by the current dominance of mobile platforms for personal finance management, offering convenience and accessibility.
+	\item \textbf{Privacy and Security:} The assumption that users expect high standards of data privacy and security informs the app’s adherence to regulations such as GDPR. Users handling sensitive financial data expect robust protection mechanisms.
+	\item \textbf{Stable Internet Connection:} It is assumed that users will have access to a stable internet connection while using the app, especially for features that require cloud processing (e.g., receipt scanning, data syncing, and report generation).
+	\item \textbf{Regular App Usage:} The assumption is that users will interact with the app on a regular basis (e.g., weekly or monthly), allowing the app to provide up-to-date financial insights and budgeting trends based on frequent input.
+	\item \textbf{User Financial Literacy:} The app assumes a basic level of financial literacy among its users, meaning that they will be able to understand concepts like budgets, expenses, savings, and categories without extensive in-app education.
+\end{itemize}
+\subsubsection{Typical Values}
+
+For certain features, typical values have been used to inform design and development, such as default budget categories, receipt parsing accuracy thresholds, and system performance benchmarks. \\
+
+\noindent \textbf{Rationale}
+
+\begin{itemize}
+	\item \textbf{Default Categories:} Common budgeting categories (e.g., groceries, utilities, transportation) are provided as default to simplify user onboarding and offer a familiar framework. These categories were selected based on industry standards and user behavior in similar apps.
+	\item \textbf{Parsing Accuracy:} An accuracy threshold of 90\% for receipt parsing was established as the minimum acceptable standard, based on current machine learning capabilities and user expectations for automated processes.
+	\item \textbf{Performance Benchmarks:} Typical values for system performance, such as load times of under 2 seconds for key operations (e.g., viewing reports), are set based on user experience research, ensuring that the app feels responsive and efficient.
+	\item \textbf{Maximum Receipt Upload Size:} A limit of 5 MB per receipt ensures a balance between allowing high-resolution images for accurate OCR processing while keeping server storage and bandwidth requirements manageable. Users are encouraged to upload clear, focused images within this size limit.
+	\item \textbf{User Transaction History Retention:} Storing up to 3 years of transaction history provides users with enough data to analyze long-term financial trends while limiting the storage requirements for each user. Older transactions could be archived or made available on demand.
+	\item \textbf{Frequency of Budget Update Notifications:} Weekly budget update notifications help users stay on top of their spending without overwhelming them with too many alerts. Users are reminded to review their financial status regularly while avoiding notification fatigue.
+	\item \textbf{Budget Category Limits:} Allowing up to 25 distinct budget categories provides users with enough flexibility to categorize their spending without overwhelming them with too many options. This value strikes a balance between personalization and simplicity.
+\end{itemize}
 
 \newpage 
 
