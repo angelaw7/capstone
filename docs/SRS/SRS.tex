@@ -832,32 +832,69 @@ For certain features, typical values have been used to inform design and develop
 
 \section{Likely Changes}    
 
-\noindent \begin{itemize}
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Addition of New Features}:] \textbf{Addition of New Features:} Based on user feedback, it is likely that new features (e.g., budgeting goal tracking, automatic expense categorization, or financial analytics) will be added to enhance user experience.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{User Interface Redesign}:] \textbf{User Interface Redesign:} As usability testing is conducted, it's likely that the UI will undergo several iterations to improve the overall user experience and incorporate user feedback.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Integration with New APIs}:] \textbf{Integration with New APIs:} The application may need to integrate with new financial data APIs (e.g., bank transaction retrieval services) to enhance functionality, requiring changes to the codebase.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Change in Tech Stack}:] \textbf{Change in Tech Stack:} If the team encounters difficulties with the current technology stack, such as performance or compatibility issues, a transition to new technologies (e.g., switching from React to Vue.js) is likely.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Performance Optimizations}:] \textbf{Performance Optimizations:} As the application scales, there may be a need for performance enhancements, such as optimizing database queries or implementing caching strategies.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Data Privacy Compliance Updates}:] \textbf{Data Privacy Compliance Updates:} Changes in legal requirements (e.g., GDPR, CCPA) may require updates to the application's data handling and privacy policies to ensure compliance.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Adjustment of User Roles and Permissions}:] \textbf{Adjustment of User Roles and Permissions:} Changes to user roles and permissions may occur as new features are added, requiring adjustments to the authentication and authorization system.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Updates to User Authentication Method}:] \textbf{Updates to User Authentication Method:} There may be a transition to a more secure authentication method (e.g., implementing two-factor authentication) based on user feedback and security best practices.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Feedback Mechanism for Users}:] \textbf{Feedback Mechanism for Users:} Adding a feedback mechanism within the application (e.g., surveys or feedback forms) to gather user insights and suggestions for improvements is likely, ensuring continuous enhancement of the application based on user needs.
-\end{itemize}
+\begin{enumerate}[label=LC\arabic*]
+	\item\textbf{Addition of New Features:} Based on user feedback, it is likely
+	that new features (e.g., budgeting goal tracking, automatic expense
+	categorization, or financial analytics) will be added to enhance user
+	experience.
+	\item\textbf{User Interface Redesign:} As usability testing is conducted, it's
+	likely that the UI will undergo several iterations to improve the overall user
+	experience and incorporate user feedback.
+	\item \textbf{Integration with New APIs:} The application may need to
+	integrate with new financial data APIs (e.g., bank transaction retrieval
+	services) to enhance functionality, requiring changes to the codebase.
+	\item \textbf{Change in Tech Stack:} If the team encounters difficulties with
+	the current technology stack, such as performance or compatibility issues, a
+	transition to new technologies (e.g., switching from React to Vue.js) is
+	likely.
+	\item \textbf{Performance Optimizations:} As the application scales, there may
+	be a need for performance enhancements, such as optimizing database queries or
+	implementing caching strategies.
+	\item\textbf{Data Privacy Compliance Updates:} Changes in legal requirements
+	may require updates to the application's data handling and privacy policies to
+	ensure compliance.
+	\item\textbf{Updates to User Authentication Method:} There may be a transition
+	to a more secure authentication method (e.g., implementing two-factor
+	authentication) based on user feedback and security best practices.
+	\item\textbf{Feedback Mechanism for Users:} Adding a feedback mechanism within
+	the application (e.g., surveys or feedback forms) to gather user insights and
+	suggestions for improvements is likely, ensuring continuous enhancement of the
+	application based on user needs.
+  \item \textbf{Change in Database Choice:} During the development phase, the
+	initial database choice may need to change due to performance issues or
+	scalability requirements (e.g., moving from SQLite to PostgreSQL or MongoDB).
+\end{enumerate}
 
 \newpage
 
 \section{Unlikely Changes}    
 
-\noindent \begin{itemize}
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Complete Rewrite of the App}:] \textbf{Complete Rewrite of the App:} A complete rewrite of the application's codebase is unlikely unless there are significant fundamental flaws that cannot be addressed through refactoring.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Change in Database Choice}:] \textbf{Change in Database Choice:} During the development phase, the initial database choice may need to change due to performance issues or scalability requirements (e.g., moving from SQLite to PostgreSQL or MongoDB).
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Switching Platforms}:] \textbf{Switching Platforms:} Transitioning from a mobile-first approach to a purely desktop application is unlikely if the initial target audience is primarily mobile users.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Adopting a New Programming Language}:] \textbf{Adopting a New Programming Language:} Changing the programming language for the entire project (e.g., from JavaScript to Ruby) midway through development is unlikely due to the complexity and resource investment required.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Elimination of Existing Features}:] \textbf{Elimination of Existing Features:} Removing core features that are central to the application's purpose (e.g., expense tracking) is unlikely, as these are fundamental to user expectations and functionality.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Change in Target Audience}:] \textbf{Change in Target Audience:} A shift in the target audience (e.g., from personal budgeting to corporate finance management) is unlikely as it would require a fundamental reevaluation of the application's design and features.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Discontinuation of Data Storage}:] \textbf{Discontinuation of Data Storage:} Completely removing any form of data storage (e.g., opting for a stateless application) is unlikely, as the core functionality relies on data retention for budgeting purposes.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Pivot to a Social Networking Feature Set}:] \textbf{Pivot to a Social Networking Feature Set:} A major pivot to add social networking features (e.g., allowing users to connect with friends or share budgets) is unlikely, as it diverges from the core functionality of personal budgeting and may complicate the application's primary purpose.
-\end{itemize}
+\begin{enumerate}[label=ULC\arabic*]
+	\item \textbf{Complete Rewrite of the Application:} A complete rewrite of the
+	application's codebase is unlikely unless there are significant fundamental
+	flaws that cannot be addressed through refactoring.
+	\item \textbf{Switching Platforms:} Transitioning from a mobile-first approach
+	to a purely desktop application is unlikely if the initial target audience is
+	primarily mobile users.
+	\item \textbf{Adopting a New Programming Language:} Changing the programming
+	language for the entire project (e.g., from JavaScript to Ruby) midway through
+	development is unlikely due to the complexity and resource investment
+	required.
+	\item \textbf{Elimination of Existing Features:} Removing core features that
+	are central to the application's purpose (e.g., expense tracking) is unlikely,
+	as these are fundamental to user expectations and functionality.
+	\item \textbf{Change in Target Audience:} A shift in the target audience
+	(e.g., from personal budgeting to corporate finance management) is unlikely as
+	it would require a fundamental reevaluation of the application's design,
+	features, and use cases.
+	\item \textbf{Discontinuation of Data Storage:} Completely removing any form
+	of data storage (e.g., opting for a stateless application) is unlikely, as the
+	core functionality relies on data retention for budgeting purposes.
+	\item \textbf{Pivot to a Social Networking Feature Set:} A major pivot to add
+	social networking features (e.g., allowing users to connect with friends or
+	share budgets) is unlikely, as it diverges from the core functionality of
+	personal budgeting and may complicate the application's primary purpose.
+\end{enumerate}
 
 \newpage
 
