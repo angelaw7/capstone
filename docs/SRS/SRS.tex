@@ -18,6 +18,7 @@
 \usepackage{caption}
 \usepackage{pdflscape}
 \usepackage{afterpage}
+\usepackage{enumitem}
 
 \usepackage[round]{natbib}
 
@@ -158,19 +159,16 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-10/07/2024 & 1.0 & Added in the following sections to the SRS: Reference Materials (1), NFRs (5.2), Likely Changes (6), Unlikely Changes (7), Development Plan (9), Auxiliary Constraints (10)\\
-10/08/2024 & 1.1 & Added in the following sections to the SRS: Purpose of Document (2.1), Organization of Document (2.4), User Characteristics (3.2)\\
-10/09/2024 & 1.2 & Added in the following sections to the SRS: Characteristics of Intended Reader (2.3), Functional Requirements (5.1)\\
-10/10/2024 & 1.3 & Added in the following sections to the SRS: System Constraints (3.3), Requirements Rationale (5.3)\\
+10/07/2024 & 0.01 & Added in the following sections to the SRS: Reference Materials (1), NFRs (5.2), Likely Changes (6), Unlikely Changes (7), Development Plan (9), Auxiliary Constraints (10)\\
+10/08/2024 & 0.02 & Added in the following sections to the SRS: Purpose of Document (2.1), Organization of Document (2.4), User Characteristics (3.2)\\
+10/09/2024 & 0.03 & Added in the following sections to the SRS: Characteristics of Intended Reader (2.3), Functional Requirements (5.1)\\
+10/10/2024 & 0.04 & Added in the following sections to the SRS: System Constraints (3.3), Requirements Rationale (5.3)\\
+10/11/2024 & 0.05 & Enumerate requirements, clean up doc, review\\
 \bottomrule 
 \end{tabularx}
 
 ~\\
-\plt{This template is intended for use by CAS 741.  For CAS 741 the template
-should be used exactly as given, except the Reflection Appendix can be deleted.
-For the capstone course it is a source of ideas, but shouldn't be followed
-exactly.  The exception is the reflection appendix.  All capstone SRS documents
-should have a refelection appendix.}
+
 
 ~\newpage
 
@@ -193,16 +191,15 @@ N/A; symbols are not used in this SRS.
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
+  AI & Artificial Intelligence\\
+  JWT & JSON Web Token\\
+  LC & Likely Change\\
+  ML & Machine Learning\\
   NLP & Natural Language Processing\\
   OCR & Optical Character Recognition\\
-  JWT & JSON Web Token\\
-  AI & Artificial Intelligence\\
-  ML & Machine Learning\\
-  LC & Likely Change\\
-  ULC & Unlikely Change\\
   SRS & Software Requirements Specification\\
   TM & Theoretical Model\\
-  \progname{} & \plt{put an expanded version of your program name here (as appropriate)}\\
+  ULC & Unlikely Change\\
   \bottomrule
 \end{tabular}\\
 
@@ -213,70 +210,6 @@ N/A; mathematical notation is not used in this SRS.
 \newpage
 
 \pagenumbering{arabic}
-
-\plt{This SRS template is based on \citet{SmithAndLai2005, SmithEtAl2007,
-  SmithAndKoothoor2016}.  It will get you started.  You should not modify the
-  section headings, without first discussing the change with the course
-  instructor.  Modification means you are not following the template, which
-  loses some of the advantage of a template, especially standardization.
-  Although the bits shown below do not include type information, you may need to
-  add this information for your problem.  If you are unsure, please can ask the
-  instructor.}
-
-\plt{Feel free to change the appearance of the report by modifying the LaTeX
-  commands.}
-
-\plt{This template document assumes that a single program is being documented.
-  If you are documenting a family of models, you should start with a commonality
-  analysis.  A separate template is provided for this.  For program
-  families you should look at \cite{Smith2006, SmithMcCutchanAndCarette2017}.
-  Single family member programs are often programs based on a single physical
-  model.  General purpose tools are usually documented as a family.  Families of
-  physical models also come up.}
-
-\plt{The SRS is not generally written, or read, sequentially.  The SRS is a
-  reference document.  It is generally read in an ad hoc order, as the need
-  arises.  For writing an SRS, and for reading one for the first time, the
-  suggested order of sections is:
-\begin{itemize}
-\item Goal Statement
-\item Instance Models
-\item Requirements
-\item Introduction
-\item Specific System Description
-\end{itemize}
-}
-
-\plt{Guiding principles for the SRS document:
-\begin{itemize}
-\item Do not repeat the same information at the same abstraction level.  If
-  information is repeated, the repetition should be at a different abstraction
-  level.  For instance, there will be overlap between the scope section and the
-  assumptions, but the scope section will not go into as much detail as the
-  assumptions section.
-\end{itemize}
-}
-
-\plt{The template description comments should be disabled before submitting this
-  document for grading.}
-
-\plt{You can borrow any wording from the text given in the template.  It is part
-  of the template, and not considered an instance of academic integrity.  Of
-  course, you need to cite the source of the template.}
-
-\plt{When the documentation is done, it should be possible to trace back to the
-  source of every piece of information.  Some information will come from
-  external sources, like terminology.  Other information will be derived, like
-  General Definitions.}
-
-\plt{An SRS document should have the following qualities: unambiguous,
-  consistent, complete, validatable, abstract and traceable.}
-
-\plt{The overall goal of the SRS is that someone that meets the Characteristics
-  of the Intended Reader (Section~\ref{sec_IntendedReader}) can learn,
-  understand and verify the captured domain knowledge.  They should not have to
-  trust the authors of the SRS on any statements.  They should be able to
-  independently verify/derive every statement made.}
 
 \section{Introduction}
 
@@ -344,16 +277,7 @@ The following sections of the SRS will further describe the system and its requi
 
 This section provides general information about the system.  It identifies the
 interfaces between the system and its environment, describes the user
-characteristics and lists the system constraints.  \plt{This text can likely be
-  borrowed verbatim.}
-
-\plt{The purpose of this section is to provide general information about the
-  system so the specific requirements in the next section will be easier to
-  understand. The general system description section is designed to be
-  changeable independent of changes to the functional requirements documented in
-  the specific system description. The general system description provides a
-  context for a family of related models.  The general description can stay the
-  same, while specific details are changed between family members.}
+characteristics and lists the system constraints.
 
 \subsection{System Context}
 
@@ -384,29 +308,6 @@ trustworthy insights into their financial situation.
 
 
 
-\plt{Your system context will include a figure that shows the abstract view of
-  the software.  Often in a scientific context, the program can be viewed
-  abstractly following the design pattern of Inputs $\rightarrow$ Calculations
-  $\rightarrow$ Outputs.  The system context will therefore often follow this
-  pattern.  The user provides inputs, the system does the calculations, and then
-  provides the outputs to the user.  The figure should not show all of the
-  inputs, just an abstract view of the main categories of inputs (like material
-  properties, geometry, etc.).  Likewise, the outputs should be presented from
-  an abstract point of view.  In some cases the diagram will show other external
-  entities, besides the user.  For instance, when the software product is a
-  library, the user will be another software program, not an actual end user.
-  If there are system constraints that the software must work with external
-  libraries, these libraries can also be shown on the System Context diagram.
-  They should only be named with a specific library name if this is required by
-  the system constraint.}
-
-\begin{figure}[h!]
-\begin{center}
- \includegraphics[width=0.6\textwidth]{SystemContextFigure}
-\caption{System Context}
-\label{Fig_SystemContext} 
-\end{center}
-\end{figure}
 
 \plt{For each of the entities in the system context diagram its responsibilities
   should be listed.  Whenever possible the system should check for data quality,
@@ -480,46 +381,22 @@ The users of the \textit{Plutos} budgeting application can be grouped into four 
 
 \subsection{System Constraints}
 
-\begin{itemize}
-  \item [C\refstepcounter{constraintnum}\theconstraintnum :] \textbf{Technical Constraints}
-    \begin{itemize}
-      \item The system must be developed as a mobile application using a cross-platform framework (e.g., React Native, Flutter) to ensure compatibility with both iOS and Android devices.
-      \item The system must utilize a cloud-based backend technology (e.g., AWS, Firebase) to provide scalability and reliability.
-      \item The system must integrate with a third-party OCR library (e.g., Tesseract OCR, Google Vision API) to provide optical character recognition functionality.
-      \item The system must use a NoSQL database (e.g., MongoDB, Firebase) to store user account information and expense tracking data.
-    \end{itemize}
 
-  \item [C\refstepcounter{constraintnum}\theconstraintnum :] \textbf{Performance Constraints} 
-    \begin{itemize}
-      \item The system must be able to process user inputs and generate budgeting data and analysis outputs within a reasonable time frame (e.g., 2-3 seconds). 
-      \item The system must be able to handle a minimum of 10 concurrent users without significant performance degradation. 
-    \end{itemize}
-
-  \item [C\refstepcounter{constraintnum}\theconstraintnum :] \textbf{Security Constraints} 
-    \begin{itemize} 
-      \item The system must implement secure password storage and authentication mechanisms using a third-party authentication service (e.g., Auth0, Firebase). 
-      \item The system must ensure that all data transmitted between the client and server is encrypted using SSL/TLS protocol. 
-    \end{itemize}
-  
-  \item [C\refstepcounter{constraintnum}\theconstraintnum :] \textbf{Environmental Constraints} 
-    \begin{itemize} 
-      \item The system must be designed to operate on a variety of mobile devices, including smartphones and tablets, with different screen sizes and operating systems. 
-      \item The system must be able to operate in a variety of network environments, including Wi-Fi, cellular networks, and offline mode. 
-    \end{itemize}
-  
-  \item [C\refstepcounter{constraintnum}\theconstraintnum :] \textbf{Regulatory Constraints} 
-    \begin{itemize} 
-      \item The system must comply with relevant data protection regulations (e.g., GDPR, CCPA) to ensure the privacy and security of user data. 
-      \item The system must comply with relevant financial regulations (e.g., PCI-DSS) to ensure the secure handling of financial information. 
-    \end{itemize}
-\end{itemize}
-
-\plt{System constraints differ from other type of requirements because they
-  limit the developers' options in the system design and they identify how the
-  eventual system must fit into the world. This is the only place in the SRS
-  where design decisions can be specified.  That is, the quality requirement for
-  abstraction is relaxed here.  However, system constraints should only be
-  included if they are truly required.}
+\begin{enumerate}[label=C\arabic*]
+  \item The system must be developed as a mobile application using a
+  cross-platform framework (e.g., React Native, Flutter) to ensure
+  compatibility with both iOS and Android devices.
+  \item The system must utilize a cloud-based backend technology (e.g., AWS,
+  Firebase) to provide scalability, reliability, and compatibility across
+  environments.
+  \item The system must integrate with a third-party OCR library (e.g.,
+  Tesseract OCR, Google Vision API) to provide OCR functionality. This is a
+  constraint because it is not necessary to reinvent the wheel and build an OCR
+  system from scratch.
+  \item The system must implement secure password storage and authentication
+  mechanisms using a trusted third-party authentication service (e.g., Auth0,
+  Firebase). This is to ensure secure user data handling and privacy.
+\end{enumerate}
 
 \newpage
 
@@ -534,7 +411,7 @@ specification is typically included; however this aspect is not applicable for
 this SRS.
 
 
-\subsection{Problem Description} \label{Sec_pd}
+\subsection{Problem Description}\label{Sec_pd}
 
 The problem description can be found in Section 1 of the
 \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{Problem
@@ -572,112 +449,47 @@ easier to correctly understand the requirements:
   financial tools.
 \end{itemize}
 
+
+
 \subsubsection{Physical System Description} \label{sec_phySystDescrip}
 
-\textbf{PS1: User Interface Elements}
-\begin{itemize}
-  \item \textbf{Camera Interface}: A feature that enables users to capture
-  images of receipts using their mobile device’s camera
-  \item \textbf{Receipt Preview}: A visual display showing the captured receipt
-  for user verification before processing
-  \item \textbf{Categorization Display}: An interface that shows identified
-  items along with suggested categories for each item
-  \item \textbf{Forms}: Input fields for entering financial data, such as income
-  and expenses
-  \item \textbf{Graphs and Charts}: Visual representations of spending patterns
-  and budget performance, providing insights into financial health
-\end{itemize}
+The physical system of \progname{}, includes the following elements: \\
 
 \noindent
-\textbf{PS2: Data Processing Components}
-\begin{itemize}
+\begin{enumerate}[label=PS\arabic*]
+  \item[] \textbf{User Interface Elements}
+  \item \textbf{Camera Interface}: A feature that enables users to capture
+  images of receipts using their mobile device’s camera.
+  \item \textbf{Receipt Preview}: A visual display showing the captured
+  receipt for user verification before processing.
+  \item \textbf{Categorization Display}: An interface that shows identified
+  items along with suggested categories for each item.
+  \item \textbf{Forms}: Input fields for entering financial data, such as
+  income and expenses.
+  \item \textbf{Graphs and Charts}: Visual representations of spending
+  patterns and budget performance, providing insights into financial health.
+
+  \item[] \textbf{Data Processing Components}
   \item \textbf{Budgeting Algorithm}: An engine that analyzes user data to
-  suggest personalized budgets based on historical spending
+  suggest personalized budgets based on historical spending.
   \item \textbf{Notification System}: A feature that alerts users about
-  important financial events, such as nearing budget limits or upcoming bill
-  payments
-  \item \textbf{Optical Character Recognition (OCR)}: A technology that analyzes
-  the scanned receipt image to extract text, identifying items, prices, and
-  totals
+  important financial events, such as nearing budget limits.
+  \item \textbf{Optical Character Recognition (OCR)}: A technology that
+  analyzes the scanned receipt image to extract text, identifying items, prices,
+  and totals.
   \item \textbf{Item Categorization Engine}: A module that automatically
   classifies extracted items into predefined categories (e.g., groceries,
-  clothing, dining) based on user-defined rules or machine learning algorithms
-  \item \textbf{Expense Tracker}: A feature that logs categorized items into the
-  user’s financial records, updating their spending summaries
-\end{itemize}
+  clothing, dining) based on user-defined rules or machine learning algorithms.
+  \item \textbf{Database}: A secure storage system for user data, including
+  receipts, categorized items, and budget information.
+\end{enumerate}
 
-\noindent
-\textbf{PS3: User Input and Interaction}
-\begin{itemize}
-  \item Users interact with the application by entering financial data, setting
-  budgets, and reviewing visualizations. 
-  \item The application responds by updating financial summaries and providing
-  insights based on user behavior
-\end{itemize}
-
-\noindent
-\textbf{PS4: External Interfaces}
-\begin{itemize}
-  \item The application may integrate with external services, such as bank
-  account linking via APIs, allowing users to automatically import transactions
-  for more accurate tracking
-\end{itemize}
-
-\noindent
-\textbf{PS5: Boundary Conditions}
-\begin{itemize}
-  \item Security protocols to protect user data, including encryption and secure
-  authentication methods
-  \item Limits on budget categories and spending thresholds to encourage
-  responsible financial behavior
-\end{itemize}
-
-\noindent
-\textbf{PS6: Conceptual Interactions}
-\begin{itemize}
-  \item The relationship between user inputs and financial outputs (e.g., how
-  changes in spending habits affect overall budget health)
-  \item Feedback loops where users receive insights based on their financial
-  decisions, influencing future behavior
-\end{itemize}
-
-\plt{The purpose of this section is to clearly and unambiguously state the
-  physical system that is to be modelled. Effective problem solving requires a
-  logical and organized approach. The statements on the physical system to be
-  studied should cover enough information to solve the problem. The physical
-  description involves element identification, where elements are defined as
-  independent and separable items of the physical system. Some example elements
-  include acceleration due to gravity, the mass of an object, and the size and
-  shape of an object. Each element should be identified and labelled, with their
-  interesting properties specified clearly. The physical description can also
-  include interactions of the elements, such as the following: i) the
-  interactions between the elements and their physical environment; ii) the
-  interactions between elements; and, iii) the initial or boundary conditions.}
-
-\plt{The elements of the physical system do not have to correspond to an actual
-physical entity.  They can be conceptual.  This is particularly important when
-the documentation is for a numerical method. }
-
-The physical system of \progname{}, as shown in Figure~?, includes the following
-elements:
-
-\begin{itemize}
-
-\item[PS1:] 
-
-\item[PS2:] ...
-
-\end{itemize}
+Users interact with the application by entering financial data, setting budgets,
+  and reviewing visualizations, using the User Interface Elements (PS1-PS5).
+  The system responds by updating financial summaries, processing the
+  data, and providing insights based on user behaviour (PS6-PS10).
 
 
-
-\plt{A figure here makes sense for most SRS documents}
-
-% \begin{figure}[h!] \begin{center} %\rotatebox{-90}
-% {
-%  \includegraphics[width=0.5\textwidth]{<FigureName>}
-% }
-% \caption{\label{<Label>} <Caption>} \end{center} \end{figure}
 
 \subsubsection{Goal Statements}
 
@@ -728,151 +540,189 @@ applicable.
 % ----------------
 \section{Requirements}
 
-\plt{The requirements refine the goal statement.  They will make heavy use of
-  references to the instance models.}
-
 This section provides the functional requirements, the business tasks that the
 software is expected to complete, and the nonfunctional requirements, the
 qualities that the software is expected to exhibit.
 
 \subsection{Functional Requirements}
-\noindent
-\begin{itemize}
-  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{User Account Management}
-    \begin{itemize}
-      \item Users must create an account using a name, email address, and password.
-      \item Users can update their information after account creation.
-      \item Users must log in using their registered email and password.
-    \end{itemize}
+\begin{enumerate}[label=FR\arabic*]
+  \item[] \textbf{User Account Management}
+  \item Users must be able to create an account using a name, email address, and
+  password.
+  \item Users must be able to update their account information after account
+  creation.
+  \item Users must be able to log in using their registered email and password.
+  \item Users must log in before accessing the application.
+
+  \item[] \textbf{Receipt Scanning Input}
+  \item Users must be able to take a picture using the application.
+  \item Users must be able to upload an image from their device.
+  \item The system must display a preview for confirmation or retaking.
+  \item The system must upload the image to the server for processing.
   
-  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{Receipt Scanning Input}
-    \begin{itemize}
-      \item Users can take a picture of a receipt and upload it.
-      \item The system displays a preview for confirmation or retaking.
-    \end{itemize}
+  \item[] \textbf{Manual Receipt Input}
+  \item Users must be able to manually input receipt details. This includes
+  items, their associated costs, and the date of purchase.
+  \item The system shall validate the input to ensure required fields are
+  completed.
+  
+  \item[] \textbf{Database Management}
+  \item The system shall maintain a secure, account-specific database for
+  storing identified products and their respective categories.
 
-  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{Manual Receipt Input}
-    \begin{itemize}
-      \item Users can manually input receipt details such as date and items.
-      \item The system validates the input to ensure required fields are completed.
-    \end{itemize}
+  \item[] \textbf{Item Recognition and Categorization}
+  \item The system shall identify and display item names, quantities, and costs
+  from the uploaded receipt image.
+  \item The system shall sort the entered products into predefined categories.
+  \item The system shall prompt the user to confirm identified items and their
+  corresponding categories.
+  \item The user must be able to modify the name, quantity, price, and category
+  of the identified items.
+  \item The system shall save the extracted data from the receipt input and the
+  image of the receipt to the user’s profile.    
 
-  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{Database Management}
-    \begin{itemize}
-      \item The system shall maintain a secure, account-specific database for storing identified products and their respective categories.
-    \end{itemize}
-
-  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{Item Recognition and Categorization}
-    \begin{itemize}
-      \item The system shall identify and display item names, quantities, and costs from the uploaded receipt image.
-      \item The system shall sort the entered products into predefined categories.
-      \item The system shall prompt the user to confirm identified items and their corresponding categories.
-      \item The system shall allow the user to modify the name, quantity, price, and category of the identified items.
-      \item The system shall save the extracted data from the receipt input and the image of the receipt to the user’s profile.    
-    \end{itemize}
-
-  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{Financial Tracking}
-    \begin{itemize}
-      \item The system shall generate an overview of the user's spending history, including total spending by item category and trends over time.
-      \item Users shall be able to set up budgets for each spending category.
-      \item Users shall be able to view their spending in relation to their set budgets.
-      \item The system shall notify users when they reach 80\% of their set budget limit.
-      \item The system shall notify users when they achieve specified savings goals.
-    \end{itemize}
-
-\end{itemize}
-\noindent \begin{itemize}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Inputs}:] \plt{Requirements
-    for the inputs that are supplied by the user.  This information has to be
-    explicit.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_OutputInputs}:] \plt{It isn't
-    always required, but often echoing the inputs as part of the output is a
-    good idea.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Calculate}:] \plt{Calculation
-    related requirements.}
-
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
-  \plt{Verification related requirements.}
-
-\end{itemize}
-\plt{Every IM should map to at least one requirement, but not every requirement
-  has to map to a corresponding IM.}
-
+  \item[] \textbf{Financial Tracking}
+  \item The system shall generate an overview of the user's spending history,
+  including total spending by item category and trends over time.
+  \item Users shall be able to set up budgets for each spending category.
+  \item Users shall be able to view their spending in relation to their set
+  budgets.
+  \item The system shall notify users when they reach 80\% of their set budget
+  limit.
+  \item The system shall notify users when they achieve specified savings goals.
+\end{enumerate}
 
 \newpage
+
 
 \subsection{Nonfunctional Requirements}
+\begin{enumerate}[label=NFR\arabic*]
+  \item[] \textbf{Accuracy}
+  \item The machine learning model must achieve at least 80\% accuracy in
+  correctly identifying and extracting key information (e.g., item names,
+  prices, dates) from receipts.
+  \item The app should categorize expenses into predefined categories (e.g.,
+  groceries, utilities, entertainment) with at least 90\% precision to ensure
+  users' financial data is correctly organized.
+  \item All monetary calculations (totals, budgets, currency conversions) must
+  maintain a precision of up to 2 decimal places to ensure accurate financial
+  reporting.
+  \item The OCR model must correctly recognize text from images of
+  receipts with a minimum accuracy rate of 90\%, ensuring minimal manual
+  corrections by users.
+  \item The app must guarantee 99\% accuracy in summing up expenses, incomes,
+  and savings across different periods and categories, ensuring no rounding or
+  summation errors.
+  \item If the app syncs data across multiple devices or platforms, it should
+  ensure 100\% consistency of financial data across all instances with no
+  discrepancies or delays.
 
-\noindent \begin{itemize}
+  \item[]\textbf{Usability}
+  \item The app must have a clean, intuitive, and easy-to-navigate interface,
+  allowing users to perform common tasks (e.g., adding expenses, viewing
+  budgets) within 2-3 clicks.
+  \item New users should be able to complete the account setup and understand
+  core app features within 5 minutes, with interactive tutorials and tooltips
+  provided during the first use.
+  \item The app’s interface must be fully responsive, providing an optimal user
+  experience across different devices (smartphones, tablets, desktops) and
+  screen sizes without layout or performance issues.
+  \item The app should provide clear, informative error messages, and guide
+  users through corrective actions when incorrect input is detected. Users
+  should be able to recover from errors (e.g., wrong data entry) with no more
+  than 2 steps.
+  \item Common user tasks, such as adding a new receipt or setting a budget
+  limit, should be completable within 10 seconds on average, assuming all
+  required information is readily available.
+  \item Information displayed to users must be concise and relevant, minimizing
+  the cognitive effort needed to understand their financial data. Only essential
+  details should be shown on the main dashboard, with advanced options tucked
+  under menus.
+  \item The app must load within 2 seconds for all major screens and respond to
+  user actions (e.g., adding an entry, generating a report) within 1 second to
+  ensure a smooth and responsive experience.
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Accuracy}:] \textbf{Accuracy}
-	\begin{itemize}
-		\item \textbf{Receipt Parsing Accuracy:} The machine learning model must achieve at least 80\% accuracy in correctly identifying and extracting key information (e.g., item names, prices, dates) from receipts.
-		\item \textbf{Data Categorization Precision:} The app should categorize expenses into predefined categories (e.g., groceries, utilities, entertainment) with at least 90\% precision to ensure users' financial data is correctly organized.
-		\item \textbf{Currency Calculation Precision:} All monetary calculations (totals, budgets, currency conversions) must maintain a precision of up to 2 decimal places to ensure accurate financial reporting.
-		\item \textbf{OCR Model Accuracy:} The optical character recognition (OCR) model must correctly recognize text from images of receipts with a minimum accuracy rate of 95\%, ensuring minimal manual corrections by users.
-		\item \textbf{Expense Summation Accuracy:} The app must guarantee 100\% accuracy in summing up expenses, incomes, and savings across different periods and categories, ensuring no rounding or summation errors.
-		\item \textbf{Data Sync Consistency:} If the app syncs data across multiple devices or platforms, it should ensure 100\% consistency of financial data across all instances with no discrepancies or delays.
-	\end{itemize}
 
-\newpage
+  \item[] \textbf{Maintainability}
+  \item The project must implement a CI pipeline that automatically runs tests,
+  checks code quality, and verifies builds with every commit, ensuring that code
+  is always in a deployable state.
+  \item New releases must maintain backward compatibility with previous
+  versions, ensuring that users can seamlessly update the app without
+  experiencing disruptions in their data or workflows.
+  \item The system should use a dependency management tool (e.g., npm for
+  JavaScript, pip for Python) to track external libraries, and dependencies must
+  be regularly updated to prevent security vulnerabilities and maintain
+  compatibility with new features.
+  \item At least 80\% of the codebase must be covered by automated unit tests to
+  ensure maintainability and minimize the risk of introducing bugs when making
+  changes.
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Usability}:] \textbf{Usability}
-\begin{itemize}
-	\item \textbf{User Interface Simplicity:} The app must have a clean, intuitive, and easy-to-navigate interface, allowing users to perform common tasks (e.g., adding expenses, viewing budgets) within 2-3 clicks.
-	\item \textbf{Onboarding Process:} New users should be able to complete the account setup and understand core app features within 5 minutes, with interactive tutorials and tooltips provided during the first use.
-	\item \textbf{Responsive Design:} The app’s interface must be fully responsive, providing an optimal user experience across different devices (smartphones, tablets, desktops) and screen sizes without layout or performance issues.
-	\item \textbf{Error Prevention and Recovery:} The app should provide clear, informative error messages, and guide users through corrective actions when incorrect input is detected. Users should be able to recover from errors (e.g., wrong data entry) with no more than 2 steps.
-	\item \textbf{Task Completion Time:} Common user tasks, such as adding a new receipt or setting a budget limit, should be completable within 10 seconds on average, assuming all required information is readily available.
-	\item \textbf{Minimal Cognitive Load:} Information displayed to users must be concise and relevant, minimizing the cognitive effort needed to understand their financial data. Only essential details should be shown on the main dashboard, with advanced options tucked under menus.
-	\item \textbf{Performance:} The app must load within 2 seconds for all major screens and respond to user actions (e.g., adding an entry, generating a report) within 1 second to ensure a smooth and responsive experience.
-\end{itemize}
+  \item[]  \textbf{Portability}
+  \item The software should be compatible with Android and iOS mobile devices
+  running the latest software.
+  \item The app must use cloud-based storage solutions (e.g., AWS S3, Google
+  Cloud Storage) for user data to allow seamless access across devices without
+  data loss or duplication.
+  \item The app should be developed using platform-agnostic frameworks or
+  languages (e.g., React Native, Flutter, or web-based technologies like HTML5)
+  to ensure easy deployment across different operating systems.
+  \item All data must be stored in platform-independent formats (e.g., JSON,
+  CSV) for easy transfer and compatibility between devices, databases, and
+  systems.
+  \item Any external APIs or third-party services integrated into the app must
+  support cross-platform usage, ensuring the app can access necessary services
+  from any supported platform.
+  \item The app should minimize reliance on platform-specific features or
+  libraries, ensuring that any platform-dependent code can easily be replaced or
+  adapted when porting the app to a new environment.
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Maintainability}:] \textbf{Maintainability}
-\begin{itemize}
-	\item \textbf{Continuous Integration (CI) Pipeline:} The project must implement a CI pipeline that automatically runs tests, checks code quality, and verifies builds with every commit, ensuring that code is always in a deployable state.
-	\item \textbf{Backward Compatibility:} New releases must maintain backward compatibility with previous versions, ensuring that users can seamlessly update the app without experiencing disruptions in their data or workflows.
-	\item \textbf{Dependency Management:} The system should use a dependency management tool (e.g., npm for JavaScript, pip for Python) to track external libraries, and dependencies must be regularly updated to prevent security vulnerabilities and maintain compatibility with new features.
-	\item \textbf{Automated Unit Testing Coverage:} At least 80\% of the codebase must be covered by automated unit tests to ensure maintainability and minimize the risk of introducing bugs when making changes.
-\end{itemize}
+  \item[] \textbf{Reusability} 
+  \item The app must be developed using reusable components (e.g., UI
+  components, API services), allowing those components to be easily reused
+  across different parts of the app or in future projects.
+  \item The app must adhere to the principle of separation of concerns, ensuring
+  that business logic, data access, and presentation layers are kept separate,
+  allowing individual layers to be reused independently.
+  \item Common functionalities (e.g., receipt parsing, authentication, data
+  validation) must be abstracted into reusable libraries or modules that can be
+  shared across multiple applications or systems.
+  \item Design elements (e.g., icons, typography, color schemes) should be
+  created as reusable assets, ensuring they can be reused consistently across
+  multiple projects or platforms.
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Portability}:] \textbf{Portability} 
-\begin{itemize}
-	\item \textbf{Cross-Platform Compatibility:} The software should be compatible with Android and iOS mobile devices running the latest software.
-	\item \textbf{Cloud-Based Data Storage:} The app must use cloud-based storage solutions (e.g., AWS S3, Google Cloud Storage) for user data to allow seamless access across devices without data loss or duplication.
-	\item \textbf{Use of Platform-Agnostic Technologies:} The app should be developed using platform-agnostic frameworks or languages (e.g., React Native, Flutter, or web-based technologies like HTML5) to ensure easy deployment across different operating systems.
-	\item \textbf{Portable Data Formats:} All data must be stored in platform-independent formats (e.g., JSON, CSV) for easy transfer and compatibility between devices, databases, and systems.
-	\item \textbf{API Compatibility:} Any external APIs or third-party services integrated into the app must support cross-platform usage, ensuring the app can access necessary services from any supported platform.
-	\item \textbf{Minimal Platform-Specific Dependencies:} The app should minimize reliance on platform-specific features or libraries, ensuring that any platform-dependent code can easily be replaced or adapted when porting the app to a new environment.
-\end{itemize}
+  \item[] \textbf{Understandability} 
+  \item All source code must be thoroughly documented using inline comments and
+  external documentation (e.g., README files, docstrings) to ensure that
+  developers can easily understand the purpose and behavior of code components.
+  \item Variables, functions, classes, and modules must follow consistent and
+  meaningful naming conventions (e.g., camelCase, snake\_case) that clearly
+  describe their functionality and usage, making the code easier to understand.
+  \item The app's user interface (UI) must be designed with simplicity and
+  clarity in mind, using clear labels, icons, and tooltips to guide users
+  through tasks such as adding expenses or reviewing their budgets, reducing
+  confusion.
+  \item The app's codebase must be organized logically, with related files and
+  components grouped together in well-defined directories, so developers can
+  easily navigate and locate specific functionality.
+  \item The code must follow industry-standard formatting guidelines (e.g.,
+  proper indentation, line length limits) to ensure that it remains readable and
+  easy to follow, both for developers and code reviewers.
+  \item The app must provide clear, descriptive error messages (both for users
+  and in logs) that explain the cause of an issue and provide actionable steps
+  to resolve it, improving user and developer understanding.
+  \item Any APIs developed for the app must include detailed and
+  easy-to-understand documentation, describing available endpoints,
+  request/response formats, and example usage scenarios, ensuring that
+  developers can integrate with them easily.
+  \item All major changes to the codebase should be accompanied by clear commit
+  messages and detailed changelogs, explaining the purpose of changes and their
+  impact, helping future developers understand the evolution of the project.
+  \item The language and terminology used throughout the app's UI must be
+  aligned with the users' mental models and expectations, using non-technical
+  and familiar terms to enhance understanding.
+\end{enumerate}
 
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Reuseability}:] \textbf{Reusability} 
-\begin{itemize}
-	\item \textbf{Component-Based Architecture:} The app must be developed using reusable components (e.g., UI components, API services), allowing those components to be easily reused across different parts of the app or in future projects.
-	\item \textbf{Separation of Concerns:} The app must adhere to the principle of separation of concerns, ensuring that business logic, data access, and presentation layers are kept separate, allowing individual layers to be reused independently.
-	\item \textbf{Reusable Libraries and Modules:} Common functionalities (e.g., receipt parsing, authentication, data validation) must be abstracted into reusable libraries or modules that can be shared across multiple applications or systems.
-	\item \textbf{Reusable Design Assets:} Design elements (e.g., icons, typography, color schemes) should be created as reusable assets, ensuring they can be reused consistently across multiple projects or platforms.
-\end{itemize}
-
-\newpage
-
-\item[NFR\refstepcounter{nfrnum}\thenfrnum \label{NFR_Understandability}:] \textbf{Understandability} 
-\begin{itemize}
-	\item \textbf{Clear Code Documentation:} All source code must be thoroughly documented using inline comments and external documentation (e.g., README files, docstrings) to ensure that developers can easily understand the purpose and behavior of code components.
-	\item \textbf{Consistent Naming Conventions:} Variables, functions, classes, and modules must follow consistent and meaningful naming conventions (e.g., camelCase, snake\_case) that clearly describe their functionality and usage, making the code easier to understand.
-	\item \textbf{User-Friendly Interface:} The app's user interface (UI) must be designed with simplicity and clarity in mind, using clear labels, icons, and tooltips to guide users through tasks such as adding expenses or reviewing their budgets, reducing confusion.
-	\item \textbf{Logical Code Structure:} The app's codebase must be organized logically, with related files and components grouped together in well-defined directories, so developers can easily navigate and locate specific functionality.
-	\item \textbf{Readable Code Formatting:} The code must follow industry-standard formatting guidelines (e.g., proper indentation, line length limits) to ensure that it remains readable and easy to follow, both for developers and code reviewers.
-	\item \textbf{Clear Error Messages:} The app must provide clear, descriptive error messages (both for users and in logs) that explain the cause of an issue and provide actionable steps to resolve it, improving user and developer understanding.
-	\item \textbf{Detailed API Documentation:} Any APIs developed for the app must include detailed and easy-to-understand documentation, describing available endpoints, request/response formats, and example usage scenarios, ensuring that developers can integrate with them easily.
-	\item \textbf{Version Control Documentation:} All major changes to the codebase should be accompanied by clear commit messages and detailed changelogs, explaining the purpose of changes and their impact, helping future developers understand the evolution of the project.
-	\item \textbf{User-Centric Terminology:} The language and terminology used throughout the app's UI must be aligned with the users' mental models and expectations, using non-technical and familiar terms to enhance understanding.
-\end{itemize}
-
-\end{itemize}
 
 \newpage
 
@@ -927,10 +777,6 @@ For certain features, typical values have been used to inform design and develop
     \item \textbf{Frequency of Budget Update Notifications}: Weekly budget update notifications help users stay on top of their spending without overwhelming them with too many alerts. Users are reminded to review their financial status regularly while avoiding notification fatigue.
     \item \textbf{Budget Category Limits}: Allowing up to 25 distinct budget categories provides users with enough flexibility to categorize their spending without overwhelming them with too many options. This value strikes a balance between personalization and simplicity.
 \end{itemize}
-
-\plt{Provide a rationale for the decisions made in the documentation.  Rationale
-should be provided for scope decisions, modelling decisions, assumptions and
-typical values.}
 
 \newpage 
 
@@ -1128,45 +974,6 @@ There are no symbolic parameters used in this report.
 
 \newpage
 
-\noindent \plt{The following is not part of the template, just some things to consider
-  when filing in the template.}
-
-\noindent \plt{Grammar, flow and \LaTeX advice:
-\begin{itemize}
-\item For Mac users \texttt{*.DS\_Store} should be in \texttt{.gitignore}
-\item \LaTeX{} and formatting rules
-\begin{itemize}
-\item Variables are italic, everything else not, includes subscripts (link to
-  document)
-\begin{itemize}
-\item \href{https://physics.nist.gov/cuu/pdf/typefaces.pdf}{Conventions}
-\item Watch out for implied multiplication
-\end{itemize}
-\item Use BibTeX
-\item Use cross-referencing
-\end{itemize}
-\item Grammar and writing rules
-\begin{itemize}
-\item Acronyms expanded on first usage (not just in table of acronyms)
-\item ``In order to'' should be ``to''
-\end{itemize}
-\end{itemize}}
-
-\noindent \plt{Advice on using the template:
-\begin{itemize}
-\item Difference between physical and software constraints
-\item Properties of a correct solution means \emph{additional} properties, not
-  a restating of the requirements (may be ``not applicable'' for your problem).
-  If you have a table of output constraints, then these are properties of a
-  correct solution.
-\item Assumptions have to be invoked somewhere
-\item ``Referenced by'' implies that there is an explicit reference
-\item Think of traceability matrix, list of assumption invocations and list of
-  reference by fields as automatically generatable
-\item If you say the format of the output (plot, table etc), then your
-  requirement could be more abstract
-\end{itemize}
-}
 
 \newpage{}
 \section*{Appendix --- Reflection}
