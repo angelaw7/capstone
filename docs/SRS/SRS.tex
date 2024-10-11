@@ -62,6 +62,9 @@
 \newcounter{assumpnum} %Assumption Number
 \newcommand{\atheassumpnum}{A\theassumpnum}
 \newcommand{\aref}[1]{A\ref{#1}}
+\newcounter{constraintnum} %Constraint Number
+\newcommand{\rconstraintnum}{C\constraintnum}
+\newcommand{\Cref}[1]{C\ref{#1}}
 \newcounter{goalnum} %Goal Number
 \newcommand{\gthegoalnum}{GS\thegoalnum}
 \newcommand{\gsref}[1]{GS\ref{#1}}
@@ -472,6 +475,40 @@ The users of the \textit{Plutos} budgeting application can be grouped into four 
 \end{enumerate}
 
 \subsection{System Constraints}
+
+\begin{itemize}
+  \item [C\refstepcounter{constraintnum}\theconstraintnum :] \textbf{Technical Constraints}
+    \begin{itemize}
+      \item The system must be developed as a mobile application using a cross-platform framework (e.g., React Native, Flutter) to ensure compatibility with both iOS and Android devices.
+      \item The system must utilize a cloud-based backend technology (e.g., AWS, Firebase) to provide scalability and reliability.
+      \item The system must integrate with a third-party OCR library (e.g., Tesseract OCR, Google Vision API) to provide optical character recognition functionality.
+      \item The system must use a NoSQL database (e.g., MongoDB, Firebase) to store user account information and expense tracking data.
+    \end{itemize}
+
+  \item [C\refstepcounter{constraintnum}\theconstraintnum :] \textbf{Performance Constraints} 
+    \begin{itemize}
+      \item The system must be able to process user inputs and generate budgeting data and analysis outputs within a reasonable time frame (e.g., 2-3 seconds). 
+      \item The system must be able to handle a minimum of 10 concurrent users without significant performance degradation. 
+    \end{itemize}
+
+  \item [C\refstepcounter{constraintnum}\theconstraintnum :] \textbf{Security Constraints} 
+    \begin{itemize} 
+      \item The system must implement secure password storage and authentication mechanisms using a third-party authentication service (e.g., Auth0, Firebase). 
+      \item The system must ensure that all data transmitted between the client and server is encrypted using SSL/TLS protocol. 
+    \end{itemize}
+  
+  \item [C\refstepcounter{constraintnum}\theconstraintnum :] \textbf{Environmental Constraints} 
+    \begin{itemize} 
+      \item The system must be designed to operate on a variety of mobile devices, including smartphones and tablets, with different screen sizes and operating systems. 
+      \item The system must be able to operate in a variety of network environments, including Wi-Fi, cellular networks, and offline mode. 
+    \end{itemize}
+  
+  \item [C\refstepcounter{constraintnum}\theconstraintnum :] \textbf{Regulatory Constraints} 
+    \begin{itemize} 
+      \item The system must comply with relevant data protection regulations (e.g., GDPR, CCPA) to ensure the privacy and security of user data. 
+      \item The system must comply with relevant financial regulations (e.g., PCI-DSS) to ensure the secure handling of financial information. 
+    \end{itemize}
+\end{itemize}
 
 \plt{System constraints differ from other type of requirements because they
   limit the developers' options in the system design and they identify how the
