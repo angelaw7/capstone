@@ -71,10 +71,9 @@
 \newcounter{reqnum} %Requirement Number
 \newcommand{\rthereqnum}{R\thereqnum}
 \newcommand{\rref}[1]{R\ref{#1}}
-\newcounter{frnum}[subsection] %FR Number
-\renewcommand{\thefrnum}{\thesubsection.\arabic{frnum}}
-\newcommand{\rthefrnum}{\thefrnum} 
-\newcommand{\frref}[1]{\ref{#1}}
+\newcounter{frnum} %FR Number
+\newcommand{\rthefrnum}{FR\thefrnum} 
+\newcommand{\frref}[1]{FR\ref{#1}}
 \newcounter{nfrnum} %NFR Number
 \newcommand{\rthenfrnum}{NFR\thenfrnum}
 \newcommand{\nfrref}[1]{NFR\ref{#1}}
@@ -999,59 +998,49 @@ qualities that the software is expected to exhibit.
 
 \subsection{Functional Requirements}
 \noindent
-
-\refstepcounter{frnum}
-\label{fr1}
-\textbf{\rthefrnum: User Account Management}
 \begin{itemize}
-    \item Users must create an account using a name, email address, and password.
-    \item Users can update their information after account creation.
-    \item Users must log in using their registered email and password.
-\end{itemize}
+  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{User Account Management}
+    \begin{itemize}
+      \item Users must create an account using a name, email address, and password.
+      \item Users can update their information after account creation.
+      \item Users must log in using their registered email and password.
+    \end{itemize}
+  
+  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{Receipt Scanning Input}
+    \begin{itemize}
+      \item Users can take a picture of a receipt and upload it.
+      \item The system displays a preview for confirmation or retaking.
+    \end{itemize}
 
-\refstepcounter{frnum}
-\label{fr2}
-\textbf{\rthefrnum: Receipt Scanning Input}
-\begin{itemize}
-    \item Users can take a picture of a receipt and upload it.
-    \item The system displays a preview for confirmation or retaking.
-\end{itemize}
+  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{Manual Receipt Input}
+    \begin{itemize}
+      \item Users can manually input receipt details such as date and items.
+      \item The system validates the input to ensure required fields are completed.
+    \end{itemize}
 
-\refstepcounter{frnum}
-\label{fr3}
-\textbf{\rthefrnum: Manual Receipt Input}
-\begin{itemize}
-    \item Users can manually input receipt details such as date and items.
-    \item The system validates the input to ensure required fields are completed.
-\end{itemize}
+  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{Database Management}
+    \begin{itemize}
+      \item The system shall maintain a secure, account-specific database for storing identified products and their respective categories.
+    \end{itemize}
 
-\refstepcounter{frnum}
-\label{fr4}
-\textbf{\rthefrnum: Database Management}
-\begin{itemize}
-    \item The system shall maintain a secure, account-specific database for storing identified products and their respective categories.
-\end{itemize}
+  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{Item Recognition and Categorization}
+    \begin{itemize}
+      \item The system shall identify and display item names, quantities, and costs from the uploaded receipt image.
+      \item The system shall sort the entered products into predefined categories.
+      \item The system shall prompt the user to confirm identified items and their corresponding categories.
+      \item The system shall allow the user to modify the name, quantity, price, and category of the identified items.
+      \item The system shall save the extracted data from the receipt input and the image of the receipt to the user’s profile.    
+    \end{itemize}
 
-\refstepcounter{frnum}
-\label{fr5}
-\textbf{\rthefrnum: Item Recognition and Categorization}
-\begin{itemize}
-    \item The system shall identify and display item names, quantities, and costs from the uploaded receipt image.
-    \item The system shall sort the entered products into predefined categories.
-    \item The system shall prompt the user to confirm identified items and their corresponding categories.
-    \item The system shall allow the user to modify the name, quantity, price, and category of the identified items.
-    \item The system shall save the extracted data from the receipt input and the image of the receipt to the user’s profile.
-\end{itemize}
+  \item [FR\refstepcounter{frnum}\thefrnum :] \textbf{Financial Tracking}
+    \begin{itemize}
+      \item The system shall generate an overview of the user's spending history, including total spending by item category and trends over time.
+      \item Users shall be able to set up budgets for each spending category.
+      \item Users shall be able to view their spending in relation to their set budgets.
+      \item The system shall notify users when they reach 80\% of their set budget limit.
+      \item The system shall notify users when they achieve specified savings goals.
+    \end{itemize}
 
-\refstepcounter{frnum}
-\label{fr6}
-\textbf{\rthefrnum: Financial Tracking}
-\begin{itemize}
-    \item The system shall generate an overview of the user's spending history, including total spending by item category and trends over time.
-    \item Users shall be able to set up budgets for each spending category.
-    \item Users shall be able to view their spending in relation to their set budgets.
-    \item The system shall notify users when they reach 80\% of their set budget limit.
-    \item The system shall notify users when they achieve specified savings goals.
 \end{itemize}
 \noindent \begin{itemize}
 
@@ -1069,13 +1058,10 @@ qualities that the software is expected to exhibit.
 \item[R\refstepcounter{reqnum}\thereqnum \label{R_VerifyOutput}:]
   \plt{Verification related requirements.}
 
-\item[R\refstepcounter{reqnum}\thereqnum \label{R_Output}:] \plt{Output related
-    requirements.}
-
 \end{itemize}
-
 \plt{Every IM should map to at least one requirement, but not every requirement
   has to map to a corresponding IM.}
+
 
 \newpage
 
