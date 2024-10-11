@@ -490,9 +490,9 @@ The users of the \textit{Plutos} budgeting application can be grouped into four 
   Firebase) to provide scalability, reliability, and compatibility across
   environments.
   \item The system must integrate with a third-party OCR library (e.g.,
-  Tesseract OCR, Google Vision API) to provide optical character recognition
-  functionality. This is a constraint because it is not necessary to
-  reinvent the wheel and build an OCR system from scratch.
+  Tesseract OCR, Google Vision API) to provide OCR functionality. This is a
+  constraint because it is not necessary to reinvent the wheel and build an OCR
+  system from scratch.
   \item The system must implement secure password storage and authentication
   mechanisms using a trusted third-party authentication service (e.g., Auth0,
   Firebase). This is to ensure secure user data handling and privacy.
@@ -698,53 +698,129 @@ qualities that the software is expected to exhibit.
 \subsection{Nonfunctional Requirements}
 \begin{enumerate}[label=NFR\arabic*]
   \item[] \textbf{Accuracy}
-  \item The machine learning model must achieve at least 80\% accuracy in correctly identifying and extracting key information (e.g., item names, prices, dates) from receipts.
-  \item The app should categorize expenses into predefined categories (e.g., groceries, utilities, entertainment) with at least 90\% precision to ensure users' financial data is correctly organized.
-  \item All monetary calculations (totals, budgets, currency conversions) must maintain a precision of up to 2 decimal places to ensure accurate financial reporting.
-  \item The optical character recognition (OCR) model must correctly recognize text from images of receipts with a minimum accuracy rate of 95\%, ensuring minimal manual corrections by users.
-  \item The app must guarantee 100\% accuracy in summing up expenses, incomes, and savings across different periods and categories, ensuring no rounding or summation errors.
-  \item If the app syncs data across multiple devices or platforms, it should ensure 100\% consistency of financial data across all instances with no discrepancies or delays.
+  \item The machine learning model must achieve at least 80\% accuracy in
+  correctly identifying and extracting key information (e.g., item names,
+  prices, dates) from receipts.
+  \item The app should categorize expenses into predefined categories (e.g.,
+  groceries, utilities, entertainment) with at least 90\% precision to ensure
+  users' financial data is correctly organized.
+  \item All monetary calculations (totals, budgets, currency conversions) must
+  maintain a precision of up to 2 decimal places to ensure accurate financial
+  reporting.
+  \item The OCR model must correctly recognize text from images of
+  receipts with a minimum accuracy rate of 90\%, ensuring minimal manual
+  corrections by users.
+  \item The app must guarantee 99\% accuracy in summing up expenses, incomes,
+  and savings across different periods and categories, ensuring no rounding or
+  summation errors.
+  \item If the app syncs data across multiple devices or platforms, it should
+  ensure 100\% consistency of financial data across all instances with no
+  discrepancies or delays.
 
   \item[]\textbf{Usability}
-  \item The app must have a clean, intuitive, and easy-to-navigate interface, allowing users to perform common tasks (e.g., adding expenses, viewing budgets) within 2-3 clicks.
-  \item New users should be able to complete the account setup and understand core app features within 5 minutes, with interactive tutorials and tooltips provided during the first use.
-  \item The app’s interface must be fully responsive, providing an optimal user experience across different devices (smartphones, tablets, desktops) and screen sizes without layout or performance issues.
-  \item The app should provide clear, informative error messages, and guide users through corrective actions when incorrect input is detected. Users should be able to recover from errors (e.g., wrong data entry) with no more than 2 steps.
-  \item Common user tasks, such as adding a new receipt or setting a budget limit, should be completable within 10 seconds on average, assuming all required information is readily available.
-  \item Information displayed to users must be concise and relevant, minimizing the cognitive effort needed to understand their financial data. Only essential details should be shown on the main dashboard, with advanced options tucked under menus.
-  \item The app must load within 2 seconds for all major screens and respond to user actions (e.g., adding an entry, generating a report) within 1 second to ensure a smooth and responsive experience.
+  \item The app must have a clean, intuitive, and easy-to-navigate interface,
+  allowing users to perform common tasks (e.g., adding expenses, viewing
+  budgets) within 2-3 clicks.
+  \item New users should be able to complete the account setup and understand
+  core app features within 5 minutes, with interactive tutorials and tooltips
+  provided during the first use.
+  \item The app’s interface must be fully responsive, providing an optimal user
+  experience across different devices (smartphones, tablets, desktops) and
+  screen sizes without layout or performance issues.
+  \item The app should provide clear, informative error messages, and guide
+  users through corrective actions when incorrect input is detected. Users
+  should be able to recover from errors (e.g., wrong data entry) with no more
+  than 2 steps.
+  \item Common user tasks, such as adding a new receipt or setting a budget
+  limit, should be completable within 10 seconds on average, assuming all
+  required information is readily available.
+  \item Information displayed to users must be concise and relevant, minimizing
+  the cognitive effort needed to understand their financial data. Only essential
+  details should be shown on the main dashboard, with advanced options tucked
+  under menus.
+  \item The app must load within 2 seconds for all major screens and respond to
+  user actions (e.g., adding an entry, generating a report) within 1 second to
+  ensure a smooth and responsive experience.
 
 
   \item[] \textbf{Maintainability}
-  \item The project must implement a CI pipeline that automatically runs tests, checks code quality, and verifies builds with every commit, ensuring that code is always in a deployable state.
-  \item New releases must maintain backward compatibility with previous versions, ensuring that users can seamlessly update the app without experiencing disruptions in their data or workflows.
-  \item The system should use a dependency management tool (e.g., npm for JavaScript, pip for Python) to track external libraries, and dependencies must be regularly updated to prevent security vulnerabilities and maintain compatibility with new features.
-  \item At least 80\% of the codebase must be covered by automated unit tests to ensure maintainability and minimize the risk of introducing bugs when making changes.
+  \item The project must implement a CI pipeline that automatically runs tests,
+  checks code quality, and verifies builds with every commit, ensuring that code
+  is always in a deployable state.
+  \item New releases must maintain backward compatibility with previous
+  versions, ensuring that users can seamlessly update the app without
+  experiencing disruptions in their data or workflows.
+  \item The system should use a dependency management tool (e.g., npm for
+  JavaScript, pip for Python) to track external libraries, and dependencies must
+  be regularly updated to prevent security vulnerabilities and maintain
+  compatibility with new features.
+  \item At least 80\% of the codebase must be covered by automated unit tests to
+  ensure maintainability and minimize the risk of introducing bugs when making
+  changes.
 
-  \item[]  \textbf{Portability} 
-  \item The software should be compatible with Android and iOS mobile devices running the latest software.
-  \item The app must use cloud-based storage solutions (e.g., AWS S3, Google Cloud Storage) for user data to allow seamless access across devices without data loss or duplication.
-  \item The app should be developed using platform-agnostic frameworks or languages (e.g., React Native, Flutter, or web-based technologies like HTML5) to ensure easy deployment across different operating systems.
-  \item All data must be stored in platform-independent formats (e.g., JSON, CSV) for easy transfer and compatibility between devices, databases, and systems.
-  \item Any external APIs or third-party services integrated into the app must support cross-platform usage, ensuring the app can access necessary services from any supported platform.
-  \item The app should minimize reliance on platform-specific features or libraries, ensuring that any platform-dependent code can easily be replaced or adapted when porting the app to a new environment.
+  \item[]  \textbf{Portability}
+  \item The software should be compatible with Android and iOS mobile devices
+  running the latest software.
+  \item The app must use cloud-based storage solutions (e.g., AWS S3, Google
+  Cloud Storage) for user data to allow seamless access across devices without
+  data loss or duplication.
+  \item The app should be developed using platform-agnostic frameworks or
+  languages (e.g., React Native, Flutter, or web-based technologies like HTML5)
+  to ensure easy deployment across different operating systems.
+  \item All data must be stored in platform-independent formats (e.g., JSON,
+  CSV) for easy transfer and compatibility between devices, databases, and
+  systems.
+  \item Any external APIs or third-party services integrated into the app must
+  support cross-platform usage, ensuring the app can access necessary services
+  from any supported platform.
+  \item The app should minimize reliance on platform-specific features or
+  libraries, ensuring that any platform-dependent code can easily be replaced or
+  adapted when porting the app to a new environment.
 
   \item[] \textbf{Reusability} 
-  \item The app must be developed using reusable components (e.g., UI components, API services), allowing those components to be easily reused across different parts of the app or in future projects.
-  \item The app must adhere to the principle of separation of concerns, ensuring that business logic, data access, and presentation layers are kept separate, allowing individual layers to be reused independently.
-  \item Common functionalities (e.g., receipt parsing, authentication, data validation) must be abstracted into reusable libraries or modules that can be shared across multiple applications or systems.
-  \item Design elements (e.g., icons, typography, color schemes) should be created as reusable assets, ensuring they can be reused consistently across multiple projects or platforms.
+  \item The app must be developed using reusable components (e.g., UI
+  components, API services), allowing those components to be easily reused
+  across different parts of the app or in future projects.
+  \item The app must adhere to the principle of separation of concerns, ensuring
+  that business logic, data access, and presentation layers are kept separate,
+  allowing individual layers to be reused independently.
+  \item Common functionalities (e.g., receipt parsing, authentication, data
+  validation) must be abstracted into reusable libraries or modules that can be
+  shared across multiple applications or systems.
+  \item Design elements (e.g., icons, typography, color schemes) should be
+  created as reusable assets, ensuring they can be reused consistently across
+  multiple projects or platforms.
 
   \item[] \textbf{Understandability} 
-  \item All source code must be thoroughly documented using inline comments and external documentation (e.g., README files, docstrings) to ensure that developers can easily understand the purpose and behavior of code components.
-  \item Variables, functions, classes, and modules must follow consistent and meaningful naming conventions (e.g., camelCase, snake\_case) that clearly describe their functionality and usage, making the code easier to understand.
-  \item The app's user interface (UI) must be designed with simplicity and clarity in mind, using clear labels, icons, and tooltips to guide users through tasks such as adding expenses or reviewing their budgets, reducing confusion.
-  \item The app's codebase must be organized logically, with related files and components grouped together in well-defined directories, so developers can easily navigate and locate specific functionality.
-  \item The code must follow industry-standard formatting guidelines (e.g., proper indentation, line length limits) to ensure that it remains readable and easy to follow, both for developers and code reviewers.
-  \item The app must provide clear, descriptive error messages (both for users and in logs) that explain the cause of an issue and provide actionable steps to resolve it, improving user and developer understanding.
-  \item Any APIs developed for the app must include detailed and easy-to-understand documentation, describing available endpoints, request/response formats, and example usage scenarios, ensuring that developers can integrate with them easily.
-  \item All major changes to the codebase should be accompanied by clear commit messages and detailed changelogs, explaining the purpose of changes and their impact, helping future developers understand the evolution of the project.
-  \item The language and terminology used throughout the app's UI must be aligned with the users' mental models and expectations, using non-technical and familiar terms to enhance understanding.
+  \item All source code must be thoroughly documented using inline comments and
+  external documentation (e.g., README files, docstrings) to ensure that
+  developers can easily understand the purpose and behavior of code components.
+  \item Variables, functions, classes, and modules must follow consistent and
+  meaningful naming conventions (e.g., camelCase, snake\_case) that clearly
+  describe their functionality and usage, making the code easier to understand.
+  \item The app's user interface (UI) must be designed with simplicity and
+  clarity in mind, using clear labels, icons, and tooltips to guide users
+  through tasks such as adding expenses or reviewing their budgets, reducing
+  confusion.
+  \item The app's codebase must be organized logically, with related files and
+  components grouped together in well-defined directories, so developers can
+  easily navigate and locate specific functionality.
+  \item The code must follow industry-standard formatting guidelines (e.g.,
+  proper indentation, line length limits) to ensure that it remains readable and
+  easy to follow, both for developers and code reviewers.
+  \item The app must provide clear, descriptive error messages (both for users
+  and in logs) that explain the cause of an issue and provide actionable steps
+  to resolve it, improving user and developer understanding.
+  \item Any APIs developed for the app must include detailed and
+  easy-to-understand documentation, describing available endpoints,
+  request/response formats, and example usage scenarios, ensuring that
+  developers can integrate with them easily.
+  \item All major changes to the codebase should be accompanied by clear commit
+  messages and detailed changelogs, explaining the purpose of changes and their
+  impact, helping future developers understand the evolution of the project.
+  \item The language and terminology used throughout the app's UI must be
+  aligned with the users' mental models and expectations, using non-technical
+  and familiar terms to enhance understanding.
 \end{enumerate}
 
 
