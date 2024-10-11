@@ -539,16 +539,6 @@ The description here should be in the problem space, not the solution space.}
 
 \subsubsection{Terminology and  Definitions}
 
-\plt{This section is expressed in words, not with equations.  It provide the
-  meaning of the different words and phrases used in the domain of the problem.
-The terminology is used to introduce concepts from the world outside of the
-mathematical model  The terminology provides a real world connection to give the
-mathematical model meaning.}
-
-This subsection provides a list of terms that are used in the subsequent
-sections and their meaning, with the purpose of reducing ambiguity and making it
-easier to correctly understand the requirements:
-
 \begin{itemize}
   \item \textbf{User Database}: A secure storage location for user information, including usernames, passwords, and personal financial profiles.
   \item \textbf{Item Categorization}: The classification of expenses and income into distinct categories, such as groceries, rent, and salary, to clarify spending habits.
@@ -561,7 +551,65 @@ easier to correctly understand the requirements:
   \item \textbf{User-Friendly Interface}: An application design that prioritizes ease of use and accessibility, making it simple for users to navigate financial tools.
 \end{itemize}
 
+\plt{This section is expressed in words, not with equations.  It provide the
+  meaning of the different words and phrases used in the domain of the problem.
+The terminology is used to introduce concepts from the world outside of the
+mathematical model  The terminology provides a real world connection to give the
+mathematical model meaning.}
+
+This subsection provides a list of terms that are used in the subsequent
+sections and their meaning, with the purpose of reducing ambiguity and making it
+easier to correctly understand the requirements:
+
+
+
 \subsubsection{Physical System Description} \label{sec_phySystDescrip}
+
+\textbf{PS1: User Interface Elements}
+\begin{itemize}
+  \item \textbf{Camera Interface}: A feature that enables users to capture images of receipts using their mobile device’s camera
+  \item \textbf{Receipt Preview}: A visual display showing the captured receipt for user verification before processing
+  \item \textbf{Categorization Display}: An interface that shows identified items along with suggested categories for each item
+  \item \textbf{Forms}: Input fields for entering financial data, such as income and expenses
+  \item \textbf{Graphs and Charts}: Visual representations of spending patterns and budget performance, providing insights into financial health
+\end{itemize}
+
+\noindent
+\textbf{PS2: Data Processing Components}
+\begin{itemize}
+  \item \textbf{Budgeting Algorithm}: An engine that analyzes user data to suggest personalized budgets based on historical spending
+  \item \textbf{Notification System}: A feature that alerts users about important financial events, such as nearing budget limits or upcoming bill payments
+  \item \textbf{Optical Character Recognition (OCR)}: A technology that analyzes the scanned receipt image to extract text, identifying items, prices, and totals
+  \item \textbf{Item Categorization Engine}: A module that automatically classifies extracted items into predefined categories (e.g., groceries, clothing, dining) based on user-defined rules or machine learning algorithms
+  \item \textbf{Expense Tracker}: A feature that logs categorized items into the user’s financial records, updating their spending summaries
+\end{itemize}
+
+\noindent
+\textbf{PS3: User Input and Interaction}
+\begin{itemize}
+  \item Users interact with the application by entering financial data, setting budgets, and reviewing visualizations. 
+  \item The application responds by updating financial summaries and providing insights based on user behavior
+\end{itemize}
+
+\noindent
+\textbf{PS4: External Interfaces}
+\begin{itemize}
+  \item The application may integrate with external services, such as bank account linking via APIs, allowing users to automatically import transactions for more accurate tracking
+\end{itemize}
+
+\noindent
+\textbf{PS5: Boundary Conditions}
+\begin{itemize}
+  \item Security protocols to protect user data, including encryption and secure authentication methods
+  \item Limits on budget categories and spending thresholds to encourage responsible financial behavior
+\end{itemize}
+
+\noindent
+\textbf{PS6: Conceptual Interactions}
+\begin{itemize}
+  \item The relationship between user inputs and financial outputs (e.g., how changes in spending habits affect overall budget health)
+  \item Feedback loops where users receive insights based on their financial decisions, influencing future behavior
+\end{itemize}
 
 \plt{The purpose of this section is to clearly and unambiguously state the
   physical system that is to be modelled. Effective problem solving requires a
@@ -590,6 +638,8 @@ includes the following elements:
 \item[PS2:] ...
 
 \end{itemize}
+
+
 
 \plt{A figure here makes sense for most SRS documents}
 
