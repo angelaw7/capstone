@@ -569,6 +569,7 @@ qualities that the software is expected to exhibit.
   \item Users must be able to take a picture using the application.
   \item Users must be able to upload an image from their device to the
   application.
+  \item The system shall allow a limit of 5 MB per receipt.
   \item The system must display a preview of the uploaded image, allowing users
   to confirm or retake the image if necessary. 
   \item The system shall upload the confirmed image to the server for processing.
@@ -600,6 +601,7 @@ qualities that the software is expected to exhibit.
   \item The system shall notify users when they reach 80\% of their set budget
   limit.
   \item The system shall notify users when they achieve specified savings goals.
+  \item The system shall store up to 3 years of user transaction history.
 \end{enumerate}
 
 \newpage
@@ -716,6 +718,13 @@ qualities that the software is expected to exhibit.
   \item The language and terminology used throughout the application's UI must
   be aligned with the users' mental models and expectations, using non-technical
   and familiar terms to enhance understanding.
+
+  \item[] \textbf{Regulatory Requirements}
+  \item The system must comply with the Canada's Privacy Act to ensure the
+  privacy and security of user data.
+  \item The system must comply with Canada's Financial Administration Act to
+  ensure the secure handling of financial information.
+  
 \end{enumerate}
 
 
@@ -761,7 +770,7 @@ Several assumptions were made during the development and design process. These a
 \noindent\textbf{Rationale:}
 \begin{itemize}
     \item \textbf{Receipt Scanning}: The assumption that users will consistently
-    scan receipts underpins the app’s core functionality. This assumption is
+    scan receipts underpins the application's core functionality. This assumption is
     based on trends observed in personal finance apps where automation is a key
     value proposition for users.
     \item \textbf{Mobile-First Audience}: It is assumed that the majority of
@@ -769,8 +778,8 @@ Several assumptions were made during the development and design process. These a
     driven by the current dominance of mobile platforms for personal finance
     management, offering convenience and accessibility.
     \item \textbf{Privacy and Security}: The assumption that users expect high
-    standards of data privacy and security informs the app’s adherence to
-    regulations such as GDPR. Users handling sensitive financial data expect
+    standards of data privacy and security informs the application's adherence to
+    data protection regulations. Users handling sensitive financial data expect
     robust protection mechanisms.
     \item \textbf{Stable Internet Connection}: It is assumed that users will
     have access to a stable internet connection while using the app, especially
@@ -791,13 +800,32 @@ For certain features, typical values have been used to inform design and develop
 
 \noindent\textbf{Rationale:}
 \begin{itemize}
-    \item \textbf{Default Categories}: Common budgeting categories (e.g., groceries, utilities, transportation) are provided as default to simplify user onboarding and offer a familiar framework. These categories were selected based on industry standards and user behavior in similar apps.
-    \item \textbf{Parsing Accuracy}: An accuracy threshold of 90\% for receipt parsing was established as the minimum acceptable standard, based on current machine learning capabilities and user expectations for automated processes.
-    \item \textbf{Performance Benchmarks}: Typical values for system performance, such as load times of under 2 seconds for key operations (e.g., viewing reports), are set based on user experience research, ensuring that the application feels responsive and efficient.
-    \item \textbf{Maximum Receipt Upload Size}: A limit of 5 MB per receipt ensures a balance between allowing high-resolution images for accurate OCR processing while keeping server storage and bandwidth requirements manageable. Users are encouraged to upload clear, focused images within this size limit.
-    \item \textbf{User Transaction History Retention}: Storing up to 3 years of transaction history provides users with enough data to analyze long-term financial trends while limiting the storage requirements for each user. Older transactions could be archived or made available on demand.
-    \item \textbf{Frequency of Budget Update Notifications}: Weekly budget update notifications help users stay on top of their spending without overwhelming them with too many alerts. Users are reminded to review their financial status regularly while avoiding notification fatigue.
-    \item \textbf{Budget Category Limits}: Allowing up to 25 distinct budget categories provides users with enough flexibility to categorize their spending without overwhelming them with too many options. This value strikes a balance between personalization and simplicity.
+    \item \textbf{Default Categories}: Common budgeting categories (e.g.,
+    groceries, utilities, transportation) are provided as default to simplify
+    user onboarding and offer a familiar framework. These categories were
+    selected based on industry standards and user behavior in similar apps. This
+    is also to simplify the ML model training process.
+    \item \textbf{Parsing Accuracy}: An accuracy threshold of 90\% for receipt
+    parsing was established as the minimum acceptable standard, based on
+    expected ML capabilities. This value ensures that the system can reliably
+    extract key information from receipts without significant manual
+    intervention.
+    \item \textbf{Performance Benchmarks}: Typical values for system
+    performance, such as load times of under two seconds for key operations
+    (e.g., viewing reports), are set based on user experience research, ensuring
+    that the application feels responsive and efficient.
+    \item \textbf{Maximum Receipt Upload Size}: A limit of 5 MB per receipt
+    ensures a balance between allowing high-resolution images for accurate OCR
+    processing while keeping server storage and bandwidth requirements
+    manageable. 
+    \item \textbf{User Transaction History Retention}: Storing up to 3 years of
+    transaction history provides users with enough data to analyze long-term
+    financial trends while limiting the storage requirements for each user.
+    Older transactions could be archived or made available on demand.
+    \item \textbf{Frequency of Budget Update Notifications}: Weekly budget
+    update notifications help users stay on top of their spending without
+    overwhelming them with too many alerts. Users are reminded to review their
+    financial status regularly while avoiding notification fatigue.
 \end{itemize}
 
 \newpage 
