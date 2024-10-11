@@ -572,112 +572,50 @@ easier to correctly understand the requirements:
   financial tools.
 \end{itemize}
 
+
+
 \subsubsection{Physical System Description} \label{sec_phySystDescrip}
 
-\textbf{PS1: User Interface Elements}
+The physical system of \progname{}, includes the following elements: \\
+
+\noindent
+\textbf{User Interface Elements}
 \begin{itemize}
-  \item \textbf{Camera Interface}: A feature that enables users to capture
-  images of receipts using their mobile device’s camera
-  \item \textbf{Receipt Preview}: A visual display showing the captured receipt
-  for user verification before processing
-  \item \textbf{Categorization Display}: An interface that shows identified
-  items along with suggested categories for each item
-  \item \textbf{Forms}: Input fields for entering financial data, such as income
-  and expenses
-  \item \textbf{Graphs and Charts}: Visual representations of spending patterns
-  and budget performance, providing insights into financial health
+  \item \textbf{PS01. Camera Interface}: A feature that enables users to capture
+  images of receipts using their mobile device’s camera.
+  \item \textbf{PS02. Receipt Preview}: A visual display showing the captured
+  receipt for user verification before processing.
+  \item \textbf{PS03. Categorization Display}: An interface that shows identified
+  items along with suggested categories for each item.
+  \item \textbf{PS04. Forms}: Input fields for entering financial data, such as
+  income and expenses.
+  \item \textbf{PS05. Graphs and Charts}: Visual representations of spending
+  patterns and budget performance, providing insights into financial health.
 \end{itemize}
 
 \noindent
-\textbf{PS2: Data Processing Components}
+\textbf{Data Processing Components}
 \begin{itemize}
-  \item \textbf{Budgeting Algorithm}: An engine that analyzes user data to
-  suggest personalized budgets based on historical spending
-  \item \textbf{Notification System}: A feature that alerts users about
-  important financial events, such as nearing budget limits or upcoming bill
-  payments
-  \item \textbf{Optical Character Recognition (OCR)}: A technology that analyzes
-  the scanned receipt image to extract text, identifying items, prices, and
-  totals
-  \item \textbf{Item Categorization Engine}: A module that automatically
+  \item \textbf{PS06. Budgeting Algorithm}: An engine that analyzes user data to
+  suggest personalized budgets based on historical spending.
+  \item \textbf{PS07. Notification System}: A feature that alerts users about
+  important financial events, such as nearing budget limits.
+  \item \textbf{PS08. Optical Character Recognition (OCR)}: A technology that
+  analyzes the scanned receipt image to extract text, identifying items, prices,
+  and totals.
+  \item \textbf{PS09. Item Categorization Engine}: A module that automatically
   classifies extracted items into predefined categories (e.g., groceries,
-  clothing, dining) based on user-defined rules or machine learning algorithms
-  \item \textbf{Expense Tracker}: A feature that logs categorized items into the
-  user’s financial records, updating their spending summaries
+  clothing, dining) based on user-defined rules or machine learning algorithms.
+  \item \textbf{PS10. Database}: A secure storage system for user data, including
+  receipts, categorized items, and budget information.
 \end{itemize}
 
-\noindent
-\textbf{PS3: User Input and Interaction}
-\begin{itemize}
-  \item Users interact with the application by entering financial data, setting
-  budgets, and reviewing visualizations. 
-  \item The application responds by updating financial summaries and providing
-  insights based on user behavior
-\end{itemize}
-
-\noindent
-\textbf{PS4: External Interfaces}
-\begin{itemize}
-  \item The application may integrate with external services, such as bank
-  account linking via APIs, allowing users to automatically import transactions
-  for more accurate tracking
-\end{itemize}
-
-\noindent
-\textbf{PS5: Boundary Conditions}
-\begin{itemize}
-  \item Security protocols to protect user data, including encryption and secure
-  authentication methods
-  \item Limits on budget categories and spending thresholds to encourage
-  responsible financial behavior
-\end{itemize}
-
-\noindent
-\textbf{PS6: Conceptual Interactions}
-\begin{itemize}
-  \item The relationship between user inputs and financial outputs (e.g., how
-  changes in spending habits affect overall budget health)
-  \item Feedback loops where users receive insights based on their financial
-  decisions, influencing future behavior
-\end{itemize}
-
-\plt{The purpose of this section is to clearly and unambiguously state the
-  physical system that is to be modelled. Effective problem solving requires a
-  logical and organized approach. The statements on the physical system to be
-  studied should cover enough information to solve the problem. The physical
-  description involves element identification, where elements are defined as
-  independent and separable items of the physical system. Some example elements
-  include acceleration due to gravity, the mass of an object, and the size and
-  shape of an object. Each element should be identified and labelled, with their
-  interesting properties specified clearly. The physical description can also
-  include interactions of the elements, such as the following: i) the
-  interactions between the elements and their physical environment; ii) the
-  interactions between elements; and, iii) the initial or boundary conditions.}
-
-\plt{The elements of the physical system do not have to correspond to an actual
-physical entity.  They can be conceptual.  This is particularly important when
-the documentation is for a numerical method. }
-
-The physical system of \progname{}, as shown in Figure~?, includes the following
-elements:
-
-\begin{itemize}
-
-\item[PS1:] 
-
-\item[PS2:] ...
-
-\end{itemize}
+Users interact with the application by entering financial data, setting budgets,
+  and reviewing visualizations, using the User Interface Elements (PS01-PS05).
+  The application responds by updating financial summaries, processing the
+  data, and providing insights based on user behaviour (PS06-PS10).
 
 
-
-\plt{A figure here makes sense for most SRS documents}
-
-% \begin{figure}[h!] \begin{center} %\rotatebox{-90}
-% {
-%  \includegraphics[width=0.5\textwidth]{<FigureName>}
-% }
-% \caption{\label{<Label>} <Caption>} \end{center} \end{figure}
 
 \subsubsection{Goal Statements}
 
