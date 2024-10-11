@@ -18,6 +18,7 @@
 \usepackage{caption}
 \usepackage{pdflscape}
 \usepackage{afterpage}
+\usepackage{enumitem}
 
 \usepackage[round]{natbib}
 
@@ -580,40 +581,40 @@ The physical system of \progname{}, includes the following elements: \\
 
 \noindent
 \textbf{User Interface Elements}
-\begin{itemize}
-  \item \textbf{PS01. Camera Interface}: A feature that enables users to capture
+\begin{enumerate}[label=PS\arabic*]
+  \item \textbf{Camera Interface}: A feature that enables users to capture
   images of receipts using their mobile device’s camera.
-  \item \textbf{PS02. Receipt Preview}: A visual display showing the captured
+  \item \textbf{Receipt Preview}: A visual display showing the captured
   receipt for user verification before processing.
-  \item \textbf{PS03. Categorization Display}: An interface that shows identified
+  \item \textbf{Categorization Display}: An interface that shows identified
   items along with suggested categories for each item.
-  \item \textbf{PS04. Forms}: Input fields for entering financial data, such as
+  \item \textbf{Forms}: Input fields for entering financial data, such as
   income and expenses.
-  \item \textbf{PS05. Graphs and Charts}: Visual representations of spending
+  \item \textbf{Graphs and Charts}: Visual representations of spending
   patterns and budget performance, providing insights into financial health.
-\end{itemize}
+\end{enumerate}
 
 \noindent
 \textbf{Data Processing Components}
-\begin{itemize}
-  \item \textbf{PS06. Budgeting Algorithm}: An engine that analyzes user data to
+\begin{enumerate}[label=PS\arabic*, start=6]
+  \item \textbf{Budgeting Algorithm}: An engine that analyzes user data to
   suggest personalized budgets based on historical spending.
-  \item \textbf{PS07. Notification System}: A feature that alerts users about
+  \item \textbf{Notification System}: A feature that alerts users about
   important financial events, such as nearing budget limits.
-  \item \textbf{PS08. Optical Character Recognition (OCR)}: A technology that
+  \item \textbf{Optical Character Recognition (OCR)}: A technology that
   analyzes the scanned receipt image to extract text, identifying items, prices,
   and totals.
-  \item \textbf{PS09. Item Categorization Engine}: A module that automatically
+  \item \textbf{Item Categorization Engine}: A module that automatically
   classifies extracted items into predefined categories (e.g., groceries,
   clothing, dining) based on user-defined rules or machine learning algorithms.
-  \item \textbf{PS10. Database}: A secure storage system for user data, including
+  \item \textbf{Database}: A secure storage system for user data, including
   receipts, categorized items, and budget information.
-\end{itemize}
+\end{enumerate}
 
 Users interact with the application by entering financial data, setting budgets,
-  and reviewing visualizations, using the User Interface Elements (PS01-PS05).
+  and reviewing visualizations, using the User Interface Elements (PS1-PS5).
   The application responds by updating financial summaries, processing the
-  data, and providing insights based on user behaviour (PS06-PS10).
+  data, and providing insights based on user behaviour (PS6-PS10).
 
 
 
