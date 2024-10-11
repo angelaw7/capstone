@@ -289,6 +289,24 @@ The purpose of this SRS document is to describe the functional and non-functiona
 
 \subsection{Scope of Requirements} 
 
+The scope of this project encompasses the development of a budgeting application, Plutos, that automates expense tracking 
+and categorization using AI. The system is designed to address key pain points for young adults struggling to manage their 
+finances, specifically focusing on automating the process of tracking spending through receipt scanning, categorization of 
+expenses, providing metrics to users regarding their spending habits, and providing feedback on how users can meet their 
+budgeting goals.\\
+
+\noindent However, some features that are outside the scope of the project (though may be implemented later) are: 
+
+\begin{itemize}
+  \item The system will not account for complex financial scenarios such as investments, stock portfolios, or retirement planning.
+  \item Advanced financial forecasting or predictive analytics beyond simple budgeting trends will not be implemented.
+  \item The AI model will not handle non-standard or highly complex receipts (e.g., multi-page invoices or handwritten receipts).
+  \item The application will not offer integration with external financial accounts such as credit cards or bank accounts.
+  \item The model will be trained to detect receipt data from Fortinos and will not initially support various receipt formats.
+\end{itemize}
+
+\noindent These exclusions allow the project to concentrate on core features, such as receipt scanning and expense categorization, while ensuring a manageable scope for the development process.
+
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
 The primary audience for this SRS document is the group of undergraduate software engineering students who will 
 oversee and complete the project’s design and implementation. This group of specialists, which includes system architects, 
@@ -333,6 +351,33 @@ characteristics and lists the system constraints.  \plt{This text can likely be
   same, while specific details are changed between family members.}
 
 \subsection{System Context}
+
+\begin{figure}[h!]
+  \centering
+   \includegraphics[width=\textwidth]{SystemContext.png}
+  \caption{System Context}
+  \label{Fig_SystemContext} 
+\end{figure}
+
+The system context for this project consists of a user(s), an expense tracking system, 
+a budgeting analysis generator, and several databases. The user provides expense 
+tracking inputs, such as physical/digital receipts or manual expense entries, and 
+receives financial assessments. The expense tracking system processes user inputs, 
+generates budgetary evaluations, and interacts with the financial analysis program 
+and databases. The expense tracking system is also responsible for ensuring the 
+validity of all inputs and provides a response if an invalid input is identified. 
+The budgeting analysis generator provides expense categorization and evaluation 
+functionalities, such as data analysis and visualization, and supports the expense 
+tracking system in generating outputs. The database will be used to store user 
+account information, user budget data, and supports the expense tracking system 
+in storing and retrieving specific items and their respective categories. 
+The system will typically be used for personal finance management, budgeting, 
+and expense tracking, and may also be used for educational purposes. While 
+the system is not safety-critical, it is important to ensure that the system is 
+reliable and accurate in its calculations and analysis to provide users with 
+trustworthy insights into their financial situation.
+
+
 
 \plt{Your system context will include a figure that shows the abstract view of
   the software.  Often in a scientific context, the program can be viewed
