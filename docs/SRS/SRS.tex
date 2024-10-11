@@ -192,14 +192,17 @@ N/A; symbols are not used in this SRS.
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   AI & Artificial Intelligence\\
+  CI & Continuous Integration\\
+  FR & Functional Requirement\\
   JWT & JSON Web Token\\
   LC & Likely Change\\
   ML & Machine Learning\\
+  NFR & Non-Functional Requirement\\
   NLP & Natural Language Processing\\
   OCR & Optical Character Recognition\\
   SRS & Software Requirements Specification\\
-  TM & Theoretical Model\\
   ULC & Unlikely Change\\
+  UI & User Interface\\
   \bottomrule
 \end{tabular}\\
 
@@ -213,11 +216,6 @@ N/A; mathematical notation is not used in this SRS.
 
 \section{Introduction}
 
-\plt{The introduction section is written to introduce the problem.  It starts
-  general and focuses on the problem domain. The general advice is to start with
-a paragraph or two that describes the problem, followed by a ``roadmap''
-paragraph.  A roadmap orients the reader by telling them what sub-sections to
-expect in the Introduction section.}
 
 \subsection{Purpose of Document}
 
@@ -246,15 +244,20 @@ budgeting goals.\\
 \noindent These exclusions allow the project to concentrate on core features, such as receipt scanning and expense categorization, while ensuring a manageable scope for the development process.
 
 \subsection{Characteristics of Intended Reader} \label{sec_IntendedReader}
-The primary audience for this SRS document is the group of undergraduate software engineering students who will 
-oversee and complete the project’s design and implementation. This group of specialists, which includes system architects, 
-software developers, and quality assurance testers, has extensive experience in the range of technologies needed for 
-the project. Through their coursework and personal experiences, they are familiar with the process of developing mobile 
-applications, and as they move through the project milestones, they will deepen their understanding of artificial intelligence 
-and machine learning. They will actively learn how to apply AI/ML technologies in real-world circumstances throughout 
-the project, which will advance their development as software engineers. The collaborative effort will help them improve 
-their real-world application development abilities as the project progresses through seven milestones, ensuring that they 
-are prepared to produce a practical and user-friendly budgeting solution.
+The primary audience for this SRS document is the group of undergraduate
+software engineering students who will oversee and complete the project’s design
+and implementation. This group of specialists, which includes system architects,
+software developers, and quality assurance testers, has extensive experience in
+the range of technologies needed for the project. Through their coursework and
+personal experiences, they are familiar with the process of developing mobile
+applications, and as they move through the project milestones, they will deepen
+their understanding of artificial intelligence (AI) and machine learning (ML).
+They will actively learn how to apply AI/ML technologies in real-world
+circumstances throughout the project, which will advance their development as
+software engineers. The collaborative effort will help them improve their
+real-world application development abilities as the project progresses through
+seven milestones, ensuring that they are prepared to produce a practical and
+user-friendly budgeting solution.
 \subsection{Organization of Document}
 
 The following sections of the SRS will further describe the system and its requirements. The sections will be as follows:
@@ -396,6 +399,13 @@ The users of the \textit{Plutos} budgeting application can be grouped into four 
   \item The system must implement secure password storage and authentication
   mechanisms using a trusted third-party authentication service (e.g., Auth0,
   Firebase). This is to ensure secure user data handling and privacy.
+  \item The project must implement a Continuous Integration (CI) pipeline using
+  GitHub Actions that automatically runs tests, checks code quality, and
+  verifies builds with every commit. This is to ensure that the code is always
+  in a deployable state.
+  \item The system shall use a dependency management tool (e.g., npm for
+  JavaScript, pip for Python) to track external libraries. This is to ensure
+  organized dependency management across different working environments. 
 \end{enumerate}
 
 \newpage
@@ -553,12 +563,17 @@ qualities that the software is expected to exhibit.
   creation.
   \item Users must be able to log in using their registered email and password.
   \item Users must log in before accessing the application.
+  \item Users must be able to log out of their account.
+  \item Users must be able to reset their password if forgotten.
 
   \item[] \textbf{Receipt Scanning Input}
   \item Users must be able to take a picture using the application.
-  \item Users must be able to upload an image from their device.
-  \item The system must display a preview for confirmation or retaking.
-  \item The system must upload the image to the server for processing.
+  \item Users must be able to upload an image from their device to the
+  application.
+  \item The system shall allow a limit of 5 MB per receipt.
+  \item The system must display a preview of the uploaded image, allowing users
+  to confirm or retake the image if necessary. 
+  \item The system shall upload the confirmed image to the server for processing.
   
   \item[] \textbf{Manual Receipt Input}
   \item Users must be able to manually input receipt details. This includes
@@ -567,19 +582,16 @@ qualities that the software is expected to exhibit.
   completed.
   
   \item[] \textbf{Database Management}
-  \item The system shall maintain a secure, account-specific database for
-  storing identified products and their respective categories.
+  \item The system shall store user account information, including usernames,
+  email addresses, and passwords, in a secure database.
+  \item The system shall store receipt images and extracted data in a secure database.
 
   \item[] \textbf{Item Recognition and Categorization}
   \item The system shall identify and display item names, quantities, and costs
   from the uploaded receipt image.
   \item The system shall sort the entered products into predefined categories.
-  \item The system shall prompt the user to confirm identified items and their
-  corresponding categories.
   \item The user must be able to modify the name, quantity, price, and category
-  of the identified items.
-  \item The system shall save the extracted data from the receipt input and the
-  image of the receipt to the user’s profile.    
+  of the identified items.   
 
   \item[] \textbf{Financial Tracking}
   \item The system shall generate an overview of the user's spending history,
@@ -590,6 +602,7 @@ qualities that the software is expected to exhibit.
   \item The system shall notify users when they reach 80\% of their set budget
   limit.
   \item The system shall notify users when they achieve specified savings goals.
+  \item The system shall store up to 3 years of user transaction history.
 \end{enumerate}
 
 \newpage
@@ -597,130 +610,133 @@ qualities that the software is expected to exhibit.
 
 \subsection{Nonfunctional Requirements}
 \begin{enumerate}[label=NFR\arabic*]
-  \item[] \textbf{Accuracy}
+  \item[] \textbf{Accuracy Requirements}
   \item The machine learning model must achieve at least 80\% accuracy in
-  correctly identifying and extracting key information (e.g., item names,
-  prices, dates) from receipts.
-  \item The app should categorize expenses into predefined categories (e.g.,
-  groceries, utilities, entertainment) with at least 90\% precision to ensure
-  users' financial data is correctly organized.
-  \item All monetary calculations (totals, budgets, currency conversions) must
-  maintain a precision of up to 2 decimal places to ensure accurate financial
-  reporting.
-  \item The OCR model must correctly recognize text from images of
-  receipts with a minimum accuracy rate of 90\%, ensuring minimal manual
-  corrections by users.
-  \item The app must guarantee 99\% accuracy in summing up expenses, incomes,
+  correctly identifying and extracting key information (i.e., item names,
+  quantities, prices, dates) from receipts.
+  \item The machine learning model must categorize expenses into predefined
+  categories (e.g., groceries, utilities, entertainment) with at least 90\%
+  precision to ensure users' financial data is correctly organized.
+  \item All monetary calculations (e.g., totals, budgets, currency conversions)
+  must maintain a precision of up to two decimal places to ensure accurate
+  financial reporting.
+  \item The OCR model must correctly recognize text from images of receipts with
+  a minimum accuracy rate of 90\%, ensuring minimal manual corrections by users.
+  \item The application must guarantee 99\% accuracy in summing up expenses, incomes,
   and savings across different periods and categories, ensuring no rounding or
   summation errors.
-  \item If the app syncs data across multiple devices or platforms, it should
-  ensure 100\% consistency of financial data across all instances with no
-  discrepancies or delays.
+  \item If the application syncs data across multiple devices, it should
+  ensure 100\% consistency of financial data across all instances.
 
-  \item[]\textbf{Usability}
-  \item The app must have a clean, intuitive, and easy-to-navigate interface,
-  allowing users to perform common tasks (e.g., adding expenses, viewing
-  budgets) within 2-3 clicks.
+  \item[]\textbf{Performance Requirements}
+  \item The application must load user data within five seconds.
+  \item The application must be responsive to user actions (e.g., adding an
+  entry, generating a report) within two seconds.
+  \item The system must be able to handle a minimum of 10 concurrent users without significant performance degradation.
+
+  \item[]\textbf{Usability Requirements}
+  \item The application must have a clean, intuitive, and easy-to-navigate
+  interface, allowing users to perform common tasks (e.g., adding expenses,
+  viewing budgets) within two to three clicks.
   \item New users should be able to complete the account setup and understand
-  core app features within 5 minutes, with interactive tutorials and tooltips
-  provided during the first use.
-  \item The app’s interface must be fully responsive, providing an optimal user
-  experience across different devices (smartphones, tablets, desktops) and
-  screen sizes without layout or performance issues.
-  \item The app should provide clear, informative error messages, and guide
-  users through corrective actions when incorrect input is detected. Users
-  should be able to recover from errors (e.g., wrong data entry) with no more
-  than 2 steps.
+  core application features within five minutes.
+  \item The application shall provide users with an introductory tutorial and
+  tooltips during their first use.
+  \item The application should provide clear, informative error messages upon invalid
+  inputs.
+  \item The application should guide users through corrective actions when
+  incorrect input is detected.
+  \item Users should be able to recover from errors (e.g., wrong data entry)
+  with no more than two steps.
   \item Common user tasks, such as adding a new receipt or setting a budget
   limit, should be completable within 10 seconds on average, assuming all
   required information is readily available.
   \item Information displayed to users must be concise and relevant, minimizing
   the cognitive effort needed to understand their financial data. Only essential
-  details should be shown on the main dashboard, with advanced options tucked
-  under menus.
-  \item The app must load within 2 seconds for all major screens and respond to
-  user actions (e.g., adding an entry, generating a report) within 1 second to
-  ensure a smooth and responsive experience.
+  details should be shown on the main dashboard, with advanced options
+  accessible through menus.
 
+  \item[] \textbf{Security Requirements}
+  \item The system must implement secure password storage and authentication
+  mechanisms.
+  \item The system must ensure that all data transmitted between the client and
+  server is encrypted.
+  
 
-  \item[] \textbf{Maintainability}
-  \item The project must implement a CI pipeline that automatically runs tests,
-  checks code quality, and verifies builds with every commit, ensuring that code
-  is always in a deployable state.
+  \item[] \textbf{Maintainability Requirements}
   \item New releases must maintain backward compatibility with previous
-  versions, ensuring that users can seamlessly update the app without
+  versions, ensuring that users can seamlessly update the application without
   experiencing disruptions in their data or workflows.
-  \item The system should use a dependency management tool (e.g., npm for
-  JavaScript, pip for Python) to track external libraries, and dependencies must
-  be regularly updated to prevent security vulnerabilities and maintain
-  compatibility with new features.
+  \item Dependencies must be regularly updated (i.e., within major patches) to
+  prevent security vulnerabilities and maintain compatibility with new features.
   \item At least 80\% of the codebase must be covered by automated unit tests to
   ensure maintainability and minimize the risk of introducing bugs when making
   changes.
 
-  \item[]  \textbf{Portability}
-  \item The software should be compatible with Android and iOS mobile devices
+  \item[]  \textbf{Portability Requirements}
+  \item The software shall be compatible with Android and iOS mobile devices
   running the latest software.
-  \item The app must use cloud-based storage solutions (e.g., AWS S3, Google
-  Cloud Storage) for user data to allow seamless access across devices without
-  data loss or duplication.
-  \item The app should be developed using platform-agnostic frameworks or
-  languages (e.g., React Native, Flutter, or web-based technologies like HTML5)
-  to ensure easy deployment across different operating systems.
   \item All data must be stored in platform-independent formats (e.g., JSON,
   CSV) for easy transfer and compatibility between devices, databases, and
   systems.
-  \item Any external APIs or third-party services integrated into the app must
-  support cross-platform usage, ensuring the app can access necessary services
-  from any supported platform.
-  \item The app should minimize reliance on platform-specific features or
-  libraries, ensuring that any platform-dependent code can easily be replaced or
-  adapted when porting the app to a new environment.
+  \item Any external APIs or third-party services integrated into the
+  application must support cross-platform usage, ensuring the application can
+  access necessary services from any supported platform.
+  \item The system must be able to operate in a variety of network environments,
+  including Wi-Fi, cellular networks, and offline mode.
 
-  \item[] \textbf{Reusability} 
-  \item The app must be developed using reusable components (e.g., UI
-  components, API services), allowing those components to be easily reused
-  across different parts of the app or in future projects.
-  \item The app must adhere to the principle of separation of concerns, ensuring
-  that business logic, data access, and presentation layers are kept separate,
-  allowing individual layers to be reused independently.
+
+  \item[] \textbf{Reusability Requirements} 
+  \item The application must be developed using reusable components (e.g., UI
+  components, API services) where applicable, to prevent code duplication and
+  allow for better code maintainability.
+  \item The application must adhere to the principle of separation of concerns
+  where possible, ensuring that business logic, data access, and presentation
+  layers are kept separate and allowing individual layers to be reused
+  independently.
   \item Common functionalities (e.g., receipt parsing, authentication, data
   validation) must be abstracted into reusable libraries or modules that can be
   shared across multiple applications or systems.
-  \item Design elements (e.g., icons, typography, color schemes) should be
+  \item Design elements (e.g., icons, typography, color schemes) shall be
   created as reusable assets, ensuring they can be reused consistently across
   multiple projects or platforms.
 
-  \item[] \textbf{Understandability} 
+  \item[] \textbf{Understandability Requirements} 
   \item All source code must be thoroughly documented using inline comments and
   external documentation (e.g., README files, docstrings) to ensure that
   developers can easily understand the purpose and behavior of code components.
   \item Variables, functions, classes, and modules must follow consistent and
   meaningful naming conventions (e.g., camelCase, snake\_case) that clearly
   describe their functionality and usage, making the code easier to understand.
-  \item The app's user interface (UI) must be designed with simplicity and
-  clarity in mind, using clear labels, icons, and tooltips to guide users
-  through tasks such as adding expenses or reviewing their budgets, reducing
-  confusion.
-  \item The app's codebase must be organized logically, with related files and
-  components grouped together in well-defined directories, so developers can
-  easily navigate and locate specific functionality.
+  \item The application's user interface (UI) must be designed with simplicity
+  and clarity in mind, using clear labels, icons, and tooltips to guide users
+  through tasks such as adding expenses or reviewing their budgets.
+  \item The application's codebase must be organized logically, with related
+  files and components grouped together in well-defined directories, so
+  developers can easily navigate and locate specific functionality.
   \item The code must follow industry-standard formatting guidelines (e.g.,
   proper indentation, line length limits) to ensure that it remains readable and
   easy to follow, both for developers and code reviewers.
-  \item The app must provide clear, descriptive error messages (both for users
-  and in logs) that explain the cause of an issue and provide actionable steps
-  to resolve it, improving user and developer understanding.
-  \item Any APIs developed for the app must include detailed and
+  \item The application must provide clear, descriptive error messages (both for
+  users and in logs) that explain the cause of an issue and provide actionable
+  steps to resolve it, improving user and developer understanding.
+  \item Any APIs developed for the application must include detailed and
   easy-to-understand documentation, describing available endpoints,
   request/response formats, and example usage scenarios, ensuring that
   developers can integrate with them easily.
   \item All major changes to the codebase should be accompanied by clear commit
   messages and detailed changelogs, explaining the purpose of changes and their
   impact, helping future developers understand the evolution of the project.
-  \item The language and terminology used throughout the app's UI must be
-  aligned with the users' mental models and expectations, using non-technical
+  \item The language and terminology used throughout the application's UI must
+  be aligned with the users' mental models and expectations, using non-technical
   and familiar terms to enhance understanding.
+
+  \item[] \textbf{Regulatory Requirements}
+  \item The system must comply with the Canada's Privacy Act to ensure the
+  privacy and security of user data.
+  \item The system must comply with Canada's Financial Administration Act to
+  ensure the secure handling of financial information.
+  
 \end{enumerate}
 
 
@@ -729,26 +745,35 @@ qualities that the software is expected to exhibit.
 \subsection{Rationale}
 
 \subsubsection{Scope Decisions}
-The scope decisions were made with the intention of ensuring that the app delivers value to its target audience while remaining manageable within development constraints. The app focuses on personal budgeting features, including receipt scanning, expense categorization, budget tracking, and financial analysis. \\
+The scope decisions were made with the intention of ensuring that the
+application delivers value to its target audience while remaining manageable
+within development constraints. The application focuses on personal budgeting
+features, including receipt scanning, expense categorization, budget tracking,
+and financial analysis. \\
 
 \noindent\textbf{Rationale:}
 \begin{itemize}
-    \item \textbf{User-Centered Design}: The scope focuses on features that users expect from a smart budgeting app, aligning with current market demands for personal finance tools that offer automation (e.g., receipt scanning) and financial insights.
-    \item \textbf{Technical Feasibility}: The decision to include features like machine learning for receipt parsing is scoped within the team’s ability to implement using existing AI frameworks (e.g., OCR and NLP libraries).
-    \item \textbf{Time and Resource Constraints}: By narrowing the scope to core personal finance features, the team ensures that the project can be completed within the specified timeline and budget, avoiding feature creep.
-    \item \textbf{Single Currency Support at Launch}: Focusing on a single currency simplifies the design of financial calculations, data presentation, and reporting. Multi-currency support introduces complexity in areas such as exchange rate management, which can be deferred to a later phase.
-    \item \textbf{No Offline Mode in the Initial Version}: Implementing an offline mode adds complexity to data synchronization and storage. By focusing on online features initially, the development team can ensure that the core functionalities (e.g., receipt scanning and expense categorization) perform optimally without additional constraints.
+    \item \textbf{User-Centered Design}: The scope focuses on features that
+    users expect from a smart budgeting app, aligning with current market
+    demands for personal finance tools that offer automation (e.g., receipt
+    scanning) and financial insights. 
+    \item \textbf{Technical Feasibility}: Developing an ML model for parsing and
+    categorizing receipts makes the project a feasible challenge for the team,
+    without making it overly complicated.
+    \item \textbf{Time and Resource Constraints}: By narrowing the scope to core
+    personal finance features, the team ensures that the project can be
+    completed within the specified timeline and budget.
 \end{itemize}
 
 \subsubsection{Modeling Decisions}
-The app’s architecture follows a modular, service-oriented design, with key components such as receipt scanning, expense categorization, and budgeting reports being developed as independent, reusable modules.\\
+The application's architecture follows a modular, service-oriented design, with key components (i.e., receipt scanning, expense categorization, and budgeting reports) being developed as independent, reusable modules.\\
 
 \noindent\textbf{Rationale:}
 \begin{itemize}
-    \item \textbf{Scalability}: A modular approach allows the app to scale more easily by isolating functionalities into distinct services (e.g., a dedicated service for expense categorization). This reduces interdependencies and facilitates future growth.
-    \item \textbf{Maintainability}: Modular components are easier to update and test, as changes to one service do not necessarily impact others. This also allows the app to accommodate feature updates and bug fixes more efficiently.
-    \item \textbf{Reusability}: By designing reusable components (e.g., UI elements, API services), the app can easily extend its capabilities or integrate with other systems in the future.
-    \item \textbf{Use of JSON for Data Exchange}: JSON is lightweight, human-readable, and widely used for web and mobile applications. Its simplicity makes it ideal for transmitting structured data between the client and server, ensuring smooth communication with minimal overhead.
+    \item \textbf{Scalability}: A modular approach allows the application to scale more easily by isolating functionalities into distinct services (e.g., a dedicated service for expense categorization). This reduces interdependencies and facilitates future growth.
+    \item \textbf{Maintainability}: Modular components are easier to update and test, as changes to one service do not necessarily impact others. This also allows the application to accommodate feature updates and bug fixes more efficiently.
+    \item \textbf{Reusability}: By designing reusable components (e.g., UI elements, API services), the application can easily extend its capabilities or integrate with other systems in the future.
+    \item \textbf{Use of JSON}: JSON is lightweight, human-readable, and widely used for web and mobile applications. Its simplicity makes it ideal for transmitting structured data between the client and server, ensuring smooth communication with minimal overhead.
 \end{itemize}
 
 \subsubsection{Assumptions}
@@ -756,12 +781,30 @@ Several assumptions were made during the development and design process. These a
 
 \noindent\textbf{Rationale:}
 \begin{itemize}
-    \item \textbf{Receipt Scanning}: The assumption that users will consistently scan receipts underpins the app’s core functionality. This assumption is based on trends observed in personal finance apps where automation is a key value proposition for users.
-    \item \textbf{Mobile-First Audience}: It is assumed that the majority of users will access the app via mobile devices. This assumption is driven by the current dominance of mobile platforms for personal finance management, offering convenience and accessibility.
-    \item \textbf{Privacy and Security}: The assumption that users expect high standards of data privacy and security informs the app’s adherence to regulations such as GDPR. Users handling sensitive financial data expect robust protection mechanisms.
-    \item \textbf{Stable Internet Connection}: It is assumed that users will have access to a stable internet connection while using the app, especially for features that require cloud processing (e.g., receipt scanning, data syncing, and report generation).
-    \item \textbf{Regular App Usage}: The assumption is that users will interact with the app on a regular basis (e.g., weekly or monthly), allowing the app to provide up-to-date financial insights and budgeting trends based on frequent input.
-    \item \textbf{User Financial Literacy}: The app assumes a basic level of financial literacy among its users, meaning that they will be able to understand concepts like budgets, expenses, savings, and categories without extensive in-app education.
+    \item \textbf{Receipt Scanning}: The assumption that users will consistently
+    scan receipts underpins the application's core functionality. This assumption is
+    based on trends observed in personal finance apps where automation is a key
+    value proposition for users.
+    \item \textbf{Mobile-First Audience}: It is assumed that the majority of
+    users will access the application via mobile devices. This assumption is
+    driven by the current dominance of mobile platforms for personal finance
+    management, offering convenience and accessibility.
+    \item \textbf{Privacy and Security}: The assumption that users expect high
+    standards of data privacy and security informs the application's adherence to
+    data protection regulations. Users handling sensitive financial data expect
+    robust protection mechanisms.
+    \item \textbf{Stable Internet Connection}: It is assumed that users will
+    have access to a stable internet connection while using the app, especially
+    for features that require cloud processing (e.g., receipt scanning, data
+    syncing, and report generation).
+    \item \textbf{Regular Application Usage}: The assumption is that users will
+    interact with the application on a regular basis (e.g., weekly or monthly),
+    allowing the application to collect sufficient user data and provide
+    up-to-date financial insights and budgeting trends.
+    \item \textbf{User Financial Literacy}: The application assumes a basic
+    level of financial literacy among its users, meaning that they will be able
+    to understand concepts like budgets, expenses, savings, and categories
+    without extensive in-application education.
 \end{itemize}
 
 \subsubsection{Typical Values}
@@ -769,45 +812,101 @@ For certain features, typical values have been used to inform design and develop
 
 \noindent\textbf{Rationale:}
 \begin{itemize}
-    \item \textbf{Default Categories}: Common budgeting categories (e.g., groceries, utilities, transportation) are provided as default to simplify user onboarding and offer a familiar framework. These categories were selected based on industry standards and user behavior in similar apps.
-    \item \textbf{Parsing Accuracy}: An accuracy threshold of 90\% for receipt parsing was established as the minimum acceptable standard, based on current machine learning capabilities and user expectations for automated processes.
-    \item \textbf{Performance Benchmarks}: Typical values for system performance, such as load times of under 2 seconds for key operations (e.g., viewing reports), are set based on user experience research, ensuring that the app feels responsive and efficient.
-    \item \textbf{Maximum Receipt Upload Size}: A limit of 5 MB per receipt ensures a balance between allowing high-resolution images for accurate OCR processing while keeping server storage and bandwidth requirements manageable. Users are encouraged to upload clear, focused images within this size limit.
-    \item \textbf{User Transaction History Retention}: Storing up to 3 years of transaction history provides users with enough data to analyze long-term financial trends while limiting the storage requirements for each user. Older transactions could be archived or made available on demand.
-    \item \textbf{Frequency of Budget Update Notifications}: Weekly budget update notifications help users stay on top of their spending without overwhelming them with too many alerts. Users are reminded to review their financial status regularly while avoiding notification fatigue.
-    \item \textbf{Budget Category Limits}: Allowing up to 25 distinct budget categories provides users with enough flexibility to categorize their spending without overwhelming them with too many options. This value strikes a balance between personalization and simplicity.
+    \item \textbf{Default Categories}: Common budgeting categories (e.g.,
+    groceries, utilities, transportation) are provided as default to simplify
+    user onboarding and offer a familiar framework. These categories were
+    selected based on industry standards and user behavior in similar apps. This
+    is also to simplify the ML model training process.
+    \item \textbf{Parsing Accuracy}: An accuracy threshold of 90\% for receipt
+    parsing was established as the minimum acceptable standard, based on
+    expected ML capabilities. This value ensures that the system can reliably
+    extract key information from receipts without significant manual
+    intervention.
+    \item \textbf{Performance Benchmarks}: Typical values for system
+    performance, such as load times of under two seconds for key operations
+    (e.g., viewing reports), are set based on user experience research, ensuring
+    that the application feels responsive and efficient.
+    \item \textbf{Maximum Receipt Upload Size}: A limit of 5 MB per receipt
+    ensures a balance between allowing high-resolution images for accurate OCR
+    processing while keeping server storage and bandwidth requirements
+    manageable. 
+    \item \textbf{User Transaction History Retention}: Storing up to 3 years of
+    transaction history provides users with enough data to analyze long-term
+    financial trends while limiting the storage requirements for each user.
+    Older transactions could be archived or made available on demand.
+    \item \textbf{Frequency of Budget Update Notifications}: Weekly budget
+    update notifications help users stay on top of their spending without
+    overwhelming them with too many alerts. Users are reminded to review their
+    financial status regularly while avoiding notification fatigue.
 \end{itemize}
 
 \newpage 
 
 \section{Likely Changes}    
 
-\noindent \begin{itemize}
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Addition of New Features}:] \textbf{Addition of New Features:} Based on user feedback, it is likely that new features (e.g., budgeting goal tracking, automatic expense categorization, or financial analytics) will be added to enhance user experience.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{User Interface Redesign}:] \textbf{User Interface Redesign:} As usability testing is conducted, it's likely that the UI will undergo several iterations to improve the overall user experience and incorporate user feedback.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Integration with New APIs}:] \textbf{Integration with New APIs:} The app may need to integrate with new financial data APIs (e.g., bank transaction retrieval services) to enhance functionality, requiring changes to the codebase.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Change in Tech Stack}:] \textbf{Change in Tech Stack:} If the team encounters difficulties with the current technology stack, such as performance or compatibility issues, a transition to new technologies (e.g., switching from React to Vue.js) is likely.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Performance Optimizations}:] \textbf{Performance Optimizations:} As the app scales, there may be a need for performance enhancements, such as optimizing database queries or implementing caching strategies.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Data Privacy Compliance Updates}:] \textbf{Data Privacy Compliance Updates:} Changes in legal requirements (e.g., GDPR, CCPA) may require updates to the app's data handling and privacy policies to ensure compliance.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Adjustment of User Roles and Permissions}:] \textbf{Adjustment of User Roles and Permissions:} Changes to user roles and permissions may occur as new features are added, requiring adjustments to the authentication and authorization system.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Updates to User Authentication Method}:] \textbf{Updates to User Authentication Method:} There may be a transition to a more secure authentication method (e.g., implementing two-factor authentication) based on user feedback and security best practices.
-	\item[LC\refstepcounter{lcnum}\thelcnum\label{Feedback Mechanism for Users}:] \textbf{Feedback Mechanism for Users:} Adding a feedback mechanism within the app (e.g., surveys or feedback forms) to gather user insights and suggestions for improvements is likely, ensuring continuous enhancement of the app based on user needs.
-\end{itemize}
+\begin{enumerate}[label=LC\arabic*]
+	\item\textbf{Addition of New Features:} Based on user feedback, it is likely
+	that new features (e.g., budgeting goal tracking, automatic expense
+	categorization, or financial analytics) will be added to enhance user
+	experience.
+	\item\textbf{User Interface Redesign:} As usability testing is conducted, it's
+	likely that the UI will undergo several iterations to improve the overall user
+	experience and incorporate user feedback.
+	\item \textbf{Integration with New APIs:} The application may need to
+	integrate with new financial data APIs (e.g., bank transaction retrieval
+	services) to enhance functionality, requiring changes to the codebase.
+	\item \textbf{Change in Tech Stack:} If the team encounters difficulties with
+	the current technology stack, such as performance or compatibility issues, a
+	transition to new technologies (e.g., switching from React to Vue.js) is
+	likely.
+	\item \textbf{Performance Optimizations:} As the application scales, there may
+	be a need for performance enhancements, such as optimizing database queries or
+	implementing caching strategies.
+	\item\textbf{Data Privacy Compliance Updates:} Changes in legal requirements
+	may require updates to the application's data handling and privacy policies to
+	ensure compliance.
+	\item\textbf{Updates to User Authentication Method:} There may be a transition
+	to a more secure authentication method (e.g., implementing two-factor
+	authentication) based on user feedback and security best practices.
+	\item\textbf{Feedback Mechanism for Users:} Adding a feedback mechanism within
+	the application (e.g., surveys or feedback forms) to gather user insights and
+	suggestions for improvements is likely, ensuring continuous enhancement of the
+	application based on user needs.
+  \item \textbf{Change in Database Choice:} During the development phase, the
+	initial database choice may need to change due to performance issues or
+	scalability requirements (e.g., moving from SQLite to PostgreSQL or MongoDB).
+\end{enumerate}
 
 \newpage
 
 \section{Unlikely Changes}    
 
-\noindent \begin{itemize}
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Complete Rewrite of the App}:] \textbf{Complete Rewrite of the App:} A complete rewrite of the app's codebase is unlikely unless there are significant fundamental flaws that cannot be addressed through refactoring.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Change in Database Choice}:] \textbf{Change in Database Choice:} During the development phase, the initial database choice may need to change due to performance issues or scalability requirements (e.g., moving from SQLite to PostgreSQL or MongoDB).
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Switching Platforms}:] \textbf{Switching Platforms:} Transitioning from a mobile-first approach to a purely desktop application is unlikely if the initial target audience is primarily mobile users.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Adopting a New Programming Language}:] \textbf{Adopting a New Programming Language:} Changing the programming language for the entire project (e.g., from JavaScript to Ruby) midway through development is unlikely due to the complexity and resource investment required.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Elimination of Existing Features}:] \textbf{Elimination of Existing Features:} Removing core features that are central to the app's purpose (e.g., expense tracking) is unlikely, as these are fundamental to user expectations and functionality.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Change in Target Audience}:] \textbf{Change in Target Audience:} A shift in the target audience (e.g., from personal budgeting to corporate finance management) is unlikely as it would require a fundamental reevaluation of the app's design and features.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Discontinuation of Data Storage}:] \textbf{Discontinuation of Data Storage:} Completely removing any form of data storage (e.g., opting for a stateless application) is unlikely, as the core functionality relies on data retention for budgeting purposes.
-	\item[ULC\refstepcounter{ulcnum}\theulcnum\label{Pivot to a Social Networking Feature Set}:] \textbf{Pivot to a Social Networking Feature Set:} A major pivot to add social networking features (e.g., allowing users to connect with friends or share budgets) is unlikely, as it diverges from the core functionality of personal budgeting and may complicate the app's primary purpose.
-\end{itemize}
+\begin{enumerate}[label=ULC\arabic*]
+	\item \textbf{Complete Rewrite of the Application:} A complete rewrite of the
+	application's codebase is unlikely unless there are significant fundamental
+	flaws that cannot be addressed through refactoring.
+	\item \textbf{Switching Platforms:} Transitioning from a mobile-first approach
+	to a purely desktop application is unlikely if the initial target audience is
+	primarily mobile users.
+	\item \textbf{Adopting a New Programming Language:} Changing the programming
+	language for the entire project (e.g., from JavaScript to Ruby) midway through
+	development is unlikely due to the complexity and resource investment
+	required.
+	\item \textbf{Elimination of Existing Features:} Removing core features that
+	are central to the application's purpose (e.g., expense tracking) is unlikely,
+	as these are fundamental to user expectations and functionality.
+	\item \textbf{Change in Target Audience:} A shift in the target audience
+	(e.g., from personal budgeting to corporate finance management) is unlikely as
+	it would require a fundamental reevaluation of the application's design,
+	features, and use cases.
+	\item \textbf{Discontinuation of Data Storage:} Completely removing any form
+	of data storage (e.g., opting for a stateless application) is unlikely, as the
+	core functionality relies on data retention for budgeting purposes.
+	\item \textbf{Pivot to a Social Networking Feature Set:} A major pivot to add
+	social networking features (e.g., allowing users to connect with friends or
+	share budgets) is unlikely, as it diverges from the core functionality of
+	personal budgeting and may complicate the application's primary purpose.
+\end{enumerate}
 
 \newpage
 
@@ -955,13 +1054,12 @@ instance models, requirements, and data constraints on each other.
 
 \section{Development Plan}
 
-The development plan can be found \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{here}. \\
+The development plan can be found in the
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{Development
+Plan} document. \\
 
 \noindent Note that information in this document, especially regarding dates and deadlines, are subject to change and will be updated accordingly. \\
 
-\noindent All functional requirements specified in Section 5.1 are intended for implementation. \\
-
-\noindent Non-functional requirements specified in Section 5.2 are to be followed but may be subject to change or constraints. \\
 
 \section{Values of Auxiliary Constants}
 
