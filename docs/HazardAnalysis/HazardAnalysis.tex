@@ -154,16 +154,30 @@ Which requirements will be implemented in the future?}
 \input{../Reflection.tex}
 
 \begin{enumerate}
-    \item What went well while writing this deliverable? 
-    \item What pain points did you experience during this deliverable, and how
-    did you resolve them?
-    \item Which of your listed risks had your team thought of before this
-    deliverable, and which did you think of while doing this deliverable? For
-    the latter ones (ones you thought of while doing the Hazard Analysis), how
-    did they come about?
-    \item Other than the risk of physical harm (some projects may not have any
-    appreciable risks of this form), list at least 2 other types of risk in
-    software products. Why are they important to consider?
+
+\item What went well while writing this deliverable?
+
+The overall process while writing this deliverable was smooth and efficient as we were quickly able to identify the potential hazards related to our project. We brainstormed several ambiguous sections or things we thought were a bit unclear within this analysis document, and were able to get very clear answers from our helpful TA. The team worked well together as we all put in our best efforts and supported one another when completing this task. 
+
+Using the FMEA (Failure Mode and Effect Analysis) approach helped streamline the hazard identification process. Breaking down the system into components allowed for a clear understanding of where risks might occur. Writing the deliverable helped the team clarify and solidify their understanding of how the receipt scanner, the AI model, and other system components interact, making it easier to identify hazards.
+
+\item What pain points did you experience during this deliverable, and how did you resolve them?
+
+At first, it was challenging to define the potential failure modes, especially for components like the machine learning model. The team resolved this by conducting additional research on common failure points in similar systems and reviewing how AI models typically behave with poor input data. Another challenge was balancing realistic assumptions about user behavior with potential risks. For example, while assuming users won’t repeatedly input invalid images, we acknowledged this could still happen. We resolved this by planning mitigation strategies for those edge cases.
+
+\item Which of your listed risks had your team thought of before this deliverable, and which did you think of while doing this deliverable? For the latter ones (ones you thought of while doing the Hazard Analysis), how did they come about?
+
+We had already considered risks related to image quality (e.g., blurry or incomplete receipt images) and network connectivity issues (e.g., users not being able to connect to the database).
+
+While working on the hazard analysis, we realized potential risks like Optical Character Recognition (OCR) misinterpretation due to varied receipt fonts and ML model processing time under different device conditions (e.g., low memory or poor network). These came up while brainstorming as a team and thinking about the specific steps in image processing and how the system handles diverse input.
+
+\item Other than the risk of physical harm, list at least 2 other types of risk in software products. Why are they important to consider?
+
+Two other risks that are apparent in software products are security and reliability risks. 
+
+Security vulnerabilities can lead to issues such as data breaches, unauthorized access or identity theft, as well as collateral damages, whether it be financial losses or reputational damage. This is considered a risk and is important to consider as it creates an opportunity for malicious users to exploit weaknesses in software systems, which can have a range of detrimental consequences. Examples include operational disruptions, intellectual property theft, ransomware attacks, etc.
+
+As for reliability, it is mostly concerned with when software fails to function consistently, such as having frequent downtimes. This can affect the user’s experience, leading to a loss of productivity or customer dissatisfaction. Both of these can lead to potential revenue loss. This is classified as a risk and is important to consider because unreliable software can lead to negative consequences, which affect not only the users but also the organization that provides the software. The damages can be both monetary and non-monetary, such as losing user trust/loyalty, reputational damage, and associated compliance and legal risks.
 \end{enumerate}
 
 \end{document}
