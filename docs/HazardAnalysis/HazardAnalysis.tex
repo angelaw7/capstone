@@ -3,6 +3,10 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{hyperref}
+\usepackage[hmargin=3cm]{geometry}
+\usepackage{pdflscape}
+\usepackage{longtable}
+
 
 \hypersetup{
     colorlinks=true,       % false: boxed links; true: colored links
@@ -36,8 +40,7 @@
 \toprule
 \textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
 \midrule
-Date1 & Name(s) & Description of changes\\
-Date2 & Name(s) & Description of changes\\
+10/23/2024 & Angela & Initial draft\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -51,31 +54,64 @@ Date2 & Name(s) & Description of changes\\
 
 \pagenumbering{arabic}
 
-\wss{You are free to modify this template.}
-
 \section{Introduction}
 
-\wss{You can include your definition of what a hazard is here.}
+A hazard in the context of this document is any property or condition that may
+lead to harm or damage to the Plutos system or its users. The following sections
+will identify hazards within the system and discuss the controls in place for
+their mitigation.
+
 
 \section{Scope and Purpose of Hazard Analysis}
 
-\wss{You should say what \textbf{loss} could be incurred because of the
-hazards.}
+This document aims to provide a comprehensive hazard analysis of the Plutos
+system. It identifies hazards within the system, outlines measures to mitigate
+them, and specifies the safety and security requirements derived from this
+analysis. The analysis will follow the Failure Mode and Effect Analysis (FMEA)
+approach. Potential losses due to these hazards may include breaches of user
+privacy and data, loss of application functionality, and data loss. The analysis
+aims to discover the potential failure modes within the system and develop a
+mitigation plan to reduce the risk of failure. 
+
 
 \section{System Boundaries and Components}
 
-\wss{Dividing the system into components will help you brainstorm the hazards.
-You shouldn't do a full design of the components, just get a feel for the major
-ones.  For projects that involve hardware, the components will typically include
-each individual piece of hardware.  If your software will have a database, or an
-important library, these are also potential components.}
+The system will be divided into the following components:
+\begin{enumerate}
+    \item The Plutos application, which consists of:
+    \begin{enumerate}
+        \item \textbf{The database}: The database is where the user’s receipts
+        and profile data will be stored.
+        \item \textbf{The backend server}: The backend server is responsible for
+        handling and serving requests from the client. It will interact with all
+        the other components listed here.
+        \item \textbf{The frontend/user interface}: The frontend/user interface
+        is responsible for displaying the appropriate views to the user and
+        handling user interactions.
+        \item \textbf{The machine learning (ML) model}: The ML model is
+        responsible for parsing and categorizing items from a picture of an
+        itemized receipt.
+    \end{enumerate}
+    \item The user’s mobile device and camera setup
+\end{enumerate}
+
 
 \section{Critical Assumptions}
 
-\wss{These assumptions that are made about the software or system.  You should
-minimize the number of assumptions that remove potential hazards.  For instance,
-you could assume a part will never fail, but it is generally better to include
-this potential failure mode.}
+The project will be making the following critical assumptions: 
+\begin{enumerate}
+    \item The users will be
+    using a mobile device running an up-to-date version of iOS or Android.
+    \item Users are
+    not expected to repeatedly input invalid images into the system (i.e., images
+    that do not contain a receipt). While it is anticipated that users may
+    occasionally submit an invalid image, it is assumed to not be a significant
+    concern.
+\end{enumerate}  
+
+
+\newgeometry{bottom=25mm,hmargin=1.5cm,vmargin=3cm, landscape}
+\begin{landscape}
 
 \section{Failure Mode and Effect Analysis}
 
@@ -87,6 +123,19 @@ requirements.}
 \wss{If no safety requirement can be devised, other mitigation strategies can be
 entered in the table, including strategies involving providing additional
 documentation, and/or test cases.}
+
+    \begin{longtable}{|l|l|l|l|l|l|l|}
+        \caption{Failure Mode and Effect Analysis Table} \label{tab:long} \\
+        
+        \hline
+        \multicolumn{1}{|c|}{\textbf{Design Function}} & \multicolumn{1}{c|}{\textbf{Failure Modes}} & \multicolumn{1}{c|}{\textbf{Effects of Failure}} & \multicolumn{1}{c|}{\textbf{Causes of Failure}} & \multicolumn{1}{c|}{\textbf{Recommended Action}} & \multicolumn{1}{c|}{\textbf{SR}} & \multicolumn{1}{c|}{\textbf{Ref}}\\
+        \hline\endfirsthead\hline\endlastfoot
+        
+        ... & ... & ... & ... & ... & ... & ...\\
+        \end{longtable}
+    \newpage{}
+\end{landscape}
+\restoregeometry
 
 \section{Safety and Security Requirements}
 
@@ -101,8 +150,6 @@ Which requirements will be implemented in the future?}
 \newpage{}
 
 \section*{Appendix --- Reflection}
-
-\wss{Not required for CAS 741}
 
 \input{../Reflection.tex}
 
