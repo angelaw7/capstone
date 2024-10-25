@@ -6,6 +6,8 @@
 \usepackage[hmargin=3cm]{geometry}
 \usepackage{pdflscape}
 \usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{lscape}
 
 
 \hypersetup{
@@ -110,29 +112,165 @@ The project will be making the following critical assumptions:
 \end{enumerate}  
 
 
-\newgeometry{bottom=25mm,hmargin=1.5cm,vmargin=3cm, landscape}
+\newgeometry{bottom=25mm,hmargin=1.5cm,vmargin=0.5cm, landscape}
 \begin{landscape}
 
 \section{Failure Mode and Effect Analysis}
 
-\wss{Include your FMEA table here. This is the most important part of this document.}
-\wss{The safety requirements in the table do not have to have the prefix SR.
-The most important thing is to show traceability to your SRS. You might trace to
-requirements you have already written, or you might need to add new
-requirements.}
-\wss{If no safety requirement can be devised, other mitigation strategies can be
-entered in the table, including strategies involving providing additional
-documentation, and/or test cases.}
-
-    \begin{longtable}{|l|l|l|l|l|l|l|}
-        \caption{Failure Mode and Effect Analysis Table} \label{tab:long} \\
-        
-        \hline
-        \multicolumn{1}{|c|}{\textbf{Design Function}} & \multicolumn{1}{c|}{\textbf{Failure Modes}} & \multicolumn{1}{c|}{\textbf{Effects of Failure}} & \multicolumn{1}{c|}{\textbf{Causes of Failure}} & \multicolumn{1}{c|}{\textbf{Recommended Action}} & \multicolumn{1}{c|}{\textbf{SR}} & \multicolumn{1}{c|}{\textbf{Ref}}\\
-        \hline\endfirsthead\hline\endlastfoot
-        
-        ... & ... & ... & ... & ... & ... & ...\\
-        \end{longtable}
+\begin{longtable}{|p{3cm}|p{4cm}|p{5cm}|p{5cm}|p{5cm}|p{1cm}|p{0.75cm}|}
+    \caption{Failure Mode and Effect Analysis Table} \label{tab:long} \\
+    
+    \hline
+    \multicolumn{1}{|c|}{\textbf{Design Function}} & 
+    \multicolumn{1}{c|}{\textbf{Failure Modes}} & 
+    \multicolumn{1}{c|}{\textbf{Effects of Failure}} & 
+    \multicolumn{1}{c|}{\textbf{Causes of Failure}} & 
+    \multicolumn{1}{c|}{\textbf{Recommended Action}} & 
+    \multicolumn{1}{c|}{\textbf{SR}} & 
+    \multicolumn{1}{c|}{\textbf{Ref}} \\
+    \hline
+    \endfirsthead
+    
+    \hline
+    \multicolumn{7}{|c|}{\textit{Continued from previous page}} \\
+    \hline
+    \multicolumn{1}{|c|}{\textbf{Design Function}} & 
+    \multicolumn{1}{c|}{\textbf{Failure Modes}} & 
+    \multicolumn{1}{c|}{\textbf{Effects of Failure}} & 
+    \multicolumn{1}{c|}{\textbf{Causes of Failure}} & 
+    \multicolumn{1}{c|}{\textbf{Recommended Action}} & 
+    \multicolumn{1}{c|}{\textbf{SR}} & 
+    \multicolumn{1}{c|}{\textbf{Ref}} \\
+    \hline
+    \endhead
+    
+    \hline
+    \endfoot
+    
+    Authenticate user & 
+    Non-human accounts exist on the server & 
+    Increased traffic to the server, invalid inputs, performance deterioration & 
+    A bot account logs into the application & 
+    Ensure account creation includes a captcha & 
+    FR3 & 
+    H1-1 \\
+    \hline
+    % row 2
+    Accept image & 
+    Camera does not open &
+    The user cannot input an image to be processed by the system. &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Application does not have access to user's camera
+        \item The application is bugged out
+    \end{itemize} &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Prompt the user to allow camera access for the application
+        \item The user should restart the application. 
+    \end{itemize} &
+    FR7 &
+    H2-1\\
+    \cline{2-7}
+    % row 3
+     & 
+    Photo library doesn't open &
+    Same as H2-1 &
+    Same as H2-1 &
+    Same as H2-1 &
+    FR8 &
+    H2-2\\
+    \hline
+    Process receipt image &
+    Image is not processable &
+    Poor input into machine learning model; may cause incorrect results or cause model to run for a long time &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Poor quality receipt (e.g., paper is crumpled or wrinkled, light ink) 
+        \item Poor photo quality (e.g., blurry, part of receipt cut out from frame, low lighting)
+        \item The image does not contain a receipt
+    \end{itemize} &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Prompt the user to retry due to poor photo quality and make sure that the input is actually a receipt
+        \item Same as H3-1a
+        \item Run image validation before passing the image through the ML model (e.g., check that there is a paper with text in the image)
+    \end{itemize} &
+    FR16 &
+    H3-1\\ 
+    \cline{2-7}
+    &
+    Optical character recognition (OCR) failing or incorrectly parsing text &
+    Incorrectly parsed text, missing items, incorrect categorization or costs &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Receipt uses different font sizes or styles
+        \item Receipt quality causes some letters to be difficult to recognize (e.g., 0 and O, T and I)
+    \end{itemize} &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Inform user that the OCR isn’t working after 3 failed attempts and ask user to manually input receipt expenses
+    \end{itemize} &
+    FR16, NFR4 &
+    H3-2\\
+    \cline{2-7}
+    &
+    Incorrect item categorization &
+    Items are miscategorized, resulting in incorrect insights &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item OCR incorrectly parses text or fails to read some text
+        \item Ambiguous item name
+        \item Item has not been identified in the past
+    \end{itemize} &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Refer to H3-2.
+        \item Prompt the user to confirm the category of this object and give it an alias for helping in future recognition.
+        \item See H3-3b
+    \end{itemize} &
+    FR17, NFR2 &
+    H3-3\\
+    \cline{2-7}
+    & 
+    Processing image takes more than X seconds to complete &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Lower user satisfaction
+    \end{itemize} &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item User’s device is low on memory or has other tasks running in the background
+        \item Large image size/high image resolution
+        \item OCR model not optimized (especially for that specific use case)
+        \item Poor pre-processing  
+    \end{itemize} &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Inform the user that the task is taking longer than expected and show troubleshooting tips.
+        \item See H3-2
+    \end{itemize} &
+    NFR8, NFR16 &
+    H3-4\\
+    \hline
+    Save new receipt input (image details and model results) &
+    Cannot connect to database &
+    Receipt input cannot be saved after being processed. &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Poor network connection
+        \item Database server downtime
+    \end{itemize} &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Prompt the user to check their network connection
+        \item Inform the user of the server error; system will try again at a later time (data will be stored locally and then backup up)
+    \end{itemize} &
+    FR15 &
+    H4-1 \\
+    \hline
+    The system suggests user budget and goals &
+    The system suggests a budget that is lower than the user's total monthly expenses (i.e. unattainable budget) &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Lower user satisfaction
+        \item User is unable to budget correspondingly to the suggested system budget 
+    \end{itemize} &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Algorithm to calculate the budget fails 
+    \end{itemize} &
+    \begin{itemize}[leftmargin=0.5cm]
+        \item Provide an option to the user to recalculate monthly budget with a given minimum monthly expense (user enters minimum monthly expense and system recalculates budget) 
+    \end{itemize} &
+    NFR5 &
+    H5-1\\
+\end{longtable}
     \newpage{}
 \end{landscape}
 \restoregeometry
