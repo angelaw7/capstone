@@ -44,6 +44,7 @@
 \midrule
 10/23/2024 & Angela & Initial draft\\
 10/25/2024 & Jason & Table for section 5 \\
+10/25/2024 & Payton, Eric, Fondson, Jason, Angela & Final Rev 0 \\
 ... & ... & ... \\
 \bottomrule
 \end{tabularx}
@@ -153,8 +154,16 @@ The project will be making the following critical assumptions:
     Increased traffic to the server, invalid inputs, performance deterioration & 
     A bot account logs into the application & 
     Ensure account creation includes a captcha & 
-    FR3 & 
+    FR3, SR1 & 
     H1-1 \\
+    \cline{2-7}
+     & 
+    User account information has been compromised due to unauthorized access & 
+    User can no longer access their account and their data might be compromised or lost & 
+    Unauthorized account access & 
+    Enforce strong user passwords, allow users to reset their password & 
+    FR6, SR7, SR12 & 
+    H1-2 \\
     \hline
     % row 2
     Accept image & 
@@ -168,7 +177,7 @@ The project will be making the following critical assumptions:
         \item Prompt the user to allow camera access for the application
         \item The user should restart the application. 
     \end{enumerate} &
-    FR7 &
+    FR7, NFR13, SR2 &
     H2-1\\
     \cline{2-7}
     % row 3
@@ -177,7 +186,7 @@ The project will be making the following critical assumptions:
     Same as H2-1 &
     Same as H2-1 &
     Same as H2-1 &
-    FR8 &
+    FR8, NFR13, SR3 &
     H2-2\\
     \hline
     Process receipt image &
@@ -193,7 +202,7 @@ The project will be making the following critical assumptions:
         \item Same as H3-1a
         \item Run image validation before passing the image through the ML model (e.g., check that there is a paper with text in the image)
     \end{enumerate} &
-    FR16 &
+    FR16, NFR13, SR4, SR6 &
     H3-1\\ 
     \cline{2-7}
     &
@@ -239,6 +248,8 @@ The project will be making the following critical assumptions:
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
         \item Inform the user that the task is taking longer than expected and show troubleshooting tips.
         \item See H3-2
+        \item See H3-2
+        \item See H3-2
     \end{enumerate} &
     NFR8, NFR16 &
     H3-4\\
@@ -254,7 +265,7 @@ The project will be making the following critical assumptions:
         \item Prompt the user to check their network connection
         \item Inform the user of the server error; system will try again at a later time (data will be stored locally and then backup up)
     \end{enumerate} &
-    FR15 &
+    FR15, NFR13, SR5, SR8 &
     H4-1 \\
     \hline
     The system suggests user budget and goals &
@@ -278,32 +289,90 @@ The project will be making the following critical assumptions:
 
 \section{Safety and Security Requirements}
 
-\begin{enumerate}
-	\item \textbf{Receipt Image Protection:} Applying image sanitization techniques to ensure that malicious content cannot be injected into the app via uploaded images (e.g. XSS). Will also ensure that images of receipts are securely stored using access controls and encryption and should be deleted when they are no longer needed or upon user request.
-	\item \textbf{User Awareness and Education:} Providing users with information about security best practices and secure usage such as how to create strong passwords, recognize phishing attempts, and manage data privacy.
-	\item \textbf{Regular Security Updates:} Our app will be regularly updated to address newly discovered vulnerabilities, both in the app code along with any third-party libraries of frameworks. This will be done on an iterative basis with periodic patch releases (e.g. patch release every 3 weeks).
-	\item \textbf{Data Anonymization:} Before storing or processing any receipts that are uploaded, all sensitive information such as account numbers or personal details will be anonymized to protect user privacy. This is especially important when using data for AI training or analysis.
-	\item \textbf{Physical Device Security:} While the assumption is that users will be on a mobile device, we do require the app to be run on a secure device (e.g. detecting if the device is jailbroken or rooted), This can help against local data theft or tampering. Additionally, we will also provide users with the ability to remotely wipe sensitive financial data and receipts from their devices in the case of loss or theft.
+These are newly identified requirements that will be added to the Software
+Requirements Specification (SRS) document. They will be relabelled and added to
+appropriate functional and non-functional requirements sections in the SRS.
+
+\begin{enumerate}[label=SR\arabic*]
+    \item Account creation must include a captcha to verify that the account is
+    being created by a human.\\Rationale: Bot accounts can cause increased
+    traffic to the server, invalid inputs, and performance deterioration.
+    \\Associated Hazards: H1-1
+    \item The application must prompt the user to allow camera access upon
+    needing to open the camera. If camera access is disabled, the application
+    must notify the user and show instructions on how to enable camera
+    access.\\Rationale: If the camera does not open, the user cannot input an
+    image to be processed by the system.\\Associated Hazards: H2-1
+    \item The application must prompt the user to allow photo library access upon
+    needing to open the photo library. If photo library access is disabled, the
+    application must notify the user and show instructions on how to enable
+    photo library access.\\Rationale: If the photo library does not open, the
+    user cannot input an image to be processed by the system.\\Associated
+    Hazards: H2-2
+    \item The application will run image validation before passing the image
+    through the ML model; the validation will check that there is a paper with
+    text in the image.\\Rationale: If the image is not processable, it may cause
+    incorrect results or cause the model to run for a long time.\\Associated
+    Hazards: H3-1
+    \item The database will be store a local copy of receipts within the app
+    until a connection to the server can be established.\\Rationale: If the
+    system cannot connect to the database, receipt input cannot be saved after
+    being processed.\\Associated Hazards: H4-1 
+    \item The application will apply image sanitization techniques to ensure
+    that malicious content cannot be injected into the app via uploaded images
+    (e.g. XSS). \\Rationale: Protecting against malicious content injection
+    will help prevent attacks that could compromise user data or the system.
+    \\Associated Hazards: H3-1
+	\item User account passwords must be a combination of uppercase letters,
+	lowercase letters, numbers, and symbols, and be at least 8 characters
+	long.\\Rationale: Weak passwords can lead to unauthorized access to user
+	accounts.\\Associated Hazards: H1-2
+    \item The application will ensure that images of receipts are securely stored
+    using access controls and encryption and should be deleted when they are no
+    longer needed or upon user request. \\Rationale: Protecting receipt images
+    will help prevent unauthorized access to sensitive financial data.\\Associated
+    Hazards: N/A
+	\item The application will be regularly updated to address newly discovered
+	vulnerabilities, both in the application code along with any third-party
+	libraries of frameworks. This will be done on an iterative basis with
+	periodic patch releases (e.g. patch release every 3 weeks). \\Rationale:
+	Regular security updates will help protect against newly discovered
+	vulnerabilities that could be exploited by attackers.\\Associated Hazards:
+	N/A
+	\item Before storing or processing any receipts that are uploaded, all
+	sensitive information such as account numbers or personal details will be
+	anonymized to protect user privacy. \\Rationale: Anonymizing data will help
+	protect user privacy and prevent unauthorized access to sensitive data. This
+	is especially important when using data for AI training or analysis.
+	\\Associated Hazards: N/A
+	\item While the assumption is that users will be on a mobile device, the
+	device must be secure (e.g. detecting if the device is jailbroken or
+	rooted). \\Rationale: This can help against local data
+	theft or tampering. \\Associated Hazards: N/A
+    \item The application will allow users to remotely wipe sensitive financial
+	data and receipts from their devices in the case of loss or theft.
+	\\Rationale: This will help protect user data in the event of a lost or
+    stolen device.  \\Associated Hazards: H1-2
 \end{enumerate}
 
 \section{Roadmap}
 
-Due to the time constraint of the capstone timeline, there will be only time to implement certain safety/security requirements. The rest of the safety requirements will be implemented in the future (likely following the capstone period). \\
+Due to the time constraint of the capstone timeline, not all safety/security
+requirements identified in Section 6 of this hazards analysis document will be
+implemented; only a subset will be on the roadmap.\\
 
-\noindent The requirements that will be implemented as part of the capstone time will be:
+\noindent The requirements that will be implemented as part of the capstone time
+will be SR1, SR2, SR3, and SR7. The rest of the requirements will be implemented
+in the future.\\
 
+As noted in the Section 9 of the \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/SRS/SRS.pdf}{SRS document}, there are four phases for the
+development plan. The new requirements will be implemented in the following phases:
 \begin{enumerate}
-	\item User Awareness and Education
-	\item Physical Device Security
+    \item Phase 1: SR1, SR7
+    \item Phase 2: SR2, SR3
 \end{enumerate}
 
-\noindent The requirements that will be implemented in the future will be:
 
-\begin{enumerate}
-	\item Receipt Image Protection
-	\item Regular Security Updates
-	\item Data Anonymization
-\end{enumerate}
 
 \newpage{}
 
@@ -315,27 +384,70 @@ Due to the time constraint of the capstone timeline, there will be only time to 
 
 \item What went well while writing this deliverable?
 
-The overall process while writing this deliverable was smooth and efficient as we were quickly able to identify the potential hazards related to our project. We brainstormed several ambiguous sections or things we thought were a bit unclear within this analysis document, and were able to get very clear answers from our helpful TA. The team worked well together as we all put in our best efforts and supported one another when completing this task. 
+The overall process while writing this deliverable was smooth and efficient as
+we were quickly able to identify the potential hazards related to our project.
+We brainstormed several ambiguous sections or things we thought were a bit
+unclear within this analysis document, and were able to get very clear answers
+from our helpful TA. The team worked well together as we all put in our best
+efforts and supported one another when completing this task. 
 
-Using the FMEA (Failure Mode and Effect Analysis) approach helped streamline the hazard identification process. Breaking down the system into components allowed for a clear understanding of where risks might occur. Writing the deliverable helped the team clarify and solidify their understanding of how the receipt scanner, the AI model, and other system components interact, making it easier to identify hazards.
+Using the FMEA (Failure Mode and Effect Analysis) approach helped streamline the
+hazard identification process. Breaking down the system into components allowed
+for a clear understanding of where risks might occur. Writing the deliverable
+helped the team clarify and solidify their understanding of how the receipt
+scanner, the AI model, and other system components interact, making it easier to
+identify hazards.
 
-\item What pain points did you experience during this deliverable, and how did you resolve them?
+\item What pain points did you experience during this deliverable, and how did
+you resolve them?
 
-At first, it was challenging to define the potential failure modes, especially for components like the machine learning model. The team resolved this by conducting additional research on common failure points in similar systems and reviewing how AI models typically behave with poor input data. Another challenge was balancing realistic assumptions about user behavior with potential risks. For example, while assuming users won’t repeatedly input invalid images, we acknowledged this could still happen. We resolved this by planning mitigation strategies for those edge cases.
+At first, it was challenging to define the potential failure modes, especially
+for components like the machine learning model. The team resolved this by
+conducting additional research on common failure points in similar systems and
+reviewing how AI models typically behave with poor input data. Another challenge
+was balancing realistic assumptions about user behavior with potential risks.
+For example, while assuming users won’t repeatedly input invalid images, we
+acknowledged this could still happen. We resolved this by planning mitigation
+strategies for those edge cases.
 
-\item Which of your listed risks had your team thought of before this deliverable, and which did you think of while doing this deliverable? For the latter ones (ones you thought of while doing the Hazard Analysis), how did they come about?
+\item Which of your listed risks had your team thought of before this
+deliverable, and which did you think of while doing this deliverable? For the
+latter ones (ones you thought of while doing the Hazard Analysis), how did they
+come about?
 
-We had already considered risks related to image quality (e.g., blurry or incomplete receipt images) and network connectivity issues (e.g., users not being able to connect to the database).
+We had already considered risks related to image quality (e.g., blurry or
+incomplete receipt images) and network connectivity issues (e.g., users not
+being able to connect to the database).
 
-While working on the hazard analysis, we realized potential risks like Optical Character Recognition (OCR) misinterpretation due to varied receipt fonts and ML model processing time under different device conditions (e.g., low memory or poor network). These came up while brainstorming as a team and thinking about the specific steps in image processing and how the system handles diverse input.
+While working on the hazard analysis, we realized potential risks like Optical
+Character Recognition (OCR) misinterpretation due to varied receipt fonts and ML
+model processing time under different device conditions (e.g., low memory or
+poor network). These came up while brainstorming as a team and thinking about
+the specific steps in image processing and how the system handles diverse input.
 
-\item Other than the risk of physical harm, list at least 2 other types of risk in software products. Why are they important to consider?
+\item Other than the risk of physical harm, list at least 2 other types of risk
+in software products. Why are they important to consider?
 
-Two other risks that are apparent in software products are security and reliability risks. 
+Two other risks that are apparent in software products are security and
+reliability risks. 
 
-Security vulnerabilities can lead to issues such as data breaches, unauthorized access or identity theft, as well as collateral damages, whether it be financial losses or reputational damage. This is considered a risk and is important to consider as it creates an opportunity for malicious users to exploit weaknesses in software systems, which can have a range of detrimental consequences. Examples include operational disruptions, intellectual property theft, ransomware attacks, etc.
+Security vulnerabilities can lead to issues such as data breaches, unauthorized
+access or identity theft, as well as collateral damages, whether it be financial
+losses or reputational damage. This is considered a risk and is important to
+consider as it creates an opportunity for malicious users to exploit weaknesses
+in software systems, which can have a range of detrimental consequences.
+Examples include operational disruptions, intellectual property theft,
+ransomware attacks, etc.
 
-As for reliability, it is mostly concerned with when software fails to function consistently, such as having frequent downtimes. This can affect the user’s experience, leading to a loss of productivity or customer dissatisfaction. Both of these can lead to potential revenue loss. This is classified as a risk and is important to consider because unreliable software can lead to negative consequences, which affect not only the users but also the organization that provides the software. The damages can be both monetary and non-monetary, such as losing user trust/loyalty, reputational damage, and associated compliance and legal risks.
+As for reliability, it is mostly concerned with when software fails to function
+consistently, such as having frequent downtimes. This can affect the user’s
+experience, leading to a loss of productivity or customer dissatisfaction. Both
+of these can lead to potential revenue loss. This is classified as a risk and is
+important to consider because unreliable software can lead to negative
+consequences, which affect not only the users but also the organization that
+provides the software. The damages can be both monetary and non-monetary, such
+as losing user trust/loyalty, reputational damage, and associated compliance and
+legal risks.
 \end{enumerate}
 
 \end{document}
