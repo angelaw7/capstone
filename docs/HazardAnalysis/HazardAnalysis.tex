@@ -45,6 +45,7 @@
 10/23/2024 & Angela & Initial draft\\
 10/25/2024 & Jason & Table for section 5 \\
 10/25/2024 & Payton, Eric, Fondson, Jason, Angela & Final Rev 0 \\
+10/28/2024 & Eric & Update section 3\\
 ... & ... & ... \\
 \bottomrule
 \end{tabularx}
@@ -84,14 +85,58 @@ The system will be divided into the following components:
 \begin{enumerate}
     \item The Plutos application, which consists of:
     \begin{enumerate}
-        \item \textbf{The database}: The database is where the user’s receipts
+        \item \textbf{The database}: The database is where the user's receipts
         and profile data will be stored.
+		\begin{itemize}
+			\item Hazards:
+				\begin{enumerate}
+					\item SQL Injection - Attackers can manipulate SQL queries through user inputs, potentially accessing or altering the database.
+				\end{enumerate}
+			\item Mitigation:
+				\begin{enumerate}
+					\item Use parameterized queries or prepared statements to separate SQL code from data inputs, and validate and sanitize all user inputs.
+				\end{enumerate}
+		\end{itemize}
         \item \textbf{The backend server}: The backend server is responsible for
         handling and serving requests from the client. It will interact with all
         the other components listed here.
+		\begin{itemize}
+			\item Hazards:
+				\begin{enumerate}
+					\item Lack of Rate Limiting - Excessive requests from users or automated scripts can overload the app and lead to denial of service.
+					\item Dependency Vulnerabilities - Using third-party libraries and frameworks can introduce vulnerabilities if they are not regularly updated.
+					\item Inadequate Error Handling - Poor error handling can expose stack traces or sensitive information to users, aiding attackers.
+					\item Insecure API Endpoints - Unprotected or poorly secured API endpoints can expose sensitive data or allow unauthorized actions.
+				\end{enumerate}
+			\item Mitigation:
+				\begin{enumerate}
+					\item Implement rate limiting to control the number of requests a user can make in a given time frame and deploy web application firewalls (WAFs) to filter malicious traffic. 
+					\item Regularly review and update dependencies, and use tools to scan for known vulnerabilities in third-party packages.
+					\item Implement generic error messages for users and log detailed errors securely for developers.
+					\item Implement proper authentication and authorization mechanisms, and use HTTPS to secure API communications.
+				\end{enumerate}
+		\end{itemize}
         \item \textbf{The frontend/user interface}: The frontend/user interface
         is responsible for displaying the appropriate views to the user and
         handling user interactions.
+		\begin{itemize}
+			\item Hazards:
+				\begin{enumerate}
+					\item Authentication Vulnerabilities - Weak authentication mechanisms can allow unauthorized users to access sensitive features of the app.
+					\item Cross-Site Scripting (XSS) Attacks - Attackers may inject malicious scripts via images into the app, which can steal user data or compromise the app's functionality.
+					\item Poor Session Management - Users may remain logged in indefinitely, increasing the risk of unauthorized access on shared or public devices.
+					\item Client-Side Storage Vulnerabilities - Sensitive data stored in local storage or cookies can be easily accessed or manipulated by malicious scripts.
+					\item Unprotected Routes - Sensitive pages may not have adequate access controls, allowing unauthorized users to access them.
+				\end{enumerate}
+			\item Mitigation:
+				\begin{enumerate}
+					\item Implement an IAM service (OAuth 2.0) that handles authentication and authorization amongst login sessions.
+					\item Sanitize all user inputs and outputs to ensure that any HTML or JavaScript code is escaped or neutralized.
+					\item Implement session expiration policies and automatically log out inactive users and regularly rotate session tokens to minimize the risk of token theft.
+					\item Avoid storing sensitive information in client-side storage and use secure cookies for any necessary data.
+					\item Implement role-based access control (RBAC) and ensure all routes are properly protected by authentication checks.
+				\end{enumerate}
+		\end{itemize}
         \item \textbf{The machine learning (ML) model}: The ML model is
         responsible for parsing and categorizing items from a picture of an
         itemized receipt.
