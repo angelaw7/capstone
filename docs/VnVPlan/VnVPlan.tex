@@ -145,7 +145,151 @@ how they relate to your VnV efforts.}
 \wss{Introduce this section.  You can provide a roadmap of the sections to
   come.}
 
+\newpage
 \subsection{Verification and Validation Team}
+
+There will be a total of 7 distinct roles when it comes to our verification and validation team.
+These roles will be split amongst team members and members may share the same secondary roles to facilitate a broader range of tests without overwhelming one person.
+This division allows each team member to specialize in a certain aspect of our app when it comes to verification and validation. 
+Attached below is a list of roles available in our VnV group along with the descriptions of what each role entails. \\
+
+\noindent \textbf{VnV Roles}
+\begin{itemize}
+	\item Test Case Designer
+	\begin{itemize}
+		\item Develops detailed test cases for functional requirements, focusing on different aspects such as image quality, data parsing accuracy, and categorization correctness.
+		\item Works closely with the other developers to understand key components of the app and to ensure that test cases cover all scenarios, including edge cases.
+	\end{itemize}
+	\item Quality Assurance Engineer
+	\begin{itemize}
+		\item Ensures overall quality of the app by performing functional, integration, and system tests.
+		\item Coordinates end-to-end testing for receipt scanning and expense categorization workflows.
+		\item Collaborates with the Test Case Designer to verify that all test cases have been executed and outcomes meet expected results.
+	\end{itemize}
+	\item Ai Model Validator
+	\begin{itemize}
+		\item Focuses on testing the AI model specifically, evaluating its accuracy in parsing text and categorizing expenses.
+		\item Conducts model performance assessments under various conditions, such as diverse receipt layouts, lighting conditions, and languages if applicable.
+		\item Continuously monitors for model drift and helps recalibrate the model if accuracy degrades over time.
+	\end{itemize}
+	\item Usability Tester
+	\begin{itemize}
+		\item Evaluates the app's user interface and user experience for intuitiveness and ease of use.
+		\item Conducts usability testing sessions with other students or users in the target demographic (e.g., university students).
+		\item Provides feedback on the app's functionality and ensures that user feedback is incorporated into iterative improvements.
+	\end{itemize}
+	\item Data Integrity Specialist
+	\begin{itemize}
+		\item Ensures the accuracy and security of the data collected, especially sensitive information such as financial data on receipts.
+		\item Verifies that the app correctly anonymizes data if required and that categorization matches expected outputs based on provided datasets.
+		\item Works closely with the AI Model Validator to confirm data handling complies with privacy regulations and standards.
+	\end{itemize}
+	\item Automation Engineer
+	\begin{itemize}
+		\item Develops automated testing scripts to streamline regression testing and ensure the app functions consistently across different updates.
+		\item Automates repetitive tests, especially those related to scanning, categorization, and UI testing, to save time during development sprints.
+		\item Coordinates with the Test Case Designer to convert key test cases into automated tests for efficient reuse.
+	\end{itemize}
+	\item Performance Tester
+	\begin{itemize}
+		\item Measures and optimizes the app's performance, focusing on response time, load time, and battery usage (important for a mobile app).
+		\item Conducts stress tests to determine the app's behavior under heavy usage (e.g., scanning multiple receipts in a short period).
+		\item Collaborates with developers to troubleshoot and resolve performance bottlenecks.
+	\end{itemize}
+\end{itemize}
+
+\noindent The following section delegates the roles above to each team member. Note that each team member has a secondary role which may be repeated amongst other members. The secondary
+role is to provide additional assistance when it comes to verification and validation and also serves to bring additional confidence that the system is working
+as it should. \\
+
+\noindent \textbf{Delegation of VnV Roles} \\
+
+\hrule
+\vspace{10pt}
+
+\textbf{Team Member 1}
+\begin{itemize}
+	\item Role(s)
+	\begin{enumerate}
+		\item Test Case Designer
+		\item Quality Assurance Engineer
+	\end{enumerate}
+	\item Responsibilities
+	\begin{enumerate}
+		\item Creates comprehensive test cases for functional requirements.
+		\item Executes tests to ensure all functionalities are covered.
+	\end{enumerate}
+\end{itemize}
+
+\hrule
+\vspace{10pt}
+
+\textbf{Team Member 2}
+\begin{itemize}
+	\item Role(s)
+	\begin{enumerate}
+		\item AI Model Validator
+		\item Data Integrity Specialist
+	\end{enumerate}
+	\item Responsibilities
+	\begin{enumerate}
+		\item Tests the AI model's accuracy in parsing receipts.
+		\item Ensures data handling complies with security and privacy standards.
+	\end{enumerate}
+\end{itemize}
+
+\hrule
+\vspace{10pt}
+
+\newpage
+
+\textbf{Team Member 3}
+\begin{itemize}
+	\item Role(s)
+	\begin{enumerate}
+		\item Usability Tester
+		\item Quality Assurance Engineer
+	\end{enumerate}
+	\item Responsibilities
+	\begin{enumerate}
+		\item Conducts usability tests and collects user feedback.
+		\item Supports quality assurance by testing overall workflows and integration.
+	\end{enumerate}
+\end{itemize}
+
+\hrule
+\vspace{10pt}
+
+\textbf{Team Member 4}
+\begin{itemize}
+	\item Role(s)
+	\begin{enumerate}
+		\item Automation Engineer
+		\item Performance Tester
+	\end{enumerate}
+	\item Responsibilities
+	\begin{enumerate}
+		\item Develops automated test scripts for repetitive testing.
+		\item Measures app performance under different conditions to optimize speed and efficiency.
+	\end{enumerate}
+\end{itemize}
+
+\hrule
+\vspace{10pt}
+
+\textbf{Team Member 5}
+\begin{itemize}
+	\item Role(s)
+	\begin{enumerate}
+		\item Quality Assurance Engineer
+		\item Performance Tester
+	\end{enumerate}
+	\item Responsibilities
+	\begin{enumerate}
+		\item Coordinates end-to-end testing and verifies the app's functionality.
+		\item Focuses on maintaining consistent performance across updates.
+	\end{enumerate}
+\end{itemize}
 
 \wss{Your teammates.  Maybe your supervisor.
   You should do more than list names.  You should say what each person's role is
