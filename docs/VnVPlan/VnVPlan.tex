@@ -502,6 +502,8 @@ verified.  Techniques for this include review and mutation testing.}
 walkthrough.  There is also a possibility of using the final presentation (in
 CAS741) for a partial usability survey.}
 
+\newpage
+
 \subsection{Automated Testing and Verification Tools}
 
 \wss{What tools are you using for automated testing.  Likely a unit testing
@@ -519,6 +521,45 @@ that document.}
 \wss{The details of this section will likely evolve as you get closer to the
   implementation.}
 
+\begin{enumerate}
+	\item \textbf{Unit Testing Frameworks}
+	\begin{itemize}
+		\item \textbf{Jest}: Jest is the default testing framework for React Native applications. It supports TypeScript, has a rich API for writing unit tests, and comes with built-in mocking capabilities.
+		\item \textbf{React Testing Library}: This library works well with Jest for testing React components, focusing on user interactions and component behavior rather than implementation details.
+	\end{itemize}
+	\item \textbf{Static Analysis Tools}
+	\begin{itemize}
+		\item \textbf{ESLint}: ESLint is a powerful linter for JavaScript and TypeScript. It can be configured with TypeScript support to enforce coding standards, detect potential errors, and maintain code quality. It can also be extended with plugins for React and serves as industry best practices for JavaScript/TypeScript related-projects.
+		\item \textbf{Prettier}: Integrating Prettier alongside ESLint helps ensure consistent code formatting across the codebase, which helps in improving readability.
+	\end{itemize}
+	\item \textbf{Continuous Integration (CI) Tools}
+	\begin{itemize}
+		\item \textbf{GitHub Actions}: This tool can be set up to run workflows that execute tests, linters, and builds automatically on every pull request or commit, ensuring that code quality is maintained consistently (i.e. Husky).
+		\item \textbf{Jenkins}: Jenkins is an open-source automation server that facilitates continuous integration and continuous deployment processes. It can be configured to automatically run tests, linting, and builds every time code is pushed to the repository, ensuring that code quality is maintained consistently.
+	\end{itemize}
+	\item \textbf{Test Coverage Tools}
+	\begin{itemize}
+		\item \textbf{Istanbul (nyc)}: Istanbul is a code coverage tool that integrates with Jest, providing detailed reports on which parts of the codebase are covered by tests, helping to identify untested code.
+		\item \textbf{Codecov or Coveralls}: These services can be used to visualize and summarize code coverage metrics after each build, providing insights into overall coverage and trends over time.
+	\end{itemize}
+	\item \textbf{Profiling Tools}
+	\begin{itemize}
+		\item \textbf{React Native Performance Monitor:}: This built-in tool in React Native helps track performance metrics such as frame rates and memory usage, providing insights into the app's performance.
+		\item \textbf{Flipper}: A platform for debugging mobile apps, Flipper offers a variety of plugins that assist in profiling and monitoring app performance.
+	\end{itemize}
+	\item \textbf{Mutation Testing}
+	\begin{itemize}
+		\item \textbf{Stryker}: Stryker is a mutation testing framework for JavaScript and TypeScript. It can help assess the effectiveness of tests by introducing small changes in the code (mutations) and checking if the tests can catch them.
+	\end{itemize}
+	\item \textbf{Plans for Summarizing Code Coverage Metrics}
+	\begin{itemize}
+		\item \textbf{Daily/Weekly Reports:}: The CI pipeline can be configured to generate code coverage reports with every build and aggregate these reports weekly. Tools like Codecov can be used to visualize trends over time.
+		\item \textbf{Review Meetings}: Regular review meetings can be conducted to discuss coverage metrics with the team, identifying areas needing improvement and setting goals for coverage percentages.
+		\item \textbf{Integrate Coverage Reports in PRs}: Coverage reports should be included in pull request reviews, ensuring that any code changes are evaluated in the context of their impact on overall coverage.
+	\end{itemize}
+\end{enumerate}
+
+\noindent For additional information, please consult the development plan.
 \subsection{Software Validation Plan}
 
 \wss{If there is any external data that can be used for validation, you should
