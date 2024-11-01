@@ -30,7 +30,7 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
+11/01/2024 & 1.0 & Add: 3.1, 3.2, 3.3, 3.6\\
 Date 2 & 1.1 & Notes\\
 \bottomrule
 \end{tabularx}
@@ -145,7 +145,151 @@ how they relate to your VnV efforts.}
 \wss{Introduce this section.  You can provide a roadmap of the sections to
   come.}
 
+\newpage
 \subsection{Verification and Validation Team}
+
+There will be a total of 7 distinct roles when it comes to our verification and validation team.
+These roles will be split amongst team members and members may share the same secondary roles to facilitate a broader range of tests without overwhelming one person.
+This division allows each team member to specialize in a certain aspect of our app when it comes to verification and validation. 
+Attached below is a list of roles available in our VnV group along with the descriptions of what each role entails. \\
+
+\noindent \textbf{VnV Roles}
+\begin{itemize}
+	\item Test Case Designer
+	\begin{itemize}
+		\item Develops detailed test cases for functional requirements, focusing on different aspects such as image quality, data parsing accuracy, and categorization correctness.
+		\item Works closely with the other developers to understand key components of the app and to ensure that test cases cover all scenarios, including edge cases.
+	\end{itemize}
+	\item Quality Assurance Engineer
+	\begin{itemize}
+		\item Ensures overall quality of the app by performing functional, integration, and system tests.
+		\item Coordinates end-to-end testing for receipt scanning and expense categorization workflows.
+		\item Collaborates with the Test Case Designer to verify that all test cases have been executed and outcomes meet expected results.
+	\end{itemize}
+	\item Ai Model Validator
+	\begin{itemize}
+		\item Focuses on testing the AI model specifically, evaluating its accuracy in parsing text and categorizing expenses.
+		\item Conducts model performance assessments under various conditions, such as diverse receipt layouts, lighting conditions, and languages if applicable.
+		\item Continuously monitors for model drift and helps recalibrate the model if accuracy degrades over time.
+	\end{itemize}
+	\item Usability Tester
+	\begin{itemize}
+		\item Evaluates the app's user interface and user experience for intuitiveness and ease of use.
+		\item Conducts usability testing sessions with other students or users in the target demographic (e.g., university students).
+		\item Provides feedback on the app's functionality and ensures that user feedback is incorporated into iterative improvements.
+	\end{itemize}
+	\item Data Integrity Specialist
+	\begin{itemize}
+		\item Ensures the accuracy and security of the data collected, especially sensitive information such as financial data on receipts.
+		\item Verifies that the app correctly anonymizes data if required and that categorization matches expected outputs based on provided datasets.
+		\item Works closely with the AI Model Validator to confirm data handling complies with privacy regulations and standards.
+	\end{itemize}
+	\item Automation Engineer
+	\begin{itemize}
+		\item Develops automated testing scripts to streamline regression testing and ensure the app functions consistently across different updates.
+		\item Automates repetitive tests, especially those related to scanning, categorization, and UI testing, to save time during development sprints.
+		\item Coordinates with the Test Case Designer to convert key test cases into automated tests for efficient reuse.
+	\end{itemize}
+	\item Performance Tester
+	\begin{itemize}
+		\item Measures and optimizes the app's performance, focusing on response time, load time, and battery usage (important for a mobile app).
+		\item Conducts stress tests to determine the app's behavior under heavy usage (e.g., scanning multiple receipts in a short period).
+		\item Collaborates with developers to troubleshoot and resolve performance bottlenecks.
+	\end{itemize}
+\end{itemize}
+
+\noindent The following section delegates the roles above to each team member. Note that each team member has a secondary role which may be repeated amongst other members. The secondary
+role is to provide additional assistance when it comes to verification and validation and also serves to bring additional confidence that the system is working
+as it should. \\
+
+\noindent \textbf{Delegation of VnV Roles} \\
+
+\hrule
+\vspace{10pt}
+
+\textbf{Team Member 1}
+\begin{itemize}
+	\item Role(s)
+	\begin{enumerate}
+		\item Test Case Designer
+		\item Quality Assurance Engineer
+	\end{enumerate}
+	\item Responsibilities
+	\begin{enumerate}
+		\item Creates comprehensive test cases for functional requirements.
+		\item Executes tests to ensure all functionalities are covered.
+	\end{enumerate}
+\end{itemize}
+
+\hrule
+\vspace{10pt}
+
+\textbf{Team Member 2}
+\begin{itemize}
+	\item Role(s)
+	\begin{enumerate}
+		\item AI Model Validator
+		\item Data Integrity Specialist
+	\end{enumerate}
+	\item Responsibilities
+	\begin{enumerate}
+		\item Tests the AI model's accuracy in parsing receipts.
+		\item Ensures data handling complies with security and privacy standards.
+	\end{enumerate}
+\end{itemize}
+
+\hrule
+\vspace{10pt}
+
+\newpage
+
+\textbf{Team Member 3}
+\begin{itemize}
+	\item Role(s)
+	\begin{enumerate}
+		\item Usability Tester
+		\item Quality Assurance Engineer
+	\end{enumerate}
+	\item Responsibilities
+	\begin{enumerate}
+		\item Conducts usability tests and collects user feedback.
+		\item Supports quality assurance by testing overall workflows and integration.
+	\end{enumerate}
+\end{itemize}
+
+\hrule
+\vspace{10pt}
+
+\textbf{Team Member 4}
+\begin{itemize}
+	\item Role(s)
+	\begin{enumerate}
+		\item Automation Engineer
+		\item Performance Tester
+	\end{enumerate}
+	\item Responsibilities
+	\begin{enumerate}
+		\item Develops automated test scripts for repetitive testing.
+		\item Measures app performance under different conditions to optimize speed and efficiency.
+	\end{enumerate}
+\end{itemize}
+
+\hrule
+\vspace{10pt}
+
+\textbf{Team Member 5}
+\begin{itemize}
+	\item Role(s)
+	\begin{enumerate}
+		\item Quality Assurance Engineer
+		\item Performance Tester
+	\end{enumerate}
+	\item Responsibilities
+	\begin{enumerate}
+		\item Coordinates end-to-end testing and verifies the app's functionality.
+		\item Focuses on maintaining consistent performance across updates.
+	\end{enumerate}
+\end{itemize}
 
 \wss{Your teammates.  Maybe your supervisor.
   You should do more than list names.  You should say what each person's role is
@@ -165,6 +309,93 @@ issue tracker?}
 
 \wss{Maybe create an SRS checklist?}
 
+\subsubsection{Approaches for SRS Verifiation}
+
+\begin{itemize}
+	\item Peer Review Feedback:
+	\begin{itemize}
+		\item Each team member will review the SRS individually and provide ad hoc feedback. They will focus on identifying ambiguous language, incomplete requirements, and inconsistencies.
+		\item Each reviewer will log feedback in a shared document, categorizing issues by priority (e.g., high, medium, low).
+	\end{itemize}
+	\item Primary Reviewer Session:
+	\begin{itemize}
+		\item A primary reviewer from the team, ideally someone with experience in requirements verification, will perform a detailed examination. They will document findings, focusing on critical areas such as requirement clarity, feasibility, and completeness.
+	\end{itemize}
+	\item External Peer Feedback:
+	\begin{itemize}
+		\item If possible, solicit feedback from classmates or others familiar with requirements engineering. They can offer objective insights and identify issues that may have been overlooked internally.
+	\end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsubsection{Structured Internal Review Process}
+
+\begin{itemize}
+	\item Initial Team Meeting:\
+	\begin{itemize}
+		\item Hold a structured review meeting where team members present and discuss major sections of the SRS. Key points of focus should include functional requirements, assumptions, and constraints.
+		\item Prepare a set of questions to guide the discussion, such as:
+		\begin{itemize}
+			\item "Are the requirements unambiguous and complete?"
+			\item "Is each requirement feasible and realistic?"
+			\item "Do the requirements adequately represent the user's needs?"
+			\item "Are there any areas that might be challenging to test or verify?"
+		\end{itemize}
+	\end{itemize}
+	\item Task-Based Inspection:
+	\begin{itemize}
+		\item Team members can take turns as "inspectors," responsible for a task-based evaluation of key areas:
+		\begin{itemize}
+			\item Ensuring requirements align with project goals.
+			\item Verifying each requirement's testability and clarity.
+			\item Checking that the document is organized and easy to navigate.
+		\end{itemize}
+	\end{itemize}
+	\item Issue Tracker:
+	\begin{itemize}
+		\item Use an issue tracker or a collaborative tool to manage findings and resolutions. Each issue should include:
+		\begin{itemize}
+			\item A summary of the issue.
+			\item Priority level (e.g., high, medium, low).
+			\item Suggested resolution steps.
+			\item A status field for tracking progress until resolved.
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\newpage
+
+\subsubsection{SRS Quality Checklist for Verification}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{9cm}|>{\raggedright\arraybackslash}p{2cm}|}
+	\hline
+	\textbf{Checklist Item} & \textbf{Description} & \textbf{Pass/Fail} \\
+	\hline
+	Requirements Clarity & All requirements are clear, unambiguous, and written in active voice. & \\
+	\hline
+	Completeness & The SRS includes all functional and non-functional requirements, assumptions, and constraints. & \\
+	\hline
+	Consistency & Requirements are consistent across the document, with no contradictory statements. & \\
+	\hline
+	Testability & Each requirement is formulated so that it can be tested through measurable criteria. & \\
+	\hline
+	Feasibility & All requirements are realistic and achievable within the project's scope and resources. & \\
+	\hline
+	Traceability & Each requirement is traceable to a higher-level objective or user need. & \\
+	\hline
+	Maintainability	& The document is well-organized, with clear headings and numbered requirements for easy referencing. & \\
+	\hline
+	Priority and Dependencies & Requirements are prioritized, and dependencies are explicitly stated where applicable. & \\
+	\hline
+	User-Centered Language & Requirements reflect user needs and use terminology consistent with user and stakeholder language. & \\
+	\hline
+	Compliance with Standards & The SRS complies with any applicable standards or best practices in software requirements engineering. & \\
+	\hline
+
+\end{tabular}
+
+\newpage
+
 \subsection{Design Verification Plan}
 
 \wss{Plans for design verification}
@@ -172,6 +403,82 @@ issue tracker?}
 \wss{The review will include reviews by your classmates}
 
 \wss{Create a checklists?}
+
+\subsubsection{Specification Verification}
+
+\noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|p{1cm}|p{2.25cm}|}
+	\hline
+	\textbf{Checklist Items} & \textbf{Description} & \textbf{Verification Method} & \textbf{Pass /Fail} & \textbf{Comments} \\ 
+	\hline
+	Requirements Completeness & Ensure all system and user requirements are addressed in the design. & Requirements Traceability Matrix & & \\
+	\hline
+	System Requirements Compliance & Verify that design conforms to software/system specifications. & Specification Review	& & \\
+	\hline
+	Compliance with Standards & Ensure compliance with coding standards, industry best practices, and regulatory guidelines. & Code Review, Standards Checklist	& & \\
+	\hline
+	Security Requirements & Confirm that the security design follows the requirements, especially for data privacy and user information. & Security Audit & & \\
+	\hline
+\end{tabular}
+
+\newpage
+
+\subsubsection{Functional Verification}
+
+\noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|p{1cm}|p{2.25cm}|}
+	\hline
+	\textbf{Checklist Items} & \textbf{Description} & \textbf{Verification Method} & \textbf{Pass /Fail} & \textbf{Comments} \\ 
+	\hline
+	Receipt Scanning Capability	& Verify that receipt scanning feature works as expected with various image qualities. & Functional Testing	& & \\
+	\hline
+	Expense Categorization Accuracy	& Confirm that expenses are correctly categorized by the AI model. & Model Accuracy Testing	& & \\
+	\hline
+	User Interface (UI) Responsiveness & Ensure that UI elements are responsive across devices and screen sizes. & UI Testing & & \\
+	\hline
+	Error Handling and Recovery	& Verify that the app gracefully handles errors, such as scanning failures or incorrect categorizations. & Error Simulation	& & \\
+	\hline
+	Integration with External Services & Confirm integration with any third-party services (e.g., cloud storage or payment platforms). & Integration Testing & & \\
+	\hline
+\end{tabular}
+
+\newpage
+
+\subsubsection{Performance Validation}
+
+\noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|p{1cm}|p{2.25cm}|}
+	\hline
+	\textbf{Checklist Items} & \textbf{Description} & \textbf{Verification Method} & \textbf{Pass /Fail} & \textbf{Comments} \\ 
+	\hline
+	System Performance Under Load & Test app performance with simultaneous receipt scans to assess system stability and responsiveness.	& Load Testing & & \\
+	\hline
+	AI Model Processing Time & Measure the average processing time for receipt categorization. & Model Timing Analysis & & \\
+	\hline
+	Battery and Resource Consumption & Verify that app resource usage is within acceptable limits to preserve device performance and battery life. & Resource Monitoring & & \\
+	\hline
+	Network Efficiency & Ensure the app handles network limitations (e.g., slow or intermittent connections) without data loss.	& Network Simulation & & \\
+	\hline
+	Latency for Real-Time Features & Measure latency in real-time features, ensuring a smooth user experience. & Latency Testing & & \\
+	\hline
+\end{tabular}
+
+\newpage
+
+\subsubsection{Document Validation}
+
+\noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|p{1cm}|p{2.25cm}|}
+	\hline
+	\textbf{Checklist Items} & \textbf{Description} & \textbf{Verification Method} & \textbf{Pass /Fail} & \textbf{Comments} \\ 
+	\hline
+	User Documentation Completeness	& Verify that user manuals, installation guides, and support documentation are complete and accurate. & Documentation Review & & \\
+	\hline
+	Developer Documentation Completeness & Ensure all developer-focused documentation (e.g., API docs, setup instructions) is detailed and up to date. & Documentation Review & & \\ 
+	\hline
+	Code Documentation & Confirm that all code modules and functions are documented according to guidelines. & Code Review & & \\
+	\hline
+	Test Plans and Results & Verify the completeness of test plans and that test results meet required standards. & Test Report Review & & \\
+	\hline
+	Change Log and Version History & Ensure that the change log and version history are comprehensive and well-documented. & Change Log Review & & \\ 
+	\hline
+\end{tabular}
 
 \subsection{Verification and Validation Plan Verification Plan}
 
@@ -195,6 +502,8 @@ verified.  Techniques for this include review and mutation testing.}
 walkthrough.  There is also a possibility of using the final presentation (in
 CAS741) for a partial usability survey.}
 
+\newpage
+
 \subsection{Automated Testing and Verification Tools}
 
 \wss{What tools are you using for automated testing.  Likely a unit testing
@@ -212,6 +521,45 @@ that document.}
 \wss{The details of this section will likely evolve as you get closer to the
   implementation.}
 
+\begin{enumerate}
+	\item \textbf{Unit Testing Frameworks}
+	\begin{itemize}
+		\item \textbf{Jest}: Jest is the default testing framework for React Native applications. It supports TypeScript, has a rich API for writing unit tests, and comes with built-in mocking capabilities.
+		\item \textbf{React Testing Library}: This library works well with Jest for testing React components, focusing on user interactions and component behavior rather than implementation details.
+	\end{itemize}
+	\item \textbf{Static Analysis Tools}
+	\begin{itemize}
+		\item \textbf{ESLint}: ESLint is a powerful linter for JavaScript and TypeScript. It can be configured with TypeScript support to enforce coding standards, detect potential errors, and maintain code quality. It can also be extended with plugins for React and serves as industry best practices for JavaScript/TypeScript related-projects.
+		\item \textbf{Prettier}: Integrating Prettier alongside ESLint helps ensure consistent code formatting across the codebase, which helps in improving readability.
+	\end{itemize}
+	\item \textbf{Continuous Integration (CI) Tools}
+	\begin{itemize}
+		\item \textbf{GitHub Actions}: This tool can be set up to run workflows that execute tests, linters, and builds automatically on every pull request or commit, ensuring that code quality is maintained consistently (i.e. Husky).
+		\item \textbf{Jenkins}: Jenkins is an open-source automation server that facilitates continuous integration and continuous deployment processes. It can be configured to automatically run tests, linting, and builds every time code is pushed to the repository, ensuring that code quality is maintained consistently.
+	\end{itemize}
+	\item \textbf{Test Coverage Tools}
+	\begin{itemize}
+		\item \textbf{Istanbul (nyc)}: Istanbul is a code coverage tool that integrates with Jest, providing detailed reports on which parts of the codebase are covered by tests, helping to identify untested code.
+		\item \textbf{Codecov or Coveralls}: These services can be used to visualize and summarize code coverage metrics after each build, providing insights into overall coverage and trends over time.
+	\end{itemize}
+	\item \textbf{Profiling Tools}
+	\begin{itemize}
+		\item \textbf{React Native Performance Monitor:}: This built-in tool in React Native helps track performance metrics such as frame rates and memory usage, providing insights into the app's performance.
+		\item \textbf{Flipper}: A platform for debugging mobile apps, Flipper offers a variety of plugins that assist in profiling and monitoring app performance.
+	\end{itemize}
+	\item \textbf{Mutation Testing}
+	\begin{itemize}
+		\item \textbf{Stryker}: Stryker is a mutation testing framework for JavaScript and TypeScript. It can help assess the effectiveness of tests by introducing small changes in the code (mutations) and checking if the tests can catch them.
+	\end{itemize}
+	\item \textbf{Plans for Summarizing Code Coverage Metrics}
+	\begin{itemize}
+		\item \textbf{Daily/Weekly Reports:}: The CI pipeline can be configured to generate code coverage reports with every build and aggregate these reports weekly. Tools like Codecov can be used to visualize trends over time.
+		\item \textbf{Review Meetings}: Regular review meetings can be conducted to discuss coverage metrics with the team, identifying areas needing improvement and setting goals for coverage percentages.
+		\item \textbf{Integrate Coverage Reports in PRs}: Coverage reports should be included in pull request reviews, ensuring that any code changes are evaluated in the context of their impact on overall coverage.
+	\end{itemize}
+\end{enumerate}
+
+\noindent For additional information, please consult the development plan.
 \subsection{Software Validation Plan}
 
 \wss{If there is any external data that can be used for validation, you should
