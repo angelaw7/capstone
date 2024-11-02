@@ -3,12 +3,11 @@
 
 PROJECT=VnVPlan
 TEX=pdflatex
-BIBTEX=bibtex
+# BIBTEX=bibtex
 BUILDTEX=$(TEX) $(PROJECT).tex
 
 all:
 	$(BUILDTEX)
-	$(BIBTEX) $(PROJECT)
 	$(BUILDTEX)
 	$(BUILDTEX)
 
