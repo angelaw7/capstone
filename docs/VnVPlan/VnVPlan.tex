@@ -30,8 +30,9 @@
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-11/01/2024 & 1.0 & Add: 3.1, 3.2, 3.3, 3.6\\
-Date 2 & 1.1 & Notes\\
+11/01/2024 & 0.1 & Add: 3.1, 3.2, 3.3, 3.6\\
+11/02/2024 & 0.2 & Update Rev0 draft\\
+... & ... & ...\\
 \bottomrule
 \end{tabularx}
 
@@ -54,15 +55,14 @@ in.}
 
 \tableofcontents
 
-\listoftables
-\wss{Remove this section if it isn't needed}
-
-\listoffigures
-\wss{Remove this section if it isn't needed}
-
 \newpage
 
 \section{Symbols, Abbreviations, and Acronyms}
+
+Refer to Section 1.3 of the Software Requirements Specification (SRS) document
+for the list of symbols, abbreviations, and acronyms.
+
+In addition, the following abbreviations are used in this document:\\
 
 \renewcommand{\arraystretch}{1.2}
 \begin{tabular}{l l} 
@@ -70,80 +70,161 @@ in.}
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   T & Test\\
+  V\&V & Verification and Validation\\
   \bottomrule
 \end{tabular}\\
-
-\wss{symbols, abbreviations, or acronyms --- you can simply reference the SRS
-  \citep{SRS} tables, if appropriate}
-
-\wss{Remove this section if it isn't needed}
 
 \newpage
 
 \pagenumbering{arabic}
 
-This document ... \wss{provide an introductory blurb and roadmap of the
-  Verification and Validation plan}
+This document will provide a detailed plan for the Verification and Validation
+(V\&V) of Plutos. Below is an overview of what will be covered in this document:
+\begin{itemize}
+	\item \hyperlink{section.2}{2 General Information}: This section will provide a brief overview of
+	the software being tested, its objectives, challenge level, and extras.
+	\item \hyperlink{section.3}{3 Plan}: This section will outline the V\&V team roles, the delegation
+	of roles to team members, and the V\&V plan.
+	\item \hyperlink{section.4}{4 System Tests}: This section will detail the system tests for
+	functional and nonfunctional requirements, and traceability between test
+	cases and requirements.
+	\item \hyperlink{section.5}{5 Unit Test Description}: This section will provide an overview of the
+	unit testing scope, unit tests for functional and nonfunctional
+	requirements, and traceability between unit tests and modules.
+\end{itemize}
+
+
+\newpage
 
 \section{General Information}
 
+This section will outline the summary of the V\&V document, the objectives of
+the process, the challenge level and extras of the project, and the relevant
+external documentation that will be referenced in this document.
+
 \subsection{Summary}
 
-\wss{Say what software is being tested.  Give its name and a brief overview of
-  its general functions.}
+This V\&V document outlines the testing approach for Plutos to ensure the
+application meets the functional and non-functional requirements outlined in the
+SRS document. The verification process will confirm the functionality of
+components such as receipt scanning, item recognition, and categorization
+function as intended, while validation efforts will focus on ensuring usability,
+performance, and security standards are met for an optimal user experience.
+
 
 \subsection{Objectives}
 
-\wss{State what is intended to be accomplished.  The objective will be around
-  the qualities that are most important for your project.  You might have
-  something like: ``build confidence in the software correctness,''
-  ``demonstrate adequate usability.'' etc.  You won't list all of the qualities,
-  just those that are most important.}
+This subsection will provide an overview of the V\&V objectives that are
+in-scope and out-of-scope for the Plutos application.
 
-\wss{You should also list the objectives that are out of scope.  You don't have 
-the resources to do everything, so what will you be leaving out.  For instance, 
-if you are not going to verify the quality of usability, state this.  It is also 
-worthwhile to justify why the objectives are left out.}
+\subsubsection{In-Scope V\&V Objectives}
 
-\wss{The objectives are important because they highlight that you are aware of 
-limitations in your resources for verification and validation.  You can't do everything, 
-so what are you going to prioritize?  As an example, if your system depends on an 
-external library, you can explicitly state that you will assume that external library 
-has already been verified by its implementation team.}
+The following are the V\&V objectives, outlining what is intended to be verified
+or validated as part of the V\&V process: 
+\begin{itemize}
+	\item \textbf{Accurate Data Extraction and Categorization}: Ensure that the
+machine learning (ML) model accurately extracts key information from receipts
+and correctly categorizes it by expense type. This is critical to providing
+users with precise budgeting insights. The accuracy requirements are denoted in
+the Software Requirements Specification (SRS).
+	\item \textbf{Seamless User Experience}: Prioritize usability by designing
+an intuitive and responsive interface that simplifies the process of scanning
+and categorizing receipts. The app should be easy to navigate, allowing users to
+view spending summaries effortlessly. 
+	\item \textbf{Real-Time Budgeting Feedback} Provide timely updates on
+spending habits to make users aware of their financial status. This feature will
+empower users to make informed spending decisions based on real-time data.
+	\item \textbf{Security and Privacy} Securely handle all user data, with
+particular attention to sensitive financial information. This objective includes
+encrypting stored data and ensuring compliance with relevant data protection
+regulations. 
+\end{itemize}
+
+\subsubsection{Out-of-Scope V\&V Objectives}
+
+The following are the V\&V objectives that are out-of-scope due to time or
+resource constraints:
+\begin{itemize}
+	\item \textbf{In-Depth Usability Testing with All User Types} While basic
+usability will be validated, comprehensive testing with diverse user
+demographics and accessibility concerns is out of scope due to resource
+limitations. Feedback gathered post-launch may help inform future usability
+improvements. 
+	\item \textbf{Verification of External Libraries} The application will use
+external libraries for image processing and data handling, assuming these
+libraries have been rigorously tested by their developers. We will prioritize
+testing our AI model and app functionality rather than the underlying libraries
+to focus resources on core functionality. 
+	\item \textbf{Accuracy for Poor-Quality Receipts and Non-Common Items}:
+Currently, the receipt scanner focuses on high-quality receipts containing
+commonly purchased items for students. While expanding the application to
+support lower-quality receipts and less common items is planned for future
+phases, this enhancement is out of scope for now due to the complexity of
+training the ML model during our timeline.
+
+\end{itemize}
+
+
 
 \subsection{Challenge Level and Extras}
 
-\wss{State the challenge level (advanced, general, basic) for your project.
-Your challenge level should exactly match what is included in your problem
-statement.  This should be the challenge level agreed on between you and the
-course instructor.  You can use a pull request to update your challenge level
-(in TeamComposition.csv or Repos.csv) if your plan changes as a result of the
-VnV planning exercise.}
-
-\wss{Summarize the extras (if any) that were tackled by this project.  Extras
-can include usability testing, code walkthroughs, user documentation, formal
-proof, GenderMag personas, Design Thinking, etc.  Extras should have already
-been approved by the course instructor as included in your problem statement.
-You can use a pull request to update your extras (in TeamComposition.csv or
-Repos.csv) if your plan changes as a result of the VnV planning exercise.}
+The challenge level for the project is \textbf{general}. The extras that will be included are: 
+\begin{itemize}
+	\item \textbf{Requirements elicitation}: Surveys and interviews have been conducted
+	as part of developing our Software Requriements Specfication (SRS).
+	\item \textbf{Usability testing}: As part of our validation plan, we will conduct
+	usability testing in which users will interact with the Plutos application and
+	evaluate their experience.
+\end{itemize}
 
 \subsection{Relevant Documentation}
 
-\wss{Reference relevant documentation.  This will definitely include your SRS
-  and your other project documents (design documents, like MG, MIS, etc).  You
-  can include these even before they are written, since by the time the project
-  is done, they will be written.  You can create BibTeX entries for your
-  documents and within those entries include a hyperlink to the documents.}
+The following documents are relevant to the V\&V of Plutos:
+\begin{itemize}
+	\item
+	\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/ProblemStatementAndGoals/ProblemStatement.pdf}{\textbf{Problem
+	Statement and Goals document}}: This document outlines the problem statement
+	and goals of the Plutos application, which will considered to ensure the
+	V\&V process aligns with the project's purpose and objectives.
+	\item
+	\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/SRS/SRS.pdf}{\textbf{Software
+	Requirements Specification (SRS) document}}: This document outlines the
+	functional and non-functional requirements of the Plutos application,
+	serving as the basis for all testing activities.
+	\item
+	\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/HazardAnalysis/HazardAnalysis.pdf}{\textbf{Hazard
+	Analysis document}}: This document outlines potential hazards and risks
+	associated with the Plutos application, which will be considered during V\&V
+	to ensure effective risk mitigation.
+	\item
+	\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/Design/SoftDetailedDes/MIS.pdf}{\textbf{Module
+	Interface Specification (MIS) document}}: This document provides a detailed
+	design of the Plutos application, which will be used to inform the
+	development of unit tests for each module. \textit{Note: This document is
+	yet to be completed as of the time of writing this initial V\&V plan.}
+	\item
+	\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/Design/SoftArchitecture/MG.pdf}{\textbf{Module
+	Guide (MG) document}}: This document provides a detailed description of the
+	software architecture and modules of Plutos, which will guide the
+	development of unit tests for each module. \textit{Note: This document is
+	yet to be completed as of the time of writing this initial V\&V plan.}
+\end{itemize}
 
-\citet{SRS}
-
-\wss{Don't just list the other documents.  You should explain why they are relevant and 
-how they relate to your VnV efforts.}
+\newpage
 
 \section{Plan}
 
-\wss{Introduce this section.  You can provide a roadmap of the sections to
-  come.}
+This section introduce the team members involved in the V\&V process and
+describe the V\&V plan for the following components:
+\begin{itemize}
+	\item The SRS
+	\item The design
+	\item The V\&V
+	\item The implementation
+\end{itemize}
+Following this, there will be a subssections detailing the automated testing and
+verification tools, as well as the software validation plan.
+
 
 \newpage
 \subsection{Verification and Validation Team}
@@ -151,9 +232,9 @@ how they relate to your VnV efforts.}
 There will be a total of 7 distinct roles when it comes to our verification and validation team.
 These roles will be split amongst team members and members may share the same secondary roles to facilitate a broader range of tests without overwhelming one person.
 This division allows each team member to specialize in a certain aspect of our app when it comes to verification and validation. 
-Attached below is a list of roles available in our VnV group along with the descriptions of what each role entails. \\
+Attached below is a list of roles available in our V\&V group along with the descriptions of what each role entails. \\
 
-\noindent \textbf{VnV Roles}
+\noindent \textbf{V\&V Roles}
 \begin{itemize}
 	\item Test Case Designer
 	\begin{itemize}
@@ -202,7 +283,7 @@ Attached below is a list of roles available in our VnV group along with the desc
 role is to provide additional assistance when it comes to verification and validation and also serves to bring additional confidence that the system is working
 as it should. \\
 
-\noindent \textbf{Delegation of VnV Roles} \\
+\noindent \textbf{Delegation of V\&V Roles} \\
 
 \hrule
 \vspace{10pt}
