@@ -32,6 +32,7 @@
 \midrule
 11/01/2024 & 0.1 & Add: 3.1, 3.2, 3.3, 3.6\\
 11/02/2024 & 0.2 & Update Rev0 draft\\
+11/03/2024 & 0.3 & Add 4.1 for Rev0\\
 ... & ... & ...\\
 \bottomrule
 \end{tabularx}
@@ -663,64 +664,266 @@ as a Rev 0 demo for the supervisor.}
 
 \section{System Tests}
 
-\wss{There should be text between all headings, even if it is just a roadmap of
-the contents of the subsections.}
-
 \subsection{Tests for Functional Requirements}
 
-\wss{Subsets of the tests may be in related, so this section is divided into
-  different areas.  If there are no identifiable subsets for the tests, this
-  level of document structure can be removed.}
+The following test cases are divided into subsets corresponding to major functional areas in the application, as detailed in the Software Requirements Specification (SRS) document. 
+Each subset addresses a specific functional component, including user account management, receipt scanning and processing, database management, item recognition and categorization, and financial tracking. 
+These tests will help verify the functional requirements outlined in the SRS and will help with the creation of those tests to verify the specified functional requirements.
 
-\wss{Include a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.}
+\subsubsection{User Account Management Tests}
 
-\subsubsection{Area of Testing1}
-
-\wss{It would be nice to have a blurb here to explain why the subsections below
-  cover the requirements.  References to the SRS would be good here.  If a section
-  covers tests for input constraints, you should reference the data constraints
-  table in the SRS.}
-		
-\paragraph{Title for Test}
+This subsection covers tests required to verify tests revolving around user account management. The user account manager allows users to create an account, update it, and log in and out.\\
+\textit{Functional Requirements: FR1 - FR5}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{test-UAM-1\\}
 
-Control: Manual versus Automatic
-					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs.  Output is not how you
-are going to return the results of the test.  The output is the expected
-result.}
+\textbf{Description:} The user should be able to create an account with specified name, email address and password
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+\textbf{Control:} Manual
 					
-How test will be performed: 
+\textbf{Initial State:} The app is on the account creation screen and there is no existing account with the test email
 					
-\item{test-id2\\}
+\textbf{Input:} Name, valid email, and password
+					
+\textbf{Output:} Account creation is successful, and the user is redirected to the login screen
 
-Control: Manual versus Automatic
+\textbf{Test Case Derivation:} This test ensures that the application allows users to create an account. The manager expects a valid name with no numbers or special characters, a valid email (existing email of correct email format) and a password that only contains certain characters to prevent SQL injection
 					
-Initial State: 
-					
-Input: 
-					
-Output: \wss{The expected result for the given inputs}
+\textbf{How test will be performed:} The test will be performed by providing instructions to a user/tester to enter valid name, email and password submissions. They will then determine if the test is successful by verifying that the actual output matches the expected output (as provided in the instructions/referenced in this document)
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+\item{test-UAM-2\\}
 
-How test will be performed: 
+\textbf{Description:} The user should be able to login with valid credentials
+
+\textbf{Control:} Manual
+					
+\textbf{Initial State:} The app is on the login page and a registered account has been created with the corresponding testing credentials
+					
+\textbf{Input:} Email and password
+					
+\textbf{Output:} The app is on the login page and a registered account has been created with the corresponding testing credentials
+
+\textbf{Test Case Derivation:} This test ensures that only authenticated users may access the app's functionalities
+
+\textbf{How test will be performed:} The test will be performed by having a user/tester provide valid credentials to the system and verify that the app redirects them to the home page after successful login
+
+\item{test-UAM-3\\}
+
+\textbf{Description:} The user should be able to logout of the app
+
+\textbf{Control:} Manual
+					
+\textbf{Initial State:} The user is already logged into the app
+					
+\textbf{Input:} Logout submission
+					
+\textbf{Output:} Account logout is successful, and the user is redirected to the login page
+
+\textbf{Test Case Derivation:} This test verifies that the app terminates the user's session and redirects the user to the login page to protect user's account data
+
+\textbf{How test will be performed:} While logged in, a user/tester will click the logout button and observe that the user is redirected to the login screen. Verify that no user-specific data is accessible after logging out
+
+\item{test-UAM-4}
+
+\textbf{Description:} Users should be able to update account information after initial setup
+
+\textbf{Control:} Manual
+
+\textbf{Initial State:} User is logged in and on the account settings screen
+
+\textbf{Input:} Modify fields (e.g., name or password) and save changes
+
+\textbf{Output:} Updated account information is saved and reflected on the profile screen.
+
+\textbf{Test Case Derivation:} The test ensures that users are able to manage and update their account information after initial setup
+
+\textbf{How test will be performed:} A tester/user will modify the account fields, save, and verify that updates are displayed correctly on the profile.
+\end{enumerate}
+
+\subsubsection{Image Processing Tests}
+
+This subsection covers tests required to verify tests revolving around receipt scanning and processing. The receipt scanner allows users to upload and preview images\\
+\textit{Functional Requirements: FR8 - FR11}
+
+\begin{enumerate}
+\item{test-IP-1\\}
+
+\textbf{Description:} User should be able to upload an image for processing
+
+\textbf{Control:} Manual
+
+\textbf{Initial State:} The application is on the receipt upload screen.
+
+\textbf{Input:} Select and upload a receipt image from the device's file storage
+
+\textbf{Output:} The uploaded image is successfully displayed for preview
+
+\textbf{Test Case Derivation:} The test verifies that users are able to upload images from their device and preview them before receipt scanning
+
+\textbf{How test will be performed:} The user/tester will select an image from storage, upload it, and confirm the image preview correctly displayed
+
+\item{test-IP-2\\}
+
+\textbf{Description:} Users should be able to preview an uploaded image before processing and confirm/reupload the image based on preference
+
+\textbf{Control:} Manual
+
+\textbf{Initial State:} Image is uploaded and displayed as a preview.
+
+\textbf{Input:} Confirm or reupload the previewed image
+
+\textbf{Output:} Confirmed image proceeds to processing, or retake restarts the upload process
+
+\textbf{Test Case Derivation:} Ensures users can review and confirm the uploaded image, as required for accuracy before processing.
+
+\textbf{How test will be performed:} The user/tester previews the image, confirms, and observes if it advances to processing. Alternatively, users can retake and verify they are taken back to the image upload process
+\end{enumerate}
+
+\subsubsection{Manual Expense Input Tests}
+
+This subsection covers tests that verify functionality for allowing users to manually input their expenses in the case that their receipt is unable to be processed. 
+The manual input system is responsible for outlining fields that the user must fill out for their expense(s) to be tracked.\\
+\textit{Functional Requirements: FR12-13}
+
+\begin{enumerate}
+\item{test-MIS-1\\}
+
+\textbf{Description:} Users should be able to manually input expenses
+
+\textbf{Control:} Manual
+
+\textbf{Initial State:} Image captured or uploaded cannot be processed or the user wants to manually input items from their receipt from the expense tracker view
+
+\textbf{Input:} Entered items, item costs, item quantities, categories and receipt date
+
+\textbf{Output:} Items, quantities, costs, categories and receipt date are correctly processed and displayed 
+
+\textbf{Test Case Derivation:} Ensures users can manually input their receipt/expense in case their image isn't able to be processed or they want to manually input them. The test verifies that manually inputted expense data is processed correctly
+
+\textbf{How test will be performed:} From the expense tracker page, the user/tester will select the “manually input expenses” option and fill out the corresponding fields for category, item, item cost and date. They will then validate that all manual entries have been processed in the finalized expenses screen and match their inputs.	
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Database Management Tests}
 
-...
+This subsection covers tests required to verify functionality for database management. The database managers securely stores user account information and user receipt information.\\
+\textit{Functional Requirements: FR14 - FR15}
+
+\begin{enumerate}
+\item{test-DM-1\\}
+
+\textbf{Description:} Account information should be protected and securely stored in the database
+
+\textbf{Control:} Automatic
+
+\textbf{Initial State:} Application database is empty or has only encrypted data.
+
+\textbf{Input:} Create a new user account.
+
+\textbf{Output:} User data is stored securely in the database, encrypted.
+
+\textbf{Test Case Derivation:} The test validates that user account information is protected and verifies that the application securely handles user data
+
+\textbf{How test will be performed:} Check database entries post-account creation to verify data encryption and account information
+
+\item{test-DM-2\\}
+
+\textbf{Description:} Receipt data must be securely stored in database
+
+\textbf{Control:} Automatic
+
+\textbf{Initial State:} Application database has no receipt data for the test user.
+
+\textbf{Input:} Upload a receipt image.
+
+\textbf{Output:} Receipt image and extracted data are securely stored in the database.
+
+\textbf{Test Case Derivation:} The test verifies receipt data is securely stored, ensuring data privacy
+
+\textbf{How test will be performed:} Check database entries post-upload to confirm storage security and receipt information
+\end{enumerate}
+
+\subsubsection{Item Recognition and Categorization}
+
+This subsection covers tests required to verify functionality for item recognition and categorization from receipt scanning. The receipt scanner is responsible for recognizing and categorizing items from users' uploaded receipts.\\
+\textit{Functional Requirements: FR16 - FR18}
+
+\begin{enumerate}
+\item{test-RS-1\\}
+
+\textbf{Description:} Uploaded receipts should be processed and all items, their quantities and prices should all be correctly recognized with an accuracy of TARGET\_OCR\_MODEL\_ACCURACY
+
+\textbf{Control:} Automatic
+
+nitial State: User confirms uploaded receipt is ready to be processed
+
+\textbf{Input:} Run item recognition on a sample receipt
+
+\textbf{Output:} Recognized items, quantities, and prices are displayed accurately
+
+\textbf{Test Case Derivation:} The test verifies the accuracy of the OCR model by identifying items on the inputted receipt
+
+\textbf{How test will be performed:} Process the receipt image and verify recognized details against the original receipt
+
+\item{test-RS-2\\}
+
+\textbf{Description:} Uploaded receipts should categorize items on them under common expense categories (i.e. groceries, entertainment, etc..)
+
+\textbf{Control:} Automatic
+
+\textbf{Initial State:} Receipt has been scanned and items are recognized from the receipt
+
+\textbf{Input:} Apply categorization based on item names.
+
+\textbf{Output:} Items are correctly categorized (i.e. milk under “Groceries”).
+
+\textbf{Test Case Derivation:} The test validates organized expense tracking accuracy by categorizing items under common expense categories
+
+\textbf{How test will be performed:} Run categorization on a processed receipt and check that items are correctly sorted
+\end{enumerate}
+
+\subsubsection{Financial Tracking Tests}
+
+This subsection verifies the functionality of financial tracking features such has spending history and budget management. The financial tracker is responsible for storing users expenses/spendings, as well as allowing users to set and track budgets.\\
+\textit{Functional Requirements: 19-21}
+
+\begin{enumerate}
+
+\item{test-FT-1\\}
+
+\textbf{Description:} Users should be able view spending their spending history by category and trends
+
+\textbf{Control:} Manual
+
+\textbf{Initial State:} Application has recorded user's past expenses and user is on the expense tracking view
+
+\textbf{Input:} Generate spending history overview
+
+\textbf{Output:} Accurate summary of total spending by category and time period
+
+\textbf{Test Case Derivation:} The test verifies users can monitor their budgets through viewing their spending trends
+
+\textbf{How test will be performed:} The tester/user should be able to trigger spending history generation and verify summaries match expected data upon entering the expense tracker view
+
+\item{test-FT-2\\}
+
+\textbf{Description:} Users should be able to set and track their budgets
+
+\textbf{Control:} Manual
+
+\textbf{Initial State:} User is on the budgeting window and no current budget is set for the specified category
+
+\textbf{Input:} Budget limit for a specific category
+
+\textbf{Output:} Budget limit is saved and displayed in tracking
+
+\textbf{Test Case Derivation:} This test confirms the ability for users to set and track budgets
+
+\textbf{How test will be performed:} The tester/user sets a budget for a specific category, then verify it appears and updates as expected in tracking
+
+\end{enumerate}
 
 \subsection{Tests for Nonfunctional Requirements}
 
@@ -755,25 +958,25 @@ be involved? Be specific.}
 
 Type: Functional, Dynamic, Manual, Static etc.
 					
-Initial State: 
+\textbf{Initial State:} 
 					
 Input/Condition: 
 					
 Output/Result: 
 					
-How test will be performed: 
+\textbf{How test will be performed:} 
 					
 \item{test-id2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
 					
-Initial State: 
+\textbf{Initial State:} 
 					
-Input: 
+\textbf{Input:} 
 					
-Output: 
+\textbf{Output:} 
 					
-How test will be performed: 
+\textbf{How test will be performed:} 
 
 \end{enumerate}
 
@@ -830,30 +1033,30 @@ needs to be well-documented, with meaningful names for all of the tests.}
 Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
   be automatic}
 					
-Initial State: 
+\textbf{Initial State:} 
 					
-Input: 
+\textbf{Input:} 
 					
-Output: \wss{The expected result for the given inputs}
+\textbf{Output:} \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+\textbf{Test Case Derivation:} \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+\textbf{How test will be performed:} 
 					
 \item{test-id2\\}
 
 Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
   be automatic}
 					
-Initial State: 
+\textbf{Initial State:} 
 					
-Input: 
+\textbf{Input:} 
 					
-Output: \wss{The expected result for the given inputs}
+\textbf{Output:} \wss{The expected result for the given inputs}
 
-Test Case Derivation: \wss{Justify the expected value given in the Output field}
+\textbf{Test Case Derivation:} \wss{Justify the expected value given in the Output field}
 
-How test will be performed: 
+\textbf{How test will be performed:} 
 
 \item{...\\}
     
@@ -881,25 +1084,25 @@ How test will be performed:
 Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
   be automatic}
 					
-Initial State: 
+\textbf{Initial State:} 
 					
 Input/Condition: 
 					
 Output/Result: 
 					
-How test will be performed: 
+\textbf{How test will be performed:} 
 					
 \item{test-id2\\}
 
 Type: Functional, Dynamic, Manual, Static etc.
 					
-Initial State: 
+\textbf{Initial State:} 
 					
-Input: 
+\textbf{Input:} 
 					
-Output: 
+\textbf{Output:} 
 					
-How test will be performed: 
+\textbf{How test will be performed:} 
 
 \end{enumerate}
 
