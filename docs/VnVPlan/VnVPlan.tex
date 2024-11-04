@@ -634,26 +634,137 @@ CAS741) for a partial usability survey.}
 	\end{itemize}
 \end{enumerate}
 
-\noindent For additional information, please consult the development plan.
+\noindent For additional information, please consult the \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{development plan}.
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
+\begin{enumerate}
+	\item \textbf{Objective}
+	\begin{itemize}
+		\item The objective of this software validation plan is to ensure that the Plutos budgeting app meets all specified requirements and user needs for accurately parsing receipts, categorizing expenses, and generating reliable financial insights. The plan aims to validate the app’s AI-driven capabilities, functional accuracy, security, and overall user experience.
+	\end{itemize}
+	\item \textbf{Scope} \\
+	This validation plan will cover the following main functionalities:
+	\begin{itemize}
+		\item \textbf{Receipt Parsing and Data Extraction}: Ensuring accurate interpretation of various receipt formats.
+		\item \textbf{Expense Categorization}: Validating that extracted data is correctly categorized.
+		\item \textbf{Expense Tracking and Budgeting}: Verifying that users can effectively track and budget expenses.
+		\item \textbf{Forecasting Capabilities}: Ensuring the app provides meaningful insights for future spending.
+		\item \textbf{User Interface (UI) and User Experience (UX)}: Confirming ease of use, responsiveness, and accessibility across devices.
+		\item \textbf{Data Security and Privacy}: Verifying secure data handling, storage, and compliance with privacy standards.
+	\end{itemize}
+	\newpage
+	\item \textbf{Validation Techniques}
+	The validation process will employ the following techniques to confirm that the software performs as intended and fulfills user requirements.
+	\begin{enumerate}
+		\item \textbf{Requirements Validation}
+		\begin{itemize}
+			\item \textbf{Purpose}: Ensure that the system requirements, as outlined in the Software Requirements Specification (SRS), reflect user needs.
+			\item \textbf{Techniques}: Requirements review, stakeholder validation sessions.
+			\item \textbf{Criteria}: All requirements are verified as achievable, necessary, and aligned with end-user expectations.
+		\end{itemize}
+		\item \textbf{Functional Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Validate that the app functions correctly and meets the intended use cases.
+			\item \textbf{Techniques}:
+			\begin{itemize}
+				\item \textbf{Unit Testing}: Test each component in isolation (e.g., receipt image processing, data extraction modules).
+				\item \textbf{Integration Testing}: Ensure smooth interaction between AI models and application components.
+				\item \textbf{System Testing}: Test the app end-to-end, covering all functional requirements.
+			\end{itemize}
+			\item \textbf{Criteria}: All functional test cases pass, with particular attention to accuracy in parsing receipts and categorizing expenses.
+		\end{itemize}
+		\item \textbf{Model Validation and AI Performance Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Confirm that the AI model for receipt parsing and categorization meets performance expectations.
+			\item \textbf{Techniques}:
+			\begin{itemize}
+				\item \textbf{Model Evaluation on Labeled Data}: Test the model's accuracy on a labeled dataset of diverse receipts.
+				\item \textbf{Performance Benchmarking}: Measure model accuracy, precision, recall, and latency.
+				\item \textbf{Error Analysis}: Review misclassifications and parsing errors to refine the model.
+			\end{itemize}
+			\item \textbf{Criteria}: Model meets or exceeds the required performance metrics (e.g., 90\%+ accuracy in parsing and categorization).
+		\end{itemize}
+		\item \textbf{Usability Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Validate that users can easily interact with the app and achieve their goals without confusion or frustration.
+			\item \textbf{Techniques}:
+			\begin{itemize}
+				\item \textbf{User Surveys and Feedback Sessions}: Gather direct user feedback on the app's ease of use and intuitiveness.
+				\item \textbf{Task-Based Testing}: Have users complete key tasks (e.g., uploading a receipt, viewing categorized expenses).
+			\end{itemize}
+			\item \textbf{Criteria}: Positive user feedback, with 80\%+ of participants finding the app intuitive and easy to use.
+		\end{itemize}
+		\item \textbf{Security and Privacy Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Ensure that user data, especially financial information, is stored and handled securely.
+			\item \textbf{Techniques}: 
+			\begin{itemize}
+				\item \textbf{Data Encryption Verification}: Confirm that data is encrypted both in transit and at rest.
+				\item \textbf{Access Control Testing}: Validate that only authorized users can access their data.
+				\item \textbf{Compliance Testing}: Ensure adherence to relevant privacy regulations (e.g., GDPR).
+			\end{itemize}
+			\item \textbf{Criteria}: All data protection and compliance measures are met; no security vulnerabilities found.
+		\end{itemize}
+		\item \textbf{Performance and Load Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Verify the app's responsiveness and stability under expected usage.
+			\item \textbf{Techniques}: 
+			\begin{itemize}
+				\item \textbf{Load Testing}: Simulate high user load to evaluate system performance.
+				\item \textbf{Stress Testing}: Test the app's behavior under extreme conditions.
+			\end{itemize}
+			\item \textbf{Criteria}: App remains functional and responsive under high load, with minimal performance degradation.
+		\end{itemize}
+		\item \textbf{Regression Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Ensure that new updates or fixes do not break existing functionality.
+			\item \textbf{Techniques}: Automated regression test suite that re-tests core functionality after each update.
+			\item \textbf{Criteria}:All regression test cases pass, maintaining stability with no loss of functionality.
+		\end{itemize}
+	\end{enumerate}
 
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
+	\item \textbf{Validation Schedule} \\
 
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
+	\noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|p{2cm}|>{\raggedright\arraybackslash}p{7cm}|}
+		\hline
+		\textbf{Phase} & \textbf{Duration} & \textbf{Activities} \\
+		\hline
+		\textbf{Requirements Review} & 1 week & Validate SRS, confirm requirements with stakeholders \\
+		\hline
+		\textbf{Functional Testing} & 2 weeks & Develop and execute unit, integration, and system test cases \\
+		\hline
+		\textbf{Model Validation} & 1 week & Evaluate AI model on diverse receipts, measure performance metrics \\
+		\hline
+		\textbf{Usability Testing} & 1 week & Conduct usability tests with end-users, gather feedback \\
+		\hline
+		\textbf{Security Testing} & 1 week & Perform security assessments, validate data encryption and compliance \\
+		\hline
+		\textbf{Performance Testing} & 3 days & Conduct load and stress tests to evaluate system performance under expected load \\
+		\hline
+		\textbf{Regression Testing} & Ongoing & Run regression tests after updates to ensure consistent functionality \\
+		\hline
+	\end{tabular}
+	\newpage
+	\item \textbf{Deliverables}
+	\begin{itemize}
+		\item \textbf{Test Case Documentation}: Detailed test cases for all functionalities, covering expected outcomes and pass/fail criteria.
+		\item \textbf{Test Execution Report}: Summary of test results, including success rates and any failed test cases.
+		\item \textbf{Defect and Issue Log}: Record of identified defects and issues, with resolution status.
+		\item \textbf{Usability Feedback Summary}: Report on feedback from usability testing sessions.
+		\item \textbf{Validation Summary Report}: Comprehensive report summarizing the validation outcomes, certifying the app's readiness for release.
+	\end{itemize}
+	\item \textbf{Success Criteria} \\
+	The app will be considered validated if it meets the following success criteria:
+	\begin{itemize}
+		\item All functional test cases passes requirements.
+		\item AI model achieves required accuracy in parsing and categorization.
+		\item Usability tests show positive user feedback with minimal issues.
+		\item No high-severity defects in security, performance, or compliance.
+		\item Regression tests show that new updates do not disrupt existing functionality.
+	\end{itemize}
+\end{enumerate}
 
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
-
-\wss{This section might reference back to the SRS verification section.}
+\noindent For additional information regarding validation, please consult the \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification (SRS)} verification section.
 
 \newpage
 \section{System Tests}
