@@ -1023,31 +1023,55 @@ This subsection covers tests required to assess the performance of the applicati
 
 \item{test-PERF-1\\}
 
-\textbf{Description:} The application must load user data within five seconds and respond to user actions (e.g., adding an entry, generating a report) within two seconds to ensure a smooth user experience.
+\textbf{Description:} The application must load user data within five seconds.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is set to load user data and respond to user actions.
+\textbf{Initial State:} The system is installed and ready to run.
 					
-\textbf{Input/Condition:} A user initiates the data loading process and performs user actions simultaneously.
+\textbf{Input/Condition:} The application is opened and user data is loaded.
 					
-\textbf{Output/Result:} User data should load within five seconds, and all actions should respond within two seconds.
+\textbf{Output/Result:} User data should load within five seconds.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will measure the time taken to load user account data and the response time for various user actions during the same test session, ensuring both criteria are met.
+\textbf{How the Test Will Be Performed:} The user/tester will measure the time
+taken to load user account data.
 
 \item{test-PERF-2\\}
 
-\textbf{Description:} The system must be able to handle a minimum of 10 concurrent users without significant performance degradation.
+\textbf{Description:} The application must respond to user actions (e.g., adding
+an entry, generating a report) within two seconds.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is set up to support concurrent users.
+\textbf{Initial State:} User information has been loaded.
 					
-\textbf{Input/Condition:} Ten users log into the application simultaneously and perform typical tasks.
+\textbf{Input/Condition:} The user will be asked to perform various actions of
+their choice on the application.
 					
-\textbf{Output/Result:} The application should maintain performance levels without significant degradation.
+\textbf{Output/Result:} All actions should respond within two seconds.
 					
-\textbf{How the Test Will Be Performed:} The tester will simulate 10 concurrent users accessing the application and monitor performance metrics (e.g., load times, response times) to ensure the application performs adequately under load.
+\textbf{How the Test Will Be Performed:} The user/tester will measure the
+response time for various user actions.
+
+
+\item{test-PERF-3\\}
+
+\textbf{Description:} The system must be able to handle a minimum of 10
+concurrent users without significant performance degradation.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is installed and running.
+					
+\textbf{Input/Condition:} Ten users log into the application simultaneously and
+perform typical tasks.
+					
+\textbf{Output/Result:} The application should maintain performance levels
+without significant degradation.
+					
+\textbf{How the Test Will Be Performed:} The tester will simulate 10 concurrent
+users accessing the application and monitor performance metrics (e.g., load
+times, response times) to ensure the application performs adequately under load.
 
 \end{enumerate}
 
@@ -1060,45 +1084,84 @@ This subsection covers tests required to evaluate the usability and user experie
 
 \item{test-USAB-1\\}
 
-\textbf{Description:} The application must have a clean, intuitive, and easy-to-navigate interface, allowing users to perform common tasks (e.g., adding expenses, viewing budgets) within two to three clicks, and complete tasks such as adding a new receipt or setting a budget limit within 10 seconds on average.
+\textbf{Description:} The application must have a clean, intuitive, and
+easy-to-navigate interface, allowing users to perform common tasks (e.g., adding
+expenses, viewing budgets) within two to three clicks, and complete tasks such
+as adding a new receipt or setting a budget limit within 10 seconds on average.
 
 \textbf{Type:} Manual
 					
 \textbf{Initial State:} The application is ready for user interaction.
 					
-\textbf{Input/Condition:} A user attempts to perform common tasks such as editing budgets or adding a new receipt using the interface.
+\textbf{Input/Condition:} A user attempts to perform common tasks such as
+editing budgets or adding a new receipt using the interface.
 					
-\textbf{Output/Result:} Tasks should show completion and result corresponding outputs.
+\textbf{Output/Result:} Tasks should show completion and result corresponding
+outputs.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will evaluate the interface by performing tasks and counting the average number of clicks and the duration taken, ensuring the requirements are met.
+\textbf{How the Test Will Be Performed:} The user/tester will evaluate the
+interface by performing tasks and counting the average number of clicks and the
+duration taken.
 
 \item{test-USAB-2\\}
 
-\textbf{Description:} New users should be able to complete account setup and understand core application features within five minutes, supported by an introductory tutorial and tooltips. Additionally, the application should provide clear error messages and guide users through corrective actions, allowing them to recover from errors in no more than two steps.
+\textbf{Description:} New users should be able to complete account setup and
+understand core application features within five minutes, supported by an
+introductory tutorial and tooltips.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is ready for a new user.
+\textbf{Initial State:} The application is installed and running. The state of
+the application is not authenticated.
 					
-\textbf{Input/Condition:} A new user begins the account setup and interacts with the application, making intentional errors to test error handling.
+\textbf{Input/Condition:} A user begins the account setup and interacts with
+the application.
 					
-\textbf{Output/Result:} The user should receive informative error messages and be guided through corrective actions.
+\textbf{Output/Result:} The user should have a new account created and
+understand the core features of the application.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will simulate a new user experience, timing the setup and assessing the clarity of tutorials, tooltips, error messages, and corrective guidance.
+\textbf{How the Test Will Be Performed:} The user/tester will simulate a new
+user experience, timing the setup and assessing the clarity of tutorials,
+tooltips, error messages, and corrective guidance.
 
 \item{test-USAB-3\\}
 
-\textbf{Description:} Information displayed to users must be concise and relevant, minimizing cognitive effort while ensuring that only essential details are shown on the main dashboard, with advanced options accessible through menus.
+\textbf{Description:} Information displayed to users must be concise and
+relevant, minimizing cognitive effort while ensuring that only essential details
+are shown on the main dashboard, with advanced options accessible through menus.
 
 \textbf{Type:} Manual
 					
 \textbf{Initial State:} The application is displaying its main dashboard.
 					
-\textbf{Input/Condition:} The user/tester reviews the main dashboard and navigates through the menus.
+\textbf{Input/Condition:} The user/tester reviews the main dashboard and
+navigates through the menus.
 					
-\textbf{Output/Result:} All information is displayed and menus open upon command.
+\textbf{Output/Result:} All information is displayed and menus open upon
+command.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will evaluate the main dashboard and menus for clarity, relevance, and ease of access, ensuring the design aligns with the usability requirements.
+\textbf{How the Test Will Be Performed:} The user/tester will evaluate the main
+dashboard and menus for clarity, relevance, and ease of access, ensuring the
+design aligns with the usability requirements.
+
+\item{test-USAB-4\\}
+
+\textbf{Description:} It should be easy for users to recover from errors and
+understand when an incorrect input is detected.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is installed and running.
+					
+\textbf{Input/Condition:} A user attempts to perform an action that results in
+an error.
+					
+\textbf{Output/Result:} The user should understand the error and be able to
+make corrective actions to resolve it.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will intentionally
+trigger errors and assess the clarity of error messages and the ease of
+corrective actions.
 
 \end{enumerate}
 
@@ -1111,17 +1174,24 @@ This subsection covers tests required to ensure the security and protection of u
 
 \item{test-SEC-1\\}
 
-\textbf{Description:} The system must implement secure password storage and authentication mechanisms, as well as ensure that all data transmitted between the client and server is encrypted to protect user data.
+\textbf{Description:} The system must implement secure password storage and
+authentication mechanisms, as well as ensure that all data transmitted between
+the client and server is encrypted to protect user data.
 
 \textbf{Type:} Automatic
 					
 \textbf{Initial State:} The system is fully deployed and operational.
 					
-\textbf{Input/Condition:} User attempts to create an account and log in, while data transmission occurs between client and server.
+\textbf{Input/Condition:} User attempts to create an account and log in, while
+data transmission occurs between client and server.
 					
-\textbf{Output/Result:} The system must confirm successful account creation and authentication with appropriate messages, and all data transmitted must show as encrypted.
+\textbf{Output/Result:} The system must confirm successful account creation and
+authentication with appropriate messages, and all data transmitted must show as
+encrypted.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will create an account, log in, and monitor the data transmission to verify that passwords are securely stored and that encryption protocols are in place for all data exchanged.
+\textbf{How the Test Will Be Performed:} The user/tester will create an account,
+log in, and monitor the data transmission to verify that passwords are securely
+stored and that encryption protocols are in place for all data exchanged.
 
 \end{enumerate}
 
@@ -1134,17 +1204,54 @@ This subsection covers tests required to verify the maintainability and compatib
 
 \item{test-MTB-1\\}
 
-\textbf{Description:} New releases must maintain backward compatibility with previous versions, ensuring users can seamlessly update the application without experiencing disruptions in their data or workflows. Dependencies must be regularly updated to prevent security vulnerabilities, and at least 80\% of the codebase must be covered by automated unit tests to ensure maintainability.
+\textbf{Description:} New releases must maintain backward compatibility with
+previous versions.
 
-\textbf{Type:} Automatic
+\textbf{Type:} Manual
 					
 \textbf{Initial State:} The application is ready for a new release.
 					
-\textbf{Input/Condition:} A new release is applied to the application, along with dependency updates.
+\textbf{Input/Condition:} A new release is applied to the application, along
+with dependency updates.
 					
-\textbf{Output/Result:} The system must output a confirmation message indicating a successful update, and system logs should show no errors or disruptions. Additionally, automated test results must indicate at least 80\% code coverage.
+\textbf{Output/Result:} The system must output a confirmation message indicating
+a successful update, and system logs should show no errors or disruptions.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will apply the new release, check for compatibility by performing typical user tasks, and run automated tests to verify code coverage, ensuring the requirements are met.
+\textbf{How the Test Will Be Performed:} The user/tester will apply the new
+release and perform typical user actions to verify that the application
+functions correctly with no errors or disruptions.
+
+\item{test-MTB-2\\}
+
+\textbf{Description:} Dependencies must be regularly updated.
+
+\textbf{Type:} Automatic
+					
+\textbf{Initial State:} Dependencies are out of date.
+					
+\textbf{Input/Condition:} A new patch is applied to the application.
+					
+\textbf{Output/Result:} Dependencies are updated.
+					
+\textbf{How the Test Will Be Performed:} Regularly scheduled updates will be
+applied to the application.
+
+\item{test-MTB-3\\}
+
+\textbf{Description:} The codebase must be covered by automated tests.
+
+\textbf{Type:} Automatic
+					
+\textbf{Initial State:} The application is up to date.
+					
+\textbf{Input/Condition:} A new code change is made.
+					
+\textbf{Output/Result:} The pipeline runs automated tests and checks for
+coverage. If the coverage criteria is not met, the change will be blocked from
+merging.
+					
+\textbf{How the Test Will Be Performed:} Tests and coverage will be checked using
+GitHub Actions.
 
 \end{enumerate}
 
@@ -1157,7 +1264,8 @@ This subsection covers tests required to assess the portability of the applicati
 
 \item{test-PORT-1\\}
 
-\textbf{Description:} The software shall be compatible with Android and iOS mobile devices running the latest software.
+\textbf{Description:} The software shall be compatible with Android and iOS
+mobile devices running the latest software.
 
 \textbf{Type:} Automatic
 					
@@ -1165,37 +1273,51 @@ This subsection covers tests required to assess the portability of the applicati
 					
 \textbf{Input/Condition:} Users attempt to install and run the application.
 					
-\textbf{Output/Result:} The system outputs successful installation messages and the application functions correctly on both platforms.
+\textbf{Output/Result:} The system outputs successful installation messages and
+the application functions correctly on both platforms.
 					
-\textbf{How the Test Will Be Performed:} Automated tests will verify installation and functionality on both devices.
+\textbf{How the Test Will Be Performed:} Automated tests will verify
+installation and functionality on both devices.
 
 \item{test-PORT-2\\}
 
-\textbf{Description:} All data must be stored in platform-independent formats (e.g., JSON, CSV), and any external APIs or third-party services must support cross-platform usage.
+\textbf{Description:} All data must be stored in platform-independent formats
+(e.g., JSON, CSV), and any external APIs or third-party services must support
+cross-platform usage.
 
 \textbf{Type:} Automatic
 					
-\textbf{Initial State:} The application has data stored and is integrated with external APIs.
+\textbf{Initial State:} The application has data stored and is integrated with
+external APIs.
 					
-\textbf{Input/Condition:} The user/tester requests data export and initiates API calls.
+\textbf{Input/Condition:} The user/tester requests data export and initiates API
+calls.
 					
-\textbf{Output/Result:} The system outputs data in specified formats and returns successful responses from APIs on both platforms.
+\textbf{Output/Result:} The system outputs data in specified formats and returns
+successful responses from APIs on both platforms.
 					
-\textbf{How the Test Will Be Performed:} Automated scripts will verify data export formats and API integration on both Android and iOS.
+\textbf{How the Test Will Be Performed:} Automated scripts will verify data
+export formats and API integration on both Android and iOS.
 
 \item{test-PORT-3\\}
 
-\textbf{Description:} The system must operate in various network environments, including Wi-Fi, cellular, and offline mode.
+\textbf{Description:} The system must operate in various network environments,
+including Wi-Fi, cellular, and offline mode.
 
 \textbf{Type:} Manual
 					
 \textbf{Initial State:} The application is installed and ready for testing.
 					
-\textbf{Input/Condition:} The user/tester simulates different network environments.
+\textbf{Input/Condition:} The user/tester simulates different network
+environments.
 					
-\textbf{Output/Result:} The system outputs successful operation messages for each network condition.
+\textbf{Output/Result:} The system outputs successful operation messages for
+each network condition.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will manually switch between different network environments (Wi-Fi, cellular, offline) and observe the application's behavior, checking for consistent functionality and performance across each condition.
+\textbf{How the Test Will Be Performed:} The user/tester will manually switch
+between different network environments (Wi-Fi, cellular, offline) and observe
+the application's behavior, checking for consistent functionality and
+performance across each condition.
 
 \end{enumerate}
 
