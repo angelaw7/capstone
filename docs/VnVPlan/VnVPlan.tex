@@ -857,7 +857,7 @@ This subsection covers tests required to verify functionality for item recogniti
 
 \textbf{Control:} Automatic
 
-nitial State: User confirms uploaded receipt is ready to be processed
+\textbf{Initial State:} User confirms uploaded receipt is ready to be processed
 
 \textbf{Input:} Run item recognition on a sample receipt
 
@@ -887,7 +887,7 @@ nitial State: User confirms uploaded receipt is ready to be processed
 \subsubsection{Financial Tracking Tests}
 
 This subsection verifies the functionality of financial tracking features such has spending history and budget management. The financial tracker is responsible for storing users expenses/spendings, as well as allowing users to set and track budgets.\\
-\textit{Functional Requirements: 19-21}
+\textit{Functional Requirements: FR19 - FR21}
 
 \begin{enumerate}
 
@@ -927,62 +927,423 @@ This subsection verifies the functionality of financial tracking features such h
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{The nonfunctional requirements for accuracy will likely just reference the
-  appropriate functional tests from above.  The test cases should mention
-  reporting the relative error for these tests.  Not all projects will
-  necessarily have nonfunctional requirements related to accuracy.}
+\subsubsection{Accuracy Tests}
 
-\wss{For some nonfunctional tests, you won't be setting a target threshold for
-passing the test, but rather describing the experiment you will do to measure
-the quality for different inputs.  For instance, you could measure speed versus
-the problem size.  The output of the test isn't pass/fail, but rather a summary
-table or graph.}
-
-\wss{Tests related to usability could include conducting a usability test and
-  survey.  The survey will be in the Appendix.}
-
-\wss{Static tests, review, inspections, and walkthroughs, will not follow the
-format for the tests given below.}
-
-\wss{If you introduce static tests in your plan, you need to provide details.
-How will they be done?  In cases like code (or document) walkthroughs, who will
-be involved? Be specific.}
-
-\subsubsection{Area of Testing1}
-		
-\paragraph{Title for Test}
+This subsection covers tests required to verify the accuracy of the system in processing various financial data.\\
+\textit{Nonfunctional Requirements: NFR1 - NFR6}
 
 \begin{enumerate}
 
-\item{test-id1\\}
+\item{test-ACC-1\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
-					
-\textbf{Initial State:} 
-					
-Input/Condition: 
-					
-Output/Result: 
-					
-\textbf{How test will be performed:} 
-					
-\item{test-id2\\}
+\textbf{Description:} The machine learning model must achieve at least 80\% accuracy in correctly identifying and extracting key information (i.e., item names, quantities, prices, dates) from receipts.
 
-Type: Functional, Dynamic, Manual, Static etc.
+\textbf{Type:} Manual
 					
-\textbf{Initial State:} 
+\textbf{Initial State:} Machine learning model is ready for testing with a dataset of receipts prepared for evaluation.
 					
-\textbf{Input:} 
+\textbf{Input/Condition:} Test receipts containing various sets of key information (item names, quantities, prices, and dates).
 					
-\textbf{Output:} 
+\textbf{Output/Result:} Model’s accuracy measured by the percentage of key information extracted correctly.
 					
-\textbf{How test will be performed:} 
+\textbf{How test will be performed:} The output will be compared with the initially inputted test receipts to compare information. The accuracy will be computed by determining the percentage of correctly identified and extracted information and will be determined if it meets the 80\% threshold.
+
+\item{test-ACC-2\\}
+
+\textbf{Description:} The machine learning model must categorize expenses into predefined categories (e.g., groceries, utilities, entertainment) with at least 90\% precision to ensure users’ financial data is correctly organized.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} Machine learning model is set to have predetermined expense categories.
+					
+\textbf{Input/Condition:} A set of receipt transactions with known categories.
+					
+\textbf{Output/Result:} The model will output the categories of the given transactions, and the precision will be calculated from this.
+					
+\textbf{How test will be performed:} The model will process the set of transactions and compare the assigned categories to the correct ones. Precision will be measured to see if the 90\% threshold is met.
+
+\item{test-ACC-3\\}
+
+\textbf{Description:} All monetary calculations (e.g., totals, budgets, currency conversions) must maintain a precision of up to two decimal places to ensure accurate financial reporting.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is ready for financial calculations.
+					
+\textbf{Input/Condition:} A set of monetary calculations (budget changes, new purchases).
+					
+\textbf{Output/Result:} The output should display values rounded to two decimal places.
+					
+\textbf{How the Test Will Be Performed:} The system will perform different calculations and verify that all results maintain precision up to two decimal places as specified.
+
+\item{test-ACC-4\\}
+
+\textbf{Description:} The OCR model must correctly recognize text from images of receipts with a minimum accuracy rate of 90\%, ensuring minimal manual corrections by users.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The OCR model is set to process images of receipts.
+					
+\textbf{Input/Condition:} A set of receipt images with known text.
+					
+\textbf{Output/Result:} The OCR model's accuracy in recognizing text is calculated.
+					
+\textbf{How the Test Will Be Performed:} The OCR model will process the receipt images and compare the recognized text to the actual text, ensuring an accuracy rate of at least 90\%.
+
+\item{test-ACC-5\\}
+
+\textbf{Description:} The application must guarantee 99\% accuracy in summing up expenses, incomes, and savings across different periods and categories, ensuring no rounding or summation errors.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is set to calculate expenses, incomes, and savings.
+					
+\textbf{Input/Condition:} A dataset of transactions across different periods and categories.
+					
+\textbf{Output/Result:} The application’s summation accuracy is assessed.
+					
+\textbf{How the Test Will Be Performed:} The system will input the transaction data and verify that the calculated totals are accurate, ensuring the application meets the 99\% accuracy requirement in summation.
+
+\item{test-ACC-6\\}
+
+\textbf{Description:} If the application syncs data across multiple devices, it should ensure 100\% consistency of financial data across all instances.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is synced across multiple devices.
+					
+\textbf{Input/Condition:} Financial data entered on one device.
+					
+\textbf{Output/Result:} Financial data appears on all devices.
+					
+\textbf{How the Test Will Be Performed:} The tester will input financial data on one device, sync, and verify that all other devices show the same data to ensure 100\% consistency.
 
 \end{enumerate}
 
-\subsubsection{Area of Testing2}
+\subsubsection{Performance Tests}
 
-...
+This subsection covers tests required to assess the performance of the application under various conditions.\\
+\textit{Nonfunctional Requirements: NFR7 - NFR9}
+
+\begin{enumerate}
+
+\item{test-PERF-1\\}
+
+\textbf{Description:} The application must load user data within five seconds and respond to user actions (e.g., adding an entry, generating a report) within two seconds to ensure a smooth user experience.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is set to load user data and respond to user actions.
+					
+\textbf{Input/Condition:} A user initiates the data loading process and performs user actions simultaneously.
+					
+\textbf{Output/Result:} User data should load within five seconds, and all actions should respond within two seconds.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will measure the time taken to load user account data and the response time for various user actions during the same test session, ensuring both criteria are met.
+
+\item{test-PERF-2\\}
+
+\textbf{Description:} The system must be able to handle a minimum of 10 concurrent users without significant performance degradation.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is set up to support concurrent users.
+					
+\textbf{Input/Condition:} Ten users log into the application simultaneously and perform typical tasks.
+					
+\textbf{Output/Result:} The application should maintain performance levels without significant degradation.
+					
+\textbf{How the Test Will Be Performed:} The tester will simulate 10 concurrent users accessing the application and monitor performance metrics (e.g., load times, response times) to ensure the application performs adequately under load.
+
+\end{enumerate}
+
+\subsubsection{Usability Tests}
+
+This subsection covers tests required to evaluate the usability and user experience of the application. \\
+\textit{Nonfunctional Requirements: NFR10 - NFR17}
+
+\begin{enumerate}
+
+\item{test-USAB-1\\}
+
+\textbf{Description:} The application must have a clean, intuitive, and easy-to-navigate interface, allowing users to perform common tasks (e.g., adding expenses, viewing budgets) within two to three clicks, and complete tasks such as adding a new receipt or setting a budget limit within 10 seconds on average.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is ready for user interaction.
+					
+\textbf{Input/Condition:} A user attempts to perform common tasks such as editing budgets or adding a new receipt using the interface.
+					
+\textbf{Output/Result:} Tasks should show completion and result corresponding outputs.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will evaluate the interface by performing tasks and counting the average number of clicks and the duration taken, ensuring the requirements are met.
+
+\item{test-USAB-2\\}
+
+\textbf{Description:} New users should be able to complete account setup and understand core application features within five minutes, supported by an introductory tutorial and tooltips. Additionally, the application should provide clear error messages and guide users through corrective actions, allowing them to recover from errors in no more than two steps.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is ready for a new user.
+					
+\textbf{Input/Condition:} A new user begins the account setup and interacts with the application, making intentional errors to test error handling.
+					
+\textbf{Output/Result:} The user should receive informative error messages and be guided through corrective actions.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will simulate a new user experience, timing the setup and assessing the clarity of tutorials, tooltips, error messages, and corrective guidance.
+
+\item{test-USAB-3\\}
+
+\textbf{Description:} Information displayed to users must be concise and relevant, minimizing cognitive effort while ensuring that only essential details are shown on the main dashboard, with advanced options accessible through menus.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is displaying its main dashboard.
+					
+\textbf{Input/Condition:} The user/tester reviews the main dashboard and navigates through the menus.
+					
+\textbf{Output/Result:} All information is displayed and menus open upon command.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will evaluate the main dashboard and menus for clarity, relevance, and ease of access, ensuring the design aligns with the usability requirements.
+
+\end{enumerate}
+
+\subsubsection{Security Tests}
+
+This subsection covers tests required to ensure the security and protection of user data within the system. \\
+\textit{Nonfunctional Requirements: NFR18 - NFR19}
+
+\begin{enumerate}
+
+\item{test-SEC-1\\}
+
+\textbf{Description:} The system must implement secure password storage and authentication mechanisms, as well as ensure that all data transmitted between the client and server is encrypted to protect user data.
+
+\textbf{Type:} Automatic
+					
+\textbf{Initial State:} The system is fully deployed and operational.
+					
+\textbf{Input/Condition:} User attempts to create an account and log in, while data transmission occurs between client and server.
+					
+\textbf{Output/Result:} The system must confirm successful account creation and authentication with appropriate messages, and all data transmitted must show as encrypted.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will create an account, log in, and monitor the data transmission to verify that passwords are securely stored and that encryption protocols are in place for all data exchanged.
+
+\end{enumerate}
+
+\subsubsection{Maintainability Tests}
+
+This subsection covers tests required to verify the maintainability and compatibility of the application. \\
+\textit{Nonfunctional Requirements: NFR20 - NFR 22}
+
+\begin{enumerate}
+
+\item{test-MTB-1\\}
+
+\textbf{Description:} New releases must maintain backward compatibility with previous versions, ensuring users can seamlessly update the application without experiencing disruptions in their data or workflows. Dependencies must be regularly updated to prevent security vulnerabilities, and at least 80\% of the codebase must be covered by automated unit tests to ensure maintainability.
+
+\textbf{Type:} Automatic
+					
+\textbf{Initial State:} The application is ready for a new release.
+					
+\textbf{Input/Condition:} A new release is applied to the application, along with dependency updates.
+					
+\textbf{Output/Result:} The system must output a confirmation message indicating a successful update, and system logs should show no errors or disruptions. Additionally, automated test results must indicate at least 80\% code coverage.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will apply the new release, check for compatibility by performing typical user tasks, and run automated tests to verify code coverage, ensuring the requirements are met.
+
+\end{enumerate}
+
+\subsubsection{Portability Tests}
+
+This subsection covers tests required to assess the portability of the application across different platforms and environments. \\
+\textit{Nonfunctional Requirements: NFR23 - NFR 26}
+
+\begin{enumerate}
+
+\item{test-PORT-1\\}
+
+\textbf{Description:} The software shall be compatible with Android and iOS mobile devices running the latest software.
+
+\textbf{Type:} Automatic
+					
+\textbf{Initial State:} The application is deployed on Android and iOS devices.
+					
+\textbf{Input/Condition:} Users attempt to install and run the application.
+					
+\textbf{Output/Result:} The system outputs successful installation messages and the application functions correctly on both platforms.
+					
+\textbf{How the Test Will Be Performed:} Automated tests will verify installation and functionality on both devices.
+
+\item{test-PORT-2\\}
+
+\textbf{Description:} All data must be stored in platform-independent formats (e.g., JSON, CSV), and any external APIs or third-party services must support cross-platform usage.
+
+\textbf{Type:} Automatic
+					
+\textbf{Initial State:} The application has data stored and is integrated with external APIs.
+					
+\textbf{Input/Condition:} The user/tester requests data export and initiates API calls.
+					
+\textbf{Output/Result:} The system outputs data in specified formats and returns successful responses from APIs on both platforms.
+					
+\textbf{How the Test Will Be Performed:} Automated scripts will verify data export formats and API integration on both Android and iOS.
+
+\item{test-PORT-3\\}
+
+\textbf{Description:} The system must operate in various network environments, including Wi-Fi, cellular, and offline mode.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is installed and ready for testing.
+					
+\textbf{Input/Condition:} The user/tester simulates different network environments.
+					
+\textbf{Output/Result:} The system outputs successful operation messages for each network condition.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will manually switch between different network environments (Wi-Fi, cellular, offline) and observe the application's behavior, checking for consistent functionality and performance across each condition.
+
+\end{enumerate}
+
+\subsubsection{Reusability Tests}
+
+This subsection covers tests required to evaluate the reusability of components and functionalities within the application. \\
+\textit{Nonfunctional Requirements: NFR27 - NFR 30}
+
+\begin{enumerate}
+
+\item{test-REUS-1\\}
+
+\textbf{Description:} The application must be developed using reusable components (e.g., UI components, API services) and adhere to the principle of separation of concerns, ensuring that business logic, data access, and presentation layers are kept separate.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is developed and ready for testing.
+					
+\textbf{Input/Condition:} The user/tester reviews the codebase and architecture.
+					
+\textbf{Output/Result:} The system must show evidence of reusable components and separate layers, with no code duplication.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will conduct a manual code review to assess the architecture for reusable components, ensuring adherence to the principle of separation of concerns. They will document findings regarding code duplication and the organization of business logic, data access, and presentation layers.
+
+\item{test-REUS-2\\}
+
+\textbf{Description:} Common functionalities (e.g., receipt parsing, authentication) must be abstracted into reusable libraries, and design elements (e.g., icons, typography) must be created as reusable assets.
+
+\textbf{Type:} Automatic
+					
+\textbf{Initial State:} The application is fully developed.
+					
+\textbf{Input/Condition:} The user/tester inspects libraries and design assets.
+					
+\textbf{Output/Result:} The system must output a report confirming that functionalities are encapsulated in reusable libraries and design assets are consistently applied across the application.
+					
+\textbf{How the Test Will Be Performed:} Automated tools will verify the presence of reusable libraries and assets.
+
+\end{enumerate}
+
+\subsubsection{Understandability Tests}
+
+This subsection covers tests required to assess the understandability and clarity of the application and its documentation. \\
+\textit{Nonfunctional Requirements: NFR31 - NFR 39}
+
+\begin{enumerate}
+
+\item{test-UND-1\\}
+
+\textbf{Description:} All source code must be thoroughly documented with inline comments and external documentation, and variables, functions, classes, and modules must follow consistent and meaningful naming conventions.
+
+\textbf{Type:} Static
+					
+\textbf{Initial State:} The codebase is complete and ready for review.
+					
+\textbf{Input/Condition:} The user/tester reviews the code and associated documentation.
+					
+\textbf{Output/Result:} The system must show that code components are well-documented, with meaningful names that describe functionality.
+					
+\textbf{How the Test Will Be Performed:} A team of developers will conduct a walkthrough of the codebase, using static analysis tools to check for documentation completeness and adherence to naming conventions. The results will be documented in a compliance report, which will be reviewed by the development team.
+
+\item{test-UND-2\\}
+
+\textbf{Description:} The application’s UI must be designed with clarity, using clear labels, icons, and tooltips, and the codebase must be organized logically, allowing easy navigation.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is fully developed.
+					
+\textbf{Input/Condition:} The user/tester interacts with the UI and examines the code structure.
+					
+\textbf{Output/Result:} The system must provide a UI that is easy to navigate, with clear labels and organized code files.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will manually navigate the UI and review the directory structure of the codebase to assess clarity and organization.
+
+\item{test-UND-3\\}
+
+\textbf{Description:} The code must follow industry-standard formatting guidelines, and the application must provide clear, descriptive error messages for users and developers.
+
+\textbf{Type:} Static
+					
+\textbf{Initial State:} The codebase and application are fully developed.
+					
+\textbf{Input/Condition:} The user/tester reviews the code formatting and triggers error messages during testing.
+					
+\textbf{Output/Result:} The system must show properly formatted code and clear error messages that explain issues and solutions.
+					
+\textbf{How the Test Will Be Performed:} A review team will perform code inspections, using static analysis tools to evaluate code formatting against industry standards. During application testing, users will intentionally trigger errors to assess the clarity and helpfulness of error messages. Feedback will be collected and addressed in subsequent development cycles.
+
+\item{test-UND-4\\}
+
+\textbf{Description:} Any APIs must include detailed documentation, and all major changes to the codebase should be accompanied by clear commit messages and changelogs.
+
+\textbf{Type:} Static
+					
+\textbf{Initial State:} The APIs and codebase are implemented.
+					
+\textbf{Input/Condition:} The user/tester reviews API documentation and commit history.
+					
+\textbf{Output/Result:} The system must provide comprehensive API documentation and meaningful commit messages that clarify changes.
+					
+\textbf{How the Test Will Be Performed:} A designated reviewer will conduct a walkthrough of the API documentation and commit history, checking for completeness and clarity. Automated documentation generation tools may be used to assist in this process. The findings will be compiled into a report and discussed in a review meeting with the development team.
+
+\item{test-UND-5\\}
+
+\textbf{Description:} The language and terminology used throughout the application’s UI must align with users’ mental models, using familiar terms.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is deployed.
+					
+\textbf{Input/Condition:} The user/tester evaluates the UI language and terminology.
+					
+\textbf{Output/Result:} The system must use non-technical, familiar terms throughout the UI.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will manually navigate the UI to assess the terminology used and provide feedback on its alignment with user expectations.
+
+\end{enumerate}
+
+\subsubsection{Regulatory Tests}
+
+This subsection covers tests required to ensure compliance with relevant regulations and standards. \\
+\textit{Nonfunctional Requirements: NFR40 - NFR 41}
+
+\begin{enumerate}
+
+\item{test-REG-1\\}
+
+\textbf{Description:} The system must comply with Canada’s Privacy Act and Financial Administration Act to ensure the privacy and security of user data and the secure handling of financial information.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The system is fully implemented and operational.
+					
+\textbf{Input/Condition:} The user/tester reviews the system’s data handling policies and financial procedures.
+					
+\textbf{Output/Result:} The system must demonstrate adherence to both regulatory acts through documented policies and secure practices.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will manually examine relevant documentation, assess data handling procedures, and conduct interviews with compliance and development teams to verify compliance with both the Privacy Act and the Financial Administration Act.
+
+\end{enumerate}
+
 
 \subsection{Traceability Between Test Cases and Requirements}
 
