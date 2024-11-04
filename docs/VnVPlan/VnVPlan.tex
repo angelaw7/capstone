@@ -274,7 +274,7 @@ Attached below is a list of roles available in our V\&V group along with the des
 	\end{itemize}
 	\item Performance Tester
 	\begin{itemize}
-		\item Measures and optimizes the app's performance, focusing on response time, load time, and battery usage (important for a mobile app).
+		\item Measures and optimizes app's performance, focusing on response time, load time, and battery usage (important for a mobile app).
 		\item Conducts stress tests to determine the app's behavior under heavy usage (e.g., scanning multiple receipts in a short period).
 		\item Collaborates with developers to troubleshoot and resolve performance bottlenecks.
 	\end{itemize}
@@ -289,7 +289,7 @@ as it should. \\
 \hrule
 \vspace{10pt}
 
-\textbf{Team Member 1}
+\textbf{Eric Chen}
 \begin{itemize}
 	\item Role(s)
 	\begin{enumerate}
@@ -306,7 +306,7 @@ as it should. \\
 \hrule
 \vspace{10pt}
 
-\textbf{Team Member 2}
+\textbf{Angela Wang}
 \begin{itemize}
 	\item Role(s)
 	\begin{enumerate}
@@ -325,7 +325,9 @@ as it should. \\
 
 \newpage
 
-\textbf{Team Member 3}
+\hrule
+\vspace{10pt}
+\textbf{Fondson Lu}
 \begin{itemize}
 	\item Role(s)
 	\begin{enumerate}
@@ -342,7 +344,7 @@ as it should. \\
 \hrule
 \vspace{10pt}
 
-\textbf{Team Member 4}
+\textbf{Jason Tan}
 \begin{itemize}
 	\item Role(s)
 	\begin{enumerate}
@@ -359,7 +361,7 @@ as it should. \\
 \hrule
 \vspace{10pt}
 
-\textbf{Team Member 5}
+\textbf{Payton Chan}
 \begin{itemize}
 	\item Role(s)
 	\begin{enumerate}
@@ -373,23 +375,10 @@ as it should. \\
 	\end{enumerate}
 \end{itemize}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+\hrule
+\vspace{10pt}
 
 \subsection{SRS Verification Plan}
-
-\wss{List any approaches you intend to use for SRS verification.  This may
-  include ad hoc feedback from reviewers, like your classmates (like your
-  primary reviewer), or you may plan for something more rigorous/systematic.}
-
-\wss{If you have a supervisor for the project, you shouldn't just say they will
-read over the SRS.  You should explain your structured approach to the review.
-Will you have a meeting?  What will you present?  What questions will you ask?
-Will you give them instructions for a task-based inspection?  Will you use your
-issue tracker?}
-
-\wss{Maybe create an SRS checklist?}
 
 \subsubsection{Approaches for SRS Verifiation}
 
@@ -480,12 +469,6 @@ issue tracker?}
 
 \subsection{Design Verification Plan}
 
-\wss{Plans for design verification}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
-
 \subsubsection{Specification Verification}
 
 \noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|p{1cm}|p{2.25cm}|}
@@ -564,12 +547,51 @@ issue tracker?}
 
 \subsection{Verification and Validation Plan Verification Plan}
 
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
+Creating a Verification and Validation (V\&V) plan for a smart AI budgeting app requires a structured and systematic approach to confirm that the application operates accurately, efficiently, and reliably under real-world conditions.
+This app uses advanced AI to parse receipt images, extract relevant information, and categorize expenses, which presents additional challenges for the V\&V process.
+Unlike traditional software applications, an AI-driven app requires validation not only of standard software functionalities but also of the AI model's performance in accurately interpreting various receipt formats, layouts, and data entries.
+This means that the V\&V plan must address both classic software testing elements (such as unit and integration testing) and specific AI model evaluation techniques, like model validation and performance testing, to ensure that the app delivers consistent results. \\
 
-\wss{The review will include reviews by your classmates}
+Given the diverse functionality—spanning expense tracking, budgeting, and financial forecasting—this V\&V approach must encompass both software-level testing and user-centric assessments to verify usability and accuracy from an end-user perspective.
+Below is a comprehensive list of recommended V\&V techniques and a corresponding checklist, each tailored to ensure that the budgeting app meets its design specifications and delivers high-quality, reliable outcomes for users.
 
-\wss{Create a checklists?}
+\subsubsection{V\&V Techniques for Plutos App}
+\noindent \begin{enumerate}
+	\item \textbf{Requirements Review}: Regular reviews of the Software Requirements Specification (SRS) are essential to confirm that all listed requirements align with the project goals. Stakeholders should validate that these requirements meet user needs.
+	\item \textbf{Code Review}: Structured code reviews help to maintain code quality and identify potential issues in the receipt parsing and expense categorization components.
+	\item \textbf{Unit Testing}:Unit tests should cover the core functions, especially those related to parsing and categorizing. Test cases should address a range of inputs, including expected, edge, and invalid cases.
+	\item \textbf{Integration Testing}: Integration testing ensures that the AI model and app components work together seamlessly, verifying the accuracy and consistency of data processing.
+	\item \textbf{System Testing}: System testing is necessary to evaluate the full app functionality, making sure that expense tracking, budgeting, and forecasting features meet the specified requirements.
+	\item \textbf{Acceptance Testing}: End-user testing allows the team to validate that the app performs well in real-world settings, especially in accurately parsing receipts of various formats.
+	\item \textbf{Mutation Testing}: Mutation testing can be used to check the effectiveness of the test cases and to identify any weaknesses in the testing approach.
+	\item \textbf{Regression Testing}: Regression testing is essential to ensure that updates or changes in the AI model or app features do not interfere with existing functionality.
+	\item \textbf{User Interface (UI) Testing}: UI testing helps confirm that the app interface is user-friendly, responsive, and consistent across different devices.
+	\item \textbf{Model Validation}: The AI model should be validated on labeled data to check its performance, especially for accuracy in categorizing expenses based on parsed information.
+	\item \textbf{Performance Testing}: Performance tests can be conducted to measure the app's speed and reliability, especially when processing large receipts or handling multiple users.
+	\item \textbf{Security Testing}: Security testing ensures that financial data is stored and transmitted securely, with protections in place for data encryption and user access.
+\end{enumerate}
+
+\newpage
+
+\subsubsection{V\&V Plan Checklist (Peer Reviews)}
+
+\begin{itemize}
+	\item [\texttt{[ ]}] Review and validate all requirements with stakeholders.
+	\item [\texttt{[ ]}] Conduct code reviews and log issues or recommendations.
+	\item [\texttt{[ ]}] Develop and execute unit tests covering key parsing and categorization functions.
+	\item [\texttt{[ ]}] Perform integration testing for model interactions with the app's front and back end.
+	\item [\texttt{[ ]}] Complete system testing across all app functionalities (tracking, budgeting, forecasting).
+	\item [\texttt{[ ]}] Facilitate acceptance testing sessions with end users to gather real-world feedback.
+	\item [\texttt{[ ]}] Implement mutation testing to strengthen the test suite.
+	\item [\texttt{[ ]}] Schedule regular regression testing, especially after updates or model retraining.
+	\item [\texttt{[ ]}] Conduct comprehensive UI testing for design consistency across devices.
+	\item [\texttt{[ ]}] Evaluate AI model performance, retraining if accuracy is below target.
+	\item [\texttt{[ ]}] Measure and optimize performance for speed and reliability under heavy usage.
+	\item [\texttt{[ ]}] Perform security testing to protect user financial data.
+	\item [\texttt{[ ]}] Document and address all V\&V findings and updates to maintain a high-quality app.
+\end{itemize}
+
+\newpage
 
 \subsection{Implementation Verification Plan}
 
@@ -588,21 +610,6 @@ CAS741) for a partial usability survey.}
 
 \subsection{Automated Testing and Verification Tools}
 
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
-
 \begin{enumerate}
 	\item \textbf{Unit Testing Frameworks}
 	\begin{itemize}
@@ -619,6 +626,7 @@ that document.}
 		\item \textbf{GitHub Actions}: This tool can be set up to run workflows that execute tests, linters, and builds automatically on every pull request or commit, ensuring that code quality is maintained consistently (i.e. Husky).
 		\item \textbf{Jenkins}: Jenkins is an open-source automation server that facilitates continuous integration and continuous deployment processes. It can be configured to automatically run tests, linting, and builds every time code is pushed to the repository, ensuring that code quality is maintained consistently.
 	\end{itemize}
+	\newpage
 	\item \textbf{Test Coverage Tools}
 	\begin{itemize}
 		\item \textbf{Istanbul (nyc)}: Istanbul is a code coverage tool that integrates with Jest, providing detailed reports on which parts of the codebase are covered by tests, helping to identify untested code.
@@ -662,6 +670,7 @@ as a Rev 0 demo for the supervisor.}
 
 \wss{This section might reference back to the SRS verification section.}
 
+\newpage
 \section{System Tests}
 
 \subsection{Tests for Functional Requirements}
@@ -802,7 +811,7 @@ The manual input system is responsible for outlining fields that the user must f
 
 \textbf{Test Case Derivation:} Ensures users can manually input their receipt/expense in case their image isn't able to be processed or they want to manually input them. The test verifies that manually inputted expense data is processed correctly
 
-\textbf{How test will be performed:} From the expense tracker page, the user/tester will select the “manually input expenses” option and fill out the corresponding fields for category, item, item cost and date. They will then validate that all manual entries have been processed in the finalized expenses screen and match their inputs.	
+\textbf{How test will be performed:} From the expense tracker page, the user/tester will select the "manually input expenses" option and fill out the corresponding fields for category, item, item cost and date. They will then validate that all manual entries have been processed in the finalized expenses screen and match their inputs.	
 
 \end{enumerate}
 
@@ -877,7 +886,7 @@ This subsection covers tests required to verify functionality for item recogniti
 
 \textbf{Input:} Apply categorization based on item names.
 
-\textbf{Output:} Items are correctly categorized (i.e. milk under “Groceries”).
+\textbf{Output:} Items are correctly categorized (i.e. milk under "Groceries").
 
 \textbf{Test Case Derivation:} The test validates organized expense tracking accuracy by categorizing items under common expense categories
 
@@ -944,13 +953,13 @@ This subsection covers tests required to verify the accuracy of the system in pr
 					
 \textbf{Input/Condition:} Test receipts containing various sets of key information (item names, quantities, prices, and dates).
 					
-\textbf{Output/Result:} Model’s accuracy measured by the percentage of key information extracted correctly.
+\textbf{Output/Result:} Model's accuracy measured by the percentage of key information extracted correctly.
 					
 \textbf{How test will be performed:} The output will be compared with the initially inputted test receipts to compare information. The accuracy will be computed by determining the percentage of correctly identified and extracted information and will be determined if it meets the 80\% threshold.
 
 \item{test-ACC-2\\}
 
-\textbf{Description:} The machine learning model must categorize expenses into predefined categories (e.g., groceries, utilities, entertainment) with at least 90\% precision to ensure users’ financial data is correctly organized.
+\textbf{Description:} The machine learning model must categorize expenses into predefined categories (e.g., groceries, utilities, entertainment) with at least 90\% precision to ensure users' financial data is correctly organized.
 
 \textbf{Type:} Manual
 					
@@ -1000,7 +1009,7 @@ This subsection covers tests required to verify the accuracy of the system in pr
 					
 \textbf{Input/Condition:} A dataset of transactions across different periods and categories.
 					
-\textbf{Output/Result:} The application’s summation accuracy is assessed.
+\textbf{Output/Result:} The application's summation accuracy is assessed.
 					
 \textbf{How the Test Will Be Performed:} The system will input the transaction data and verify that the calculated totals are accurate, ensuring the application meets the 99\% accuracy requirement in summation.
 
@@ -1265,7 +1274,7 @@ This subsection covers tests required to assess the understandability and clarit
 
 \item{test-UND-2\\}
 
-\textbf{Description:} The application’s UI must be designed with clarity, using clear labels, icons, and tooltips, and the codebase must be organized logically, allowing easy navigation.
+\textbf{Description:} The application's UI must be designed with clarity, using clear labels, icons, and tooltips, and the codebase must be organized logically, allowing easy navigation.
 
 \textbf{Type:} Manual
 					
@@ -1307,7 +1316,7 @@ This subsection covers tests required to assess the understandability and clarit
 
 \item{test-UND-5\\}
 
-\textbf{Description:} The language and terminology used throughout the application’s UI must align with users’ mental models, using familiar terms.
+\textbf{Description:} The language and terminology used throughout the application's UI must align with users' mental models, using familiar terms.
 
 \textbf{Type:} Manual
 					
@@ -1330,13 +1339,13 @@ This subsection covers tests required to ensure compliance with relevant regulat
 
 \item{test-REG-1\\}
 
-\textbf{Description:} The system must comply with Canada’s Privacy Act and Financial Administration Act to ensure the privacy and security of user data and the secure handling of financial information.
+\textbf{Description:} The system must comply with Canada's Privacy Act and Financial Administration Act to ensure the privacy and security of user data and the secure handling of financial information.
 
 \textbf{Type:} Manual
 					
 \textbf{Initial State:} The system is fully implemented and operational.
 					
-\textbf{Input/Condition:} The user/tester reviews the system’s data handling policies and financial procedures.
+\textbf{Input/Condition:} The user/tester reviews the system's data handling policies and financial procedures.
 					
 \textbf{Output/Result:} The system must demonstrate adherence to both regulatory acts through documented policies and secure practices.
 					
