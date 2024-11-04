@@ -580,16 +580,60 @@ Below is a comprehensive list of recommended V\&V techniques and a corresponding
 
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
+\subsubsection{Verification Techniques}
 
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+\begin{enumerate}
+	\item \textbf{Code Walkthroughs}:
+	\begin{itemize}
+		\item \textbf{Purpose}:Collaborative sessions where developers explain their code to peers.
+		\item \textbf{Focus Area(s)}: Core functions like receipt parsing, expense categorization, and AI integration.
+		\item \textbf{Goal}: Increase team familiarity with code components and detect early logical or design errors.
+	\end{itemize}
+	\item \textbf{Code Inspections}:
+	\begin{itemize}
+		\item \textbf{Purpose}: Formal, structured code reviews based on a project-specific checklist.
+		\item \textbf{Checklist Criteria}:
+		\begin{itemize}
+			\item Adherence to coding standards and proper error handling.
+			\item Efficient use of resources (especially for image processing and AI tasks).
+			\item Consistent structure, naming conventions, and formatting.
+		\end{itemize}
+		\item \textbf{Goal}: Enforce best practices, maintain code readability, and ensure alignment with functional requirements.
+	\end{itemize}
+	\item \textbf{Static Analysis}:
+	\begin{itemize}
+		\item \textbf{Tools}: ESLint, Prettier
+		\item \textbf{Checks Performed}:
+		\begin{itemize}
+			\item Syntax errors, unused code, and code smells.
+			\item Security vulnerabilities, especially in data handling and storage.
+			\item Code complexity, duplication, and performance.
+			\item Maintains a uniform code style so that codebase becomes more readable, navigable and manageable.
+		\end{itemize}
+		\item \textbf{Goal}: Identify issues automatically, maintain security, and ensure high code quality.
+	\end{itemize}
+	\item \textbf{Unit Testing}:
+	\begin{itemize}
+		\item \textbf{Purpose}: Verify that individual functions and components operate correctly in isolation.
+		\item \textbf{Key Functions to Test}: Data extraction from receipts, categorization logic, and budget calculations.
+		\item \textbf{Coverage Goal}: Achieve >80\% coverage on core functions.
+		\item \textbf{Goal}: Ensure reliability and accuracy at the component level.
+	\end{itemize}
+	\item \textbf{Integration Testing}:
+	\begin{itemize}
+		\item \textbf{Purpose}: Test interactions between modules to ensure data flows as expected.
+		\item \textbf{Key Interactions to Verify}: Data flow between the AI model, backend, and frontend UI.
+		\item \textbf{Goal}: Ensure seamless integration of AI functionality with other app components.
+	\end{itemize}
+	\item \textbf{Regression Testing}:
+	\begin{itemize}
+		\item \textbf{Purpose}: Prevent new updates from disrupting existing features.
+		\item \textbf{Scope}: Entire application with emphasis on areas impacted by recent changes or updates.
+		\item \textbf{Process}: Continuously updated regression suite covering core features and AI updates.
+		\item \textbf{Goal}: Maintain stability and functionality across iterative changes.
+	\end{itemize}
+\end{enumerate}
 
-\wss{The final class presentation in CAS 741 could be used as a code
-walkthrough.  There is also a possibility of using the final presentation (in
-CAS741) for a partial usability survey.}
 
 \newpage
 
