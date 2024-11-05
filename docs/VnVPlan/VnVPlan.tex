@@ -830,7 +830,7 @@ This subsection covers tests required to verify tests revolving around user acco
 
 \textbf{Description:} The user should be able to create an account with specified name, email address and password
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 					
 \textbf{Initial State:} The app is on the account creation screen and there is no existing account with the test email
 					
@@ -846,7 +846,7 @@ This subsection covers tests required to verify tests revolving around user acco
 
 \textbf{Description:} The user should be able to login with valid credentials
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 					
 \textbf{Initial State:} The app is on the login page and a registered account has been created with the corresponding testing credentials
 					
@@ -862,7 +862,7 @@ This subsection covers tests required to verify tests revolving around user acco
 
 \textbf{Description:} The user should be able to logout of the app
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 					
 \textbf{Initial State:} The user is already logged into the app
 					
@@ -878,7 +878,7 @@ This subsection covers tests required to verify tests revolving around user acco
 
 \textbf{Description:} Users should be able to update account information after initial setup
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} User is logged in and on the account settings screen
 
@@ -889,6 +889,46 @@ This subsection covers tests required to verify tests revolving around user acco
 \textbf{Test Case Derivation:} The test ensures that users are able to manage and update their account information after initial setup
 
 \textbf{How test will be performed:} A tester/user will modify the account fields, save, and verify that updates are displayed correctly on the profile.
+
+\item{test-UAM-5}
+
+\textbf{Description:} Users should not be able to access the application without
+logging in.
+
+\textbf{Control:} Functional
+
+\textbf{Initial State:} The application is open and the user has not logged in.
+
+\textbf{Input:} Attempt to access the application without logging in.
+
+\textbf{Output:} The application should prompt the user to log in.
+
+\textbf{Test Case Derivation:} The test verifies that the application requires
+users to log in before accessing its features.
+
+\textbf{How test will be performed:} The tester will attempt to access the
+application without logging in and verify that the application prompts them to log
+in.
+
+\item{test-UAM-6}
+
+\textbf{Description:} Users should be able to reset their password.
+
+\textbf{Control:} Functional
+
+\textbf{Initial State:} The application is open and the user has not logged in.
+
+\textbf{Input:} Use the application's password reset feature.
+
+\textbf{Output:} The user receives an email with instructions to reset their password.
+
+\textbf{Test Case Derivation:} The test verifies that users can reset their
+password.
+
+\textbf{How test will be performed:} The tester will use the application's
+password reset feature and verify that they receive an email with instructions
+to reset their password.
+
 \end{enumerate}
 
 \subsubsection{Image Processing Tests}
@@ -901,7 +941,7 @@ This subsection covers tests required to verify tests revolving around receipt s
 
 \textbf{Description:} User should be able to upload an image for processing
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} The application is on the receipt upload screen.
 
@@ -917,7 +957,7 @@ This subsection covers tests required to verify tests revolving around receipt s
 
 \textbf{Description:} Users should be able to preview an uploaded image before processing and confirm/reupload the image based on preference
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} Image is uploaded and displayed as a preview.
 
@@ -928,6 +968,28 @@ This subsection covers tests required to verify tests revolving around receipt s
 \textbf{Test Case Derivation:} Ensures users can review and confirm the uploaded image, as required for accuracy before processing.
 
 \textbf{How test will be performed:} The user/tester previews the image, confirms, and observes if it advances to processing. Alternatively, users can retake and verify they are taken back to the image upload process
+
+\item{test-IP-3\\}
+
+\textbf{Description:} There is a limit to the file size of the image that can be
+uploaded.
+
+\textbf{Control:} Functional
+
+\textbf{Initial State:} The application is open and the user is on the image
+upload screen.
+
+\textbf{Input:} Attempt to upload an image that exceeds the file size limit.
+
+\textbf{Output:} The application should display an error message indicating that
+the file size limit has been exceeded.
+
+\textbf{How test will be performed:} The tester will attempt to upload an image
+that exceeds the file size limit and verify that the application displays an
+error message.
+
+
+
 \end{enumerate}
 
 \subsubsection{Manual Expense Input Tests}
@@ -941,7 +1003,7 @@ The manual input system is responsible for outlining fields that the user must f
 
 \textbf{Description:} Users should be able to manually input expenses
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} Image captured or uploaded cannot be processed or the user wants to manually input items from their receipt from the expense tracker view
 
@@ -1004,7 +1066,7 @@ This subsection covers tests required to verify functionality for item recogniti
 
 \textbf{Description:} Uploaded receipts should be processed and all items, their quantities and prices should all be correctly recognized with an accuracy of TARGET\_OCR\_MODEL\_ACCURACY
 
-\textbf{Control:} Automatic
+\textbf{Control:} Functional
 
 \textbf{Initial State:} User confirms uploaded receipt is ready to be processed
 
@@ -1020,7 +1082,7 @@ This subsection covers tests required to verify functionality for item recogniti
 
 \textbf{Description:} Uploaded receipts should categorize items on them under common expense categories (i.e. groceries, entertainment, etc..)
 
-\textbf{Control:} Automatic
+\textbf{Control:} Functional
 
 \textbf{Initial State:} Receipt has been scanned and items are recognized from the receipt
 
@@ -1031,6 +1093,29 @@ This subsection covers tests required to verify functionality for item recogniti
 \textbf{Test Case Derivation:} The test validates organized expense tracking accuracy by categorizing items under common expense categories
 
 \textbf{How test will be performed:} Run categorization on a processed receipt and check that items are correctly sorted
+
+
+\item{test-RS-3\\}
+
+\textbf{Description:} Verify that users can modify receipt data.
+
+\textbf{Control:} Functional
+
+\textbf{Initial State:} Receipt has been scanned and items are recognized and
+categorized from the receipt
+
+\textbf{Input:} Modify item names, quantities, prices, and categories.
+
+\textbf{Output:} Manual changes are saved and reflected in the expense tracker.
+
+\textbf{Test Case Derivation:} The test verifies that users can manually modify
+receipt data.
+
+\textbf{How test will be performed:} The tester will modify item names,
+quantities, prices, and categories and verify that the changes are saved and
+reflected in the expense tracker.
+
+
 \end{enumerate}
 
 \subsubsection{Financial Tracking Tests}
@@ -1044,7 +1129,7 @@ This subsection verifies the functionality of financial tracking features such h
 
 \textbf{Description:} Users should be able view spending their spending history by category and trends
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} Application has recorded user's past expenses and user is on the expense tracking view
 
@@ -1060,7 +1145,7 @@ This subsection verifies the functionality of financial tracking features such h
 
 \textbf{Description:} Users should be able to set and track their budgets
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} User is on the budgeting window and no current budget is set for the specified category
 
@@ -1071,6 +1156,29 @@ This subsection verifies the functionality of financial tracking features such h
 \textbf{Test Case Derivation:} This test confirms the ability for users to set and track budgets
 
 \textbf{How test will be performed:} The tester/user sets a budget for a specific category, then verify it appears and updates as expected in tracking
+
+\item{test-FT-3\\}
+
+\textbf{Description:} Verify that users get notified when they are close to
+exceeding their budget or when a goal has been reached.
+
+\textbf{Control:} Functional
+
+\textbf{Initial State:} User has set a budget for a specific category and is
+close to exceeding it. OR User is also close to reaching a budgeting goal.
+
+\textbf{Input:} User inputs an expense that would exceed the budget. OR User
+inputs an income that would reach a savings goal.
+
+\textbf{Output:} User receives a notification.
+
+\textbf{Test Case Derivation:} The test verifies that users are notified when
+they are close to exceeding their budget or when a goal has been reached.
+
+\textbf{How test will be performed:} The tester will input an expense that would
+exceed the budget and verify that they receive a notification. The tester will
+also input an income that would reach a savings goal and verify that they receive
+a notification.
 
 \end{enumerate}
 
