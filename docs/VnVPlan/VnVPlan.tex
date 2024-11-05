@@ -930,49 +930,68 @@ This subsection covers tests required to verify the accuracy of the system in pr
 
 \item{test-ACC-1\\}
 
-\textbf{Description:} The machine learning model must achieve at least 80\% accuracy in correctly identifying and extracting key information (i.e., item names, quantities, prices, dates) from receipts.
+\textbf{Description:} Verify the accuracy of the machine learning model in
+correctly identifying and extracting key information (i.e., item names,
+quantities, prices, dates) from receipts.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} Machine learning model is ready for testing with a dataset of receipts prepared for evaluation.
+\textbf{Initial State:} Machine learning model is ready for testing with a
+dataset of receipts prepared for evaluation.
 					
-\textbf{Input/Condition:} Test receipts containing various sets of key information (item names, quantities, prices, and dates).
+\textbf{Input/Condition:} Test receipts containing various sets of key
+information (item names, quantities, prices, and dates).
 					
-\textbf{Output/Result:} Model's accuracy measured by the percentage of key information extracted correctly.
+\textbf{Output/Result:} Model's accuracy measured by the percentage of key
+information extracted correctly.
 					
-\textbf{How test will be performed:} The output will be compared with the initially inputted test receipts to compare information. The accuracy will be computed by determining the percentage of correctly identified and extracted information and will be determined if it meets the 80\% threshold.
+\textbf{How test will be performed:} The output will be compared with the
+initially inputted test receipts to compare information. The accuracy will be
+computed by determining the percentage of correctly identified and extracted
+information and will be determined if it meets the 80\% threshold.
 
 \item{test-ACC-2\\}
 
-\textbf{Description:} The machine learning model must categorize expenses into predefined categories (e.g., groceries, utilities, entertainment) with at least 90\% precision to ensure users' financial data is correctly organized.
+\textbf{Description:} Verify the accuracy of the machine learning model in
+categorizing expenses into predefined categories.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} Machine learning model is set to have predetermined expense categories.
+\textbf{Initial State:} Machine learning model is set to have predetermined
+expense categories.
 					
 \textbf{Input/Condition:} A set of receipt transactions with known categories.
 					
-\textbf{Output/Result:} The model will output the categories of the given transactions, and the precision will be calculated from this.
+\textbf{Output/Result:} The model will output the categories of the given
+transactions, and the precision will be calculated from this.
 					
-\textbf{How test will be performed:} The model will process the set of transactions and compare the assigned categories to the correct ones. Precision will be measured to see if the 90\% threshold is met.
+\textbf{How test will be performed:} The model will process the set of
+transactions and compare the assigned categories to the correct ones. Precision
+will be measured to see if the 90\% threshold is met.
 
 \item{test-ACC-3\\}
 
-\textbf{Description:} All monetary calculations (e.g., totals, budgets, currency conversions) must maintain a precision of up to two decimal places to ensure accurate financial reporting.
+\textbf{Description:} Verify that all monetary calculations maintain a
+precision of up to two decimal places.
 
-\textbf{Type:} Manual
+\textbf{Type:} Automatic
 					
 \textbf{Initial State:} The application is ready for financial calculations.
 					
-\textbf{Input/Condition:} A set of monetary calculations (budget changes, new purchases).
+\textbf{Input/Condition:} A set of monetary calculations (budget changes, new
+purchases).
 					
-\textbf{Output/Result:} The output should display values rounded to two decimal places.
+\textbf{Output/Result:} The output should display values rounded to two decimal
+places.
 					
-\textbf{How the Test Will Be Performed:} The system will perform different calculations and verify that all results maintain precision up to two decimal places as specified.
+\textbf{How the Test Will Be Performed:} The system will perform different
+calculations and verify that all results maintain precision up to two decimal
+places as specified.
 
 \item{test-ACC-4\\}
 
-\textbf{Description:} The OCR model must correctly recognize text from images of receipts with a minimum accuracy rate of 90\%, ensuring minimal manual corrections by users.
+\textbf{Description:} Verify the accuracy of the OCR model in recognizing text
+from images of receipts.
 
 \textbf{Type:} Manual
 					
@@ -980,37 +999,48 @@ This subsection covers tests required to verify the accuracy of the system in pr
 					
 \textbf{Input/Condition:} A set of receipt images with known text.
 					
-\textbf{Output/Result:} The OCR model's accuracy in recognizing text is calculated.
+\textbf{Output/Result:} The OCR model's accuracy in recognizing text is
+calculated.
 					
-\textbf{How the Test Will Be Performed:} The OCR model will process the receipt images and compare the recognized text to the actual text, ensuring an accuracy rate of at least 90\%.
+\textbf{How the Test Will Be Performed:} The OCR model will process the receipt
+images and compare the recognized text to the actual text, ensuring an accuracy
+rate of at least TARGET\_OCR\_MODEL\_ACCURACY\%.
 
 \item{test-ACC-5\\}
 
-\textbf{Description:} The application must guarantee 99\% accuracy in summing up expenses, incomes, and savings across different periods and categories, ensuring no rounding or summation errors.
+\textbf{Description:} Verify the accuracy of the application in summing up
+expenses, incomes, and savings across different periods and categories.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is set to calculate expenses, incomes, and savings.
+\textbf{Initial State:} The application is set to calculate expenses, incomes,
+and savings.
 					
-\textbf{Input/Condition:} A dataset of transactions across different periods and categories.
+\textbf{Input/Condition:} A dataset of transactions across different periods and
+categories.
 					
 \textbf{Output/Result:} The application's summation accuracy is assessed.
 					
-\textbf{How the Test Will Be Performed:} The system will input the transaction data and verify that the calculated totals are accurate, ensuring the application meets the 99\% accuracy requirement in summation.
+\textbf{How the Test Will Be Performed:} The system will input the transaction
+data and verify that the calculated totals are accurate, ensuring the
+application meets the 99\% accuracy requirement in summation.
 
 \item{test-ACC-6\\}
 
-\textbf{Description:} If the application syncs data across multiple devices, it should ensure 100\% consistency of financial data across all instances.
+\textbf{Description:} Verify that data synced across multiple devices is
+consistent.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is synced across multiple devices.
+\textbf{Initial State:} The application is up to date. User is logged in.
 					
 \textbf{Input/Condition:} Financial data entered on one device.
 					
 \textbf{Output/Result:} Financial data appears on all devices.
 					
-\textbf{How the Test Will Be Performed:} The tester will input financial data on one device, sync, and verify that all other devices show the same data to ensure 100\% consistency.
+\textbf{How the Test Will Be Performed:} The tester will input financial data on
+one device, sync, and verify that all other devices show the same data to ensure
+100\% consistency.
 
 \end{enumerate}
 
@@ -1089,7 +1119,7 @@ easy-to-navigate interface, allowing users to perform common tasks (e.g., adding
 expenses, viewing budgets) within two to three clicks, and complete tasks such
 as adding a new receipt or setting a budget limit within 10 seconds on average.
 
-\textbf{Type:} Manual
+\textbf{Type:} Manual, Usability Testing
 					
 \textbf{Initial State:} The application is ready for user interaction.
 					
@@ -1109,7 +1139,7 @@ duration taken.
 understand core application features within five minutes, supported by an
 introductory tutorial and tooltips.
 
-\textbf{Type:} Manual
+\textbf{Type:} Manual, Usability Testing
 					
 \textbf{Initial State:} The application is installed and running. The state of
 the application is not authenticated.
@@ -1130,7 +1160,7 @@ tooltips, error messages, and corrective guidance.
 relevant, minimizing cognitive effort while ensuring that only essential details
 are shown on the main dashboard, with advanced options accessible through menus.
 
-\textbf{Type:} Manual
+\textbf{Type:} Manual, Usability Testing
 					
 \textbf{Initial State:} The application is displaying its main dashboard.
 					
@@ -1149,7 +1179,7 @@ design aligns with the usability requirements.
 \textbf{Description:} It should be easy for users to recover from errors and
 understand when an incorrect input is detected.
 
-\textbf{Type:} Manual
+\textbf{Type:} Manual, Usability Testing
 					
 \textbf{Initial State:} The application is installed and running.
 					
@@ -1174,24 +1204,20 @@ This subsection covers tests required to ensure the security and protection of u
 
 \item{test-SEC-1\\}
 
-\textbf{Description:} The system must implement secure password storage and
-authentication mechanisms, as well as ensure that all data transmitted between
-the client and server is encrypted to protect user data.
+\textbf{Description:} Verify that passwords are securely stored and
+authentication is required for all user actions.
 
-\textbf{Type:} Automatic
+\textbf{Type:} Inspection, Manual
 					
 \textbf{Initial State:} The system is fully deployed and operational.
 					
-\textbf{Input/Condition:} User attempts to create an account and log in, while
-data transmission occurs between client and server.
+\textbf{Input/Condition:} A tester attempts to use SQL injection to access
+the application.
 					
-\textbf{Output/Result:} The system must confirm successful account creation and
-authentication with appropriate messages, and all data transmitted must show as
-encrypted.
+\textbf{Output/Result:} The tester should be unable to access the application.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will create an account,
-log in, and monitor the data transmission to verify that passwords are securely
-stored and that encryption protocols are in place for all data exchanged.
+\textbf{How the Test Will Be Performed:} The tester will attempt to use SQL
+injection to access the application.
 
 \end{enumerate}
 
@@ -1247,11 +1273,11 @@ applied to the application.
 \textbf{Input/Condition:} A new code change is made.
 					
 \textbf{Output/Result:} The pipeline runs automated tests and checks for
-coverage. If the coverage criteria is not met, the change will be blocked from
-merging.
+coverage. 
 					
-\textbf{How the Test Will Be Performed:} Tests and coverage will be checked using
-GitHub Actions.
+\textbf{How the Test Will Be Performed:} Tests and coverage will be monitored
+using GitHub Actions. If coverage criteria is not met or if any tests fail, the
+change will be blocked from merging.
 
 \end{enumerate}
 
@@ -1367,104 +1393,101 @@ This subsection covers tests required to assess the understandability and clarit
 
 \item{test-UND-1\\}
 
-\textbf{Description:} All source code must be thoroughly documented with inline comments and external documentation, and variables, functions, classes, and modules must follow consistent and meaningful naming conventions.
+\textbf{Description:} To validate that the codebase is well-documented,
+organized, and follows consistent naming conventions and coding standards.
 
-\textbf{Type:} Static
+\textbf{Type:} Static, Code Review
 					
-\textbf{Initial State:} The codebase is complete and ready for review.
+\textbf{Initial State:} The codebase is up to date and ready for review.
 					
-\textbf{Input/Condition:} The user/tester reviews the code and associated documentation.
+\textbf{Input/Condition:} The inspector reviews the code and associated
+documentation.
 					
-\textbf{Output/Result:} The system must show that code components are well-documented, with meaningful names that describe functionality.
+\textbf{Output/Result:} A review report containing a summary of the codebase's
+documentation, organization, and adherence to coding standards.
 					
-\textbf{How the Test Will Be Performed:} A team of developers will conduct a walkthrough of the codebase, using static analysis tools to check for documentation completeness and adherence to naming conventions. The results will be documented in a compliance report, which will be reviewed by the development team.
+\textbf{How the Test Will Be Performed:} A team of developers will conduct a
+walkthrough of the codebase, using static analysis tools to check for
+documentation completeness and adherence to naming conventions. A designated
+reviewer will conduct a walkthrough of the API documentation and commit history,
+checking for completeness and clarity. The results will be documented in a
+compliance report, which will be reviewed by the development team.
 
 \item{test-UND-2\\}
 
-\textbf{Description:} The application's UI must be designed with clarity, using clear labels, icons, and tooltips, and the codebase must be organized logically, allowing easy navigation.
+\textbf{Description:} To validate that the user interface (UI) is simple to
+navigate and understand.
 
-\textbf{Type:} Manual
+\textbf{Type:} Usability Test
 					
-\textbf{Initial State:} The application is fully developed.
+\textbf{Initial State:} The application is up to date.
 					
-\textbf{Input/Condition:} The user/tester interacts with the UI and examines the code structure.
+\textbf{Input/Condition:} The user/tester interacts with the UI.
 					
-\textbf{Output/Result:} The system must provide a UI that is easy to navigate, with clear labels and organized code files.
+\textbf{Output/Result:} A usability report containing feedback on the UI's
+clarity and organization.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will manually navigate the UI and review the directory structure of the codebase to assess clarity and organization.
+\textbf{How the Test Will Be Performed:} The user/tester will manually navigate
+the UI and fill in a usability survey, providing feedback on the clarity and
+organization of the interface.
 
 \item{test-UND-3\\}
 
-\textbf{Description:} The code must follow industry-standard formatting guidelines, and the application must provide clear, descriptive error messages for users and developers.
-
-\textbf{Type:} Static
-					
-\textbf{Initial State:} The codebase and application are fully developed.
-					
-\textbf{Input/Condition:} The user/tester reviews the code formatting and triggers error messages during testing.
-					
-\textbf{Output/Result:} The system must show properly formatted code and clear error messages that explain issues and solutions.
-					
-\textbf{How the Test Will Be Performed:} A review team will perform code inspections, using static analysis tools to evaluate code formatting against industry standards. During application testing, users will intentionally trigger errors to assess the clarity and helpfulness of error messages. Feedback will be collected and addressed in subsequent development cycles.
-
-\item{test-UND-4\\}
-
-\textbf{Description:} Any APIs must include detailed documentation, and all major changes to the codebase should be accompanied by clear commit messages and changelogs.
-
-\textbf{Type:} Static
-					
-\textbf{Initial State:} The APIs and codebase are implemented.
-					
-\textbf{Input/Condition:} The user/tester reviews API documentation and commit history.
-					
-\textbf{Output/Result:} The system must provide comprehensive API documentation and meaningful commit messages that clarify changes.
-					
-\textbf{How the Test Will Be Performed:} A designated reviewer will conduct a walkthrough of the API documentation and commit history, checking for completeness and clarity. Automated documentation generation tools may be used to assist in this process. The findings will be compiled into a report and discussed in a review meeting with the development team.
-
-\item{test-UND-5\\}
-
-\textbf{Description:} The language and terminology used throughout the application's UI must align with users' mental models, using familiar terms.
+\textbf{Description:} To validate that error messages are clear to the user and
+logs are informative to developers.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is deployed.
+\textbf{Initial State:} The application is up to date.
 					
-\textbf{Input/Condition:} The user/tester evaluates the UI language and terminology.
+\textbf{Input/Condition:} The user/tester intentionally triggers an error.
 					
-\textbf{Output/Result:} The system must use non-technical, familiar terms throughout the UI.
+\textbf{Output/Result:} The user will provide feedback on the clarity of the
+error message, and the developers will assess the informativeness of the logs.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will manually navigate the UI to assess the terminology used and provide feedback on its alignment with user expectations.
+\textbf{How the Test Will Be Performed:} The user/tester will intentionally
+trigger an error and provide feedback on the clarity of the error message. The
+developers will review the logs to ensure they contain sufficient information to
+diagnose the issue.
 
 \end{enumerate}
 
 \subsubsection{Regulatory Tests}
 
-This subsection covers tests required to ensure compliance with relevant regulations and standards. \\
+This subsection covers tests required to ensure compliance with relevant
+regulations and standards. \\
 \textit{Nonfunctional Requirements: NFR40 - NFR 41}
 
 \begin{enumerate}
 
 \item{test-REG-1\\}
 
-\textbf{Description:} The system must comply with Canada's Privacy Act and Financial Administration Act to ensure the privacy and security of user data and the secure handling of financial information.
+\textbf{Description:} The system must comply with Canada's Privacy Act and
+Financial Administration Act to ensure the privacy and security of user data and
+the secure handling of financial information.
 
-\textbf{Type:} Manual
+\textbf{Type:} Manual, Inspection
 					
-\textbf{Initial State:} The system is fully implemented and operational.
+\textbf{Initial State:} The application is up to date.
 					
-\textbf{Input/Condition:} The user/tester reviews the system's data handling policies and financial procedures.
+\textbf{Input/Condition:} An inspector reviews the system's data handling
+policies and financial procedures.
 					
-\textbf{Output/Result:} The system must demonstrate adherence to both regulatory acts through documented policies and secure practices.
+\textbf{Output/Result:} The system must demonstrate adherence to both regulatory
+acts through documented policies and secure practices.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will manually examine relevant documentation, assess data handling procedures, and conduct interviews with compliance and development teams to verify compliance with both the Privacy Act and the Financial Administration Act.
+\textbf{How the Test Will Be Performed:} The inspector will examine relevant
+documentation, assess data handling procedures, and conduct interviews with
+compliance and development teams to verify compliance with both the Privacy Act
+and the Financial Administration Act.
 
 \end{enumerate}
 
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+A traceability matrix between test cases and requirements can be found
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/VnVPlan/traceability_tests_and_requirements.xlsx}{here}.
 
 \newpage
 
