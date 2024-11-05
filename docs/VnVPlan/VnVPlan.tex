@@ -37,21 +37,6 @@
 \bottomrule
 \end{tabularx}
 
-~\\
-\wss{The intention of the VnV plan is to increase confidence in the software.
-However, this does not mean listing every verification and validation technique
-that has ever been devised.  The VnV plan should also be a \textbf{feasible}
-plan. Execution of the plan should be possible with the time and team available.
-If the full plan cannot be completed during the time available, it can either be
-modified to ``fake it'', or a better solution is to add a section describing
-what work has been completed and what work is still planned for the future.}
-
-\wss{The VnV plan is typically started after the requirements stage, but before
-the design stage.  This means that the sections related to unit testing cannot
-initially be completed.  The sections will be filled in after the design stage
-is complete.  the final version of the VnV plan should have all sections filled
-in.}
-
 \newpage
 
 \tableofcontents
@@ -70,7 +55,6 @@ In addition, the following abbreviations are used in this document:\\
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
   V\&V & Verification and Validation\\
   \bottomrule
 \end{tabular}\\
@@ -274,7 +258,7 @@ Attached below is a list of roles available in our V\&V group along with the des
 	\end{itemize}
 	\item Performance Tester
 	\begin{itemize}
-		\item Measures and optimizes the app's performance, focusing on response time, load time, and battery usage (important for a mobile app).
+		\item Measures and optimizes app's performance, focusing on response time, load time, and battery usage (important for a mobile app).
 		\item Conducts stress tests to determine the app's behavior under heavy usage (e.g., scanning multiple receipts in a short period).
 		\item Collaborates with developers to troubleshoot and resolve performance bottlenecks.
 	\end{itemize}
@@ -289,7 +273,7 @@ as it should. \\
 \hrule
 \vspace{10pt}
 
-\textbf{Team Member 1}
+\textbf{Eric Chen}
 \begin{itemize}
 	\item Role(s)
 	\begin{enumerate}
@@ -306,7 +290,7 @@ as it should. \\
 \hrule
 \vspace{10pt}
 
-\textbf{Team Member 2}
+\textbf{Angela Wang}
 \begin{itemize}
 	\item Role(s)
 	\begin{enumerate}
@@ -325,7 +309,9 @@ as it should. \\
 
 \newpage
 
-\textbf{Team Member 3}
+\hrule
+\vspace{10pt}
+\textbf{Fondson Lu}
 \begin{itemize}
 	\item Role(s)
 	\begin{enumerate}
@@ -342,7 +328,7 @@ as it should. \\
 \hrule
 \vspace{10pt}
 
-\textbf{Team Member 4}
+\textbf{Jason Tan}
 \begin{itemize}
 	\item Role(s)
 	\begin{enumerate}
@@ -359,7 +345,7 @@ as it should. \\
 \hrule
 \vspace{10pt}
 
-\textbf{Team Member 5}
+\textbf{Payton Chan}
 \begin{itemize}
 	\item Role(s)
 	\begin{enumerate}
@@ -373,23 +359,10 @@ as it should. \\
 	\end{enumerate}
 \end{itemize}
 
-\wss{Your teammates.  Maybe your supervisor.
-  You should do more than list names.  You should say what each person's role is
-  for the project's verification.  A table is a good way to summarize this information.}
+\hrule
+\vspace{10pt}
 
 \subsection{SRS Verification Plan}
-
-\wss{List any approaches you intend to use for SRS verification.  This may
-  include ad hoc feedback from reviewers, like your classmates (like your
-  primary reviewer), or you may plan for something more rigorous/systematic.}
-
-\wss{If you have a supervisor for the project, you shouldn't just say they will
-read over the SRS.  You should explain your structured approach to the review.
-Will you have a meeting?  What will you present?  What questions will you ask?
-Will you give them instructions for a task-based inspection?  Will you use your
-issue tracker?}
-
-\wss{Maybe create an SRS checklist?}
 
 \subsubsection{Approaches for SRS Verifiation}
 
@@ -480,12 +453,6 @@ issue tracker?}
 
 \subsection{Design Verification Plan}
 
-\wss{Plans for design verification}
-
-\wss{The review will include reviews by your classmates}
-
-\wss{Create a checklists?}
-
 \subsubsection{Specification Verification}
 
 \noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|p{1cm}|p{2.25cm}|}
@@ -564,44 +531,112 @@ issue tracker?}
 
 \subsection{Verification and Validation Plan Verification Plan}
 
-\wss{The verification and validation plan is an artifact that should also be
-verified.  Techniques for this include review and mutation testing.}
+Creating a Verification and Validation (V\&V) plan for a smart AI budgeting app requires a structured and systematic approach to confirm that the application operates accurately, efficiently, and reliably under real-world conditions.
+This app uses advanced AI to parse receipt images, extract relevant information, and categorize expenses, which presents additional challenges for the V\&V process.
+Unlike traditional software applications, an AI-driven app requires validation not only of standard software functionalities but also of the AI model's performance in accurately interpreting various receipt formats, layouts, and data entries.
+This means that the V\&V plan must address both classic software testing elements (such as unit and integration testing) and specific AI model evaluation techniques, like model validation and performance testing, to ensure that the app delivers consistent results. \\
 
-\wss{The review will include reviews by your classmates}
+Given the diverse functionality—spanning expense tracking, budgeting, and financial forecasting—this V\&V approach must encompass both software-level testing and user-centric assessments to verify usability and accuracy from an end-user perspective.
+Below is a comprehensive list of recommended V\&V techniques and a corresponding checklist, each tailored to ensure that the budgeting app meets its design specifications and delivers high-quality, reliable outcomes for users.
 
-\wss{Create a checklists?}
+\subsubsection{V\&V Techniques for Plutos App}
+\noindent \begin{enumerate}
+	\item \textbf{Requirements Review}: Regular reviews of the Software Requirements Specification (SRS) are essential to confirm that all listed requirements align with the project goals. Stakeholders should validate that these requirements meet user needs.
+	\item \textbf{Code Review}: Structured code reviews help to maintain code quality and identify potential issues in the receipt parsing and expense categorization components.
+	\item \textbf{Unit Testing}:Unit tests should cover the core functions, especially those related to parsing and categorizing. Test cases should address a range of inputs, including expected, edge, and invalid cases.
+	\item \textbf{Integration Testing}: Integration testing ensures that the AI model and app components work together seamlessly, verifying the accuracy and consistency of data processing.
+	\item \textbf{System Testing}: System testing is necessary to evaluate the full app functionality, making sure that expense tracking, budgeting, and forecasting features meet the specified requirements.
+	\item \textbf{Acceptance Testing}: End-user testing allows the team to validate that the app performs well in real-world settings, especially in accurately parsing receipts of various formats.
+	\item \textbf{Mutation Testing}: Mutation testing can be used to check the effectiveness of the test cases and to identify any weaknesses in the testing approach.
+	\item \textbf{Regression Testing}: Regression testing is essential to ensure that updates or changes in the AI model or app features do not interfere with existing functionality.
+	\item \textbf{User Interface (UI) Testing}: UI testing helps confirm that the app interface is user-friendly, responsive, and consistent across different devices.
+	\item \textbf{Model Validation}: The AI model should be validated on labeled data to check its performance, especially for accuracy in categorizing expenses based on parsed information.
+	\item \textbf{Performance Testing}: Performance tests can be conducted to measure the app's speed and reliability, especially when processing large receipts or handling multiple users.
+	\item \textbf{Security Testing}: Security testing ensures that financial data is stored and transmitted securely, with protections in place for data encryption and user access.
+\end{enumerate}
+
+\newpage
+
+\subsubsection{V\&V Plan Checklist (Peer Reviews)}
+
+\begin{itemize}
+	\item [\texttt{[ ]}] Review and validate all requirements with stakeholders.
+	\item [\texttt{[ ]}] Conduct code reviews and log issues or recommendations.
+	\item [\texttt{[ ]}] Develop and execute unit tests covering key parsing and categorization functions.
+	\item [\texttt{[ ]}] Perform integration testing for model interactions with the app's front and back end.
+	\item [\texttt{[ ]}] Complete system testing across all app functionalities (tracking, budgeting, forecasting).
+	\item [\texttt{[ ]}] Facilitate acceptance testing sessions with end users to gather real-world feedback.
+	\item [\texttt{[ ]}] Implement mutation testing to strengthen the test suite.
+	\item [\texttt{[ ]}] Schedule regular regression testing, especially after updates or model retraining.
+	\item [\texttt{[ ]}] Conduct comprehensive UI testing for design consistency across devices.
+	\item [\texttt{[ ]}] Evaluate AI model performance, retraining if accuracy is below target.
+	\item [\texttt{[ ]}] Measure and optimize performance for speed and reliability under heavy usage.
+	\item [\texttt{[ ]}] Perform security testing to protect user financial data.
+	\item [\texttt{[ ]}] Document and address all V\&V findings and updates to maintain a high-quality app.
+\end{itemize}
+
+\newpage
 
 \subsection{Implementation Verification Plan}
 
-\wss{You should at least point to the tests listed in this document and the unit
-  testing plan.}
+\subsubsection{Verification Techniques}
 
-\wss{In this section you would also give any details of any plans for static
-  verification of the implementation.  Potential techniques include code
-  walkthroughs, code inspection, static analyzers, etc.}
+\begin{enumerate}
+	\item \textbf{Code Walkthroughs}:
+	\begin{itemize}
+		\item \textbf{Purpose}:Collaborative sessions where developers explain their code to peers.
+		\item \textbf{Focus Area(s)}: Core functions like receipt parsing, expense categorization, and AI integration.
+		\item \textbf{Goal}: Increase team familiarity with code components and detect early logical or design errors.
+	\end{itemize}
+	\item \textbf{Code Inspections}:
+	\begin{itemize}
+		\item \textbf{Purpose}: Formal, structured code reviews based on a project-specific checklist.
+		\item \textbf{Checklist Criteria}:
+		\begin{itemize}
+			\item Adherence to coding standards and proper error handling.
+			\item Efficient use of resources (especially for image processing and AI tasks).
+			\item Consistent structure, naming conventions, and formatting.
+		\end{itemize}
+		\item \textbf{Goal}: Enforce best practices, maintain code readability, and ensure alignment with functional requirements.
+	\end{itemize}
+	\item \textbf{Static Analysis}:
+	\begin{itemize}
+		\item \textbf{Tools}: ESLint, Prettier
+		\item \textbf{Checks Performed}:
+		\begin{itemize}
+			\item Syntax errors, unused code, and code smells.
+			\item Security vulnerabilities, especially in data handling and storage.
+			\item Code complexity, duplication, and performance.
+			\item Maintains a uniform code style so that codebase becomes more readable, navigable and manageable.
+		\end{itemize}
+		\item \textbf{Goal}: Identify issues automatically, maintain security, and ensure high code quality.
+	\end{itemize}
+	\item \textbf{Unit Testing}:
+	\begin{itemize}
+		\item \textbf{Purpose}: Verify that individual functions and components operate correctly in isolation.
+		\item \textbf{Key Functions to Test}: Data extraction from receipts, categorization logic, and budget calculations.
+		\item \textbf{Coverage Goal}: Achieve >80\% coverage on core functions.
+		\item \textbf{Goal}: Ensure reliability and accuracy at the component level.
+	\end{itemize}
+	\item \textbf{Integration Testing}:
+	\begin{itemize}
+		\item \textbf{Purpose}: Test interactions between modules to ensure data flows as expected.
+		\item \textbf{Key Interactions to Verify}: Data flow between the AI model, backend, and frontend UI.
+		\item \textbf{Goal}: Ensure seamless integration of AI functionality with other app components.
+	\end{itemize}
+	\item \textbf{Regression Testing}:
+	\begin{itemize}
+		\item \textbf{Purpose}: Prevent new updates from disrupting existing features.
+		\item \textbf{Scope}: Entire application with emphasis on areas impacted by recent changes or updates.
+		\item \textbf{Process}: Continuously updated regression suite covering core features and AI updates.
+		\item \textbf{Goal}: Maintain stability and functionality across iterative changes.
+	\end{itemize}
+\end{enumerate}
 
-\wss{The final class presentation in CAS 741 could be used as a code
-walkthrough.  There is also a possibility of using the final presentation (in
-CAS741) for a partial usability survey.}
 
 \newpage
 
 \subsection{Automated Testing and Verification Tools}
-
-\wss{What tools are you using for automated testing.  Likely a unit testing
-  framework and maybe a profiling tool, like ValGrind.  Other possible tools
-  include a static analyzer, make, continuous integration tools, test coverage
-  tools, etc.  Explain your plans for summarizing code coverage metrics.
-  Linters are another important class of tools.  For the programming language
-  you select, you should look at the available linters.  There may also be tools
-  that verify that coding standards have been respected, like flake9 for
-  Python.}
-
-\wss{If you have already done this in the development plan, you can point to
-that document.}
-
-\wss{The details of this section will likely evolve as you get closer to the
-  implementation.}
 
 \begin{enumerate}
 	\item \textbf{Unit Testing Frameworks}
@@ -619,6 +654,7 @@ that document.}
 		\item \textbf{GitHub Actions}: This tool can be set up to run workflows that execute tests, linters, and builds automatically on every pull request or commit, ensuring that code quality is maintained consistently (i.e. Husky).
 		\item \textbf{Jenkins}: Jenkins is an open-source automation server that facilitates continuous integration and continuous deployment processes. It can be configured to automatically run tests, linting, and builds every time code is pushed to the repository, ensuring that code quality is maintained consistently.
 	\end{itemize}
+	\newpage
 	\item \textbf{Test Coverage Tools}
 	\begin{itemize}
 		\item \textbf{Istanbul (nyc)}: Istanbul is a code coverage tool that integrates with Jest, providing detailed reports on which parts of the codebase are covered by tests, helping to identify untested code.
@@ -641,27 +677,139 @@ that document.}
 	\end{itemize}
 \end{enumerate}
 
-\noindent For additional information, please consult the development plan.
+\noindent For additional information, please consult the \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/DevelopmentPlan/DevelopmentPlan.pdf}{development plan}.
 \subsection{Software Validation Plan}
 
-\wss{If there is any external data that can be used for validation, you should
-  point to it here.  If there are no plans for validation, you should state that
-  here.}
+\begin{enumerate}
+	\item \textbf{Objective}
+	\begin{itemize}
+		\item The objective of this software validation plan is to ensure that the Plutos budgeting app meets all specified requirements and user needs for accurately parsing receipts, categorizing expenses, and generating reliable financial insights. The plan aims to validate the app’s AI-driven capabilities, functional accuracy, security, and overall user experience.
+	\end{itemize}
+	\item \textbf{Scope} \\
+	This validation plan will cover the following main functionalities:
+	\begin{itemize}
+		\item \textbf{Receipt Parsing and Data Extraction}: Ensuring accurate interpretation of various receipt formats.
+		\item \textbf{Expense Categorization}: Validating that extracted data is correctly categorized.
+		\item \textbf{Expense Tracking and Budgeting}: Verifying that users can effectively track and budget expenses.
+		\item \textbf{Forecasting Capabilities}: Ensuring the app provides meaningful insights for future spending.
+		\item \textbf{User Interface (UI) and User Experience (UX)}: Confirming ease of use, responsiveness, and accessibility across devices.
+		\item \textbf{Data Security and Privacy}: Verifying secure data handling, storage, and compliance with privacy standards.
+	\end{itemize}
+	\newpage
+	\item \textbf{Validation Techniques}
+	The validation process will employ the following techniques to confirm that the software performs as intended and fulfills user requirements.
+	\begin{enumerate}
+		\item \textbf{Requirements Validation}
+		\begin{itemize}
+			\item \textbf{Purpose}: Ensure that the system requirements, as outlined in the Software Requirements Specification (SRS), reflect user needs.
+			\item \textbf{Techniques}: Requirements review, stakeholder validation sessions.
+			\item \textbf{Criteria}: All requirements are verified as achievable, necessary, and aligned with end-user expectations.
+		\end{itemize}
+		\item \textbf{Functional Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Validate that the app functions correctly and meets the intended use cases.
+			\item \textbf{Techniques}:
+			\begin{itemize}
+				\item \textbf{Unit Testing}: Test each component in isolation (e.g., receipt image processing, data extraction modules).
+				\item \textbf{Integration Testing}: Ensure smooth interaction between AI models and application components.
+				\item \textbf{System Testing}: Test the app end-to-end, covering all functional requirements.
+			\end{itemize}
+			\item \textbf{Criteria}: All functional test cases pass, with particular attention to accuracy in parsing receipts and categorizing expenses.
+		\end{itemize}
+		\item \textbf{Model Validation and AI Performance Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Confirm that the AI model for receipt parsing and categorization meets performance expectations.
+			\item \textbf{Techniques}:
+			\begin{itemize}
+				\item \textbf{Model Evaluation on Labeled Data}: Test the model's accuracy on a labeled dataset of diverse receipts.
+				\item \textbf{Performance Benchmarking}: Measure model accuracy, precision, recall, and latency.
+				\item \textbf{Error Analysis}: Review misclassifications and parsing errors to refine the model.
+			\end{itemize}
+			\item \textbf{Criteria}: Model meets or exceeds the required performance metrics (e.g., 90\%+ accuracy in parsing and categorization).
+		\end{itemize}
+		\item \textbf{Usability Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Validate that users can easily interact with the app and achieve their goals without confusion or frustration.
+			\item \textbf{Techniques}:
+			\begin{itemize}
+				\item \textbf{User Surveys and Feedback Sessions}: Gather direct user feedback on the app's ease of use and intuitiveness.
+				\item \textbf{Task-Based Testing}: Have users complete key tasks (e.g., uploading a receipt, viewing categorized expenses).
+			\end{itemize}
+			\item \textbf{Criteria}: Positive user feedback, with 80\%+ of participants finding the app intuitive and easy to use.
+		\end{itemize}
+		\item \textbf{Security and Privacy Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Ensure that user data, especially financial information, is stored and handled securely.
+			\item \textbf{Techniques}: 
+			\begin{itemize}
+				\item \textbf{Data Encryption Verification}: Confirm that data is encrypted both in transit and at rest.
+				\item \textbf{Access Control Testing}: Validate that only authorized users can access their data.
+				\item \textbf{Compliance Testing}: Ensure adherence to relevant privacy regulations (e.g., GDPR).
+			\end{itemize}
+			\item \textbf{Criteria}: All data protection and compliance measures are met; no security vulnerabilities found.
+		\end{itemize}
+		\item \textbf{Performance and Load Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Verify the app's responsiveness and stability under expected usage.
+			\item \textbf{Techniques}: 
+			\begin{itemize}
+				\item \textbf{Load Testing}: Simulate high user load to evaluate system performance.
+				\item \textbf{Stress Testing}: Test the app's behavior under extreme conditions.
+			\end{itemize}
+			\item \textbf{Criteria}: App remains functional and responsive under high load, with minimal performance degradation.
+		\end{itemize}
+		\item \textbf{Regression Testing}
+		\begin{itemize}
+			\item \textbf{Purpose}: Ensure that new updates or fixes do not break existing functionality.
+			\item \textbf{Techniques}: Automated regression test suite that re-tests core functionality after each update.
+			\item \textbf{Criteria}:All regression test cases pass, maintaining stability with no loss of functionality.
+		\end{itemize}
+	\end{enumerate}
 
-\wss{You might want to use review sessions with the stakeholder to check that
-the requirements document captures the right requirements.  Maybe task based
-inspection?}
+	\item \textbf{Validation Schedule} \\
 
-\wss{For those capstone teams with an external supervisor, the Rev 0 demo should 
-be used as an opportunity to validate the requirements.  You should plan on 
-demonstrating your project to your supervisor shortly after the scheduled Rev 0 demo.  
-The feedback from your supervisor will be very useful for improving your project.}
+	\noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|p{2cm}|>{\raggedright\arraybackslash}p{7cm}|}
+		\hline
+		\textbf{Phase} & \textbf{Duration} & \textbf{Activities} \\
+		\hline
+		\textbf{Requirements Review} & 1 week & Validate SRS, confirm requirements with stakeholders \\
+		\hline
+		\textbf{Functional Testing} & 2 weeks & Develop and execute unit, integration, and system test cases \\
+		\hline
+		\textbf{Model Validation} & 1 week & Evaluate AI model on diverse receipts, measure performance metrics \\
+		\hline
+		\textbf{Usability Testing} & 1 week & Conduct usability tests with end-users, gather feedback \\
+		\hline
+		\textbf{Security Testing} & 1 week & Perform security assessments, validate data encryption and compliance \\
+		\hline
+		\textbf{Performance Testing} & 3 days & Conduct load and stress tests to evaluate system performance under expected load \\
+		\hline
+		\textbf{Regression Testing} & Ongoing & Run regression tests after updates to ensure consistent functionality \\
+		\hline
+	\end{tabular}
+	\newpage
+	\item \textbf{Deliverables}
+	\begin{itemize}
+		\item \textbf{Test Case Documentation}: Detailed test cases for all functionalities, covering expected outcomes and pass/fail criteria.
+		\item \textbf{Test Execution Report}: Summary of test results, including success rates and any failed test cases.
+		\item \textbf{Defect and Issue Log}: Record of identified defects and issues, with resolution status.
+		\item \textbf{Usability Feedback Summary}: Report on feedback from usability testing sessions.
+		\item \textbf{Validation Summary Report}: Comprehensive report summarizing the validation outcomes, certifying the app's readiness for release.
+	\end{itemize}
+	\item \textbf{Success Criteria} \\
+	The app will be considered validated if it meets the following success criteria:
+	\begin{itemize}
+		\item All functional test cases passes requirements.
+		\item AI model achieves required accuracy in parsing and categorization.
+		\item Usability tests show positive user feedback with minimal issues.
+		\item No high-severity defects in security, performance, or compliance.
+		\item Regression tests show that new updates do not disrupt existing functionality.
+	\end{itemize}
+\end{enumerate}
 
-\wss{For teams without an external supervisor, user testing can serve the same purpose 
-as a Rev 0 demo for the supervisor.}
+\noindent For additional information regarding validation, please consult the \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/SRS/SRS.pdf}{Software Requirements Specification (SRS)} verification section.
 
-\wss{This section might reference back to the SRS verification section.}
-
+\newpage
 \section{System Tests}
 
 \subsection{Tests for Functional Requirements}
@@ -681,7 +829,7 @@ This subsection covers tests required to verify tests revolving around user acco
 
 \textbf{Description:} The user should be able to create an account with specified name, email address and password
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 					
 \textbf{Initial State:} The app is on the account creation screen and there is no existing account with the test email
 					
@@ -697,7 +845,7 @@ This subsection covers tests required to verify tests revolving around user acco
 
 \textbf{Description:} The user should be able to login with valid credentials
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 					
 \textbf{Initial State:} The app is on the login page and a registered account has been created with the corresponding testing credentials
 					
@@ -713,7 +861,7 @@ This subsection covers tests required to verify tests revolving around user acco
 
 \textbf{Description:} The user should be able to logout of the app
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 					
 \textbf{Initial State:} The user is already logged into the app
 					
@@ -729,7 +877,7 @@ This subsection covers tests required to verify tests revolving around user acco
 
 \textbf{Description:} Users should be able to update account information after initial setup
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} User is logged in and on the account settings screen
 
@@ -740,6 +888,46 @@ This subsection covers tests required to verify tests revolving around user acco
 \textbf{Test Case Derivation:} The test ensures that users are able to manage and update their account information after initial setup
 
 \textbf{How test will be performed:} A tester/user will modify the account fields, save, and verify that updates are displayed correctly on the profile.
+
+\item{test-UAM-5}
+
+\textbf{Description:} Users should not be able to access the application without
+logging in.
+
+\textbf{Control:} Functional
+
+\textbf{Initial State:} The application is open and the user has not logged in.
+
+\textbf{Input:} Attempt to access the application without logging in.
+
+\textbf{Output:} The application should prompt the user to log in.
+
+\textbf{Test Case Derivation:} The test verifies that the application requires
+users to log in before accessing its features.
+
+\textbf{How test will be performed:} The tester will attempt to access the
+application without logging in and verify that the application prompts them to log
+in.
+
+\item{test-UAM-6}
+
+\textbf{Description:} Users should be able to reset their password.
+
+\textbf{Control:} Functional
+
+\textbf{Initial State:} The application is open and the user has not logged in.
+
+\textbf{Input:} Use the application's password reset feature.
+
+\textbf{Output:} The user receives an email with instructions to reset their password.
+
+\textbf{Test Case Derivation:} The test verifies that users can reset their
+password.
+
+\textbf{How test will be performed:} The tester will use the application's
+password reset feature and verify that they receive an email with instructions
+to reset their password.
+
 \end{enumerate}
 
 \subsubsection{Image Processing Tests}
@@ -752,7 +940,7 @@ This subsection covers tests required to verify tests revolving around receipt s
 
 \textbf{Description:} User should be able to upload an image for processing
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} The application is on the receipt upload screen.
 
@@ -768,7 +956,7 @@ This subsection covers tests required to verify tests revolving around receipt s
 
 \textbf{Description:} Users should be able to preview an uploaded image before processing and confirm/reupload the image based on preference
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} Image is uploaded and displayed as a preview.
 
@@ -779,6 +967,28 @@ This subsection covers tests required to verify tests revolving around receipt s
 \textbf{Test Case Derivation:} Ensures users can review and confirm the uploaded image, as required for accuracy before processing.
 
 \textbf{How test will be performed:} The user/tester previews the image, confirms, and observes if it advances to processing. Alternatively, users can retake and verify they are taken back to the image upload process
+
+\item{test-IP-3\\}
+
+\textbf{Description:} There is a limit to the file size of the image that can be
+uploaded.
+
+\textbf{Control:} Functional
+
+\textbf{Initial State:} The application is open and the user is on the image
+upload screen.
+
+\textbf{Input:} Attempt to upload an image that exceeds the file size limit.
+
+\textbf{Output:} The application should display an error message indicating that
+the file size limit has been exceeded.
+
+\textbf{How test will be performed:} The tester will attempt to upload an image
+that exceeds the file size limit and verify that the application displays an
+error message.
+
+
+
 \end{enumerate}
 
 \subsubsection{Manual Expense Input Tests}
@@ -792,7 +1002,7 @@ The manual input system is responsible for outlining fields that the user must f
 
 \textbf{Description:} Users should be able to manually input expenses
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} Image captured or uploaded cannot be processed or the user wants to manually input items from their receipt from the expense tracker view
 
@@ -802,7 +1012,7 @@ The manual input system is responsible for outlining fields that the user must f
 
 \textbf{Test Case Derivation:} Ensures users can manually input their receipt/expense in case their image isn't able to be processed or they want to manually input them. The test verifies that manually inputted expense data is processed correctly
 
-\textbf{How test will be performed:} From the expense tracker page, the user/tester will select the “manually input expenses” option and fill out the corresponding fields for category, item, item cost and date. They will then validate that all manual entries have been processed in the finalized expenses screen and match their inputs.	
+\textbf{How test will be performed:} From the expense tracker page, the user/tester will select the "manually input expenses" option and fill out the corresponding fields for category, item, item cost and date. They will then validate that all manual entries have been processed in the finalized expenses screen and match their inputs.	
 
 \end{enumerate}
 
@@ -853,9 +1063,9 @@ This subsection covers tests required to verify functionality for item recogniti
 \begin{enumerate}
 \item{test-RS-1\\}
 
-\textbf{Description:} Uploaded receipts should be processed and all items, their quantities and prices should all be correctly recognized with an accuracy of TARGET\_OCR\_MODEL\_ACCURACY
+\textbf{Description:} Uploaded receipts should be processed and all items, their quantities and prices should all be correctly recognized with an accuracy of 90\%
 
-\textbf{Control:} Automatic
+\textbf{Control:} Functional
 
 \textbf{Initial State:} User confirms uploaded receipt is ready to be processed
 
@@ -871,17 +1081,40 @@ This subsection covers tests required to verify functionality for item recogniti
 
 \textbf{Description:} Uploaded receipts should categorize items on them under common expense categories (i.e. groceries, entertainment, etc..)
 
-\textbf{Control:} Automatic
+\textbf{Control:} Functional
 
 \textbf{Initial State:} Receipt has been scanned and items are recognized from the receipt
 
 \textbf{Input:} Apply categorization based on item names.
 
-\textbf{Output:} Items are correctly categorized (i.e. milk under “Groceries”).
+\textbf{Output:} Items are correctly categorized (i.e. milk under "Groceries").
 
 \textbf{Test Case Derivation:} The test validates organized expense tracking accuracy by categorizing items under common expense categories
 
 \textbf{How test will be performed:} Run categorization on a processed receipt and check that items are correctly sorted
+
+
+\item{test-RS-3\\}
+
+\textbf{Description:} Verify that users can modify receipt data.
+
+\textbf{Control:} Functional
+
+\textbf{Initial State:} Receipt has been scanned and items are recognized and
+categorized from the receipt
+
+\textbf{Input:} Modify item names, quantities, prices, and categories.
+
+\textbf{Output:} Manual changes are saved and reflected in the expense tracker.
+
+\textbf{Test Case Derivation:} The test verifies that users can manually modify
+receipt data.
+
+\textbf{How test will be performed:} The tester will modify item names,
+quantities, prices, and categories and verify that the changes are saved and
+reflected in the expense tracker.
+
+
 \end{enumerate}
 
 \subsubsection{Financial Tracking Tests}
@@ -895,7 +1128,7 @@ This subsection verifies the functionality of financial tracking features such h
 
 \textbf{Description:} Users should be able view spending their spending history by category and trends
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} Application has recorded user's past expenses and user is on the expense tracking view
 
@@ -911,7 +1144,7 @@ This subsection verifies the functionality of financial tracking features such h
 
 \textbf{Description:} Users should be able to set and track their budgets
 
-\textbf{Control:} Manual
+\textbf{Control:} Functional
 
 \textbf{Initial State:} User is on the budgeting window and no current budget is set for the specified category
 
@@ -922,6 +1155,29 @@ This subsection verifies the functionality of financial tracking features such h
 \textbf{Test Case Derivation:} This test confirms the ability for users to set and track budgets
 
 \textbf{How test will be performed:} The tester/user sets a budget for a specific category, then verify it appears and updates as expected in tracking
+
+\item{test-FT-3\\}
+
+\textbf{Description:} Verify that users get notified when they are close to
+exceeding their budget or when a goal has been reached.
+
+\textbf{Control:} Functional
+
+\textbf{Initial State:} User has set a budget for a specific category and is
+close to exceeding it. OR User is also close to reaching a budgeting goal.
+
+\textbf{Input:} User inputs an expense that would exceed the budget. OR User
+inputs an income that would reach a savings goal.
+
+\textbf{Output:} User receives a notification.
+
+\textbf{Test Case Derivation:} The test verifies that users are notified when
+they are close to exceeding their budget or when a goal has been reached.
+
+\textbf{How test will be performed:} The tester will input an expense that would
+exceed the budget and verify that they receive a notification. The tester will
+also input an income that would reach a savings goal and verify that they receive
+a notification.
 
 \end{enumerate}
 
@@ -936,49 +1192,68 @@ This subsection covers tests required to verify the accuracy of the system in pr
 
 \item{test-ACC-1\\}
 
-\textbf{Description:} The machine learning model must achieve at least 80\% accuracy in correctly identifying and extracting key information (i.e., item names, quantities, prices, dates) from receipts.
+\textbf{Description:} Verify the accuracy of the machine learning model in
+correctly identifying and extracting key information (i.e., item names,
+quantities, prices, dates) from receipts.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} Machine learning model is ready for testing with a dataset of receipts prepared for evaluation.
+\textbf{Initial State:} Machine learning model is ready for testing with a
+dataset of receipts prepared for evaluation.
 					
-\textbf{Input/Condition:} Test receipts containing various sets of key information (item names, quantities, prices, and dates).
+\textbf{Input/Condition:} Test receipts containing various sets of key
+information (item names, quantities, prices, and dates).
 					
-\textbf{Output/Result:} Model’s accuracy measured by the percentage of key information extracted correctly.
+\textbf{Output/Result:} Model's accuracy measured by the percentage of key
+information extracted correctly.
 					
-\textbf{How test will be performed:} The output will be compared with the initially inputted test receipts to compare information. The accuracy will be computed by determining the percentage of correctly identified and extracted information and will be determined if it meets the 80\% threshold.
+\textbf{How test will be performed:} The output will be compared with the
+initially inputted test receipts to compare information. The accuracy will be
+computed by determining the percentage of correctly identified and extracted
+information and will be determined if it meets the 80\% threshold.
 
 \item{test-ACC-2\\}
 
-\textbf{Description:} The machine learning model must categorize expenses into predefined categories (e.g., groceries, utilities, entertainment) with at least 90\% precision to ensure users’ financial data is correctly organized.
+\textbf{Description:} Verify the accuracy of the machine learning model in
+categorizing expenses into predefined categories.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} Machine learning model is set to have predetermined expense categories.
+\textbf{Initial State:} Machine learning model is set to have predetermined
+expense categories.
 					
 \textbf{Input/Condition:} A set of receipt transactions with known categories.
 					
-\textbf{Output/Result:} The model will output the categories of the given transactions, and the precision will be calculated from this.
+\textbf{Output/Result:} The model will output the categories of the given
+transactions, and the precision will be calculated from this.
 					
-\textbf{How test will be performed:} The model will process the set of transactions and compare the assigned categories to the correct ones. Precision will be measured to see if the 90\% threshold is met.
+\textbf{How test will be performed:} The model will process the set of
+transactions and compare the assigned categories to the correct ones. Precision
+will be measured to see if the 90\% threshold is met.
 
 \item{test-ACC-3\\}
 
-\textbf{Description:} All monetary calculations (e.g., totals, budgets, currency conversions) must maintain a precision of up to two decimal places to ensure accurate financial reporting.
+\textbf{Description:} Verify that all monetary calculations maintain a
+precision of up to two decimal places.
 
-\textbf{Type:} Manual
+\textbf{Type:} Automatic
 					
 \textbf{Initial State:} The application is ready for financial calculations.
 					
-\textbf{Input/Condition:} A set of monetary calculations (budget changes, new purchases).
+\textbf{Input/Condition:} A set of monetary calculations (budget changes, new
+purchases).
 					
-\textbf{Output/Result:} The output should display values rounded to two decimal places.
+\textbf{Output/Result:} The output should display values rounded to two decimal
+places.
 					
-\textbf{How the Test Will Be Performed:} The system will perform different calculations and verify that all results maintain precision up to two decimal places as specified.
+\textbf{How the Test Will Be Performed:} The system will perform different
+calculations and verify that all results maintain precision up to two decimal
+places as specified.
 
 \item{test-ACC-4\\}
 
-\textbf{Description:} The OCR model must correctly recognize text from images of receipts with a minimum accuracy rate of 90\%, ensuring minimal manual corrections by users.
+\textbf{Description:} Verify the accuracy of the OCR model in recognizing text
+from images of receipts.
 
 \textbf{Type:} Manual
 					
@@ -986,37 +1261,48 @@ This subsection covers tests required to verify the accuracy of the system in pr
 					
 \textbf{Input/Condition:} A set of receipt images with known text.
 					
-\textbf{Output/Result:} The OCR model's accuracy in recognizing text is calculated.
+\textbf{Output/Result:} The OCR model's accuracy in recognizing text is
+calculated.
 					
-\textbf{How the Test Will Be Performed:} The OCR model will process the receipt images and compare the recognized text to the actual text, ensuring an accuracy rate of at least 90\%.
+\textbf{How the Test Will Be Performed:} The OCR model will process the receipt
+images and compare the recognized text to the actual text, ensuring an accuracy
+rate of at least 90\%.
 
 \item{test-ACC-5\\}
 
-\textbf{Description:} The application must guarantee 99\% accuracy in summing up expenses, incomes, and savings across different periods and categories, ensuring no rounding or summation errors.
+\textbf{Description:} Verify the accuracy of the application in summing up
+expenses, incomes, and savings across different periods and categories.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is set to calculate expenses, incomes, and savings.
+\textbf{Initial State:} The application is set to calculate expenses, incomes,
+and savings.
 					
-\textbf{Input/Condition:} A dataset of transactions across different periods and categories.
+\textbf{Input/Condition:} A dataset of transactions across different periods and
+categories.
 					
-\textbf{Output/Result:} The application’s summation accuracy is assessed.
+\textbf{Output/Result:} The application's summation accuracy is assessed.
 					
-\textbf{How the Test Will Be Performed:} The system will input the transaction data and verify that the calculated totals are accurate, ensuring the application meets the 99\% accuracy requirement in summation.
+\textbf{How the Test Will Be Performed:} The system will input the transaction
+data and verify that the calculated totals are accurate, ensuring the
+application meets the 99\% accuracy requirement in summation.
 
 \item{test-ACC-6\\}
 
-\textbf{Description:} If the application syncs data across multiple devices, it should ensure 100\% consistency of financial data across all instances.
+\textbf{Description:} Verify that data synced across multiple devices is
+consistent.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is synced across multiple devices.
+\textbf{Initial State:} The application is up to date. User is logged in.
 					
 \textbf{Input/Condition:} Financial data entered on one device.
 					
 \textbf{Output/Result:} Financial data appears on all devices.
 					
-\textbf{How the Test Will Be Performed:} The tester will input financial data on one device, sync, and verify that all other devices show the same data to ensure 100\% consistency.
+\textbf{How the Test Will Be Performed:} The tester will input financial data on
+one device, sync, and verify that all other devices show the same data to ensure
+100\% consistency.
 
 \end{enumerate}
 
@@ -1029,82 +1315,149 @@ This subsection covers tests required to assess the performance of the applicati
 
 \item{test-PERF-1\\}
 
-\textbf{Description:} The application must load user data within five seconds and respond to user actions (e.g., adding an entry, generating a report) within two seconds to ensure a smooth user experience.
+\textbf{Description:} The application must load user data within five seconds.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is set to load user data and respond to user actions.
+\textbf{Initial State:} The system is installed and ready to run.
 					
-\textbf{Input/Condition:} A user initiates the data loading process and performs user actions simultaneously.
+\textbf{Input/Condition:} The application is opened and user data is loaded.
 					
-\textbf{Output/Result:} User data should load within five seconds, and all actions should respond within two seconds.
+\textbf{Output/Result:} User data should load within five seconds.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will measure the time taken to load user account data and the response time for various user actions during the same test session, ensuring both criteria are met.
+\textbf{How the Test Will Be Performed:} The user/tester will measure the time
+taken to load user account data.
 
 \item{test-PERF-2\\}
 
-\textbf{Description:} The system must be able to handle a minimum of 10 concurrent users without significant performance degradation.
+\textbf{Description:} The application must respond to user actions (e.g., adding
+an entry, generating a report) within two seconds.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is set up to support concurrent users.
+\textbf{Initial State:} User information has been loaded.
 					
-\textbf{Input/Condition:} Ten users log into the application simultaneously and perform typical tasks.
+\textbf{Input/Condition:} The user will be asked to perform various actions of
+their choice on the application.
 					
-\textbf{Output/Result:} The application should maintain performance levels without significant degradation.
+\textbf{Output/Result:} All actions should respond within two seconds.
 					
-\textbf{How the Test Will Be Performed:} The tester will simulate 10 concurrent users accessing the application and monitor performance metrics (e.g., load times, response times) to ensure the application performs adequately under load.
+\textbf{How the Test Will Be Performed:} The user/tester will measure the
+response time for various user actions.
+
+
+\item{test-PERF-3\\}
+
+\textbf{Description:} The system must be able to handle a minimum of 10
+concurrent users without significant performance degradation.
+
+\textbf{Type:} Manual
+					
+\textbf{Initial State:} The application is installed and running.
+					
+\textbf{Input/Condition:} Ten users log into the application simultaneously and
+perform typical tasks.
+					
+\textbf{Output/Result:} The application should maintain performance levels
+without significant degradation.
+					
+\textbf{How the Test Will Be Performed:} The tester will simulate 10 concurrent
+users accessing the application and monitor performance metrics (e.g., load
+times, response times) to ensure the application performs adequately under load.
 
 \end{enumerate}
 
 \subsubsection{Usability Tests}
 
-This subsection covers tests required to evaluate the usability and user experience of the application. \\
+This subsection covers tests required to evaluate the usability and user
+experience of the application. After each of these tests, the user will be asked
+to fill out a usability survey, which can be found in \hyperref[appx.a]{Appendix
+A}.\\
+
 \textit{Nonfunctional Requirements: NFR10 - NFR17}
 
 \begin{enumerate}
 
 \item{test-USAB-1\\}
 
-\textbf{Description:} The application must have a clean, intuitive, and easy-to-navigate interface, allowing users to perform common tasks (e.g., adding expenses, viewing budgets) within two to three clicks, and complete tasks such as adding a new receipt or setting a budget limit within 10 seconds on average.
+\textbf{Description:} The application must have a clean, intuitive, and
+easy-to-navigate interface, allowing users to perform common tasks (e.g., adding
+expenses, viewing budgets) within two to three clicks, and complete tasks such
+as adding a new receipt or setting a budget limit within 10 seconds on average.
 
-\textbf{Type:} Manual
+\textbf{Type:} Manual, Usability Testing
 					
 \textbf{Initial State:} The application is ready for user interaction.
 					
-\textbf{Input/Condition:} A user attempts to perform common tasks such as editing budgets or adding a new receipt using the interface.
+\textbf{Input/Condition:} A user attempts to perform common tasks such as
+editing budgets or adding a new receipt using the interface.
 					
-\textbf{Output/Result:} Tasks should show completion and result corresponding outputs.
+\textbf{Output/Result:} Tasks should show completion and result corresponding
+outputs.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will evaluate the interface by performing tasks and counting the average number of clicks and the duration taken, ensuring the requirements are met.
+\textbf{How the Test Will Be Performed:} The user/tester will evaluate the
+interface by performing tasks and counting the average number of clicks and the
+duration taken.
 
 \item{test-USAB-2\\}
 
-\textbf{Description:} New users should be able to complete account setup and understand core application features within five minutes, supported by an introductory tutorial and tooltips. Additionally, the application should provide clear error messages and guide users through corrective actions, allowing them to recover from errors in no more than two steps.
+\textbf{Description:} New users should be able to complete account setup and
+understand core application features within five minutes, supported by an
+introductory tutorial and tooltips.
 
-\textbf{Type:} Manual
+\textbf{Type:} Manual, Usability Testing
 					
-\textbf{Initial State:} The application is ready for a new user.
+\textbf{Initial State:} The application is installed and running. The state of
+the application is not authenticated.
 					
-\textbf{Input/Condition:} A new user begins the account setup and interacts with the application, making intentional errors to test error handling.
+\textbf{Input/Condition:} A user begins the account setup and interacts with
+the application.
 					
-\textbf{Output/Result:} The user should receive informative error messages and be guided through corrective actions.
+\textbf{Output/Result:} The user should have a new account created and
+understand the core features of the application.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will simulate a new user experience, timing the setup and assessing the clarity of tutorials, tooltips, error messages, and corrective guidance.
+\textbf{How the Test Will Be Performed:} The user/tester will simulate a new
+user experience, timing the setup and assessing the clarity of tutorials,
+tooltips, error messages, and corrective guidance.
 
 \item{test-USAB-3\\}
 
-\textbf{Description:} Information displayed to users must be concise and relevant, minimizing cognitive effort while ensuring that only essential details are shown on the main dashboard, with advanced options accessible through menus.
+\textbf{Description:} Information displayed to users must be concise and
+relevant, minimizing cognitive effort while ensuring that only essential details
+are shown on the main dashboard, with advanced options accessible through menus.
 
-\textbf{Type:} Manual
+\textbf{Type:} Manual, Usability Testing
 					
 \textbf{Initial State:} The application is displaying its main dashboard.
 					
-\textbf{Input/Condition:} The user/tester reviews the main dashboard and navigates through the menus.
+\textbf{Input/Condition:} The user/tester reviews the main dashboard and
+navigates through the menus.
 					
-\textbf{Output/Result:} All information is displayed and menus open upon command.
+\textbf{Output/Result:} All information is displayed and menus open upon
+command.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will evaluate the main dashboard and menus for clarity, relevance, and ease of access, ensuring the design aligns with the usability requirements.
+\textbf{How the Test Will Be Performed:} The user/tester will evaluate the main
+dashboard and menus for clarity, relevance, and ease of access, ensuring the
+design aligns with the usability requirements.
+
+\item{test-USAB-4\\}
+
+\textbf{Description:} It should be easy for users to recover from errors and
+understand when an incorrect input is detected.
+
+\textbf{Type:} Manual, Usability Testing
+					
+\textbf{Initial State:} The application is installed and running.
+					
+\textbf{Input/Condition:} A user attempts to perform an action that results in
+an error.
+					
+\textbf{Output/Result:} The user should understand the error and be able to
+make corrective actions to resolve it.
+					
+\textbf{How the Test Will Be Performed:} The user/tester will intentionally
+trigger errors and assess the clarity of error messages and the ease of
+corrective actions.
 
 \end{enumerate}
 
@@ -1117,17 +1470,20 @@ This subsection covers tests required to ensure the security and protection of u
 
 \item{test-SEC-1\\}
 
-\textbf{Description:} The system must implement secure password storage and authentication mechanisms, as well as ensure that all data transmitted between the client and server is encrypted to protect user data.
+\textbf{Description:} Verify that passwords are securely stored and
+authentication is required for all user actions.
 
-\textbf{Type:} Automatic
+\textbf{Type:} Inspection, Manual
 					
 \textbf{Initial State:} The system is fully deployed and operational.
 					
-\textbf{Input/Condition:} User attempts to create an account and log in, while data transmission occurs between client and server.
+\textbf{Input/Condition:} A tester attempts to use SQL injection to access
+the application.
 					
-\textbf{Output/Result:} The system must confirm successful account creation and authentication with appropriate messages, and all data transmitted must show as encrypted.
+\textbf{Output/Result:} The tester should be unable to access the application.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will create an account, log in, and monitor the data transmission to verify that passwords are securely stored and that encryption protocols are in place for all data exchanged.
+\textbf{How the Test Will Be Performed:} The tester will attempt to use SQL
+injection to access the application.
 
 \end{enumerate}
 
@@ -1140,17 +1496,54 @@ This subsection covers tests required to verify the maintainability and compatib
 
 \item{test-MTB-1\\}
 
-\textbf{Description:} New releases must maintain backward compatibility with previous versions, ensuring users can seamlessly update the application without experiencing disruptions in their data or workflows. Dependencies must be regularly updated to prevent security vulnerabilities, and at least 80\% of the codebase must be covered by automated unit tests to ensure maintainability.
+\textbf{Description:} New releases must maintain backward compatibility with
+previous versions.
 
-\textbf{Type:} Automatic
+\textbf{Type:} Manual
 					
 \textbf{Initial State:} The application is ready for a new release.
 					
-\textbf{Input/Condition:} A new release is applied to the application, along with dependency updates.
+\textbf{Input/Condition:} A new release is applied to the application, along
+with dependency updates.
 					
-\textbf{Output/Result:} The system must output a confirmation message indicating a successful update, and system logs should show no errors or disruptions. Additionally, automated test results must indicate at least 80\% code coverage.
+\textbf{Output/Result:} The system must output a confirmation message indicating
+a successful update, and system logs should show no errors or disruptions.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will apply the new release, check for compatibility by performing typical user tasks, and run automated tests to verify code coverage, ensuring the requirements are met.
+\textbf{How the Test Will Be Performed:} The user/tester will apply the new
+release and perform typical user actions to verify that the application
+functions correctly with no errors or disruptions.
+
+\item{test-MTB-2\\}
+
+\textbf{Description:} Dependencies must be regularly updated.
+
+\textbf{Type:} Automatic
+					
+\textbf{Initial State:} Dependencies are out of date.
+					
+\textbf{Input/Condition:} A new patch is applied to the application.
+					
+\textbf{Output/Result:} Dependencies are updated.
+					
+\textbf{How the Test Will Be Performed:} Regularly scheduled updates will be
+applied to the application.
+
+\item{test-MTB-3\\}
+
+\textbf{Description:} The codebase must be covered by automated tests.
+
+\textbf{Type:} Automatic
+					
+\textbf{Initial State:} The application is up to date.
+					
+\textbf{Input/Condition:} A new code change is made.
+					
+\textbf{Output/Result:} The pipeline runs automated tests and checks for
+coverage. 
+					
+\textbf{How the Test Will Be Performed:} Tests and coverage will be monitored
+using GitHub Actions. If coverage criteria is not met or if any tests fail, the
+change will be blocked from merging.
 
 \end{enumerate}
 
@@ -1163,7 +1556,8 @@ This subsection covers tests required to assess the portability of the applicati
 
 \item{test-PORT-1\\}
 
-\textbf{Description:} The software shall be compatible with Android and iOS mobile devices running the latest software.
+\textbf{Description:} The software shall be compatible with Android and iOS
+mobile devices running the latest software.
 
 \textbf{Type:} Automatic
 					
@@ -1171,37 +1565,51 @@ This subsection covers tests required to assess the portability of the applicati
 					
 \textbf{Input/Condition:} Users attempt to install and run the application.
 					
-\textbf{Output/Result:} The system outputs successful installation messages and the application functions correctly on both platforms.
+\textbf{Output/Result:} The system outputs successful installation messages and
+the application functions correctly on both platforms.
 					
-\textbf{How the Test Will Be Performed:} Automated tests will verify installation and functionality on both devices.
+\textbf{How the Test Will Be Performed:} Automated tests will verify
+installation and functionality on both devices.
 
 \item{test-PORT-2\\}
 
-\textbf{Description:} All data must be stored in platform-independent formats (e.g., JSON, CSV), and any external APIs or third-party services must support cross-platform usage.
+\textbf{Description:} All data must be stored in platform-independent formats
+(e.g., JSON, CSV), and any external APIs or third-party services must support
+cross-platform usage.
 
 \textbf{Type:} Automatic
 					
-\textbf{Initial State:} The application has data stored and is integrated with external APIs.
+\textbf{Initial State:} The application has data stored and is integrated with
+external APIs.
 					
-\textbf{Input/Condition:} The user/tester requests data export and initiates API calls.
+\textbf{Input/Condition:} The user/tester requests data export and initiates API
+calls.
 					
-\textbf{Output/Result:} The system outputs data in specified formats and returns successful responses from APIs on both platforms.
+\textbf{Output/Result:} The system outputs data in specified formats and returns
+successful responses from APIs on both platforms.
 					
-\textbf{How the Test Will Be Performed:} Automated scripts will verify data export formats and API integration on both Android and iOS.
+\textbf{How the Test Will Be Performed:} Automated scripts will verify data
+export formats and API integration on both Android and iOS.
 
 \item{test-PORT-3\\}
 
-\textbf{Description:} The system must operate in various network environments, including Wi-Fi, cellular, and offline mode.
+\textbf{Description:} The system must operate in various network environments,
+including Wi-Fi, cellular, and offline mode.
 
 \textbf{Type:} Manual
 					
 \textbf{Initial State:} The application is installed and ready for testing.
 					
-\textbf{Input/Condition:} The user/tester simulates different network environments.
+\textbf{Input/Condition:} The user/tester simulates different network
+environments.
 					
-\textbf{Output/Result:} The system outputs successful operation messages for each network condition.
+\textbf{Output/Result:} The system outputs successful operation messages for
+each network condition.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will manually switch between different network environments (Wi-Fi, cellular, offline) and observe the application's behavior, checking for consistent functionality and performance across each condition.
+\textbf{How the Test Will Be Performed:} The user/tester will manually switch
+between different network environments (Wi-Fi, cellular, offline) and observe
+the application's behavior, checking for consistent functionality and
+performance across each condition.
 
 \end{enumerate}
 
@@ -1251,272 +1659,375 @@ This subsection covers tests required to assess the understandability and clarit
 
 \item{test-UND-1\\}
 
-\textbf{Description:} All source code must be thoroughly documented with inline comments and external documentation, and variables, functions, classes, and modules must follow consistent and meaningful naming conventions.
+\textbf{Description:} To validate that the codebase is well-documented,
+organized, and follows consistent naming conventions and coding standards.
 
-\textbf{Type:} Static
+\textbf{Type:} Static, Code Review/Walkthrough
 					
-\textbf{Initial State:} The codebase is complete and ready for review.
+\textbf{Initial State:} The codebase is up to date and ready for review.
 					
-\textbf{Input/Condition:} The user/tester reviews the code and associated documentation.
+\textbf{Input/Condition:} The inspector reviews the code and associated
+documentation.
 					
-\textbf{Output/Result:} The system must show that code components are well-documented, with meaningful names that describe functionality.
+\textbf{Output/Result:} A review report containing a summary of the codebase's
+documentation, organization, and adherence to coding standards.
 					
-\textbf{How the Test Will Be Performed:} A team of developers will conduct a walkthrough of the codebase, using static analysis tools to check for documentation completeness and adherence to naming conventions. The results will be documented in a compliance report, which will be reviewed by the development team.
+\textbf{How the Test Will Be Performed:} A team of developers will conduct a
+walkthrough of the codebase, using static analysis tools to check for
+documentation completeness and adherence to naming conventions. A designated
+reviewer will conduct a walkthrough of the API documentation and commit history,
+checking for completeness and clarity. The results will be documented in a
+compliance report, which will be reviewed by the development team.
 
 \item{test-UND-2\\}
 
-\textbf{Description:} The application’s UI must be designed with clarity, using clear labels, icons, and tooltips, and the codebase must be organized logically, allowing easy navigation.
+\textbf{Description:} To validate that the user interface (UI) is simple to
+navigate and understand.
 
-\textbf{Type:} Manual
+\textbf{Type:} Usability Test
 					
-\textbf{Initial State:} The application is fully developed.
+\textbf{Initial State:} The application is up to date.
 					
-\textbf{Input/Condition:} The user/tester interacts with the UI and examines the code structure.
+\textbf{Input/Condition:} The user/tester interacts with the UI.
 					
-\textbf{Output/Result:} The system must provide a UI that is easy to navigate, with clear labels and organized code files.
+\textbf{Output/Result:} A usability report containing feedback on the UI's
+clarity and organization.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will manually navigate the UI and review the directory structure of the codebase to assess clarity and organization.
+\textbf{How the Test Will Be Performed:} The user/tester will manually navigate
+the UI and fill in a usability survey, providing feedback on the clarity and
+organization of the interface.
 
 \item{test-UND-3\\}
 
-\textbf{Description:} The code must follow industry-standard formatting guidelines, and the application must provide clear, descriptive error messages for users and developers.
-
-\textbf{Type:} Static
-					
-\textbf{Initial State:} The codebase and application are fully developed.
-					
-\textbf{Input/Condition:} The user/tester reviews the code formatting and triggers error messages during testing.
-					
-\textbf{Output/Result:} The system must show properly formatted code and clear error messages that explain issues and solutions.
-					
-\textbf{How the Test Will Be Performed:} A review team will perform code inspections, using static analysis tools to evaluate code formatting against industry standards. During application testing, users will intentionally trigger errors to assess the clarity and helpfulness of error messages. Feedback will be collected and addressed in subsequent development cycles.
-
-\item{test-UND-4\\}
-
-\textbf{Description:} Any APIs must include detailed documentation, and all major changes to the codebase should be accompanied by clear commit messages and changelogs.
-
-\textbf{Type:} Static
-					
-\textbf{Initial State:} The APIs and codebase are implemented.
-					
-\textbf{Input/Condition:} The user/tester reviews API documentation and commit history.
-					
-\textbf{Output/Result:} The system must provide comprehensive API documentation and meaningful commit messages that clarify changes.
-					
-\textbf{How the Test Will Be Performed:} A designated reviewer will conduct a walkthrough of the API documentation and commit history, checking for completeness and clarity. Automated documentation generation tools may be used to assist in this process. The findings will be compiled into a report and discussed in a review meeting with the development team.
-
-\item{test-UND-5\\}
-
-\textbf{Description:} The language and terminology used throughout the application’s UI must align with users’ mental models, using familiar terms.
+\textbf{Description:} To validate that error messages are clear to the user and
+logs are informative to developers.
 
 \textbf{Type:} Manual
 					
-\textbf{Initial State:} The application is deployed.
+\textbf{Initial State:} The application is up to date.
 					
-\textbf{Input/Condition:} The user/tester evaluates the UI language and terminology.
+\textbf{Input/Condition:} The user/tester intentionally triggers an error.
 					
-\textbf{Output/Result:} The system must use non-technical, familiar terms throughout the UI.
+\textbf{Output/Result:} The user will provide feedback on the clarity of the
+error message, and the developers will assess the informativeness of the logs.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will manually navigate the UI to assess the terminology used and provide feedback on its alignment with user expectations.
+\textbf{How the Test Will Be Performed:} The user/tester will intentionally
+trigger an error and provide feedback on the clarity of the error message. The
+developers will review the logs to ensure they contain sufficient information to
+diagnose the issue.
 
 \end{enumerate}
 
 \subsubsection{Regulatory Tests}
 
-This subsection covers tests required to ensure compliance with relevant regulations and standards. \\
+This subsection covers tests required to ensure compliance with relevant
+regulations and standards. \\
 \textit{Nonfunctional Requirements: NFR40 - NFR 41}
 
 \begin{enumerate}
 
 \item{test-REG-1\\}
 
-\textbf{Description:} The system must comply with Canada’s Privacy Act and Financial Administration Act to ensure the privacy and security of user data and the secure handling of financial information.
+\textbf{Description:} The system must comply with Canada's Privacy Act and
+Financial Administration Act to ensure the privacy and security of user data and
+the secure handling of financial information.
 
-\textbf{Type:} Manual
+\textbf{Type:} Manual, Inspection
 					
-\textbf{Initial State:} The system is fully implemented and operational.
+\textbf{Initial State:} The application is up to date.
 					
-\textbf{Input/Condition:} The user/tester reviews the system’s data handling policies and financial procedures.
+\textbf{Input/Condition:} An inspector reviews the system's data handling
+policies and financial procedures.
 					
-\textbf{Output/Result:} The system must demonstrate adherence to both regulatory acts through documented policies and secure practices.
+\textbf{Output/Result:} The system must demonstrate adherence to both regulatory
+acts through documented policies and secure practices.
 					
-\textbf{How the Test Will Be Performed:} The user/tester will manually examine relevant documentation, assess data handling procedures, and conduct interviews with compliance and development teams to verify compliance with both the Privacy Act and the Financial Administration Act.
+\textbf{How the Test Will Be Performed:} The inspector will examine relevant
+documentation, assess data handling procedures, and conduct interviews with
+compliance and development teams to verify compliance with both the Privacy Act
+and the Financial Administration Act.
 
 \end{enumerate}
 
 
 \subsection{Traceability Between Test Cases and Requirements}
 
-\wss{Provide a table that shows which test cases are supporting which
-  requirements.}
+A traceability matrix between test cases and requirements can be found
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/VnVPlan/traceability_tests_and_requirements.xlsx}{here}.
+
+\newpage
 
 \section{Unit Test Description}
 
-\wss{This section should not be filled in until after the MIS (detailed design
-  document) has been completed.}
+This section will be filled after completion of the MIS document.
+% \wss{This section should not be filled in until after the MIS (detailed design
+%   document) has been completed.}
 
-\wss{Reference your MIS (detailed design document) and explain your overall
-philosophy for test case selection.}  
+% \wss{Reference your MIS (detailed design document) and explain your overall
+% philosophy for test case selection.}  
 
-\wss{To save space and time, it may be an option to provide less detail in this section.  
-For the unit tests you can potentially layout your testing strategy here.  That is, you 
-can explain how tests will be selected for each module.  For instance, your test building 
-approach could be test cases for each access program, including one test for normal behaviour 
-and as many tests as needed for edge cases.  Rather than create the details of the input 
-and output here, you could point to the unit testing code.  For this to work, you code 
-needs to be well-documented, with meaningful names for all of the tests.}
+% \wss{To save space and time, it may be an option to provide less detail in this section.  
+% For the unit tests you can potentially layout your testing strategy here.  That is, you 
+% can explain how tests will be selected for each module.  For instance, your test building 
+% approach could be test cases for each access program, including one test for normal behaviour 
+% and as many tests as needed for edge cases.  Rather than create the details of the input 
+% and output here, you could point to the unit testing code.  For this to work, you code 
+% needs to be well-documented, with meaningful names for all of the tests.}
 
 \subsection{Unit Testing Scope}
 
-\wss{What modules are outside of the scope.  If there are modules that are
-  developed by someone else, then you would say here if you aren't planning on
-  verifying them.  There may also be modules that are part of your software, but
-  have a lower priority for verification than others.  If this is the case,
-  explain your rationale for the ranking of module importance.}
+This section will be filled after completion of the MIS document.
+
+% \wss{What modules are outside of the scope.  If there are modules that are
+%   developed by someone else, then you would say here if you aren't planning on
+%   verifying them.  There may also be modules that are part of your software, but
+%   have a lower priority for verification than others.  If this is the case,
+%   explain your rationale for the ranking of module importance.}
 
 \subsection{Tests for Functional Requirements}
 
-\wss{Most of the verification will be through automated unit testing.  If
-  appropriate specific modules can be verified by a non-testing based
-  technique.  That can also be documented in this section.}
+This section will be filled after completion of the MIS document.
 
-\subsubsection{Module 1}
+% \wss{Most of the verification will be through automated unit testing.  If
+%   appropriate specific modules can be verified by a non-testing based
+%   technique.  That can also be documented in this section.}
 
-\wss{Include a blurb here to explain why the subsections below cover the module.
-  References to the MIS would be good.  You will want tests from a black box
-  perspective and from a white box perspective.  Explain to the reader how the
-  tests were selected.}
+% \subsubsection{Module 1}
 
-\begin{enumerate}
+% \wss{Include a blurb here to explain why the subsections below cover the module.
+%   References to the MIS would be good.  You will want tests from a black box
+%   perspective and from a white box perspective.  Explain to the reader how the
+%   tests were selected.}
 
-\item{test-id1\\}
+% \begin{enumerate}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% \item{test-id1\\}
+
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-\textbf{Initial State:} 
+% \textbf{Initial State:} 
 					
-\textbf{Input:} 
+% \textbf{Input:} 
 					
-\textbf{Output:} \wss{The expected result for the given inputs}
+% \textbf{Output:} \wss{The expected result for the given inputs}
 
-\textbf{Test Case Derivation:} \wss{Justify the expected value given in the Output field}
+% \textbf{Test Case Derivation:} \wss{Justify the expected value given in the Output field}
 
-\textbf{How test will be performed:} 
+% \textbf{How test will be performed:} 
 					
-\item{test-id2\\}
+% \item{test-id2\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-\textbf{Initial State:} 
+% \textbf{Initial State:} 
 					
-\textbf{Input:} 
+% \textbf{Input:} 
 					
-\textbf{Output:} \wss{The expected result for the given inputs}
+% \textbf{Output:} \wss{The expected result for the given inputs}
 
-\textbf{Test Case Derivation:} \wss{Justify the expected value given in the Output field}
+% \textbf{Test Case Derivation:} \wss{Justify the expected value given in the Output field}
 
-\textbf{How test will be performed:} 
+% \textbf{How test will be performed:} 
 
-\item{...\\}
+% \item{...\\}
     
-\end{enumerate}
+% \end{enumerate}
 
-\subsubsection{Module 2}
+% \subsubsection{Module 2}
 
-...
+% ...
 
 \subsection{Tests for Nonfunctional Requirements}
 
-\wss{If there is a module that needs to be independently assessed for
-  performance, those test cases can go here.  In some projects, planning for
-  nonfunctional tests of units will not be that relevant.}
+This section will be filled after completion of the MIS document.
 
-\wss{These tests may involve collecting performance data from previously
-  mentioned functional tests.}
+% \wss{If there is a module that needs to be independently assessed for
+%   performance, those test cases can go here.  In some projects, planning for
+%   nonfunctional tests of units will not be that relevant.}
 
-\subsubsection{Module ?}
+% \wss{These tests may involve collecting performance data from previously
+%   mentioned functional tests.}
+
+% \subsubsection{Module ?}
 		
-\begin{enumerate}
+% \begin{enumerate}
 
-\item{test-id1\\}
+% \item{test-id1\\}
 
-Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
-  be automatic}
+% Type: \wss{Functional, Dynamic, Manual, Automatic, Static etc. Most will
+%   be automatic}
 					
-\textbf{Initial State:} 
+% \textbf{Initial State:} 
 					
-Input/Condition: 
+% Input/Condition: 
 					
-Output/Result: 
+% Output/Result: 
 					
-\textbf{How test will be performed:} 
+% \textbf{How test will be performed:} 
 					
-\item{test-id2\\}
+% \item{test-id2\\}
 
-Type: Functional, Dynamic, Manual, Static etc.
+% Type: Functional, Dynamic, Manual, Static etc.
 					
-\textbf{Initial State:} 
+% \textbf{Initial State:} 
 					
-\textbf{Input:} 
+% \textbf{Input:} 
 					
-\textbf{Output:} 
+% \textbf{Output:} 
 					
-\textbf{How test will be performed:} 
+% \textbf{How test will be performed:} 
 
-\end{enumerate}
+% \end{enumerate}
 
-\subsubsection{Module ?}
+% \subsubsection{Module ?}
 
-...
+% ...
 
 \subsection{Traceability Between Test Cases and Modules}
 
-\wss{Provide evidence that all of the modules have been considered.}
-				
+This section will be filled after completion of the MIS document.
+
+% \wss{Provide evidence that all of the modules have been considered.}
+
+\newpage
+
 \bibliographystyle{plainnat}
 
 \bibliography{../../refs/References}
 
+\noindent
+\\No references were used for this document.
+
 \newpage
 
-\section{Appendix}
+% \subsection{Usability Survey Questions?}
 
-This is where you can place additional information.
+% \wss{This is a section that would be appropriate for some projects.}
 
-\subsection{Symbolic Parameters}
 
-The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
-Their values are defined in this section for easy maintenance.
+\newpage
 
-\subsection{Usability Survey Questions?}
+\section*{Appendix A --- Usability Survey Questions}
+\label{appx.a}
 
-\wss{This is a section that would be appropriate for some projects.}
+\begin{enumerate}
+    \item \textbf{Overall Experience}
+    \begin{itemize}
+        \item On a scale of 1 to 5, how easy was it to scan and upload receipts? (1 = Very Difficult, 5 = Very Easy)
+        \item On a scale of 1 to 5, how intuitive was the app’s interface? (1 = Not Intuitive, 5 = Very Intuitive)
+        \item On a scale of 1 to 5, how satisfied are you with the accuracy of the receipt scanning and categorization? (1 = Not Satisfied, 5 = Very Satisfied)
+    \end{itemize}
+
+    \item \textbf{Receipt Scanning and AI Parsing}
+    \begin{itemize}
+        \item Did you experience any difficulties capturing clear images of receipts? (Yes/No)
+        \item Did the app correctly categorize your spending based on the receipt items? (Yes/No)
+        \item If the app made mistakes in categorization, were you able to correct them easily? (1 = Very Difficult, 5 = Very Easy)
+    \end{itemize}
+    
+    \item \textbf{Budgeting and Spending Insights}
+    \begin{itemize}
+        \item Did the budgeting feature help you understand your spending patterns? (1 = Not at All, 5 = Very Much)
+        \item How clear was it to see the difference between your actual spending and budgeted amount? (1 = Not Clear, 5 = Very Clear)
+        \item How useful were the insights provided about expected vs. actual spending? (1 = Not Useful, 5 = Very Useful)
+    \end{itemize}
+    
+    \item \textbf{User Interface and Design}
+    \begin{itemize}
+        \item On a scale of 1 to 5, how visually appealing did you find the app’s design? (1 = Not Appealing, 5 = Very Appealing)
+        \item Was the layout of information easy to understand? (1 = Very Confusing, 5 = Very Clear)
+        \item Were you able to navigate between features without confusion? (Yes/No)
+    \end{itemize}
+
+    \item \textbf{Error Handling and Support}
+    \begin{itemize}
+        \item Did you encounter any errors or issues during your experience? (Yes/No)
+        \item If yes, how helpful were the error messages in resolving the issue? (1 = Not Helpful, 5 = Very Helpful)
+        \item Do you feel that any features or support options are missing? (Yes/No)
+    \end{itemize}
+    
+    \item \textbf{Overall Satisfaction and Feedback}
+    \begin{itemize}
+        \item How likely are you to use this app regularly? (1 = Not Likely, 5 = Very Likely)
+        \item Which feature did you find most useful? (Select all that apply: Receipt Scanning, Spending Categorization, Budget Tracking, Savings Calculation, Spending Insights)
+        \item Would you recommend this app to others? (Yes/No)
+    \end{itemize}
+\end{enumerate}
 
 \newpage{}
-\section*{Appendix --- Reflection}
-
-\wss{This section is not required for CAS 741}
+\section*{Appendix B --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
 graduate attribute of Lifelong Learning.
 
-\input{../Reflection.tex}
-
 \begin{enumerate}
   \item What went well while writing this deliverable? 
+
+During this deliverable, the group divided the work up well through delegating
+certain sections to each member to complete. Each group member was able to
+seamlessly complete their section without many issues and conflicts. This was
+prevelant through the PR review process where there were minimal comments for
+each PR.
+
   \item What pain points did you experience during this deliverable, and how
     did you resolve them?
+
+Some pain points that the group discussed was what we want to include in Rev0 of
+the VnV plan. There were some scope issues that we discussed, specifically
+around which functional requirements we want to include in the initial draft and
+include tests for. Additionlly, the team discussed the granularity of the tests
+that we want to include in the Rev0 VnV document. The group did not initially
+agree on whether to include unit tests into this document. The team brought it
+up, discussed it and in the end came to a conclusion of not including unit tests
+within this document because the components/units to test have not yet been
+designed in detail.
+
   \item What knowledge and skills will the team collectively need to acquire to
   successfully complete the verification and validation of your project?
   Examples of possible knowledge and skills include dynamic testing knowledge,
   static testing knowledge, specific tool usage, Valgrind etc.  You should look to
   identify at least one item for each team member.
+
+The team will collectively need to look into how to test machine learning models
+as this topic is new for all group members. We will also need to look into
+setting up GitHub Actions for continuous integration, so that we can implement
+automated testing and code coverage. A few of us have utilized GitHub Actions at
+previous co-ops and can utilize that knowledge to help set up GitHub Actions for
+the Plutos project. Specifically, this will be the breakdown per team member:\\
+\begin{itemize}
+	\item Payton: Familiarize with continuous integration and how to set up GitHub
+	Actions for automated testing and code coverage
+	\item Eric: Deepen knowledge on backend testing frameworks and how to reach
+	a high code coverage
+	\item Fondson: Deepen knowledge on frontend testing frameworks, and ways to
+	simulate user interactions for end-to-end testing
+	\item Jason: Learn more about how to best conduct usability testing to
+	evaluate user experiences, identify pain points, and improve the overall
+	design and functionality of the project
+	\item Angela: Familiarize with static testing tools and techniques to
+	identify code quality issues and ensure the codebase follows best practices
+\end{itemize}
+
   \item For each of the knowledge areas and skills identified in the previous
   question, what are at least two approaches to acquiring the knowledge or
   mastering the skill?  Of the identified approaches, which will each team
   member pursue, and why did they make this choice?
+
+All group members are currently taking or have taken Introduction to Machine
+Learning (4ML3), and Jason is currently taking Applications of Machine Learning
+(4AL3). Through these courses, we can learn about how to test machine learning
+models, which would be the most difficult part of the project to test. \\
+For the other knowledge areas, our team has all decided that we will use a
+combination of YouTube and Coursera/LinkedIn Learning. We have decided that
+these resources are the most straightforward to learn from and we all learn best
+from watching videos and putting them to practice. For GitHub Actions, we will
+also consult GitHub documentation as it would be the most reliable source of
+information for setting it up and understanding how it works.
+
+
 \end{enumerate}
+
 
 \end{document}
