@@ -55,7 +55,6 @@ In addition, the following abbreviations are used in this document:\\
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
   V\&V & Verification and Validation\\
   \bottomrule
 \end{tabular}\\
@@ -1064,7 +1063,7 @@ This subsection covers tests required to verify functionality for item recogniti
 \begin{enumerate}
 \item{test-RS-1\\}
 
-\textbf{Description:} Uploaded receipts should be processed and all items, their quantities and prices should all be correctly recognized with an accuracy of TARGET\_OCR\_MODEL\_ACCURACY
+\textbf{Description:} Uploaded receipts should be processed and all items, their quantities and prices should all be correctly recognized with an accuracy of 90\%
 
 \textbf{Control:} Functional
 
@@ -1267,7 +1266,7 @@ calculated.
 					
 \textbf{How the Test Will Be Performed:} The OCR model will process the receipt
 images and compare the recognized text to the actual text, ensuring an accuracy
-rate of at least TARGET\_OCR\_MODEL\_ACCURACY\%.
+rate of at least 90\%.
 
 \item{test-ACC-5\\}
 
@@ -1370,7 +1369,11 @@ times, response times) to ensure the application performs adequately under load.
 
 \subsubsection{Usability Tests}
 
-This subsection covers tests required to evaluate the usability and user experience of the application. \\
+This subsection covers tests required to evaluate the usability and user
+experience of the application. After each of these tests, the user will be asked
+to fill out a usability survey, which can be found in \hyperref[appx.a]{Appendix
+A}.\\
+
 \textit{Nonfunctional Requirements: NFR10 - NFR17}
 
 \begin{enumerate}
@@ -1899,58 +1902,15 @@ This section will be filled after completion of the MIS document.
 
 \newpage
 
-\section{Appendix}
-
-\subsection{Symbolic Parameters}
-
-TARGET\_OCR\_MODEL\_ACCURACY = 90\%
-
 % \subsection{Usability Survey Questions?}
 
 % \wss{This is a section that would be appropriate for some projects.}
 
-\newpage{}
-\section*{Appendix --- Reflection}
-
-The information in this section will be used to evaluate the team members on the
-graduate attribute of Lifelong Learning.
-
-\begin{enumerate}
-  \item What went well while writing this deliverable? 
-
-During this deliverable, the group divided the work up well through delegating certain sections to each member to complete. Each group member was able to seamlessly complete their section without many issues
-and conflicts. This was prevelant through the PR review process where there were minimal comments for each PR.
-
-  \item What pain points did you experience during this deliverable, and how
-    did you resolve them?
-
-Some pain points that the group discussed was what we want to include in Rev0 of the VnV plan. There were some scope issues that we discussed, specifically around which functional requirements we want to include
-in the initial draft. Also, the team discussed the granularity of the tests that we want to include in the Rev0 VnV document. The group didn't initially agree on whether to include unit tests into this document. The 
-team brought it up, discussed it and in the end came to a conclusion of not including unit tests within this document because the components/units to test have not all been thoroughly developed and thought out in order
-to write about. 
-
-  \item What knowledge and skills will the team collectively need to acquire to
-  successfully complete the verification and validation of your project?
-  Examples of possible knowledge and skills include dynamic testing knowledge,
-  static testing knowledge, specific tool usage, Valgrind etc.  You should look to
-  identify at least one item for each team member.
-
-The team will need to look into how to test machine learning models as this topic is new for all group members. As well, the team will need to look into how to set up GitHub Actions for continuous integration.
-A few of us have utilized GitHub Actions at previous co-ops and can utilize that knowledge to help set up GitHub Actions for the Plutos project.
-
-  \item For each of the knowledge areas and skills identified in the previous
-  question, what are at least two approaches to acquiring the knowledge or
-  mastering the skill?  Of the identified approaches, which will each team
-  member pursue, and why did they make this choice?
-
-All group members are currently taking or have taken Introduction to Machine Learning (4ML3) as well as Jason is currently taking Applications of Machine Learning (4AL3) where we can learn about
-how to test machine learning models. On top of utilizing previous co-op knowledge to setup GitHub Actions, we can also utilize tools such as YouTube and the GitHub documentation. 
-
-\end{enumerate}
 
 \newpage
 
-\section*{Appendix --- Usability Survey Questions}
+\section*{Appendix A --- Usability Survey Questions}
+\label{appx.a}
 
 \begin{enumerate}
     \item \textbf{Overall Experience}
@@ -1995,5 +1955,79 @@ how to test machine learning models. On top of utilizing previous co-op knowledg
         \item Would you recommend this app to others? (Yes/No)
     \end{itemize}
 \end{enumerate}
+
+\newpage{}
+\section*{Appendix B --- Reflection}
+
+The information in this section will be used to evaluate the team members on the
+graduate attribute of Lifelong Learning.
+
+\begin{enumerate}
+  \item What went well while writing this deliverable? 
+
+During this deliverable, the group divided the work up well through delegating
+certain sections to each member to complete. Each group member was able to
+seamlessly complete their section without many issues and conflicts. This was
+prevelant through the PR review process where there were minimal comments for
+each PR.
+
+  \item What pain points did you experience during this deliverable, and how
+    did you resolve them?
+
+Some pain points that the group discussed was what we want to include in Rev0 of
+the VnV plan. There were some scope issues that we discussed, specifically
+around which functional requirements we want to include in the initial draft and
+include tests for. Additionlly, the team discussed the granularity of the tests
+that we want to include in the Rev0 VnV document. The group did not initially
+agree on whether to include unit tests into this document. The team brought it
+up, discussed it and in the end came to a conclusion of not including unit tests
+within this document because the components/units to test have not yet been
+designed in detail.
+
+  \item What knowledge and skills will the team collectively need to acquire to
+  successfully complete the verification and validation of your project?
+  Examples of possible knowledge and skills include dynamic testing knowledge,
+  static testing knowledge, specific tool usage, Valgrind etc.  You should look to
+  identify at least one item for each team member.
+
+The team will collectively need to look into how to test machine learning models
+as this topic is new for all group members. We will also need to look into
+setting up GitHub Actions for continuous integration, so that we can implement
+automated testing and code coverage. A few of us have utilized GitHub Actions at
+previous co-ops and can utilize that knowledge to help set up GitHub Actions for
+the Plutos project. Specifically, this will be the breakdown per team member:\\
+\begin{itemize}
+	\item Payton: Familiarize with continuous integration and how to set up GitHub
+	Actions for automated testing and code coverage
+	\item Eric: Deepen knowledge on backend testing frameworks and how to reach
+	a high code coverage
+	\item Fondson: Deepen knowledge on frontend testing frameworks, and ways to
+	simulate user interactions for end-to-end testing
+	\item Jason: Learn more about how to best conduct usability testing to
+	evaluate user experiences, identify pain points, and improve the overall
+	design and functionality of the project
+	\item Angela: Familiarize with static testing tools and techniques to
+	identify code quality issues and ensure the codebase follows best practices
+\end{itemize}
+
+  \item For each of the knowledge areas and skills identified in the previous
+  question, what are at least two approaches to acquiring the knowledge or
+  mastering the skill?  Of the identified approaches, which will each team
+  member pursue, and why did they make this choice?
+
+All group members are currently taking or have taken Introduction to Machine
+Learning (4ML3), and Jason is currently taking Applications of Machine Learning
+(4AL3). Through these courses, we can learn about how to test machine learning
+models, which would be the most difficult part of the project to test. \\
+For the other knowledge areas, our team has all decided that we will use a
+combination of YouTube and Coursera/LinkedIn Learning. We have decided that
+these resources are the most straightforward to learn from and we all learn best
+from watching videos and putting them to practice. For GitHub Actions, we will
+also consult GitHub documentation as it would be the most reliable source of
+information for setting it up and understanding how it works.
+
+
+\end{enumerate}
+
 
 \end{document}
