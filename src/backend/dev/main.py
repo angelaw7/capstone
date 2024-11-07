@@ -44,14 +44,6 @@ for i, line in enumerate(text_arr):
                     items.append([line])
 
 
-def parse_price(string):
-    pattern = r"\b\d+\.\d{2}"
-    try:
-        return float(re.findall(pattern, string)[0])
-    except:
-        return 0
-
-
 def split_item(item):
     pattern = r"(\d+)\s(.+?)\s(\d+\.\d{2})"
     match = re.search(pattern, item)
