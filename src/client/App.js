@@ -1,5 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+
+import HomePage from "./components/view/HomePage";
 import LoginView from "./components/view/LoginView";
 import OverView from "./components/view/OverView";
 import { useFonts } from "expo-font";
@@ -9,12 +11,11 @@ import config from "./tamagui.config";
 const Stack = createStackNavigator();
 
 export default function App() {
-  // const [fontsLoaded] = useFonts({
-  //   Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
-  //   InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
-  // });
-
   return (
+    // const [fontsLoaded] = useFonts({
+    //   Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
+    //   InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
+    // });
     <TamaguiProvider config={config}>
       <NavigationContainer>
         <Stack.Navigator>
