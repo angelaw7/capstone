@@ -1,6 +1,6 @@
 import React from "react";
 import HomePageButton from "../common/HomePageButton";
-import { StyleSheet, Image, View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 const HomePage = () => {
   return (
@@ -30,7 +30,6 @@ const HomePage = () => {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: "white",
     height: "100%",
     padding: 24,
     display: "flex",

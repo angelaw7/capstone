@@ -15,8 +15,7 @@ const HomePageButton = ({ iconPath, title, color }) => {
 const styles = StyleSheet.create({
   button: {
     height: 80,
-    backgroundColor: "#F9E6E1",
-    width: "90%",
+    width: "100%",
     borderRadius: 16,
     display: "flex",
     flexDirection: "row",
