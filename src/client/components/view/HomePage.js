@@ -20,7 +20,6 @@ const HomePage = () => {
           <BudgetIcon />
         </HomePageButton>
       </View>
-      <View></View>
     </View>
   );
 };
