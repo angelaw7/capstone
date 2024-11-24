@@ -1,13 +1,13 @@
 import React from "react";
-import { StyleSheet, Image, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import RightArrow from "../../assets/icons/RightArrow";
 
-const HomePageButton = ({ iconPath, title, color }) => {
-  console.log("icon path", iconPath);
+const HomePageButton = ({ children, title, color }) => {
   return (
     <TouchableOpacity style={[styles.button, { backgroundColor: color }]}>
-      <Image source={iconPath} />
+      {children}
       <Text style={styles.buttonText}>{title}</Text>
-      <Image source={require("../../assets/RightArrow.png")} />
+      <RightArrow />
     </TouchableOpacity>
   );
 };

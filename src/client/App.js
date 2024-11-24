@@ -21,7 +21,6 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginView} />
           <Stack.Screen name="Overview" component={OverView} />
-          <Stack.Screen name="HomePage" component={HomePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </TamaguiProvider>
