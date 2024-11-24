@@ -15,7 +15,10 @@ const LoginView = ({ navigation }) => {
   const handleLogin = (loginMethod) => {
     setIncorrectCredentials(false);
     if (username && password) {
-      navigation.navigate("Overview", { name: username });
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Overview", params: { name: username } }],
+      });
     } else {
       setIncorrectCredentials(true);
     }
