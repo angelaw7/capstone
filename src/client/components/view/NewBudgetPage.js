@@ -26,7 +26,7 @@ const NewBudgetPage = ({ navigation }) => {
     { category: "Misc", amount: 0.0 },
   ]);
 
-  const updateCategoryHandler = (newCategory) => {
+  const addNewCategory = (newCategory) => {
     setCategories([...categories, newCategory]);
   };
 
@@ -132,7 +132,7 @@ const NewBudgetPage = ({ navigation }) => {
               visible={openModal}
               modalHandler={setOpenModal}
               currency={currency}
-              updateCategoryHandler={updateCategoryHandler}
+              updateCategoryHandler={addNewCategory}
             />
             <Pressable
               style={styles.addBudget}
