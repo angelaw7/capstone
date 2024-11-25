@@ -25,9 +25,9 @@ export default function App() {
           <Stack.Screen name="Login" component={LoginView} />
           <Stack.Screen name="Overview" component={OverView} />
           <Stack.Screen name="MyIncome" component={MyIncome} />
-          <Stack.Screen name="MyExpenses" component={MyExpenses} />
           <Stack.Screen name="NewIncome" component={NewIncomePage} />
-          <Stack.Screen name="Add Expense" component={AddExpenseView} />
+          <Stack.Screen name="MyExpenses" component={MyExpenses} />
+          <Stack.Screen name="NewExpense" component={AddExpenseView} />
         </Stack.Navigator>
       </NavigationContainer>
     </TamaguiProvider>

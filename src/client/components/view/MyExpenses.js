@@ -13,7 +13,7 @@ const MyExpenses = ({ navigation }) => {
 
   const addNewExpenseHandler = () => {
     // TO DO
-    // navigation.navigate("NewExpense");
+    navigation.navigate("NewExpense");
   };
 
   return (

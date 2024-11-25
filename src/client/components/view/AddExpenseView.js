@@ -16,7 +16,7 @@ import StatsChartOutlineIcon from "../../assets/icons/StatsChartOutlineIcon";
 import AddExpenseModal from "./AddExpenseModal";
 import DisplayExpenseItems from "./DisplayExpenseItem";
 
-const AddExpenseView = () => {
+const AddExpenseView = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [items, setItems] = useState([]);
   const [date, setDate] = useState("");
@@ -41,14 +41,24 @@ const AddExpenseView = () => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
 
+  const saveExpenseHandler = () => {
+    // To-do
+    navigation.navigate("MyExpenses");
+  };
+
+  const cancelExpenseHandler = () => {
+    // To-do
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={cancelExpenseHandler}>
           <Text style={styles.headerButton}>Cancel</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Add Expense</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={saveExpenseHandler}>
           <Text style={styles.headerButton}>Save</Text>
         </TouchableOpacity>
       </View>
