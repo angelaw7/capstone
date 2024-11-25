@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomePage from "./components/view/HomePage";
 import LoginView from "./components/view/LoginView";
 import OverView from "./components/view/OverView";
+import AddExpenseView from "./components/view/AddExpenseView";
 import { useFonts } from "expo-font";
 import { TamaguiProvider } from "tamagui";
 import config from "./tamagui.config";
@@ -21,6 +22,7 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginView} />
           <Stack.Screen name="Overview" component={OverView} />
+          <Stack.Screen name="Add Expense" component={AddExpenseView} />
         </Stack.Navigator>
       </NavigationContainer>
     </TamaguiProvider>
