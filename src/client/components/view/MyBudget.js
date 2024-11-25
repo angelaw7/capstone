@@ -1,32 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import BackArrow from "../../assets/icons/BackArrow";
 import AddIcon from "../../assets/icons/AddIcon";
 import HorizontalRule from "../common/HorizontalRule";
 import EntrySource from "../common/EntrySource";
-import ExpensesService from "../../services/expensesService";
 
-const MyExpenses = ({ navigation }) => {
+const MyBudget = ({ navigation }) => {
   const returnHandler = () => {
     navigation.navigate("Overview");
   };
 
-  useEffect(() => {
-    const getExpenses = async () => {
-      try {
-        const expenses = await ExpensesService.getUserExpenses(1);
-        console.log(expenses);
-      } catch (error) {
-        throw error;
-      }
-    };
-    getExpenses();
-  }, []);
-
-  const addNewExpenseHandler = () => {
-    // TO DO
-    navigation.navigate("NewExpense");
+  const addNewBudgetHandler = () => {
+    navigation.navigate("NewBudget");
   };
 
   return (
@@ -35,27 +21,32 @@ const MyExpenses = ({ navigation }) => {
         <Pressable style={styles.backIcon} onPress={returnHandler}>
           <BackArrow size={35} />
         </Pressable>
-        <Text style={styles.title}>My Expenses</Text>
-        <Pressable style={styles.addIcon} onPress={addNewExpenseHandler}>
+        <Text style={styles.title}>My Budget</Text>
+        <Pressable style={styles.addIcon} onPress={addNewBudgetHandler}>
           <AddIcon size={35} />
         </Pressable>
       </View>
 
       <View>
         <View style={styles.recurring}>
-          <Text style={styles.sectionTitle}>November 11, 2024</Text>
-
-          <EntrySource description="Groceries" additionalInfo="-$52.37" />
-          <EntrySource description="Movie Tickets" additionalInfo="-$25.77" />
+          <Text style={styles.sectionTitle}>Current</Text>
           <HorizontalRule />
+
+          <EntrySource description="November General" additionalInfo="$1,200" />
+        </View>
+
+        <View style={styles.recurring}>
+          <Text style={styles.sectionTitle}>Future</Text>
+          <HorizontalRule />
+
+          <EntrySource description="December General" additionalInfo="$1,500" />
         </View>
 
         <View>
-          <Text style={styles.sectionTitle}>November 10, 2024</Text>
-
-          <EntrySource description="Lunch" additionalInfo="-$13.22" group />
-          <EntrySource description="Coffee" additionalInfo="-$4.92" group />
+          <Text style={styles.sectionTitle}>History</Text>
           <HorizontalRule />
+
+          <EntrySource description="October General" additionalInfo="$1,200" />
         </View>
       </View>
     </View>
@@ -96,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyExpenses;
+export default MyBudget;
