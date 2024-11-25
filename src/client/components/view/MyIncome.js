@@ -11,6 +11,10 @@ const MyIncome = ({ navigation }) => {
     navigation.goBack();
   };
 
+  const addNewIncomeHandler = () => {
+    navigation.navigate("NewIncome");
+  };
+
   return (
     <View style={styles.background}>
       <View style={styles.headerBox}>
@@ -18,7 +22,7 @@ const MyIncome = ({ navigation }) => {
           <BackArrow size={35} />
         </Pressable>
         <Text style={styles.title}>My Income</Text>
-        <Pressable style={styles.addIcon}>
+        <Pressable style={styles.addIcon} onPress={addNewIncomeHandler}>
           <AddIcon size={35} />
         </Pressable>
       </View>
