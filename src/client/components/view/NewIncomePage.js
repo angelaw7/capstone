@@ -82,7 +82,6 @@ const NewIncomePage = ({ navigation }) => {
               labelField="label"
               valueField="value"
               style={styles.dropdown}
-              label="How often?"
               search
               searchPlaceholder="Search..."
               value={dropdownValue}

@@ -81,7 +81,6 @@ const NewBudgetPage = ({ navigation }) => {
                 labelField="label"
                 valueField="value"
                 style={styles.dropdown}
-                label="$"
                 value={currency}
                 onChange={(item) => dropdownChangeHandler(item)}
               />
