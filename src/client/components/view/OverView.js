@@ -14,13 +14,21 @@ const OverView = ({ navigation, route }) => {
     navigation.navigate("MyIncome");
   };
 
+  const expensePageHandler = () => {
+    navigation.navigate("MyExpenses");
+  };
+
   return (
     <View alignItems="center" paddingTop={10} style={styles.background}>
       <Text style={styles.welcome}>{`Welcome back ${username}!`}</Text>
       <View style={styles.homepage}>
         <Text style={styles.title}>What would you like to do?</Text>
         <View style={styles.buttonsContainer}>
-          <HomePageButton title="Expense" color={"#F9E6E1"}>
+          <HomePageButton
+            title="Expense"
+            color={"#F9E6E1"}
+            routingHandler={expensePageHandler}
+          >
             <ReceiptIcon />
           </HomePageButton>
 

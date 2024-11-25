@@ -6,13 +6,14 @@ import AddIcon from "../../assets/icons/AddIcon";
 import HorizontalRule from "../common/HorizontalRule";
 import EntrySource from "../common/EntrySource";
 
-const MyIncome = ({ navigation }) => {
+const MyExpenses = ({ navigation }) => {
   const returnHandler = () => {
     navigation.goBack();
   };
 
-  const addNewIncomeHandler = () => {
-    navigation.navigate("NewIncome");
+  const addNewExpenseHandler = () => {
+    // TO DO
+    // navigation.navigate("NewExpense");
   };
 
   return (
@@ -21,35 +22,26 @@ const MyIncome = ({ navigation }) => {
         <Pressable style={styles.backIcon} onPress={returnHandler}>
           <BackArrow size={35} />
         </Pressable>
-        <Text style={styles.title}>My Income</Text>
-        <Pressable style={styles.addIcon} onPress={addNewIncomeHandler}>
+        <Text style={styles.title}>My Expenses</Text>
+        <Pressable style={styles.addIcon} onPress={addNewExpenseHandler}>
           <AddIcon size={35} />
         </Pressable>
       </View>
 
       <View>
         <View style={styles.recurring}>
-          <Text style={styles.sectionTitle}>Recurring</Text>
-          <HorizontalRule />
+          <Text style={styles.sectionTitle}>November 11, 2024</Text>
 
-          <EntrySource incomeTitle="$40 - Biweekly" additionalInfo="Tutoring" />
+          <EntrySource incomeTitle="Groceries" additionalInfo="-$52.37" />
+          <EntrySource incomeTitle="Movie Tickets" additionalInfo="-$25.77" />
           <HorizontalRule />
         </View>
 
         <View>
-          <Text style={styles.sectionTitle}>History</Text>
-          <HorizontalRule />
+          <Text style={styles.sectionTitle}>November 10, 2024</Text>
 
-          <EntrySource
-            incomeTitle="$40 (recurring)"
-            additionalInfo={`Tutoring \nNov 11, 2024`}
-          />
-          <HorizontalRule />
-
-          <EntrySource
-            incomeTitle="$100"
-            additionalInfo={`Raffle \nNov 6, 2024`}
-          />
+          <EntrySource incomeTitle="Lunch" additionalInfo="-$13.22" group />
+          <EntrySource incomeTitle="Coffee" additionalInfo="-$4.92" group />
           <HorizontalRule />
         </View>
       </View>
@@ -91,4 +83,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyIncome;
+export default MyExpenses;

@@ -1,12 +1,22 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import RightArrow from "../../assets/icons/RightArrow";
+import GroupIcon from "../../assets/icons/GroupIcon";
 
-const IncomeSource = ({ incomeTitle, additionalInfo }) => {
+const EntrySource = ({ incomeTitle, additionalInfo, group }) => {
   return (
     <View style={styles.box}>
       <View style={styles.textBox}>
-        <Text style={[styles.text, { width: "65%" }]}>{incomeTitle}</Text>
+        {group ? (
+          <View style={styles.group}>
+            <Text style={[styles.text]}>{incomeTitle}</Text>
+            <View style={styles.groupIcon}>
+              <GroupIcon size={30} />
+            </View>
+          </View>
+        ) : (
+          <Text style={[styles.text, { width: "65%" }]}>{incomeTitle}</Text>
+        )}
         <Text style={[styles.text, { width: "35%", textAlign: "center" }]}>
           {additionalInfo}
         </Text>
@@ -40,6 +50,13 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
   },
+  group: {
+    width: "65%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  groupIcon: { marginLeft: 8 },
 });
 
-export default IncomeSource;
+export default EntrySource;
