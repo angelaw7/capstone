@@ -8,7 +8,9 @@ import IncomeIcon from "../../assets/icons/IncomeIcon";
 import BudgetIcon from "../../assets/icons/BudgetIcon";
 
 const OverView = ({ navigation, route }) => {
-  const username = route.params.name;
+  /* Should store user name in state somewhere especially if we navigate back
+  from the expense/income/budget page lool */
+  const username = route.params?.name;
 
   const incomePageHandler = () => {
     navigation.navigate("MyIncome");
@@ -18,9 +20,15 @@ const OverView = ({ navigation, route }) => {
     navigation.navigate("MyExpenses");
   };
 
+  const budgetPageHandler = () => {
+    navigation.navigate("MyBudget");
+  };
+
   return (
     <View alignItems="center" paddingTop={10} style={styles.background}>
-      <Text style={styles.welcome}>{`Welcome back ${username}!`}</Text>
+      {username && (
+        <Text style={styles.welcome}>{`Welcome back ${username}!`}</Text>
+      )}
       <View style={styles.homepage}>
         <Text style={styles.title}>What would you like to do?</Text>
         <View style={styles.buttonsContainer}>
@@ -40,7 +48,11 @@ const OverView = ({ navigation, route }) => {
             <IncomeIcon />
           </HomePageButton>
 
-          <HomePageButton title="Budget" color={"#E1F7F9"}>
+          <HomePageButton
+            title="Budget"
+            color={"#E1F7F9"}
+            routingHandler={budgetPageHandler}
+          >
             <BudgetIcon />
           </HomePageButton>
         </View>
