@@ -5,7 +5,7 @@ expenses = Blueprint('expenses', __name__)
 
 @expenses.route('/<userId>', methods=['GET'])
 def getExpenses(userId):
-    return ExpensesController.get_all_expenses(userId)
+    return jsonify(ExpensesController.get_all_expenses(userId))
 
 @expenses.route('/', methods=['POST'])
 def addExpense():

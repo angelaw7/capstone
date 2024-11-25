@@ -1,4 +1,4 @@
-from ...models.expenses.expense import Expense
+from server.models.expenses.expense import Expense
 
 class ExpensesDao:
     @staticmethod

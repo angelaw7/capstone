@@ -1,4 +1,4 @@
-from ...daos.expenses.expenses_dao import ExpensesDao
+from server.daos.expenses.expenses_dao import ExpensesDao
 
 class ExpensesController:
     @staticmethod
