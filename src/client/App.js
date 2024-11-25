@@ -1,7 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import HomePage from "./components/view/HomePage";
+import MyIncome from "./components/view/MyIncome";
+import MyExpenses from "./components/view/MyExpenses";
+import NewIncomePage from "./components/view/NewIncomePage";
 import LoginView from "./components/view/LoginView";
 import OverView from "./components/view/OverView";
 import AddExpenseView from "./components/view/AddExpenseView";
@@ -22,6 +24,9 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginView} />
           <Stack.Screen name="Overview" component={OverView} />
+          <Stack.Screen name="MyIncome" component={MyIncome} />
+          <Stack.Screen name="MyExpenses" component={MyExpenses} />
+          <Stack.Screen name="NewIncome" component={NewIncomePage} />
           <Stack.Screen name="Add Expense" component={AddExpenseView} />
         </Stack.Navigator>
       </NavigationContainer>
