@@ -6,6 +6,7 @@ import MyExpenses from "./components/view/MyExpenses";
 import NewIncomePage from "./components/view/NewIncomePage";
 import LoginView from "./components/view/LoginView";
 import OverView from "./components/view/OverView";
+import AddExpenseView from "./components/view/AddExpenseView";
 import { useFonts } from "expo-font";
 import { TamaguiProvider } from "tamagui";
 import config from "./tamagui.config";
@@ -26,6 +27,7 @@ export default function App() {
           <Stack.Screen name="MyIncome" component={MyIncome} />
           <Stack.Screen name="MyExpenses" component={MyExpenses} />
           <Stack.Screen name="NewIncome" component={NewIncomePage} />
+          <Stack.Screen name="Add Expense" component={AddExpenseView} />
         </Stack.Navigator>
       </NavigationContainer>
     </TamaguiProvider>
