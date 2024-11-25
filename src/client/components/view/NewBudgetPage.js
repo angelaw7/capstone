@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, Pressable, TextInput } from "react-native";
 import BackArrow from "../../assets/icons/BackArrow";
 import Slider from "@react-native-community/slider";
 import { Dropdown } from "react-native-element-dropdown";
+import AddCategoryBudgetModal from "./AddCategoryBudgetModal";
 
-const dropdownData = [
+const currencies = [
   { label: "$", value: "$" },
   { label: "€", value: "€" },
   { label: "£", value: "£" },
@@ -15,10 +16,31 @@ const dropdownData = [
 
 const NewBudgetPage = ({ navigation }) => {
   const [alertValue, setAlertValue] = useState(0);
-  const [dropdownValue, setDropdownValue] = useState("$");
+  const [currency, setCurrency] = useState("$");
+  const [openModal, setOpenModal] = useState(false);
+
+  const [categories, setCategories] = useState([
+    { category: "Food", amount: 0.0 },
+    { category: "Leisure", amount: 0.0 },
+    { category: "Shopping", amount: 0.0 },
+    { category: "Misc", amount: 0.0 },
+  ]);
+
+  const updateCategoryHandler = (newCategory) => {
+    setCategories([...categories, newCategory]);
+  };
+
+  const categoryUpdateHandler = (category, newValue) => {
+    const newCategory = categories.map((entry) => {
+      return entry.category === category
+        ? { category: category, amount: newValue }
+        : entry;
+    });
+    setCategories(newCategory);
+  };
 
   const dropdownChangeHandler = (item) => {
-    setDropdownValue(item.value);
+    setCurrency(item.value);
   };
 
   const returnHandler = () => {
@@ -47,7 +69,7 @@ const NewBudgetPage = ({ navigation }) => {
         </View>
         <View style={styles.entryBox}>
           <Text>Projected Income:</Text>
-          <Text>{dropdownValue}2,492.11</Text>
+          <Text>{currency}2,492.11</Text>
         </View>
         <View style={styles.entryBox}>
           <Text>Total Budget:</Text>
@@ -55,12 +77,12 @@ const NewBudgetPage = ({ navigation }) => {
           <View style={styles.totalBudgetValueBox}>
             <View style={styles.currency}>
               <Dropdown
-                data={dropdownData}
+                data={currencies}
                 labelField="label"
                 valueField="value"
                 style={styles.dropdown}
                 label="$"
-                value={dropdownValue}
+                value={currency}
                 onChange={(item) => dropdownChangeHandler(item)}
               />
             </View>
@@ -82,39 +104,41 @@ const NewBudgetPage = ({ navigation }) => {
             <Text>Set Limit for:</Text>
           </View>
           <View style={styles.limitsValueBox}>
-            <View style={styles.entryBox}>
-              <Text>Food</Text>
-              <TextInput
-                keyboardType="numeric"
-                placeholder={`${dropdownValue}0.0`}
-                style={[styles.textInput, { width: "40%", textAlign: "right" }]}
-              ></TextInput>
-            </View>
-            <View style={styles.entryBox}>
-              <Text>Leisure</Text>
-              <TextInput
-                keyboardType="numeric"
-                placeholder={`${dropdownValue}0.0`}
-                style={[styles.textInput, { width: "40%", textAlign: "right" }]}
-              ></TextInput>
-            </View>
-            <View style={styles.entryBox}>
-              <Text>Shopping</Text>
-              <TextInput
-                keyboardType="numeric"
-                placeholder={`${dropdownValue}0.0`}
-                style={[styles.textInput, { width: "40%", textAlign: "right" }]}
-              ></TextInput>
-            </View>
-            <View style={styles.entryBox}>
-              <Text>Misc</Text>
-              <TextInput
-                keyboardType="numeric"
-                placeholder={`${dropdownValue}0.0`}
-                style={[styles.textInput, { width: "40%", textAlign: "right" }]}
-              ></TextInput>
-            </View>
-            <Pressable style={styles.addBudget}>
+            {categories.map((entry, index) => {
+              return (
+                /* key can be an uuid or something idk lol */
+                <View style={styles.entryBox} key={index}>
+                  <Text>{entry.category}</Text>
+                  <View style={styles.categoryCurrency}>
+                    <View style={styles.currencyText}>
+                      <Text>{currency}</Text>
+                    </View>
+                    <TextInput
+                      keyboardType="numeric"
+                      placeholder={entry.amount}
+                      style={[
+                        styles.textInput,
+                        { width: "40%", textAlign: "right" },
+                      ]}
+                      value={entry.value}
+                      onChangeText={(newValue) =>
+                        categoryUpdateHandler(entry.category, newValue)
+                      }
+                    ></TextInput>
+                  </View>
+                </View>
+              );
+            })}
+            <AddCategoryBudgetModal
+              visible={openModal}
+              modalHandler={setOpenModal}
+              currency={currency}
+              updateCategoryHandler={updateCategoryHandler}
+            />
+            <Pressable
+              style={styles.addBudget}
+              onPress={() => setOpenModal(true)}
+            >
               <Text>+ Add</Text>
             </Pressable>
           </View>
@@ -246,6 +270,18 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     width: "100%",
+  },
+  categoryCurrency: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  currencyText: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 8,
   },
 });
 
