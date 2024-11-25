@@ -25,7 +25,7 @@ jobs:
 
       - name: Run ESLint
         run: npm run lint
-         working-directory: src/client
+        working-directory: src/client
 
       # When we start testing we can uncomment this loool
       # - name: Run tests
