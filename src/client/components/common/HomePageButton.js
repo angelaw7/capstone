@@ -2,12 +2,14 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import RightArrow from "../../assets/icons/RightArrow";
 
-const HomePageButton = ({ children, title, color }) => {
+const HomePageButton = ({ children, title, color, routingHandler }) => {
   return (
     <TouchableOpacity style={[styles.button, { backgroundColor: color }]}>
       {children}
       <Text style={styles.buttonText}>{title}</Text>
-      <RightArrow />
+      <TouchableOpacity onPress={routingHandler}>
+        <RightArrow />
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };

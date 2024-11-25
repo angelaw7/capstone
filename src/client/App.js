@@ -1,7 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import HomePage from "./components/view/HomePage";
 import MyIncome from "./components/view/MyIncome";
 import LoginView from "./components/view/LoginView";
 import OverView from "./components/view/OverView";
@@ -20,9 +19,9 @@ export default function App() {
     <TamaguiProvider config={config}>
       <NavigationContainer>
         <Stack.Navigator>
-          {/* <Stack.Screen name="Login" component={LoginView} />
-          <Stack.Screen name="Overview" component={OverView} /> */}
-          <Stack.Screen name="Add Income" component={MyIncome} />
+          <Stack.Screen name="Login" component={LoginView} />
+          <Stack.Screen name="Overview" component={OverView} />
+          <Stack.Screen name="MyIncome" component={MyIncome} />
         </Stack.Navigator>
       </NavigationContainer>
     </TamaguiProvider>

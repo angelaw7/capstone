@@ -6,11 +6,15 @@ import AddIcon from "../../assets/icons/AddIcon";
 import HorizontalRule from "../common/HorizontalRule";
 import IncomeSource from "../common/IncomeSource";
 
-const MyIncome = () => {
+const MyIncome = ({ navigation }) => {
+  const returnHandler = () => {
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.background}>
       <View style={styles.headerBox}>
-        <Pressable style={styles.backIcon}>
+        <Pressable style={styles.backIcon} onPress={returnHandler}>
           <BackArrow size={35} />
         </Pressable>
         <Text style={styles.title}>My Income</Text>

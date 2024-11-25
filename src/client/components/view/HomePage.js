@@ -5,7 +5,11 @@ import ReceiptIcon from "../../assets/icons/ReceiptIcon";
 import IncomeIcon from "../../assets/icons/IncomeIcon";
 import BudgetIcon from "../../assets/icons/BudgetIcon";
 
-const HomePage = () => {
+const HomePage = ({ navigation }) => {
+  const incomePageHandler = () => {
+    navigation.navigate("MyIncome");
+  };
+
   return (
     <View style={styles.background}>
       <Text style={styles.title}>What would you like to do?</Text>
@@ -13,7 +17,11 @@ const HomePage = () => {
         <HomePageButton title="Expense" color={"#F9E6E1"}>
           <ReceiptIcon />
         </HomePageButton>
-        <HomePageButton title="Income" color={"#C6FFC9"}>
+        <HomePageButton
+          title="Income"
+          color={"#C6FFC9"}
+          routingHandler={incomePageHandler}
+        >
           <IncomeIcon />
         </HomePageButton>
         <HomePageButton title="Budget" color={"#E1F7F9"}>
