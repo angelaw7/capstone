@@ -3,19 +3,19 @@ import { StyleSheet, Text, View } from "react-native";
 import RightArrow from "../../assets/icons/RightArrow";
 import GroupIcon from "../../assets/icons/GroupIcon";
 
-const EntrySource = ({ incomeTitle, additionalInfo, group }) => {
+const EntrySource = ({ description, additionalInfo, group }) => {
   return (
     <View style={styles.box}>
       <View style={styles.textBox}>
         {group ? (
           <View style={styles.group}>
-            <Text style={[styles.text]}>{incomeTitle}</Text>
+            <Text style={[styles.text]}>{description}</Text>
             <View style={styles.groupIcon}>
               <GroupIcon size={30} />
             </View>
           </View>
         ) : (
-          <Text style={[styles.text, { width: "65%" }]}>{incomeTitle}</Text>
+          <Text style={[styles.text, { width: "65%" }]}>{description}</Text>
         )}
         <Text style={[styles.text, { width: "35%", textAlign: "center" }]}>
           {additionalInfo}

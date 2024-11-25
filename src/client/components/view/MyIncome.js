@@ -8,7 +8,7 @@ import EntrySource from "../common/EntrySource";
 
 const MyIncome = ({ navigation }) => {
   const returnHandler = () => {
-    navigation.goBack();
+    navigation.navigate("Overview");
   };
 
   const addNewIncomeHandler = () => {
@@ -32,7 +32,7 @@ const MyIncome = ({ navigation }) => {
           <Text style={styles.sectionTitle}>Recurring</Text>
           <HorizontalRule />
 
-          <EntrySource incomeTitle="$40 - Biweekly" additionalInfo="Tutoring" />
+          <EntrySource description="$40 - Biweekly" additionalInfo="Tutoring" />
           <HorizontalRule />
         </View>
 
@@ -41,13 +41,13 @@ const MyIncome = ({ navigation }) => {
           <HorizontalRule />
 
           <EntrySource
-            incomeTitle="$40 (recurring)"
+            description="$40 (recurring)"
             additionalInfo={`Tutoring \nNov 11, 2024`}
           />
           <HorizontalRule />
 
           <EntrySource
-            incomeTitle="$100"
+            description="$100"
             additionalInfo={`Raffle \nNov 6, 2024`}
           />
           <HorizontalRule />

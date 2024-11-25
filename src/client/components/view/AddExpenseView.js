@@ -46,7 +46,7 @@ const AddExpenseView = ({ navigation }) => {
     navigation.navigate("MyExpenses");
   };
 
-  const cancelExpenseHandler = () => {
+  const returnHandler = () => {
     // To-do
     navigation.goBack();
   };
@@ -54,7 +54,7 @@ const AddExpenseView = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={cancelExpenseHandler}>
+        <TouchableOpacity onPress={returnHandler}>
           <Text style={styles.headerButton}>Cancel</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Add Expense</Text>

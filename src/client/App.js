@@ -3,6 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import MyIncome from "./components/view/MyIncome";
 import MyExpenses from "./components/view/MyExpenses";
+import MyBudget from "./components/view/MyBudget";
+import NewBudgetPage from "./components/view/NewBudgetPage";
 import NewIncomePage from "./components/view/NewIncomePage";
 import LoginView from "./components/view/LoginView";
 import OverView from "./components/view/OverView";
@@ -28,6 +30,8 @@ export default function App() {
           <Stack.Screen name="NewIncome" component={NewIncomePage} />
           <Stack.Screen name="MyExpenses" component={MyExpenses} />
           <Stack.Screen name="NewExpense" component={AddExpenseView} />
+          <Stack.Screen name="MyBudget" component={MyBudget} />
+          <Stack.Screen name="NewBudget" component={NewBudgetPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </TamaguiProvider>
