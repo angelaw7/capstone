@@ -82,11 +82,9 @@ def jsonify_data(items: list, filename: str, write_to_file: bool = False):
 
 
 def process_image(filepath: str):
-    print("hello")
     text_arr = extract_text_from_image(filepath, show_image=False)
     items, subtotal, calculated_total = process_items_list(text_arr)
     data = jsonify_data(items, filepath)
-    print(data)
 
     categorized_data = categorization.categorize(data)
 
@@ -103,8 +101,6 @@ def process_image(filepath: str):
             "price": row["price"],
             "category": row["category"]
         })
-    
-    print(result)
     
     return result
 
