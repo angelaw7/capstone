@@ -467,15 +467,17 @@ depending on the project's progress.
 \section{Proof of Concept Demonstration Plan}
 
 \subsection{Plan for Proof of Concept Demonstration in November}
-Demonstrate a working mobile application on a mobile device that can perform the
-following functionalities:
+Demonstrate a working application that can perform the following
+functionalities:
 \begin{enumerate}
-    \item When a button is pressed, the phone camera opens. The user can then
-    take a picture of an itemized receipt.
-    \item Once the picture has been taken, the application runs it through the
-    ML model, where it processes the image. The application should then list out
-    the recognized items from the receipt. Items should also be tagged or
-    grouped into predefined categories.
+    \item From the application, the user can choose to upload a picture from
+    their photo library. The picture should be a receipt from a store.
+    \item The application passes the uploaded photo to the backend, where it
+    then gets processed through the OCR library.
+    \item After parsing text from the receipt, the data will be processed
+    through a ML model, which will categorize items from the receipt.
+    \item The processed data (parsed items and categorization) will be returned
+    and displayed to the user.
 \end{enumerate}
 
 \subsection{Anticipated Risks and Mitigation Plan}
@@ -495,6 +497,22 @@ following functionalities:
         date/time, and other metadata fields about the items recorded will be
         provided, and this would be used as feedback to improve the model.
     \end{itemize}
+
+    \item \textbf{Optical Character Recognition (OCR) Limitations:} Poor-quality
+    receipts (faded text, creases, or low resolution) may hinder OCR
+    performance, leading to incomplete or inaccurate data extraction.
+     \begin{itemize}
+        \item \textbf{Risk level:} Medium, as we plan to use a good quality
+         receipt (i.e., laid out flat on a table, newly printed) for the POC
+         demonstration.
+        \item \textbf{Mitigation plan:} We will initially train the model using
+        good quality receipts. Over the course of the training process, we plan
+        to introduce lower-quality receipts and use advanced pre-processing
+        techniques (e.g., noise reduction, image enhancement) to increase the
+        accuracy of parsing lower-quality data. For the POC demonstration, we
+        plan to use a good quality receipt for the purpose of showing the base
+        functionality of the model.
+    \end{itemize}
     
     \item \textbf{Model Generalization and Adaptability:} The ML model may
     struggle with adapting to new types of receipts, retailers, or products that
@@ -505,26 +523,11 @@ following functionalities:
         for the purpose of showing the feasibility of the model.
         \item \textbf{Mitigation plan:} For the first iteration of the model, we
         plan to target specific stores near campus (e.g., Food Basics, Fortinos,
-        Shoppers Drug Mart) as we will be able to collect the most amount of
-        data from these locations and monitor the accuracy of the model. As the
-        project progresses, we will expand to different categories and stores.
+        Shoppers Drug Mart, Walmart, Costco) as we will be able to collect the
+        most amount of data from these locations and monitor the accuracy of the
+        model. As the project progresses, we will expand to different categories
+        and stores.
     \end{itemize}
-    
-    \item \textbf{Optical Character Recognition (OCR) Limitations:} Poor-quality
-    receipts (faded text, creases, or low resolution) may hinder OCR
-    performance, leading to incomplete or inaccurate data extraction.
-     \begin{itemize}
-         \item \textbf{Risk level:} Medium, as we plan to use a good quality
-         receipt (i.e., laid out flat on a table, newly printed) for the POC
-         demonstration.
-        \item \textbf{Mitigation plan:} We will initially train the model using
-        good quality receipts. Over the course of the training process, we plan
-        to introduce lower-quality receipts and use advanced pre-processing
-        techniques (e.g., noise reduction, image enhancement) to increase the
-        accuracy of parsing lower-quality data. For the POC demonstration, we
-        plan to use a good quality receipt for the purpose of showing the base
-        functionality of the model.
-      \end{itemize}
 
     \item \textbf{Privacy and Data Security:} Handling sensitive financial data
     (such as purchase histories and personal information) poses the risk of data
@@ -559,12 +562,12 @@ following functionalities:
     a large volume of receipt uploads and processing requests in real-time could
     impact system performance and user experience.
     \begin{itemize}
-        \item \textbf{Risk level:} Medium, in terms of performance for the POC
+        \item \textbf{Risk level:} Low, in terms of performance for the POC
         plan. We are unsure how fast the model would be able to process an image
         and return the information that we would need. Scalability is not a risk
         for the POC plan but is important to consider for future development.
         \item \textbf{Mitigation plan:} We will run load testing and stress
-        testing simulations to show the app’s capacity to handle increasing
+        testing simulations to show the app's capacity to handle increasing
         numbers of users and transactions without degradation in response time
         or accuracy. This does not apply for the POC demonstration but is
         important to consider for future development.

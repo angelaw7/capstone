@@ -27,10 +27,13 @@ and the POC demo.
 We will be demonstrating a working prototype of the Plutos application, with the
 following base functionalities:
 \begin{itemize}
-    \item Upload a receipt image
-    \item Pass the image through the machine learning (ML) model to extract
-    information and categorize items
-    \item Display the extracted information to the screen
+    \item Upload a receipt image from the user's device and send it to the
+    backend
+    \item Pass the image through the optical character recognition (OCR) library
+    to parse text from the image
+    \item Pass the data through the machine learning (ML) model to categorize
+    items
+    \item Return data to the frontend and display it to the user
 \end{itemize}
 
 These features would serve as the base for the product and to demonstrate the
