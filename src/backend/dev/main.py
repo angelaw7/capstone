@@ -3,6 +3,7 @@ import pandas as pd
 import pytesseract
 import numpy as np
 
+import categorization
 import utils
 
 
@@ -23,7 +24,7 @@ def extract_text_from_image(filename: str, show_image: bool = False):
         image.show()
     image_arr = np.array(image)
 
-    text = pytesseract.image_to_string(image_arr, config="--psm 3")
+    text = pytesseract.image_to_string(image_arr, config="--psm 4")
 
     data = pytesseract.image_to_data(
         image_arr, output_type=pytesseract.Output.DICT
@@ -53,10 +54,11 @@ def process_items_list(text_arr: list) -> tuple:
                 curr_item = line
             else:
                 curr_item += " " + line
-            if utils.is_float(line_arr[-1]):
+            if utils.is_float(line_arr[-1]) or (
+                len(line_arr) > 2 and utils.is_float(line_arr[-2])
+            ):
                 items.append([curr_item])
                 curr_item = None
-
     calculated_total = 0
     for item in items:
         item_name, item_price = utils.split_item(item[0])
@@ -68,7 +70,7 @@ def process_items_list(text_arr: list) -> tuple:
 
 def jsonify_data(items: list, filename: str, write_to_file: bool = True):
     items_cleaned = []
-    with open(f"./{filename}_results.csv", "w+") as f:
+    with open(f"{filename}_results.csv", "w+") as f:
         for item in items:
             item_name, item_price = utils.split_item(item[0])
             if item_name:
@@ -80,12 +82,16 @@ def jsonify_data(items: list, filename: str, write_to_file: bool = True):
 
 
 def main():
-    filename = "shoppers_1.png"
+    filename = "./data/costco_1.jpg"
     text_arr = extract_text_from_image(filename, show_image=False)
     items, subtotal, calculated_total = process_items_list(text_arr)
     data = jsonify_data(items, filename)
+    print("DATA")
     print(data)
-    # print(data.to_json())
+    print("DATA---")
+
+    categorized_data = categorization.categorize(data)
+    print(categorized_data)
 
 
 if __name__ == "__main__":
