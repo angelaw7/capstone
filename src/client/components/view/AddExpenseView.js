@@ -15,12 +15,14 @@ import StatsChartOutlineIcon from "../../assets/icons/StatsChartOutlineIcon";
 
 import AddExpenseModal from "./AddExpenseModal";
 import DisplayExpenseItems from "./DisplayExpenseItem";
+import * as ImagePicker from "expo-image-picker";
 
 const AddExpenseView = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [items, setItems] = useState([]);
   const [date, setDate] = useState("");
   const [storeName, setStoreName] = useState("");
+  const [image, setImage] = useState(null);
 
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
@@ -51,6 +53,60 @@ const AddExpenseView = ({ navigation }) => {
     navigation.goBack();
   };
 
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+      base64: true,
+    });
+
+    if (!result.canceled) {
+      console.log("result", result);
+
+      const imageResult = result.assets[0];
+      const fileUri = imageResult.uri;
+      const fileType = imageResult.file.type;
+      const fileName = imageResult.file.name;
+      setImage(fileUri);
+
+      try {
+        const res = await fetch(fileUri);
+        const blob = await res.blob();
+        const file = new File([blob], fileName, {
+          type: fileType,
+        });
+        const formData = new FormData();
+        formData.append("receipt", file);
+
+        const response = await fetch(
+          "http://127.0.0.1:5001/api/expenses/receipt",
+          {
+            method: "POST",
+            body: formData,
+          },
+        );
+        const responseData = await response.json();
+
+        const receipt_items = responseData.items;
+        for (let i = 0; i < receipt_items.length; i++) {
+          const item = {
+            id: Math.random().toString(),
+            rawName: receipt_items[i].name,
+            name: receipt_items[i].name,
+            cost: receipt_items[i].price,
+            category: receipt_items[i].category,
+          };
+          setItems((prevItems) => [...prevItems, item]);
+        }
+        console.log("responseData:", responseData);
+      } catch (error) {
+        console.error("Error converting image to file:", error);
+      }
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -72,7 +128,10 @@ const AddExpenseView = ({ navigation }) => {
             <CameraIcon size={24} style={styles.icon} />
             <Text style={styles.imageOptionText}>Capture Photo</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.imageOptionButton}>
+          <TouchableOpacity
+            style={styles.imageOptionButton}
+            onPress={pickImage}
+          >
             <PhotoLibraryIcon size={24} style={styles.icon} />
             <Text style={styles.imageOptionText}>Photo Library</Text>
           </TouchableOpacity>

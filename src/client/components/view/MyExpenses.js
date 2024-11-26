@@ -12,17 +12,17 @@ const MyExpenses = ({ navigation }) => {
     navigation.navigate("Overview");
   };
 
-  useEffect(() => {
-    const getExpenses = async () => {
-      try {
-        const expenses = await ExpensesService.getUserExpenses(1);
-        console.log(expenses);
-      } catch (error) {
-        throw error;
-      }
-    };
-    getExpenses();
-  }, []);
+  // useEffect(() => {
+  //   const getExpenses = async () => {
+  //     try {
+  //       const expenses = await ExpensesService.getUserExpenses(1);
+  //       console.log(expenses);
+  //     } catch (error) {
+  //       throw error;
+  //     }
+  //   };
+  //   getExpenses();
+  // }, []);
 
   const addNewExpenseHandler = () => {
     // TO DO
