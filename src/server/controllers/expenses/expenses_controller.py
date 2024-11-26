@@ -14,4 +14,5 @@ class ExpensesController:
         
         return ExpensesDao.create_expense(data)
         
-        
+    def process_receipt(data):
+        return ExpensesDao.process_receipt(data)

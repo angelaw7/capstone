@@ -1,4 +1,12 @@
+import tempfile
 from server.models.expenses.expense import Expense
+from server.imageProcessing import process_image
+
+import os
+
+base_path = os.path.dirname(os.path.abspath(__file__))
+tmp_path = os.path.join(base_path, "tmp")
+
 
 class ExpensesDao:
     @staticmethod
@@ -14,3 +22,16 @@ class ExpensesDao:
         new_expense = Expense(name=data['name'], date=data['date'], price=data['price'], category=data['category'])
         # TODO: add expense data to db and adjust return logic 
         return {"id": 3, "name": new_expense.name, "price": new_expense.price, "date": new_expense.date, "category": new_expense.category}
+
+    @staticmethod
+    def process_receipt(file):
+        try:
+            tmp_filepath = os.path.join(tmp_path, file.filename)
+            file.save(tmp_filepath)
+            
+            print(f'Temporary file saved at: {tmp_filepath}')
+            data = process_image(tmp_filepath)
+        except Exception as e:
+            print(e)
+            return {"error": "Error processing receipt"}
+        return data

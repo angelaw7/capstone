@@ -3,8 +3,8 @@ import pandas as pd
 import pytesseract
 import numpy as np
 
-import categorization
-import utils
+import server.imageProcessing.categorization as categorization
+import server.imageProcessing.utils as utils
 
 
 pytesseract.pytesseract.tesseract_cmd = (
@@ -68,7 +68,7 @@ def process_items_list(text_arr: list) -> tuple:
     return items, subtotal, calculated_total
 
 
-def jsonify_data(items: list, filename: str, write_to_file: bool = True):
+def jsonify_data(items: list, filename: str, write_to_file: bool = False):
     items_cleaned = []
     with open(f"{filename}_results.csv", "w+") as f:
         for item in items:
@@ -81,15 +81,29 @@ def jsonify_data(items: list, filename: str, write_to_file: bool = True):
     return pd.DataFrame(items_cleaned, columns=["name", "price"])
 
 
-def main():
-    filename = "./data/foodbasics_1.jpg"
-    text_arr = extract_text_from_image(filename, show_image=False)
+def process_image(filepath: str):
+    text_arr = extract_text_from_image(filepath, show_image=False)
     items, subtotal, calculated_total = process_items_list(text_arr)
-    data = jsonify_data(items, filename)
+    data = jsonify_data(items, filepath)
 
     categorized_data = categorization.categorize(data)
-    print(categorized_data)
+
+    items_formatted = []
+    result = {
+        "items": items_formatted,
+        "subtotal": subtotal,
+        "calculated_total": calculated_total,
+    }
+    for i, row in categorized_data.iterrows():
+        items_formatted.append({
+            "id": i + 1,
+            "name": row["name"],
+            "price": row["price"],
+            "category": row["category"]
+        })
+    
+    return result
 
 
 if __name__ == "__main__":
-    main()
+    process_image()

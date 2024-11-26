@@ -2,13 +2,17 @@ import pandas as pd
 import pickle
 
 
-with open("./model/model.pkl", "rb") as f:
+import os
+
+base_path = os.path.dirname(os.path.abspath(__file__))
+
+with open(os.path.join(base_path, "model/model.pkl"), "rb") as f:
     model = pickle.load(f)
 
-with open("./model/vectorizer.pkl", "rb") as f:
+with open(os.path.join(base_path, "model/vectorizer.pkl"), "rb") as f:
     vectorizer = pickle.load(f)
 
-with open("./model/label_encoder.pkl", "rb") as f:
+with open(os.path.join(base_path, "model/label_encoder.pkl"), "rb") as f:
     label_encoder = pickle.load(f)
 
 
