@@ -17,7 +17,6 @@ import AddExpenseModal from "./AddExpenseModal";
 import DisplayExpenseItems from "./DisplayExpenseItem";
 import * as ImagePicker from "expo-image-picker";
 import ExpensesService from "../../services/expensesService";
-import { YStack } from "tamagui";
 
 const AddExpenseView = ({ navigation }) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -114,7 +113,6 @@ const AddExpenseView = ({ navigation }) => {
         </TouchableOpacity>
       </View>
 
-      <YStack></YStack>
       <View style={styles.imageUploadContainer}>
         <View style={styles.imagePlaceholder}>
           <Text>Your image here</Text>
