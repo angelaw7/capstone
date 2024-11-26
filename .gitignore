@@ -1,3 +1,5 @@
+src/backend/venv/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -279,3 +281,5 @@ TSWLatexianTemp*
 .DS_Store
 
 .idea
+
+__pycache__/

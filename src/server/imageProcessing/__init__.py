@@ -1,0 +1,1 @@
+from server.imageProcessing.process import process_image
