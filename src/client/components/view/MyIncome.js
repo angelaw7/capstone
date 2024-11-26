@@ -42,13 +42,13 @@ const MyIncome = ({ navigation }) => {
 
           <EntrySource
             description="$40 (recurring)"
-            additionalInfo={`Tutoring \nNov 11, 2024`}
+            additionalInfo={"Tutoring \nNov 11, 2024"}
           />
           <HorizontalRule />
 
           <EntrySource
             description="$100"
-            additionalInfo={`Raffle \nNov 6, 2024`}
+            additionalInfo={"Raffle \nNov 6, 2024"}
           />
           <HorizontalRule />
         </View>

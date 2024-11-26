@@ -26,7 +26,7 @@ const LoginView = ({ navigation }) => {
 
   return (
     <View style={commonStyles.container}>
-      <Text style={commonStyles.header}>{`Login to Plutos`}</Text>
+      <Text style={commonStyles.header}>{"Login to Plutos"}</Text>
       <View style={styles.loginContainer}>
         <TextInput
           placeholder="Email/Phone Number"

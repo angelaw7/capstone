@@ -8,7 +8,7 @@ export const DEFAULT_COLOURS = {
     tertiary: "0F7173",
     // TODO: change name of this
     secondarySubmit: "#272932",
-}
+};
 
 export const commonStyles = StyleSheet.create({
   container: {
