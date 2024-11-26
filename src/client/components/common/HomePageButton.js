@@ -4,7 +4,10 @@ import RightArrow from "../../assets/icons/RightArrow";
 
 const HomePageButton = ({ children, title, color, routingHandler }) => {
   return (
-    <TouchableOpacity style={[styles.button, { backgroundColor: color }]}>
+    <TouchableOpacity
+      onPress={routingHandler}
+      style={[styles.button, { backgroundColor: color }]}
+    >
       {children}
       <Text style={styles.buttonText}>{title}</Text>
       <TouchableOpacity onPress={routingHandler}>

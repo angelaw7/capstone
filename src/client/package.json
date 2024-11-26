@@ -17,6 +17,7 @@
     "@tamagui/config": "^1.117.1",
     "@tamagui/core": "^1.117.1",
     "@tamagui/font-inter": "^1.117.1",
+    "axios": "^1.7.7",
     "expo": "~51.0.28",
     "expo-font": "^13.0.1",
     "expo-status-bar": "~1.12.1",

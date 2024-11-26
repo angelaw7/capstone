@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import BackArrow from "../../assets/icons/BackArrow";
 import AddIcon from "../../assets/icons/AddIcon";
 import HorizontalRule from "../common/HorizontalRule";
 import EntrySource from "../common/EntrySource";
+import ExpensesService from "../../services/expensesService";
 
 const MyExpenses = ({ navigation }) => {
   const returnHandler = () => {
     navigation.navigate("Overview");
   };
+
+  useEffect(() => {
+    const getExpenses = async () => {
+      try {
+        const expenses = await ExpensesService.getUserExpenses(1);
+        console.log(expenses);
+      } catch (error) {
+        throw error;
+      }
+    };
+    getExpenses();
+  }, []);
 
   const addNewExpenseHandler = () => {
     // TO DO
