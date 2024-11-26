@@ -82,13 +82,10 @@ def jsonify_data(items: list, filename: str, write_to_file: bool = True):
 
 
 def main():
-    filename = "./data/costco_1.jpg"
+    filename = "./data/foodbasics_1.jpg"
     text_arr = extract_text_from_image(filename, show_image=False)
     items, subtotal, calculated_total = process_items_list(text_arr)
     data = jsonify_data(items, filename)
-    print("DATA")
-    print(data)
-    print("DATA---")
 
     categorized_data = categorization.categorize(data)
     print(categorized_data)
