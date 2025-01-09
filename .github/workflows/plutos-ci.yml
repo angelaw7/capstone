@@ -21,8 +21,8 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        working-directory: ./src/client
         run: npm install
+        working-directory: src/client
 
       - name: Run ESLint
         run: npm run lint
