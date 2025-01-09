@@ -8,8 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "eslint .",
-    "lint-fix": "eslint . --fix",
-    "prepare": "cd ../.. & husky install src/client/.husky"
+    "lint-fix": "eslint . --fix"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "prettier --write"
