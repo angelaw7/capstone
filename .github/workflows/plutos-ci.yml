@@ -21,10 +21,8 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: |
-          npm install
-          npx husky install
-        working-directory: src/client
+        working-directory: ./src/client
+        run: npm install
 
       - name: Run ESLint
         run: npm run lint
