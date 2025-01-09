@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "prepare": "cd ../.. && husky install src/client/.husky"
+    "prepare": "cd ../.. & husky install src/client/.husky"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "prettier --write"
