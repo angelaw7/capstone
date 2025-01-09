@@ -1,9 +1,7 @@
 name: Plutos
 
 on:
-  push:
-    branches:
-      - '*'
+  push
 
 
 jobs:
