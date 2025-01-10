@@ -2,7 +2,7 @@
 # TODO: Missing artifacts should be added to this file
 .PHONY:	SRS
 
-all:	SRS MG MIS SystDes PS VnVP VnVR DevP HazA Refl UGde
+all:	SRS MG MIS PS VnVP VnVR DevP HazA UGde
 
 SRS:
 	cd SRS && make && cd ..
@@ -12,9 +12,6 @@ MG:
 
 MIS:
 	cd Design/SoftDetailedDes && make && cd ../..
-
-SystDes:
-	cd Design/SystDesign && make && cd ../..
 
 PS:
 	cd ProblemStatementAndGoals && make && cd ..
@@ -30,9 +27,6 @@ DevP:
 	
 HazA:
 	cd HazardAnalysis && make && cd ../..
-	
-Refl:
-	cd Reflection && make && cd ../..
 	
 UGde:
 	cd UserGuide && make && cd ../..
