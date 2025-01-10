@@ -1,24 +1,21 @@
-name: Plutos
+name: Lint and Test
 
 on:
-  push
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'src/client/**'
 
 
 jobs:
   build:
-    name: Build and test Plutos App
+    name: Lint and test Plutos App
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Install LaTeX (pdflatex)
-        run: sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra texlive-science
-
-
-      - name: Compile PDFs
-        run: cd docs && make
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
