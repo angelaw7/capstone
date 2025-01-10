@@ -1,12 +1,16 @@
-name: Plutos
+name: Lint and Test
 
 on:
-  push
+  push:
+    branches:
+      - '**'
+    paths:
+      - 'src/client/**'
 
 
 jobs:
   build:
-    name: Build and test Plutos App
+    name: Lint and test Plutos App
     runs-on: ubuntu-latest
 
     steps:
