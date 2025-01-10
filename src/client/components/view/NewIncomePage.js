@@ -16,7 +16,6 @@ const dropdownData = [
 ];
 
 const NewIncomePage = ({ navigation }) => {
-  //
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [checked, setChecked] = React.useState("once");
