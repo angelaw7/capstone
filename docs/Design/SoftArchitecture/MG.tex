@@ -156,12 +156,22 @@ require changing the one module that hides the associated decision. The approach
 adapted here is called design for
 change.
 
+% \begin{description}
+% \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
+%   hardware on which the software is running.
+% \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
+%   initial input data.
+% \item ...
+% \end{description}
+
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+  \item[\refstepcounter{acnum} \actheacnum \label{acInputs}:] Addition or removal of input file formats.
+  \item[\refstepcounter{acnum} \actheacnum \label{acCategories}:] Changes to the default predefined categories provided to the users.
+  \item[\refstepcounter{acnum} \actheacnum \label{acCurrencies}:] The list of languages and/or currencies accepted by the system.
+  \item[\refstepcounter{acnum} \actheacnum \label{acModel}:] Replacement or retraining of the model used for data extraction and categorization.
+  \item[\refstepcounter{acnum} \actheacnum \label{acInterface}:] Changes to the user interface.
+  \item[\refstepcounter{acnum} \actheacnum \label{acHeuristics}:] Modifications to the heuristics of data parsing and categorization accuracy.
+  \item[\refstepcounter{acnum} \actheacnum \label{acTesting}:] Adoption of new testing methodologies. 
 \end{description}
 
 \wss{Anticipated changes relate to changes that would be made in requirements,
@@ -177,11 +187,18 @@ these decision should later need to be changed, then many parts of the design
 will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
+% \begin{description}
+% \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
+%   (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+% \item ...
+% \end{description}
+
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
-\end{description}
+  \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices.
+  \item[\refstepcounter{ucnum} \uctheucnum \label{ucPlatforms}:] Supported Platforms (iOS and Android).
+  \item[\refstepcounter{ucnum} \uctheucnum \label{ucDataExtraction}:] Use of ML and OCR for data extraction.
+  \item[\refstepcounter{ucnum} \uctheucnum \label{ucAppPurpose}:] Deviation of application purpose to other fields (investments, contracts, etc.).
+  \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
 
