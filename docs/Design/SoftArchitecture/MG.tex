@@ -31,6 +31,12 @@
 \newcommand{\mthemnum}{M\themnum}
 \newcommand{\mref}[1]{M\ref{#1}}
 
+\newcounter{submnum}[mnum]
+\renewcommand{\themnum}{\arabic{mnum}}
+\renewcommand{\thesubmnum}{\themnum.\arabic{submnum}}
+\newcommand{\mthesubmnum}{M\thesubmnum}
+\newcommand{\mrefsub}[1]{M\ref{#1}}
+
 \begin{document}
 
 \title{Module Guide for \progname{}} 
@@ -156,12 +162,22 @@ require changing the one module that hides the associated decision. The approach
 adapted here is called design for
 change.
 
+% \begin{description}
+% \item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
+%   hardware on which the software is running.
+% \item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
+%   initial input data.
+% \item ...
+% \end{description}
+
 \begin{description}
-\item[\refstepcounter{acnum} \actheacnum \label{acHardware}:] The specific
-  hardware on which the software is running.
-\item[\refstepcounter{acnum} \actheacnum \label{acInput}:] The format of the
-  initial input data.
-\item ...
+  \item[\refstepcounter{acnum} \actheacnum \label{acInputs}:] Addition or removal of input file formats.
+  \item[\refstepcounter{acnum} \actheacnum \label{acCategories}:] Changes to the default predefined categories provided to the users.
+  \item[\refstepcounter{acnum} \actheacnum \label{acCurrencies}:] The list of languages and/or currencies accepted by the system.
+  \item[\refstepcounter{acnum} \actheacnum \label{acModel}:] Replacement or retraining of the model used for data extraction and categorization.
+  \item[\refstepcounter{acnum} \actheacnum \label{acInterface}:] Changes to the user interface.
+  \item[\refstepcounter{acnum} \actheacnum \label{acHeuristics}:] Modifications to the heuristics of data parsing and categorization accuracy.
+  \item[\refstepcounter{acnum} \actheacnum \label{acTesting}:] Adoption of new testing methodologies. 
 \end{description}
 
 \wss{Anticipated changes relate to changes that would be made in requirements,
@@ -177,11 +193,18 @@ these decision should later need to be changed, then many parts of the design
 will potentially need to be modified. Hence, it is not intended that these
 decisions will be changed.
 
+% \begin{description}
+% \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
+%   (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
+% \item ...
+% \end{description}
+
 \begin{description}
-\item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices
-  (Input: File and/or Keyboard, Output: File, Memory, and/or Screen).
-\item ...
-\end{description}
+  \item[\refstepcounter{ucnum} \uctheucnum \label{ucIO}:] Input/Output devices.
+  \item[\refstepcounter{ucnum} \uctheucnum \label{ucPlatforms}:] Supported Platforms (iOS and Android).
+  \item[\refstepcounter{ucnum} \uctheucnum \label{ucDataExtraction}:] Use of ML and OCR for data extraction.
+  \item[\refstepcounter{ucnum} \uctheucnum \label{ucAppPurpose}:] Deviation of application purpose to other fields (investments, contracts, etc.).
+  \end{description}
 
 \section{Module Hierarchy} \label{SecMH}
 
@@ -192,7 +215,22 @@ actually be implemented.
 
 \begin{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mHH}:] Hardware-Hiding Module
-\item ...
+\item [\refstepcounter{mnum} \mthemnum \label{mBH}:] Behavior-Hiding Module
+\begin{description}
+  \item[\refstepcounter{submnum} \mthesubmnum \label{mInput}:] Input Format Module
+  \item[\refstepcounter{submnum} \mthesubmnum \label{mOutput}:] Output Generation Module
+\end{description}
+\item [\refstepcounter{mnum} \mthemnum \label{mSD}:] Software Decision Module
+\begin{description}
+  \item[\refstepcounter{submnum} \mthesubmnum \label{mOCR}:] OCR Processing Module
+  \item[\refstepcounter{submnum} \mthesubmnum \label{mML}:] Machine Learning Module
+  \item[\refstepcounter{submnum} \mthesubmnum \label{mBudget}:] Budget Calculation Module
+\end{description}
+\item [\refstepcounter{mnum} \mthemnum \label{mUI}:] User Interaction Module
+\begin{description}
+  \item[\refstepcounter{submnum} \mthesubmnum \label{mUpload}:] Upload Interface Module
+  \item[\refstepcounter{submnum} \mthesubmnum \label{mResults}:] Results Display Module
+\end{description}
 \end{description}
 
 
@@ -206,19 +244,17 @@ actually be implemented.
 {Hardware-Hiding Module} & ~ \\
 \midrule
 
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding Module} & ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\
-& ?\\ 
-& ?\\
+\multirow{2}{0.3\textwidth}{Behaviour-Hiding Module} & Input Format Module\\
+& Output Generation Module\\
 \midrule
 
-\multirow{3}{0.3\textwidth}{Software Decision Module} & {?}\\
-& ?\\
-& ?\\
+\multirow{3}{0.3\textwidth}{Software Decision Module} & {OCR Processing Module}\\
+& Machine Learning Module\\
+& Budget Calculation Module\\
+\midrule
+
+\multirow{2}{0.3\textwidth}{User Interaction Module} & {Upload Interface Module}\\
+& Results Display Module\\
 \bottomrule
 
 \end{tabular}
@@ -228,16 +264,36 @@ actually be implemented.
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
 
-The design of the system is intended to satisfy the requirements developed in
-the SRS. In this stage, the system is decomposed into modules. The connection
-between requirements and modules is listed in Table~\ref{TblRT}.
+% The design of the system is intended to satisfy the requirements developed in
+% the SRS. In this stage, the system is decomposed into modules. The connection
+% between requirements and modules is listed in Table~\ref{TblRT}.
 
-\wss{The intention of this section is to document decisions that are made
-  ``between'' the requirements and the design.  To satisfy some requirements,
-  design decisions need to be made.  Rather than make these decisions implicit,
-  they are explicitly recorded here.  For instance, if a program has security
-  requirements, a specific design decision may be made to satisfy those
-  requirements with a password.}
+% \wss{The intention of this section is to document decisions that are made
+%   ``between'' the requirements and the design.  To satisfy some requirements,
+%   design decisions need to be made.  Rather than make these decisions implicit,
+%   they are explicitly recorded here.  For instance, if a program has security
+%   requirements, a specific design decision may be made to satisfy those
+%   requirements with a password.}
+
+To satisfy the various requirements, several key design decisions have been made. Each requirement from the SRS is addressed by one or more specific modules, and their corresponding rationales can be found here:
+
+\textbf{User Account Management (FR1 - FR6)}:  
+The system requires secure user account management functionality, including account creation, login, logout, and password reset. To meet these requirements, the User Interaction Module is designed to handle user authentication (R3, R4), while the Hardware-Hiding Module and Behavior-Hiding Module ensure that the user interface can interact seamlessly with the backend system. Modules like the Input Format Module handle user inputs during account creation and login processes (R1, R2).
+
+\textbf{Receipt Scanning Input (FR7 - FR11)}:  
+The system must handle receipt input via camera capture or file upload. The Input Format Module is responsible for processing images taken by the user or uploaded from their device (R7, R8). The OCR Processing Module is designed to extract relevant data from these images to ensure accurate recognition of receipt details (R14, R15). The Output Generation Module is also involved in providing a preview and confirming receipt data (R10).
+
+\textbf{Manual Receipt Input (FR12 - FR13)}:  
+The system supports manual entry of receipt details, validated by the system to ensure completeness. The User Interaction Module facilitates the input from the user, while the Input Format Module and Output Generation Module handle the data and interface to ensure accurate input and validation (R12, R13).
+
+\textbf{Database Management (FR14 - FR15)}:  
+The system is designed to securely store user data, including account information and receipt images. This is addressed through a combination of modules such as the Hardware-Hiding Module, which separates the database interactions, and the Software Decision Module, which ensures secure data handling (R14, R15).
+
+\textbf{Item Recognition and Categorization (FR16 - FR18)}:  
+For the identification and categorization of items in receipts, the OCR Processing Module and Machine Learning Module are used. These modules work together to extract relevant data from receipt images and categorize the items accordingly (R16, R17, R18). Modifications to item attributes can be handled by the User Interaction Module (R18).
+
+\textbf{Financial Tracking (FR19 - FR24)}:  
+The system is designed to track user spending, generate budgets, and send notifications when certain thresholds are met. Modules like the Budget Calculation Module, Machine Learning Module, and OCR Processing Module are responsible for financial analysis and tracking (R19 - R24). The User Interaction Module plays a significant role in displaying this information in a user-friendly format (R19, R20, R21).
 
 \section{Module Decomposition} \label{SecMD}
 
@@ -266,7 +322,7 @@ to be implemented.
 \item[Implemented By:] OS
 \end{description}
 
-\subsection{Behaviour-Hiding Module}
+\subsection{Behaviour-Hiding Module (\mref{mBH})}
 
 \begin{description}
 \item[Secrets:]The contents of the required behaviours.
@@ -276,6 +332,7 @@ to be implemented.
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
 \item[Implemented By:] --
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
 \subsubsection{Input Format Module (\mref{mInput})}
@@ -284,15 +341,21 @@ to be implemented.
 \item[Secrets:]The format and structure of the input data.
 \item[Services:]Converts the input data into the data structure used by the
   input parameters module.
-\item[Implemented By:] [Your Program Name Here]
-\item[Type of Module:] [Record, Library, Abstract Object, or Abstract Data Type]
-  [Information to include for leaf modules in the decomposition by secrets tree.]
+\item[Implemented By:] \progname
+\item[Type of Module:] Abstract Data Type
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{Output Generation Module (\mref{mOutput})}
+
+\begin{description}
+\item[Secrets:] The output format and its internal representation (e.g., report structure for budget plans, exportable formats like CSV or PDF).
+\item[Services:] Converts the processed data into a user-facing format for screen display or file export.
+\item[Implemented By:] \progname
+\item[Type of Module:] Abstract Object
+\end{description}
 
 
-\subsection{Software Decision Module}
+\subsection{Software Decision Module (\mref{mSD})}
 
 \begin{description}
 \item[Secrets:] The design decision based on mathematical theorems, physical
@@ -305,7 +368,53 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Etc.}
+\subsubsection{OCR Processing Module (\mref{mOCR})}
+
+\begin{description}
+\item[Secrets:] The specific OCR algorithms or libraries used for extracting text from images.
+\item[Services:] Processes input image files to extract text and convert it into structured data.
+\item[Implemented By:] \progname
+\end{description}
+
+\subsubsection{Machine Learning Module (\mref{mML})}
+
+\begin{description}
+\item[Secrets:] The model architecture, training datasets, and feature engineering methods used for categorizing expenses.
+\item[Services:] Predicts spending categories based on parsed data and predefined labels.
+\item[Implemented By:] \progname
+\end{description}
+
+\subsubsection{Budget Calculation Module (\mref{mBudget})}
+
+\begin{description}
+\item[Secrets:] The algorithms used for generating budget plans and financial suggestions based on input data.
+\item[Services:] Translates categorized expenses into meaningful budgets, applying user-specific or general budgeting rules.
+\item[Implemented By:] \progname
+\end{description}
+
+\subsection{User Interaction Module (\mref{mUI})}
+
+\begin{description}
+\item[Secrets:] The design and structure of the UI components used to display categorized data and budgets.
+\item[Services:] Shows categorized expenses, financial suggestions, and budget plans in a user-friendly format.
+\item[Implemented By:] \progname
+\end{description}
+
+\subsubsection{Upload Interface Module (\mref{mUpload})}
+
+\begin{description}
+\item[Secrets:] How the interface handles file uploads or image capture from a camera.
+\item[Services:] Accepts files or captures images, then forwards them to the input module for preprocessing.
+\item[Implemented By:] \progname
+\end{description}
+
+\subsubsection{Results Display Module (\mref{mResults})}
+
+\begin{description}
+\item[Secrets:] The design and structure of the UI components used to display categorized data and budgets.
+\item[Services:] Displays categorized expenses, financial suggestions, and budget plans in a user-friendly format.
+\item[Implemented By:] \progname
+\end{description}
 
 \section{Traceability Matrix} \label{SecTM}
 
@@ -320,17 +429,31 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mParams}, \mref{mControl}\\
-R2 & \mref{mInput}, \mref{mParams}\\
-R3 & \mref{mVerify}\\
-R4 & \mref{mOutput}, \mref{mControl}\\
-R5 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R6 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}, \mref{mSeqDS}, \mref{mSolver}, \mref{mPlot}\\
-R7 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R8 & \mref{mOutput}, \mref{mEnergy}, \mref{mControl}, \mref{mSeqDS}, \mref{mPlot}\\
-R9 & \mref{mVerifyOut}\\
-R10 & \mref{mOutput}, \mref{mODEs}, \mref{mControl}\\
-R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
+R1 & \mref{mHH}, \mref{mInput}, \mref{mOutput}, \mref{mUI}\\
+R2 & \mref{mInput}, \mref{mUI}\\
+R3 & \mref{mUI}\\
+R4 & \mref{mOutput}, \mref{mUI}\\
+R5 & \mref{mOutput}, \mref{mUI}\\
+R6 & \mref{mOutput}, \mref{mUI}\\
+R7 & \mref{mOutput}, \mref{mUI}\\
+R8 & \mref{mOutput}, \mref{mUI}\\
+R9 & \mref{mOutput}\\
+R10 & \mref{mOutput}, \mref{mUI}\\
+R11 & \mref{mOutput}, \mref{mUI}\\
+R12 & \mref{mUpload}\\
+R13 & \mref{mUpload}\\
+R14 & \mref{mOCR}, \mref{mML}\\
+R15 & \mref{mOCR}, \mref{mML}\\
+R16 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+R17 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+R18 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+R19 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+R20 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+R21 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+R22 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+R23 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+R24 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+
 \bottomrule
 \end{tabular}
 \caption{Trace Between Requirements and Modules}
@@ -343,18 +466,13 @@ R11 & \mref{mOutput}, \mref{mODEs}, \mref{mEnergy}, \mref{mControl}\\
 \toprule
 \textbf{AC} & \textbf{Modules}\\
 \midrule
-\acref{acHardware} & \mref{mHH}\\
-\acref{acInput} & \mref{mInput}\\
-\acref{acParams} & \mref{mParams}\\
-\acref{acVerify} & \mref{mVerify}\\
-\acref{acOutput} & \mref{mOutput}\\
-\acref{acVerifyOut} & \mref{mVerifyOut}\\
-\acref{acODEs} & \mref{mODEs}\\
-\acref{acEnergy} & \mref{mEnergy}\\
-\acref{acControl} & \mref{mControl}\\
-\acref{acSeqDS} & \mref{mSeqDS}\\
-\acref{acSolver} & \mref{mSolver}\\
-\acref{acPlot} & \mref{mPlot}\\
+\acref{acInputs} & \mref{mInput}\\
+\acref{acCategories} & \mref{mML}, \mref{mBudget}\\
+\acref{acCurrencies} & \mref{mUI}\\
+\acref{acModel} & \mref{mOCR}, \mref{mML}\\
+\acref{acInterface} & \mref{mResults}\\
+\acref{acHeuristics} & \mref{mML}, \mref{mBudget}\\
+\acref{acTesting} & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
 \bottomrule
 \end{tabular}
 \caption{Trace Between Anticipated Changes and Modules}
