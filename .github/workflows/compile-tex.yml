@@ -5,6 +5,11 @@ on:
     paths:
       - 'docs/**/*.tex'
 
+concurrency:
+  group: ${{ github.ref }}  # Group by branch reference (e.g., 'refs/heads/main')
+  cancel-in-progress: true
+
+  
 jobs:
   build:
     name: Compile LaTeX files
