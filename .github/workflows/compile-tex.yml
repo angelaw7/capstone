@@ -25,10 +25,12 @@ jobs:
       - name: Compile PDFs
         run: cd docs && make
 
-      - name: Commit and push changes
+      - name: Commit changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
+          git fetch origin
+          git merge origin/${{ github.head_ref }}
           git add .
           git commit -m "Add generated PDF files" || echo "No changes to commit"
 
