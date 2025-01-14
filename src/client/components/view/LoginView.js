@@ -5,22 +5,44 @@ import { Button, Text } from "tamagui";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
 import MicrosoftIcon from "../../assets/icons/MicrosoftIcon";
 import AppleIcon from "../../assets/icons/AppleIcon";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
 
 const LoginView = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [incorrectCredentials, setIncorrectCredentials] = useState(false);
+  const [credentialError, setCredentialError] = useState("");
 
-  // TODO: add other login methods
-  const handleLogin = (loginMethod) => {
-    setIncorrectCredentials(false);
-    if (username && password) {
+  const loginWithEmailPassword = async () => {
+    try {
+      const user = await signInWithEmailAndPassword(auth, username, password);
       navigation.reset({
         index: 0,
         routes: [{ name: "Overview", params: { name: username } }],
       });
-    } else {
-      setIncorrectCredentials(true);
+    } catch (e) {
+      switch (e.code) {
+        case "auth/invalid-email":
+          setCredentialError(
+            "The email address entered is invalid. Please enter a valid email address.",
+          );
+          break;
+        case "auth/missing-password":
+          setCredentialError(
+            "Password is required. Please enter your password to continue.",
+          );
+          break;
+        case "auth/invalid-credential":
+          setCredentialError(
+            "The email or password entered is incorrect. Please try again.",
+          );
+          break;
+        default:
+          setCredentialError(
+            "There was a problem with your request. Please try again later.",
+          );
+          break;
+      }
     }
   };
 
@@ -51,15 +73,15 @@ const LoginView = ({ navigation }) => {
         backgroundColor={DEFAULT_COLOURS.primary}
         marginTop={20}
         paddingHorizontal="20%"
-        onPress={() => handleLogin("credentials")}
+        onPress={loginWithEmailPassword}
       >
         <Text fontWeight="500" color="white">
           Continue
         </Text>
       </Button>
 
-      {incorrectCredentials && (
-        <Text style={commonStyles.errorText}>Incorrect credentials</Text>
+      {credentialError.length !== 0 && (
+        <Text style={commonStyles.errorText}>{credentialError}</Text>
       )}
 
       <View style={styles.dividerContainer}>
