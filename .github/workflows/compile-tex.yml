@@ -1,14 +1,15 @@
 name: Compile LaTeX
 
 on:
-  push:
-    branches:
-      - '**'
-    branches-ignore:
-      - 'main'
+  pull_request:
     paths:
       - 'docs/**/*.tex'
 
+concurrency:
+  group: ${{ github.ref }}  # Group by branch reference (e.g., 'refs/heads/main')
+  cancel-in-progress: true
+
+  
 jobs:
   build:
     name: Compile LaTeX files
@@ -17,6 +18,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Install LaTeX (pdflatex)
         run: sudo apt-get update && sudo apt-get install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra texlive-science
@@ -24,7 +27,7 @@ jobs:
       - name: Compile PDFs
         run: cd docs && make
 
-      - name: Commit and push changes
+      - name: Commit changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
@@ -33,6 +36,6 @@ jobs:
 
       - name: Push changes
         run: |
-          git push origin $GITHUB_REF
+          git push origin HEAD:refs/heads/${{ github.head_ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
