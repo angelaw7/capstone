@@ -5,7 +5,10 @@ import { Button, Text } from "tamagui";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
 import MicrosoftIcon from "../../assets/icons/MicrosoftIcon";
 import AppleIcon from "../../assets/icons/AppleIcon";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../../firebase";
 
 const LoginView = ({ navigation }) => {
@@ -13,6 +16,7 @@ const LoginView = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [credentialError, setCredentialError] = useState("");
 
+  // we can also do other login options like signing in with popup or redirect
   const loginWithEmailPassword = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, username, password);
@@ -45,6 +49,22 @@ const LoginView = ({ navigation }) => {
       }
     }
   };
+
+  // this will probs go into a separate page - register page??
+  //   const registerUser = async () => {
+
+  // 	// three state objects: password, confirmPassword, email
+  // 	const passwordMatch = password === confirmPassword;
+  // 	const validCredentials = email && passwordMatch;
+
+  // 	try {
+  // 		//
+  // 		const user = await createUserWithEmailAndPassword(auth, email, password);
+  // 	} catch (e) {
+  // 		const {code, message} = e
+  // 		// do something with this lol idk print it out or smth
+  // 	}
+  //   }
 
   return (
     <View style={commonStyles.container}>
