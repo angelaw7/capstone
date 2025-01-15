@@ -20,7 +20,6 @@
 \usepackage{caption}
 \usepackage{fullpage}
 
-
 \hypersetup{
 bookmarks=true,     % show bookmarks bar?
 colorlinks=true,       % false: boxed links; true: colored links
@@ -31,6 +30,7 @@ urlcolor=cyan          % color of external links
 }
 
 \usepackage{array}
+
 
 \externaldocument{../../SRS/SRS}
 
@@ -54,18 +54,16 @@ urlcolor=cyan          % color of external links
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
-Date 1 & 1.0 & Notes\\
-Date 2 & 1.1 & Notes\\
+01/13/2024 & 0.1 & Sections 2--5 \\
+\ldots & \ldots & \ldots \\
 \bottomrule
 \end{tabularx}
 
 ~\newpage
 
 \section{Symbols, Abbreviations and Acronyms}
+See Section 1.3 of the \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/SRS/SRS.pdf}{SRS Documentation}.
 
-See SRS Documentation at \wss{give url}
-
-\wss{Also add any additional symbols, abbreviations or acronyms}
 
 \newpage
 
@@ -77,17 +75,18 @@ See SRS Documentation at \wss{give url}
 
 \section{Introduction}
 
-The following document details the Module Interface Specifications for
-\wss{Fill in your project name and description}
+The following document details the Module Interface Specifications (MIS) for the
+Plutos project.
 
-Complementary documents include the System Requirement Specifications
-and Module Guide.  The full documentation and implementation can be
-found at \url{...}.  \wss{provide the url for your repo}
+Complementary documents include the
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/SRS/SRS.pdf}{System
+Requirement Specifications (SRS)} and
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module
+Guide (MG)}. The full documentation and implementation for the project can be
+found in the \href{https://github.com/PlutosCapstone/Plutos/tree/main}{Plutos
+repository}.
 
 \section{Notation}
-
-\wss{You should describe your notation.  You can use what is below as
-  a starting point.}
 
 The structure of the MIS for modules comes from \citet{HoffmanAndStrooper1995},
 with the addition that template modules have been adapted from
@@ -123,38 +122,11 @@ described by giving their type signature followed by their specification.
 
 \section{Module Decomposition}
 
-The following table is taken directly from the Module Guide document for this project.
+An overview of the module decomposition can be found in Section 5 of the
+\href{https://github.com/smiths/capTemplate/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module
+Guide document}.
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{p{0.3\textwidth} p{0.6\textwidth}}
-\toprule
-\textbf{Level 1} & \textbf{Level 2}\\
-\midrule
 
-{Hardware-Hiding} & ~ \\
-\midrule
-
-\multirow{7}{0.3\textwidth}{Behaviour-Hiding} & Input Parameters\\
-& Output Format\\
-& Output Verification\\
-& Temperature ODEs\\
-& Energy Equations\\ 
-& Control Module\\
-& Specification Parameters Module\\
-\midrule
-
-\multirow{3}{0.3\textwidth}{Software Decision} & {Sequence Data Structure}\\
-& ODE Solver\\
-& Plotting\\
-\bottomrule
-
-\end{tabular}
-\caption{Module Hierarchy}
-\label{TblMH}
-\end{table}
-
-\newpage
 ~\newpage
 
 \section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
