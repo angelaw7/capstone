@@ -229,6 +229,7 @@ actually be implemented.
   \item[\refstepcounter{submnum} \mthesubmnum \label{mUpload}:] Upload Interface Module
   \item[\refstepcounter{submnum} \mthesubmnum \label{mResults}:] Results Display Module
 \end{description}
+\item [\refstepcounter{mnum} \mthemnum \label{mAuth}:] Authentication Module
 \end{description}
 
 
@@ -329,7 +330,7 @@ to be implemented.
   documents. This module serves as a communication layer between the
   hardware-hiding module and the software decision module. The programs in this
   module will need to change if there are changes in the SRS.
-\item[Implemented By:] --
+\item[Implemented By:] \progname
 \item[Type of Module:] Abstract Data Type
 \end{description}
 
@@ -363,7 +364,7 @@ to be implemented.
   do not provide direct interaction with the user. 
   % Changes in these modules are more likely to be motivated by a desire to
   % improve performance than by externally imposed changes.
-\item[Implemented By:] --
+\item[Implemented By:] \progname
 \end{description}
 
 \subsubsection{OCR Processing Module (\mref{mOCR})}
@@ -414,6 +415,14 @@ to be implemented.
 \item[Implemented By:] \progname
 \end{description}
 
+\subsection{Authentication Module (\mref{mAuth})}
+
+\begin{description}
+\item[Secrets:] The algorithms and protocols used for user authentication, including password encryption and token generation (i.e. JWT).
+\item[Services:] Provides secure user authentication, including login, logout, and token validation. Ensures only authorized users can access system functionalities.
+\item[Implemented By:] \progname
+\end{description}
+
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: between the modules and the
@@ -427,30 +436,31 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mOutput}, \mref{mUI}\\
-R2 & \mref{mInput}, \mref{mUI}\\
-R3 & \mref{mUI}\\
-R4 & \mref{mOutput}, \mref{mUI}\\
-R5 & \mref{mOutput}, \mref{mUI}\\
-R6 & \mref{mOutput}, \mref{mUI}\\
-R7 & \mref{mOutput}, \mref{mUI}\\
-R8 & \mref{mOutput}, \mref{mUI}\\
-R9 & \mref{mOutput}\\
-R10 & \mref{mOutput}, \mref{mUI}\\
-R11 & \mref{mOutput}, \mref{mUI}\\
-R12 & \mref{mUpload}\\
-R13 & \mref{mUpload}\\
-R14 & \mref{mOCR}, \mref{mML}\\
-R15 & \mref{mOCR}, \mref{mML}\\
-R16 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R17 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R18 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R19 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R20 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R21 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R22 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R23 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R24 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR1 & \mref{mHH}, \mref{mInput}, \mref{mOutput}, \mref{mUI}\\
+FR2 & \mref{mInput}, \mref{mUI}\\
+FR3 & \mref{mUI}, \mref{mAuth}\\
+FR4 & \mref{mOutput}, \mref{mUI}, \mref{mAuth}\\
+FR5 & \mref{mOutput}, \mref{mUI}, \mref{mAuth}\\
+FR6 & \mref{mOutput}, \mref{mUI}\\
+FR7 & \mref{mOutput}, \mref{mUI}\\
+FR8 & \mref{mOutput}, \mref{mUI}\\
+FR9 & \mref{mOutput}\\
+FR10 & \mref{mOutput}, \mref{mUI}\\
+FR11 & \mref{mOutput}, \mref{mUI}\\
+FR12 & \mref{mUpload}\\
+FR13 & \mref{mUpload}\\
+FR14 & \mref{mOCR}, \mref{mML}\\
+FR15 & \mref{mOCR}, \mref{mML}\\
+FR16 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR17 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR18 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR19 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR20 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR21 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR22 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR23 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR24 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+NFR18 & \mref{mAuth}\\
 
 \bottomrule
 \end{tabular}
