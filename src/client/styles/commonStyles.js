@@ -65,6 +65,7 @@ export const commonStyles = StyleSheet.create({
     marginRight: 20,
     marginTop: 20,
     flexWrap: "wrap",
+    maxWidth: "70%",
   },
   input: {
     height: 40,
