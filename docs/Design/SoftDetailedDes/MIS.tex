@@ -129,7 +129,184 @@ Guide document}.
 
 ~\newpage
 
-\section{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
+\section{MIS of OCR Processing Module} \label{OCR_Processing_Module}
+
+\subsection{Module}
+
+OCR Processing Module
+
+\subsection{Uses}
+
+This module uses image processing libraries and text parsing utilities. It interacts with the Input Format Module and Machine Learning Module to process data effectively.
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+
+None
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \renewcommand{\arraystretch}{1.5} % Adjust row height
+  \setlength{\tabcolsep}{8pt} % Adjust column spacing
+  \begin{tabular}{|p{6cm}|p{3cm}|p{2cm}|p{5cm}|}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  processImage & 
+  \begin{tabular}[c]{@{}l@{}}Image file \\ (binary)\end{tabular} & 
+  \begin{tabular}[c]{@{}l@{}}Text data \\ (structured)\end{tabular} & 
+  FileError \\
+  \hline
+  validateImage & 
+  \begin{tabular}[c]{@{}l@{}}Image file \\ (binary)\end{tabular} & 
+  Boolean & 
+  FormatError \\
+  \hline
+  \end{tabular}
+  \end{center}
+
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+
+None
+
+\subsubsection{Environment Variables}
+
+This module interacts with the file system to read image files and uses external OCR libraries or APIs to extract text data.
+
+\subsubsection{Assumptions}
+
+The input image is in a supported format (e.g., JPEG, PNG). The OCR library or API is available and correctly configured.
+
+\subsubsection{Access Routine Semantics}
+
+\noindent \textbf{processImage}():
+\begin{itemize}
+\item transition: Parses the image and converts it into structured text data.
+\item output: Structured text data extracted from the image.
+\item exception: Throws a FileError if the image cannot be read or an unsupported format is provided.
+\end{itemize}
+
+\noindent \textbf{validateImage}():
+\begin{itemize}
+\item transition: Validates the input image format and dimensions.
+\item output: Returns true if the image is valid; false otherwise.
+\item exception: Throws a FormatError if the image format is invalid.
+\end{itemize}
+
+\subsubsection{Local Functions}
+
+localImageProcessing():
+\begin{itemize}
+\item This function applies pre-processing steps to the image, such as resizing, noise reduction, or thresholding, before OCR is applied.
+\end{itemize}
+
+localTextExtraction():
+\begin{itemize}
+\item This function uses an OCR library to extract raw text from the pre-processed image.
+\end{itemize}
+
+\newpage
+
+\section*{MIS of Authentication Module} \label{Authentication_Module}
+This module manages user authentication, utilizing Firebase Authentication to handle login and registration. It also interacts with React Native components for the user interface.
+
+\subsection*{Module}
+
+Authentication Module
+
+\subsection*{Uses}
+
+This module uses Firebase for authentication purposes. It interacts with Firebase Authentication to handle user login and registration, as well as React Native components for the user interface.
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+\begin{itemize}
+    \item \textbf{auth}: An instance of Firebase Authentication, initialized using the Firebase app.
+    \item \textbf{db}: An instance of Firebase Firestore, initialized using the Firebase app.
+\end{itemize}
+
+\subsubsection*{Exported Access Programs}
+
+\begin{center}
+  \renewcommand{\arraystretch}{1.5} % Adjust row height
+  \setlength{\tabcolsep}{8pt} % Adjust column spacing
+  \begin{tabular}{|p{6cm}|p{3cm}|p{2cm}|p{5cm}|}
+  \hline
+  \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+  \hline
+  loginWithEmailPassword & 
+  \begin{tabular}[c]{@{}l@{}}email (string), \\ password (string)\end{tabular} & 
+  user object & 
+  \begin{tabular}[c]{@{}l@{}}InvalidEmail, MissingPassword, \\ InvalidCredential, GeneralError\end{tabular} \\
+  \hline
+  createUserWithEmailAndPassword & 
+  \begin{tabular}[c]{@{}l@{}}email (string), \\ password (string)\end{tabular} & 
+  user object & 
+  \begin{tabular}[c]{@{}l@{}}InvalidEmail, WeakPassword, \\ GeneralError\end{tabular} \\
+  \hline
+  \end{tabular}
+  \end{center}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+The module maintains state for username, password, and credential error messages to support user interactions and error handling.
+
+\subsubsection*{Environment Variables}
+
+The module interacts with the Firebase Authentication API for user management and relies on Firebase configuration to communicate with the backend services.
+
+\subsubsection*{Assumptions}
+
+It is assumed that the Firebase configuration is valid and correctly set up. Network connectivity is also assumed to be available for authentication operations.
+
+\subsubsection*{Access Routine Semantics}
+
+\noindent \textbf{loginWithEmailPassword}():
+\begin{itemize}
+\item transition: Authenticates the user with the given email and password, and transitions the application to the "Overview" page if successful.
+\item output: Returns a user object containing user details upon successful login.
+\item exception: 
+    \begin{itemize}
+        \item \textbf{InvalidEmail:} The email address is not valid.
+        \item \textbf{MissingPassword:} No password was provided.
+        \item \textbf{InvalidCredential:} Email or password is incorrect.
+        \item \textbf{GeneralError:} A generic error occurred during login.
+    \end{itemize}
+\end{itemize}
+
+\noindent \textbf{createUserWithEmailAndPassword}():
+\begin{itemize}
+\item transition: Creates a new user account with the provided email and password.
+\item output: Returns a user object containing user details upon successful registration.
+\item exception: 
+    \begin{itemize}
+        \item \textbf{InvalidEmail:} The email address is not valid.
+        \item \textbf{WeakPassword:} The password provided is too weak.
+        \item \textbf{GeneralError:} A generic error occurred during registration.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Local Functions}
+
+\textbf{validateCredentials}():
+\begin{itemize}
+\item Checks the validity of the entered username and password before attempting login or registration.
+\end{itemize}
+
+\textbf{handleErrors}():
+\begin{itemize}
+\item Maps Firebase error codes to user-friendly error messages displayed on the UI.
+\end{itemize}
+\section*{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
   cross-referencing}
 
 \wss{You can reference SRS labels, such as R\ref{R_Inputs}.}
