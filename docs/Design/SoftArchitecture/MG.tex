@@ -229,6 +229,7 @@ actually be implemented.
   \item[\refstepcounter{submnum} \mthesubmnum \label{mUpload}:] Upload Interface Module
   \item[\refstepcounter{submnum} \mthesubmnum \label{mResults}:] Results Display Module
 \end{description}
+\item [\refstepcounter{mnum} \mthemnum \label{mAuth}:] Authentication Module
 \end{description}
 
 
@@ -253,6 +254,9 @@ actually be implemented.
 
 \multirow{2}{0.3\textwidth}{User Interaction Module} & {Upload Interface Module}\\
 & Results Display Module\\
+\midrule
+
+{Authentication Module} & ~ \\
 \bottomrule
 
 \end{tabular}
@@ -414,6 +418,14 @@ to be implemented.
 \item[Implemented By:] \progname
 \end{description}
 
+\subsection{Authentication Module (\mref{mAuth})}
+
+\begin{description}
+\item[Secrets:] The algorithms and protocols used for user authentication, including password encryption and token generation (i.e. JWT).
+\item[Services:] Provides secure user authentication, including login, logout, and token validation. Ensures only authorized users can access system functionalities.
+\item[Implemented By:] \progname
+\end{description}
+
 \section{Traceability Matrix} \label{SecTM}
 
 This section shows two traceability matrices: between the modules and the
@@ -427,30 +439,31 @@ requirements and between the modules and the anticipated changes.
 \toprule
 \textbf{Req.} & \textbf{Modules}\\
 \midrule
-R1 & \mref{mHH}, \mref{mInput}, \mref{mOutput}, \mref{mUI}\\
-R2 & \mref{mInput}, \mref{mUI}\\
-R3 & \mref{mUI}\\
-R4 & \mref{mOutput}, \mref{mUI}\\
-R5 & \mref{mOutput}, \mref{mUI}\\
-R6 & \mref{mOutput}, \mref{mUI}\\
-R7 & \mref{mOutput}, \mref{mUI}\\
-R8 & \mref{mOutput}, \mref{mUI}\\
-R9 & \mref{mOutput}\\
-R10 & \mref{mOutput}, \mref{mUI}\\
-R11 & \mref{mOutput}, \mref{mUI}\\
-R12 & \mref{mUpload}\\
-R13 & \mref{mUpload}\\
-R14 & \mref{mOCR}, \mref{mML}\\
-R15 & \mref{mOCR}, \mref{mML}\\
-R16 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R17 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R18 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R19 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R20 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R21 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R22 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R23 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-R24 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR1 & \mref{mHH}, \mref{mInput}, \mref{mOutput}, \mref{mUI}\\
+FR2 & \mref{mInput}, \mref{mUI}\\
+FR3 & \mref{mUI}, \mref{mAuth}\\
+FR4 & \mref{mOutput}, \mref{mUI}, \mref{mAuth}\\
+FR5 & \mref{mOutput}, \mref{mUI}, \mref{mAuth}\\
+FR6 & \mref{mOutput}, \mref{mUI}\\
+FR7 & \mref{mOutput}, \mref{mUI}\\
+FR8 & \mref{mOutput}, \mref{mUI}\\
+FR9 & \mref{mOutput}\\
+FR10 & \mref{mOutput}, \mref{mUI}\\
+FR11 & \mref{mOutput}, \mref{mUI}\\
+FR12 & \mref{mUpload}\\
+FR13 & \mref{mUpload}\\
+FR14 & \mref{mOCR}, \mref{mML}\\
+FR15 & \mref{mOCR}, \mref{mML}\\
+FR16 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR17 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR18 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR19 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR20 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR21 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR22 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR23 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR24 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+NFR18 & \mref{mAuth}\\
 
 \bottomrule
 \end{tabular}
@@ -490,18 +503,18 @@ the modules. It can be seen that the graph is a directed acyclic graph
 system, and modules in the higher level of the hierarchy are essentially simpler
 because they use modules from the lower levels.
 
-\wss{The uses relation is not a data flow diagram.  In the code there will often
-be an import statement in module A when it directly uses module B.  Module B
-provides the services that module A needs.  The code for module A needs to be
-able to see these services (hence the import statement).  Since the uses
-relation is transitive, there is a use relation without an import, but the
-arrows in the diagram typically correspond to the presence of import statement.}
+% \wss{The uses relation is not a data flow diagram.  In the code there will often
+% be an import statement in module A when it directly uses module B.  Module B
+% provides the services that module A needs.  The code for module A needs to be
+% able to see these services (hence the import statement).  Since the uses
+% relation is transitive, there is a use relation without an import, but the
+% arrows in the diagram typically correspond to the presence of import statement.}
 
-\wss{If module A uses module B, the arrow is directed from A to B.}
+% \wss{If module A uses module B, the arrow is directed from A to B.}
 
 \begin{figure}[H]
 \centering
-%\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
+\includegraphics[width=0.7\textwidth]{UsesHierarchy.png}
 \caption{Use hierarchy among modules}
 \label{FigUH}
 \end{figure}
@@ -804,6 +817,11 @@ deadline in March (specific date to be announced). \\
 			\item Design and implementation (Jason, Payton)
 			\item Testing (Eric)
 		\end{itemize}
+    \item M5: Authentication Module
+    \begin{itemize}
+        \item Design and implementation (Eric)
+        \item Testing (Jason)
+    \end{itemize}
 	\end{itemize}
 	\item Phase 3: Final Demo (due March 15th, 2025)
 	\begin{itemize}
