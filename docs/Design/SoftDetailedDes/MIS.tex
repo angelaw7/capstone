@@ -151,7 +151,7 @@ Guide document}.
 
 ~\newpage
 
-\section{MIS of OCR Processing Module} \label{OCR_Processing_Module}
+\section{MIS of OCR Processing Module}\label{OCR_Processing_Module}
 
 \subsection{Module}
 
@@ -233,6 +233,63 @@ localTextExtraction():
 \end{itemize}
 
 \newpage
+
+
+%% start of ML module ----------
+
+\section{MIS of Machine Learning Module}\label{ML_Module}
+
+\subsection{Module}
+ML Module
+
+\subsection{Uses}
+OCR Processing Module (\nameref{OCR_Processing_Module})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+% \wss{accessProg} & - & - & - \\\
+categorize & item: Item & category: string & InvalidInputError \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent categorize(item: Item):
+\begin{itemize}
+\item transition: N/A 
+\item output: string 
+\item exception: InvalidInputError -- thrown if the input is not an Item object
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+
+% end of ML module
+
 
 \section*{MIS of Authentication Module} \label{Authentication_Module}
 This module manages user authentication, utilizing Firebase Authentication to handle login and registration. It also interacts with React Native components for the user interface.
@@ -328,6 +385,10 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 \begin{itemize}
 \item Maps Firebase error codes to user-friendly error messages displayed on the UI.
 \end{itemize}
+
+
+
+
 \section*{MIS of \wss{Module Name}} \label{Module} \wss{Use labels for
   cross-referencing}
 
