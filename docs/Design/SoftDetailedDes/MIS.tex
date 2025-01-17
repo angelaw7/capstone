@@ -62,8 +62,28 @@ urlcolor=cyan          % color of external links
 ~\newpage
 
 \section{Symbols, Abbreviations and Acronyms}
-See Section 1.3 of the \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/SRS/SRS.pdf}{SRS Documentation}.
+Refer to Section 1.3 of the
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/SRS/SRS.pdf}{SRS
+Documentation} for general abbreviations and acronyms. Additional abbreviations
+and acronyms are listed below.
 
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[H]
+\caption{List of Abbreviations and Acronyms}
+\centering
+\begin{tabularx}{\textwidth}{l X} 
+	\toprule		
+	\textbf{symbol} & \textbf{description}\\
+	\midrule 
+	M & Module \\
+	MG & Module Guide \\
+  MIS & Module Interface Specification\\
+	R & Requirement\\
+	SRS & Software Requirements Specification\\
+	\bottomrule
+\end{tabularx}
+\end{table}
 
 \newpage
 
@@ -97,8 +117,10 @@ multiple assignment statement and conditional rules follow the form $(c_1
 
 The following table summarizes the primitive data types used by \progname. 
 
-\begin{center}
 \renewcommand{\arraystretch}{1.2}
+\begin{table}[H]
+\caption{Data Types}
+\centering
 \noindent 
 \begin{tabular}{l l p{7.5cm}} 
 \toprule 
@@ -110,7 +132,7 @@ natural number & $\mathbb{N}$ & a number without a fractional component in [1, $
 real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
 \bottomrule
 \end{tabular} 
-\end{center}
+\end{table}
 
 \noindent
 The specification of \progname \ uses some derived data types: sequences, strings, and
