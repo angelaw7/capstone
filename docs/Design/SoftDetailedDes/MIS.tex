@@ -291,27 +291,82 @@ N/A
 % end of ML module
 
 
-\section*{MIS of Authentication Module} \label{Authentication_Module}
+% start of budget calculation module
+\section{MIS of Budget Calculation Module}\label{budget_calculation_module}
+
+\subsection{Module}
+
+Budget Calculation Module
+
+\subsection{Uses}
+Machine Learning Module (\nameref{ML_Module})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+N/A
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+calculate\_budget & history: List[Transaction] & suggested\_budget: BudgetGoals
+& InvalidInputError \\
+& savings\_goals: BudgetGoals & &  \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent calculate\_budget(history: List[Transaction], savings\_goals: BudgetGoals):
+\begin{itemize}
+\item transition: N/A
+\item output: BudgetGoals
+\item exception: InvalidInputError -- thrown if the input is not valid
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+% end of budget calculation module
+
+
+\section{MIS of Authentication Module}\label{Authentication_Module}
 This module manages user authentication, utilizing Firebase Authentication to handle login and registration. It also interacts with React Native components for the user interface.
 
-\subsection*{Module}
+\subsection{Module}
 
 Authentication Module
 
-\subsection*{Uses}
+\subsection{Uses}
+N/A
 
-This module uses Firebase for authentication purposes. It interacts with Firebase Authentication to handle user login and registration, as well as React Native components for the user interface.
+\subsection{Syntax}
 
-\subsection*{Syntax}
-
-\subsubsection*{Exported Constants}
+\subsubsection{Exported Constants}
 
 \begin{itemize}
     \item \textbf{auth}: An instance of Firebase Authentication, initialized using the Firebase app.
     \item \textbf{db}: An instance of Firebase Firestore, initialized using the Firebase app.
 \end{itemize}
 
-\subsubsection*{Exported Access Programs}
+\subsubsection{Exported Access Programs}
 
 \begin{center}
   \renewcommand{\arraystretch}{1.5} % Adjust row height
@@ -333,21 +388,21 @@ This module uses Firebase for authentication purposes. It interacts with Firebas
   \end{tabular}
   \end{center}
 
-\subsection*{Semantics}
+\subsection{Semantics}
 
-\subsubsection*{State Variables}
+\subsubsection{State Variables}
 
 The module maintains state for username, password, and credential error messages to support user interactions and error handling.
 
-\subsubsection*{Environment Variables}
+\subsubsection{Environment Variables}
 
 The module interacts with the Firebase Authentication API for user management and relies on Firebase configuration to communicate with the backend services.
 
-\subsubsection*{Assumptions}
+\subsubsection{Assumptions}
 
 It is assumed that the Firebase configuration is valid and correctly set up. Network connectivity is also assumed to be available for authentication operations.
 
-\subsubsection*{Access Routine Semantics}
+\subsubsection{Access Routine Semantics}
 
 \noindent \textbf{loginWithEmailPassword}():
 \begin{itemize}
@@ -374,7 +429,7 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
     \end{itemize}
 \end{itemize}
 
-\subsubsection*{Local Functions}
+\subsubsection{Local Functions}
 
 \textbf{validateCredentials}():
 \begin{itemize}
@@ -461,6 +516,10 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
   have local scope.}
 
 \newpage
+
+
+
+
 
 \bibliographystyle {plainnat}
 \bibliography {../../../refs/References}
