@@ -248,7 +248,8 @@ localTextExtraction():
 ML Module
 
 \subsection{Uses}
-OCR Processing Module (\nameref{OCR_Processing_Module})
+OCR Processing Module (\nameref{OCR_Processing_Module})\\
+Item Module (\nameref{item_module})
 
 \subsection{Syntax}
 
@@ -305,7 +306,8 @@ N/A
 Budget Calculation Module
 
 \subsection{Uses}
-Machine Learning Module (\nameref{ML_Module})
+Machine Learning Module (\nameref{ML_Module})\\
+Expense Module (\nameref{expense_module})
 
 \subsection{Syntax}
 
@@ -319,9 +321,9 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-calculate\_budget & history: List[Transaction] & suggested\_budget: BudgetGoals
+calculate\_budget & history: List[Expense] & suggested\_budget: List[Dict[string, float]]
 & InvalidInputError \\
-& savings\_goals: BudgetGoals & &  \\
+& savings\_goals: List[Dict[string, float]] & &  \\
 \hline
 \end{tabular}
 \end{center}
@@ -339,10 +341,10 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent calculate\_budget(history: List[Transaction], savings\_goals: BudgetGoals):
+\noindent calculate\_budget(history: List[Transaction], savings\_goals: List[Dict[string, float]]):
 \begin{itemize}
 \item transition: N/A
-\item output: BudgetGoals
+\item output: List[Dict[string, float]] -- a list of suggested budgets for each category
 \item exception: InvalidInputError -- thrown if the input is not valid
 \end{itemize}
 
@@ -733,6 +735,129 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \newpage
 % end of output generation module
+
+
+% start of item module
+\section{MIS of Item}\label{item_module}
+
+\subsection{Module}
+
+Item module
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+\begin{itemize}
+  \item \textbf{name}: string
+  \item \textbf{price}: float
+  \item \textbf{category}: string
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+item & name: string & Item & InvalidInputError \\
+ & price: float &  &  \\
+ & category: string &  &  \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent item(name: string, price: float, category: string):
+\begin{itemize}
+\item transition: N/A
+\item output: Item
+\item exception: InvalidInputError -- thrown if the input is not valid
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+% end of item module
+
+% start of expense module
+\section{MIS of Expense}\label{expense_module}
+
+\subsection{Module}
+
+Expense module
+
+\subsection{Uses}
+Item module (\nameref{item_module})
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+\begin{itemize}
+  \item \textbf{items}: List[Item]
+  \item \textbf{timestamp}: datetime
+  \item \textbf{total}: float
+  \item \textbf{store}: string
+  \item \textbf{receipt\_image}: string
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+expense & item: List[Item] & Expense & InvalidInputError \\
+  & timestamp: datetime &  &  \\
+  & total: float &  &  \\
+  & store: string &  &  \\
+  & receipt\_image: string &  &  \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent item(name: string, price: float, category: string):
+\begin{itemize}
+\item transition: N/A
+\item output: Expense
+\item exception: InvalidInputError -- thrown if the input is not valid
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+% end of expense module
 
 
 % % start of MIS template

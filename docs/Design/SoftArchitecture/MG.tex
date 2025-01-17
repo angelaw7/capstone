@@ -241,6 +241,11 @@ actually be implemented.
   \item[\refstepcounter{submnum} \mthesubmnum \label{mResults}:] Results Display Module
 \end{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mAuth}:] Authentication Module
+\item [\refstepcounter{mnum} \mthemnum\label{mData}:] Data Module
+\begin{description}
+	\item [\refstepcounter{mnum} \mthemnum\label{mItem}:] Item Module
+	\item [\refstepcounter{mnum} \mthemnum\label{mExpense}:] Expense Module
+\end{description}
 \end{description}
 
 
@@ -268,12 +273,19 @@ actually be implemented.
 & Results Display Module\\
 \midrule
 
+
 {Authentication Module} & ~ \\
+\midrule
+
+\multirow{2}{0.3\textwidth}{Data Module} & {Item Module}\\
+& Expense Module\\
+
 \bottomrule
 
-\end{tabular}
-\label{TblMH}
+\end{tabular}\label{TblMH}
 \end{table}
+
+\newpage
 
 \section{Connection Between Requirements and Design} \label{SecConnection}
 
@@ -387,6 +399,7 @@ to be implemented.
 \item[Secrets:] The specific OCR algorithms or libraries used for extracting text from images.
 \item[Services:] Processes input image files to extract text and convert it into structured data.
 \item[Implemented By:] \progname
+\item[Type of Module:] Abstract Object
 \end{description}
 
 \subsubsection{Machine Learning Module (\mref{mML})}
@@ -395,6 +408,7 @@ to be implemented.
 \item[Secrets:] The model architecture, training datasets, and feature engineering methods used for categorizing expenses.
 \item[Services:] Predicts spending categories based on parsed data and predefined labels.
 \item[Implemented By:] \progname
+\item[Type of Module:] Abstract Object
 \end{description}
 
 \subsubsection{Budget Calculation Module (\mref{mBudget})}
@@ -403,6 +417,7 @@ to be implemented.
 \item[Secrets:] The algorithms used for generating budget plans and financial suggestions based on input data.
 \item[Services:] Translates categorized expenses into meaningful budgets, applying user-specific or general budgeting rules.
 \item[Implemented By:] \progname
+\item[Type of Module:] Abstract Object
 \end{description}
 
 \subsection{User Interaction Module (\mref{mUI})}
@@ -410,7 +425,7 @@ to be implemented.
 \begin{description}
 \item[Secrets:] The design and structure of the UI components used to display categorized data and budgets.
 \item[Services:] Shows categorized expenses, financial suggestions, and budget plans in a user-friendly format.
-\item[Implemented By:] \progname
+\item[Implemented By:] --
 \end{description}
 
 \subsubsection{Upload Interface Module (\mref{mUpload})}
@@ -419,6 +434,7 @@ to be implemented.
 \item[Secrets:] How the interface handles file uploads or image capture from a camera.
 \item[Services:] Accepts files or captures images, then forwards them to the input module for preprocessing.
 \item[Implemented By:] \progname
+\item[Type of Module:] Abstract Object
 \end{description}
 
 \subsubsection{Results Display Module (\mref{mResults})}
@@ -427,6 +443,7 @@ to be implemented.
 \item[Secrets:] The design and structure of the UI components used to display categorized data and budgets.
 \item[Services:] Displays categorized expenses, financial suggestions, and budget plans in a user-friendly format.
 \item[Implemented By:] \progname
+\item[Type of Module:] Abstract Object
 \end{description}
 
 \subsection{Authentication Module (\mref{mAuth})}
@@ -435,7 +452,35 @@ to be implemented.
 \item[Secrets:] The algorithms and protocols used for user authentication, including password encryption and token generation (i.e. JWT).
 \item[Services:] Provides secure user authentication, including login, logout, and token validation. Ensures only authorized users can access system functionalities.
 \item[Implemented By:] \progname
+\item[Type of Module:] Abstract Object
 \end{description}
+
+\subsection{Data Module (\mref{mData})}
+
+\begin{description}
+\item[Secrets:] N/A
+\item[Services:] Serves as a structured format for the data types.
+\item[Implemented By:] --
+\end{description}
+
+\subsubsection{Item Module (\mref{mItem})}
+
+\begin{description}
+\item[Secrets:] N/A
+\item[Services:] Serves as a structured format for a receipt item.
+\item[Implemented By:] \progname
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
+\subsubsection{Expense Module (\mref{mExpense})}
+
+\begin{description}
+\item[Secrets:] N/A
+\item[Services:] Serves as a structured format for a receipt.
+\item[Implemented By:] \progname
+\item[Type of Module:] Abstract Data Type
+\end{description}
+
 
 \section{Traceability Matrix} \label{SecTM}
 
