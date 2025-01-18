@@ -77,6 +77,19 @@ const RegisterView = ({ navigation }) => {
           </Text>
         </Button>
       </View>
+      <View style={styles.dividerContainer}>
+        <View style={styles.dividerLine} />
+      </View>
+      <TouchableOpacity
+        style={{ margin: "1rem" }}
+        onPress={() => {
+          navigation.navigate("Login");
+        }}
+      >
+        <Text style={{ textDecorationLine: "underline", color: "green" }}>
+          {"Already have an account? Log in!"}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };

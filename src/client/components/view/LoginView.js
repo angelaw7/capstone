@@ -10,6 +10,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../firebase";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const LoginView = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -134,6 +135,19 @@ const LoginView = ({ navigation }) => {
           </Button>
         </View>
       </View>
+      <View style={styles.dividerContainer}>
+        <View style={styles.dividerLine} />
+      </View>
+      <TouchableOpacity
+        style={{ margin: "1rem" }}
+        onPress={() => {
+          navigation.navigate("Register");
+        }}
+      >
+        <Text style={{ textDecorationLine: "underline", color: "red" }}>
+          {"Don't have an account? Sign up!"}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
