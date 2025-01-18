@@ -458,14 +458,19 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \subsection{Module}
 
-\wss{Short name for the module}
+Upload Interface Module
 
 \subsection{Uses}
 
+\begin{itemize}
+    \item Input Format Module
+\end{itemize}
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+
+None
 
 \subsubsection{Exported Access Programs}
 
@@ -474,7 +479,8 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+uploadFile & File (binary) & Boolean & FileError \\
+captureImage & Image (binary) & Boolean & CaptureError \\
 \hline
 \end{tabular}
 \end{center}
@@ -483,42 +489,42 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+None
 
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+This module interacts with the device's file system for file uploads and the device's camera for image capture. It also forwards the captured or uploaded files to the Input Format Module for preprocessing.
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+\begin{itemize}
+    \item The device has a functioning file system for uploads or a working camera for image capture.
+    \item The file or image is in a supported format (e.g., JPEG, PNG).
+    \item The Input Format Module is available and correctly configured.
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent uploadFile():
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+    \item transition: Validates and uploads the file, then forwards it to the Input Format Module.
+    \item output: Returns true if the file upload is successful; false otherwise.
+    \item exception: Throws a FileError if the file cannot be uploaded or is in an unsupported format.
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent captureImage():
+\begin{itemize}
+    \item transition: Captures an image using the device's camera and forwards it to the Input Format Module.
+    \item output: Returns true if the image capture is successful; false otherwise.
+    \item exception: Throws a CaptureError if the image capture fails.
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+\begin{itemize}
+    \item validateFile(): Ensures the uploaded file meets format and size requirements before processing.
+    \item preprocessImage(): Applies basic pre-processing steps to captured images, such as resizing or compression.
+\end{itemize}
 
 \newpage
 % end of upload interface module
@@ -529,14 +535,17 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \subsection{Module}
 
-\wss{Short name for the module}
+Results Display Module
 
 \subsection{Uses}
 
+Input Format Module (M2.1), Budget Calculation Module (M3.3), Machine Learning Module (M3.2)
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+
+None
 
 \subsubsection{Exported Access Programs}
 
@@ -545,7 +554,9 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+displayResults & CategorizedData, BudgetPlan & Visualization (UI Component) & DisplayError \\
+\hline
+generateExportFile & FormatType (CSV, PDF) & File & ExportError \\
 \hline
 \end{tabular}
 \end{center}
@@ -554,42 +565,47 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+\begin{itemize}
+    \item \texttt{currentView}: Stores the current state of the results view, such as the displayed budget or expense category.
+    \item \texttt{dataCache}: Temporarily holds the processed data for display purposes.
+\end{itemize}
 
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+\begin{itemize}
+    \item Screen interface: Used to display the results in a user-friendly format.
+    \item File system: Accessed for exporting reports in specified formats.
+\end{itemize}
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+\begin{itemize}
+    \item Assumes the input data has been properly processed and categorized by upstream modules.
+    \item Assumes the screen interface and file system are operational and accessible.
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{displayResults}(CategorizedData, BudgetPlan):
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+    \item \textbf{transition:} Updates the \texttt{currentView} to display the given data.
+    \item \textbf{output:} Renders categorized expenses, financial suggestions, and budget plans in a user-friendly format.
+    \item \textbf{exception:} Throws \texttt{DisplayError} if the UI components fail to render properly.
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent \texttt{generateExportFile}(FormatType):
+\begin{itemize}
+    \item \textbf{transition:} Creates an exportable file (CSV or PDF) from the current view data.
+    \item \textbf{output:} Returns a file object for download or storage.
+    \item \textbf{exception:} Throws \texttt{ExportError} if file generation fails due to unsupported format or data corruption.
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+\begin{itemize}
+    \item \texttt{formatDataForExport(Data, FormatType)}: Converts the processed data into the specified format for export purposes.
+    \item \texttt{updateView(ViewState)}: Updates the UI state to reflect the latest data or user interaction.
+\end{itemize}
 
 \newpage
 % end of results display module
@@ -600,14 +616,17 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \subsection{Module}
 
-\wss{Short name for the module}
+Input Format Module
 
 \subsection{Uses}
 
+Results Display Module (M4.2), Budget Calculation Module (M3.3), Machine Learning Module (M3.2)
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+
+None
 
 \subsubsection{Exported Access Programs}
 
@@ -616,7 +635,9 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+parseInputData & RawInputData & StructuredData & ParseError \\
+\hline
+validateInputFormat & RawInputData & Boolean & ValidationError \\
 \hline
 \end{tabular}
 \end{center}
@@ -625,42 +646,45 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+\begin{itemize}
+    \item \texttt{lastParsedData}: Stores the most recent successfully parsed input data.
+\end{itemize}
 
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+\begin{itemize}
+    \item File system: For reading input data files or streams.
+\end{itemize}
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+\begin{itemize}
+    \item Assumes input data adheres to a general predefined structure, such as receipts in text or image format.
+    \item Assumes input errors (e.g., invalid formats) will be handled through exceptions.
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{parseInputData}(RawInputData):
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+    \item \textbf{transition:} Updates \texttt{lastParsedData} with the processed input.
+    \item \textbf{output:} Converts raw input data into a structured format usable by other modules.
+    \item \textbf{exception:} Throws \texttt{ParseError} if the input cannot be parsed due to formatting issues or invalid data.
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
-
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent \texttt{validateInputFormat}(RawInputData):
+\begin{itemize}
+    \item \textbf{transition:} None
+    \item \textbf{output:} Returns \texttt{true} if the input format is valid, \texttt{false} otherwise.
+    \item \textbf{exception:} Throws \texttt{ValidationError} for non-parsable or unsupported formats.
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+\begin{itemize}
+    \item \texttt{extractRelevantFields(RawInputData)}: Isolates key fields from raw input for processing.
+    \item \texttt{mapToStructuredFormat(Fields)}: Maps extracted fields to the final structured format.
+\end{itemize}
 
 \newpage
 % end of input format module
@@ -671,14 +695,17 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \subsection{Module}
 
-\wss{Short name for the module}
+Output Generation Module
 
 \subsection{Uses}
 
+Budget Calculation Module (M3.3), Results Display Module (M4.2)
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
+
+None
 
 \subsubsection{Exported Access Programs}
 
@@ -687,7 +714,11 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-\wss{accessProg} & - & - & - \\
+generateReport & ProcessedData, FormatType & ReportFile & ReportGenerationError \\
+\hline
+displayOnScreen & ProcessedData & DisplayOutput & DisplayError \\
+\hline
+exportFile & ProcessedData, ExportType & ExportFile & ExportError \\
 \hline
 \end{tabular}
 \end{center}
@@ -696,42 +727,53 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \subsubsection{State Variables}
 
-\wss{Not all modules will have state variables.  State variables give the module
-  a memory.}
+\begin{itemize}
+    \item \texttt{lastGeneratedReport}: Stores the last successfully generated report for reference or re-export.
+\end{itemize}
 
 \subsubsection{Environment Variables}
 
-\wss{This section is not necessary for all modules.  Its purpose is to capture
-  when the module has external interaction with the environment, such as for a
-  device driver, screen interface, keyboard, file, etc.}
+\begin{itemize}
+    \item File system: For saving reports and exported files (e.g., CSV, PDF).
+    \item User interface: For displaying outputs on screen.
+\end{itemize}
 
 \subsubsection{Assumptions}
 
-\wss{Try to minimize assumptions and anticipate programmer errors via
-  exceptions, but for practical purposes assumptions are sometimes appropriate.}
+\begin{itemize}
+    \item Assumes input data (ProcessedData) is correctly formatted and validated by preceding modules.
+    \item Assumes the requested output format (e.g., CSV, PDF) is supported by the module.
+\end{itemize}
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \wss{accessProg}():
+\noindent \texttt{generateReport}(ProcessedData, FormatType):
 \begin{itemize}
-\item transition: \wss{if appropriate} 
-\item output: \wss{if appropriate} 
-\item exception: \wss{if appropriate} 
+    \item \textbf{transition:} Updates \texttt{lastGeneratedReport} with the newly created report.
+    \item \textbf{output:} Produces a formatted report file in the specified format (e.g., PDF, CSV).
+    \item \textbf{exception:} Throws \texttt{ReportGenerationError} if the report generation fails (e.g., due to unsupported format or missing data).
 \end{itemize}
 
-\wss{A module without environment variables or state variables is unlikely to
-  have a state transition.  In this case a state transition can only occur if
-  the module is changing the state of another module.}
+\noindent \texttt{displayOnScreen}(ProcessedData):
+\begin{itemize}
+    \item \textbf{transition:} None
+    \item \textbf{output:} Renders the processed data into a user-friendly display format on the screen.
+    \item \textbf{exception:} Throws \texttt{DisplayError} if the display rendering fails.
+\end{itemize}
 
-\wss{Modules rarely have both a transition and an output.  In most cases you
-  will have one or the other.}
+\noindent \texttt{exportFile}(ProcessedData, ExportType):
+\begin{itemize}
+    \item \textbf{transition:} Saves the processed data into an exportable file format (e.g., CSV, Excel).
+    \item \textbf{output:} Returns a reference to the exported file.
+    \item \textbf{exception:} Throws \texttt{ExportError} if the export operation fails.
+\end{itemize}
 
 \subsubsection{Local Functions}
 
-\wss{As appropriate} \wss{These functions are for the purpose of specification.
-  They are not necessarily something that is going to be implemented
-  explicitly.  Even if they are implemented, they are not exported; they only
-  have local scope.}
+\begin{itemize}
+    \item \texttt{formatData(ProcessedData, FormatType)}: Converts the processed data into the requested format.
+    \item \texttt{renderScreenOutput(ProcessedData)}: Prepares the processed data for screen display.
+\end{itemize}
 
 \newpage
 % end of output generation module
