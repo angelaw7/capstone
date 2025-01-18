@@ -64,8 +64,6 @@ const AddExpenseView = ({ navigation }) => {
     });
 
     if (!result.canceled) {
-      console.log("result", result);
-
       const imageResult = result.assets[0];
       const fileUri = imageResult.uri;
       const fileType = imageResult.file.type;
