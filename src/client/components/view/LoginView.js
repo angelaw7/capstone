@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image, TextInput } from "react-native";
+import { StyleSheet, View, Image, TextInput, Pressable } from "react-native";
 import { commonStyles, DEFAULT_COLOURS } from "../../styles/commonStyles";
 import { Button, Text } from "tamagui";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
@@ -10,7 +10,6 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../firebase";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const LoginView = ({ navigation }) => {
   const [username, setUsername] = useState("");
@@ -138,7 +137,7 @@ const LoginView = ({ navigation }) => {
       <View style={styles.dividerContainer}>
         <View style={styles.dividerLine} />
       </View>
-      <TouchableOpacity
+      <Pressable
         style={{ margin: "1rem" }}
         onPress={() => {
           navigation.navigate("Register");
@@ -147,7 +146,7 @@ const LoginView = ({ navigation }) => {
         <Text style={{ textDecorationLine: "underline", color: "red" }}>
           {"Don't have an account? Sign up!"}
         </Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TextInput } from "react-native";
+import { StyleSheet, View, TextInput, Pressable } from "react-native";
 import { commonStyles, DEFAULT_COLOURS } from "../../styles/commonStyles";
 import { Button, Text } from "tamagui";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const RegisterView = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -41,14 +40,14 @@ const RegisterView = ({ navigation }) => {
         />
 
         {/* We can change this up later with a checkbox or like an eye icon */}
-        <TouchableOpacity
+        <Pressable
           style={styles.showPassword}
           onPress={() => setShowPassword(!showPassword)}
         >
           <Text style={{ display: "flex", alignItems: "center" }}>
             {showPassword ? "Hide" : "Show"} Password
           </Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
 
       {/* conditionally render this block if user's password doesn't meet firebase password criteria or smth */}
@@ -80,7 +79,7 @@ const RegisterView = ({ navigation }) => {
       <View style={styles.dividerContainer}>
         <View style={styles.dividerLine} />
       </View>
-      <TouchableOpacity
+      <Pressable
         style={{ margin: "1rem" }}
         onPress={() => {
           navigation.navigate("Login");
@@ -89,7 +88,7 @@ const RegisterView = ({ navigation }) => {
         <Text style={{ textDecorationLine: "underline", color: "green" }}>
           {"Already have an account? Log in!"}
         </Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
