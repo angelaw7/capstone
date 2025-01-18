@@ -12,10 +12,6 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "exclude": [
-    "node_modules",
-    "babel.config.js",
-    "tamagui.config.js"
-  ],
+  "exclude": ["node_modules", "babel.config.js", "tamagui.config.js"],
   "extends": "expo/tsconfig.base"
 }
