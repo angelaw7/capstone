@@ -51,13 +51,17 @@ urlcolor=cyan          % color of external links
 
 \section{Revision History}
 
+\begin{table}[H]
+\caption{Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 01/13/2024 & 0.1 & Sections 2--5 \\
+01/17/2024 & 0.2 & Section 6\\
 \ldots & \ldots & \ldots \\
 \bottomrule
 \end{tabularx}
+\end{table}
 
 ~\newpage
 
@@ -127,9 +131,10 @@ The following table summarizes the primitive data types used by \progname.
 \textbf{Data Type} & \textbf{Notation} & \textbf{Description}\\ 
 \midrule
 character & char & a single symbol or digit\\
+string & string & a sequence of characters\\
 integer & $\mathbb{Z}$ & a number without a fractional component in (-$\infty$, $\infty$) \\
-natural number & $\mathbb{N}$ & a number without a fractional component in [1, $\infty$) \\
-real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+float/real & $\mathbb{R}$ & any number in (-$\infty$, $\infty$)\\
+boolean & Boolean & a binary value, either true or false\\
 \bottomrule
 \end{tabular} 
 \end{table}
@@ -174,7 +179,10 @@ None
 
 \subsubsection{Exported Access Programs}
 
+
 \begin{center}
+  \begin{table}[H]
+    \caption{OCR Processing Module Access Programs}
   \renewcommand{\arraystretch}{1.5} % Adjust row height
   \setlength{\tabcolsep}{8pt} % Adjust column spacing
   \begin{tabular}{|p{6cm}|p{3cm}|p{2cm}|p{5cm}|}
@@ -192,6 +200,7 @@ None
   FormatError \\
   \hline
   \end{tabular}
+  \end{table}
   \end{center}
 
 
@@ -259,6 +268,8 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
+  \begin{table}[H]
+    \caption{ML Module Access Programs}
 \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
@@ -267,6 +278,7 @@ N/A
 categorize & item: Item & category: string & InvalidInputError \\
 \hline
 \end{tabular}
+\end{table}
 \end{center}
 
 \subsection{Semantics}
@@ -317,6 +329,8 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
+\begin{table}[H]
+  \caption{Budget Calculation Module Access Programs}
 \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
@@ -326,6 +340,7 @@ calculate\_budget & history: List[Expense] & suggested\_budget: List[Dict[string
 & savings\_goals: List[Dict[string, float]] & &  \\
 \hline
 \end{tabular}
+\end{table}
 \end{center}
 
 \subsection{Semantics}
@@ -355,6 +370,7 @@ N/A
 % end of budget calculation module
 
 
+% start of authentication module
 \section{MIS of Authentication Module}\label{Authentication_Module}
 This module manages user authentication, utilizing Firebase Authentication to handle login and registration. It also interacts with React Native components for the user interface.
 
@@ -379,6 +395,8 @@ Native components for the user interface.
 \subsubsection{Exported Access Programs}
 
 \begin{center}
+\begin{table}[H]
+\caption{Authentication Module Access Programs}
   \renewcommand{\arraystretch}{1.5} % Adjust row height
   \setlength{\tabcolsep}{8pt} % Adjust column spacing
   \begin{tabular}{|p{6cm}|p{3cm}|p{2cm}|p{5cm}|}
@@ -396,6 +414,7 @@ Native components for the user interface.
   \begin{tabular}[c]{@{}l@{}}InvalidEmail, WeakPassword, \\ GeneralError\end{tabular} \\
   \hline
   \end{tabular}
+\end{table}
   \end{center}
 
 \subsection{Semantics}
@@ -414,9 +433,11 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \subsubsection{Access Routine Semantics}
 
-\noindent \textbf{loginWithEmailPassword}():
+\noindent \textbf{loginWithEmailPassword}(email: string, password: string):
 \begin{itemize}
-\item transition: Authenticates the user with the given email and password, and transitions the application to the "Overview" page if successful.
+\item transition: if $\exists \text{ (email, password)} \text{ such that }
+\text{(email, password)} \in \text{db} \Rightarrow \text{auth} :=
+\text{FirebaseAuth}$
 \item output: Returns a user object containing user details upon successful login.
 \item exception: 
     \begin{itemize}
@@ -427,9 +448,9 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
     \end{itemize}
 \end{itemize}
 
-\noindent \textbf{createUserWithEmailAndPassword}():
+\noindent \textbf{createUserWithEmailAndPassword}(email: string, password: string):
 \begin{itemize}
-\item transition: Creates a new user account with the provided email and password.
+\item transition: $\text{auth} := \text{FirebaseAuth}$
 \item output: Returns a user object containing user details upon successful registration.
 \item exception: 
     \begin{itemize}
@@ -441,16 +462,18 @@ It is assumed that the Firebase configuration is valid and correctly set up. Net
 
 \subsubsection{Local Functions}
 
-\textbf{validateCredentials}():
+\textbf{validateCredentials}(username: string, password: string):
 \begin{itemize}
 \item Checks the validity of the entered username and password before attempting login or registration.
 \end{itemize}
 
-\textbf{handleErrors}():
+\noindent\textbf{handleErrors}(error: FirebaseError):
 \begin{itemize}
 \item Maps Firebase error codes to user-friendly error messages displayed on the UI.
 \end{itemize}
 
+\newpage
+% end of authentication module
 
 
 % start of upload interface module
@@ -462,19 +485,18 @@ Upload Interface Module
 
 \subsection{Uses}
 
-\begin{itemize}
-    \item Input Format Module
-\end{itemize}
+Input Format Module (\nameref{input_format_module})
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
-
-None
+N/A
 
 \subsubsection{Exported Access Programs}
 
 \begin{center}
+\begin{table}[H]
+  \caption{Upload Interface Module Access Programs}
 \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
@@ -483,6 +505,7 @@ uploadFile & File (binary) & Boolean & FileError \\
 captureImage & Image (binary) & Boolean & CaptureError \\
 \hline
 \end{tabular}
+\end{table}
 \end{center}
 
 \subsection{Semantics}
@@ -493,7 +516,9 @@ None
 
 \subsubsection{Environment Variables}
 
-This module interacts with the device's file system for file uploads and the device's camera for image capture. It also forwards the captured or uploaded files to the Input Format Module for preprocessing.
+This module interacts with the device's file system for file uploads and the
+device's camera for image capture. It also forwards the captured or uploaded
+files to the Input Format Module for preprocessing.
 
 \subsubsection{Assumptions}
 
@@ -539,7 +564,9 @@ Results Display Module
 
 \subsection{Uses}
 
-Input Format Module (M2.1), Budget Calculation Module (M3.3), Machine Learning Module (M3.2)
+Input Format Module (\nameref{input_format_module})\\
+Budget Calculation Module (\nameref{budget_calculation_module})\\
+Machine Learning Module (\nameref{ML_Module})\\
 
 \subsection{Syntax}
 
@@ -550,6 +577,8 @@ None
 \subsubsection{Exported Access Programs}
 
 \begin{center}
+  \begin{table}[H]
+    \caption{Input Format Module Access Programs}
 \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
@@ -559,6 +588,7 @@ displayResults & CategorizedData, BudgetPlan & Visualization (UI Component) & Di
 generateExportFile & FormatType (CSV, PDF) & File & ExportError \\
 \hline
 \end{tabular}
+\end{table}
 \end{center}
 
 \subsection{Semantics}
@@ -620,7 +650,9 @@ Input Format Module
 
 \subsection{Uses}
 
-Results Display Module (M4.2), Budget Calculation Module (M3.3), Machine Learning Module (M3.2)
+Results Display Module (\nameref{results_display_module})\\
+Budget Calculation Module (\nameref{budget_calculation_module})\\
+Machine Learning Module (\nameref{ML_Module})\\
 
 \subsection{Syntax}
 
@@ -631,6 +663,8 @@ None
 \subsubsection{Exported Access Programs}
 
 \begin{center}
+  \begin{table}[H]
+    \caption{Input Format Module Access Programs}
 \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
@@ -640,6 +674,7 @@ parseInputData & RawInputData & StructuredData & ParseError \\
 validateInputFormat & RawInputData & Boolean & ValidationError \\
 \hline
 \end{tabular}
+\end{table}
 \end{center}
 
 \subsection{Semantics}
@@ -699,17 +734,20 @@ Output Generation Module
 
 \subsection{Uses}
 
-Budget Calculation Module (M3.3), Results Display Module (M4.2)
+Budget Calculation Module (\nameref{budget_calculation_module})\\
+Results Display Module (\nameref{results_display_module})\\
 
 \subsection{Syntax}
 
 \subsubsection{Exported Constants}
 
-None
+N/A
 
 \subsubsection{Exported Access Programs}
 
 \begin{center}
+  \begin{table}[H]
+    \caption{Output Generation Module Access Programs}
 \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
@@ -721,6 +759,7 @@ displayOnScreen & ProcessedData & DisplayOutput & DisplayError \\
 exportFile & ProcessedData, ExportType & ExportFile & ExportError \\
 \hline
 \end{tabular}
+\end{table}
 \end{center}
 
 \subsection{Semantics}
@@ -801,6 +840,8 @@ N/A
 \subsubsection{Exported Access Programs}
 
 \begin{center}
+  \begin{table}[H]
+    \caption{Item Module Access Programs}
 \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
@@ -810,6 +851,7 @@ item & name: string & Item & InvalidInputError \\
  & category: string &  &  \\
 \hline
 \end{tabular}
+\end{table}
 \end{center}
 
 \subsection{Semantics}
@@ -862,6 +904,8 @@ Item module (\nameref{item_module})
 \subsubsection{Exported Access Programs}
 
 \begin{center}
+  \begin{table}[H]
+    \caption{Expense Module Access Programs}
 \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
@@ -873,6 +917,7 @@ expense & item: List[Item] & Expense & InvalidInputError \\
   & receipt\_image: string &  &  \\
 \hline
 \end{tabular}
+\end{table}
 \end{center}
 
 \subsection{Semantics}
@@ -919,6 +964,8 @@ N/A
 % \subsubsection{Exported Access Programs}
 
 % \begin{center}
+% \begin{table}[H]
+%   \caption{X Module Access Programs}
 % \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
 % \hline
 % \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
@@ -926,6 +973,7 @@ N/A
 % \wss{accessProg} & - & - & - \\
 % \hline
 % \end{tabular}
+% \end{table}
 % \end{center}
 
 % \subsection{Semantics}
@@ -1031,8 +1079,15 @@ graduate attribute of Problem Analysis and Design.
   design?  From all the potential options, why did you select the documented design?
   (LO\_Explores)
 
-  One of the main design decisions that we stayed away from was the use of too many user inputs. Our solution is to make a more efficient experience for users, and as a result we decided to stay
-  away from designs that would require many user input fields. 
+  One of the main design decisions that we stayed away from was the use of too
+  many user inputs. Our solution is to make a more efficient experience for
+  users, and as a result we decided to stay away from designs that would require
+  many user input fields. We also considered the design of using a dictionary
+  for data types instead of an object, but we decided that an object would be
+  cleaner and more efficient for our purposes. While a dictionary would have
+  been easier to define, we decided to go with creating new classes because it
+  would ensure that the data is structured in a way that would minimize errors
+  (e.g., Item (\ref{item_module}) and Expense (\ref{expense_module})).
 
 \end{enumerate}
 
