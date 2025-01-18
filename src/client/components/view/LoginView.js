@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image, TextInput } from "react-native";
+import { StyleSheet, View, Image, TextInput, Pressable } from "react-native";
 import { commonStyles, DEFAULT_COLOURS } from "../../styles/commonStyles";
 import { Button, Text } from "tamagui";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
@@ -134,6 +134,19 @@ const LoginView = ({ navigation }) => {
           </Button>
         </View>
       </View>
+      <View style={styles.dividerContainer}>
+        <View style={styles.dividerLine} />
+      </View>
+      <Pressable
+        style={{ margin: "1rem" }}
+        onPress={() => {
+          navigation.navigate("Register");
+        }}
+      >
+        <Text style={{ textDecorationLine: "underline", color: "red" }}>
+          {"Don't have an account? Sign up!"}
+        </Text>
+      </Pressable>
     </View>
   );
 };
