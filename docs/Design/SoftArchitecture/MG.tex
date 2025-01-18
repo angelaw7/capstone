@@ -56,7 +56,7 @@
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 01/13/2025 & 0.1 & Section 2--8, 10--12\\
-01/14/2025 & 0.2 & Add details to Section 12\\
+01/14/2025 & 0.2 & Add details to Section 9 and 12\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -319,6 +319,9 @@ For the identification and categorization of items in receipts, the OCR Processi
 
 \noindent \textbf{Financial Tracking (FR19 - FR24)}:  
 The system is designed to track user spending, generate budgets, and send notifications when certain thresholds are met. Modules like the Budget Calculation Module, Machine Learning Module, and OCR Processing Module are responsible for financial analysis and tracking (R19 - R24). The User Interaction Module plays a significant role in displaying this information in a user-friendly format (R19, R20, R21).
+
+
+\newpage
 
 \section{Module Decomposition} \label{SecMD}
 
@@ -819,22 +822,22 @@ deadline in March (specific date to be announced). \\
 \begin{itemize}
 	\item Phase 1: POC Demo (due November 26th, 2024)
 	\begin{itemize}
-		\item M3.1: OCR Processing Module
+		\item \mref{mOCR}: OCR Processing Module 
 		\begin{itemize}
 			\item Research and testing (Angela)
 			\item Implementation and tweaking (Angela)
 		\end{itemize}
-		\item M3.2: Machine Learning Module
+		\item \mref{mML}: Machine Learning Module
 		\begin{itemize}
 			\item Research (Payton, Jason)
 			\item Implementation (Payton, Jason)
 		\end{itemize}
-		\item M4.1: Upload Interface Module
+		\item \mref{mUpload}: Upload Interface Module
 		\begin{itemize}
 			\item UI design and prototyping (Eric, Fondson)
 			\item Implementation (Eric, Fondson)
 		\end{itemize}
-		\item M4.2: Results Display Module
+		\item \mref{mResults}: Results Display Module
 		\begin{itemize}
 			\item UI design and prototyping (Eric, Fondson)
 			\item Implementation (Eric, Fondson)
@@ -842,38 +845,38 @@ deadline in March (specific date to be announced). \\
 	\end{itemize}
 	\item Phase 2: Revision 0 Demo (due February 3rd, 2025)
 	\begin{itemize}
-		\item M3.1: OCR Processing Module
+		\item \mref{mOCR}: OCR Processing Module
 		\begin{itemize}
 			\item Refinement (Angela)
 		\end{itemize}
-		\item M3.2: Machine Learning Module
+		\item \mref{mML}: Machine Learning Module
 		\begin{itemize}
 			\item Refinement, further training (Jason, Payton, Angela)
 		\end{itemize}
-		\item M4.1: Upload Interface Module
+		\item \mref{mUpload}: Upload Interface Module
 		\begin{itemize}
 			\item Refinement, testing (Eric, Fondson)
 		\end{itemize}
-		\item M4.2: Results Display Module
+		\item \mref{mResults}: Results Display Module
 		\begin{itemize}
 			\item Refinement, testing (Eric, Fondson)
 		\end{itemize}
-		\item M2.1: Input Format Module
+		\item \mref{mInput}: Input Format Module
 		\begin{itemize}
 			\item Design and implementation (Fondson)
 			\item Testing (Jason)
 		\end{itemize}
-		\item M2.2: Output Generation Module
+		\item \mref{mOutput}: Output Generation Module
 		\begin{itemize}
 			\item Design and implementation (Angela, Eric)
 			\item Testing (Fondson)
 		\end{itemize}
-		\item M3.3: Budget Calculation Module
+		\item \mref{mBudget}: Budget Calculation Module
 		\begin{itemize}
 			\item Design and implementation (Jason, Payton)
 			\item Testing (Eric)
 		\end{itemize}
-    \item M5: Authentication Module
+    \item \mref{mAuth}: Authentication Module
     \begin{itemize}
         \item Design and implementation (Eric)
         \item Testing (Jason)
