@@ -2,8 +2,9 @@ import { useState } from "react";
 import { StyleSheet, Text, TextInput, Pressable, View } from "react-native";
 import { DEFAULT_COLOURS } from "../../styles/commonStyles";
 import { Button } from "tamagui";
+import BackArrow from "../../assets/icons/BackArrow";
 
-const ResetPasswordView = () => {
+const ResetPasswordView = ({ navigation }) => {
   const [email, setEmail] = useState("");
 
   const resetPasswordHandler = () => {
@@ -13,9 +14,16 @@ const ResetPasswordView = () => {
     console.log(email);
   };
 
+  const returnHandler = () => {
+    navigation.navigate("Login");
+  };
+
   return (
     <View style={styles.mainBox}>
       <View style={styles.resetPasswordBox}>
+        <Pressable style={styles.backArrow} onPress={returnHandler}>
+          <BackArrow size={25} />
+        </Pressable>
         <Text style={styles.resetPasswordText}>Reset your password</Text>
       </View>
       <View style={styles.inputContainer}>
@@ -50,6 +58,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   resetPasswordBox: {
+    position: "relative",
     width: "100%",
     height: "5%",
     display: "flex",
@@ -57,6 +66,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 16,
+  },
+  backArrow: {
+    position: "absolute",
+    left: 20,
   },
   resetPasswordText: {
     fontSize: 20,
