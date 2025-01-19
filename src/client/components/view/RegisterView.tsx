@@ -62,7 +62,6 @@ const RegisterView = ({ navigation }) => {
         case "password-mismatch":
           setRegisterErrorMessage(errorMessage);
           break;
-
         default:
           setRegisterErrorMessage(
             "An error occurred while signing up. Please try again later.",
@@ -102,7 +101,11 @@ const RegisterView = ({ navigation }) => {
           secureTextEntry={!showPassword}
           placeholderTextColor={DEFAULT_COLOURS.secondary}
         />
-        {registerErrorMessage && (
+        {/* Note: Checked the length instead of just using the 'registerErrorMessage' boolean condition since when the component
+		compiles, it will be treated as plain text and React Native complains if you put plain text in a View node without a Text
+		Node. Doing registerErrorMessage.length && <Text>some text lol</Text> will cause errors
+		*/}
+        {registerErrorMessage.length !== 0 && (
           <Text style={{ color: "red" }}>{registerErrorMessage}</Text>
         )}
 
@@ -121,14 +124,12 @@ const RegisterView = ({ navigation }) => {
       <View>
         <Text style={styles.passwordCriteriaText}>Password Criteria</Text>
         <View>
-          <ul>
-            <li style={styles.passwordCriteria}>Minimum 8 characters</li>
-            <li style={styles.passwordCriteria}>One lowercase character</li>
-            <li style={styles.passwordCriteria}>One uppercase character</li>
-            <li style={styles.passwordCriteria}>
-              One special Character [!,@,#,$,%,..]
-            </li>
-          </ul>
+          <Text style={styles.passwordCriteria}>Minimum 8 characters</Text>
+          <Text style={styles.passwordCriteria}>One lowercase character</Text>
+          <Text style={styles.passwordCriteria}>One uppercase character</Text>
+          <Text style={styles.passwordCriteria}>
+            One special Character [!,@,#,$,%,..]
+          </Text>
         </View>
       </View>
 
