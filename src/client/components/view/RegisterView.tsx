@@ -36,6 +36,18 @@ const RegisterView = ({ navigation }) => {
 
       const user = await createUserWithEmailAndPassword(auth, email, password);
       setRegisterErrorMessage("");
+      navigation.reset({
+        index: 0,
+        /* Probably link a name attribute eventually */
+        routes: [
+          {
+            name: "Overview",
+            params: {
+              name: user.user.displayName ? "User 123" : user.user.displayName,
+            },
+          },
+        ],
+      });
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
