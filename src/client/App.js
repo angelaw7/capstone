@@ -8,6 +8,7 @@ import NewBudgetPage from "./components/view/NewBudgetPage";
 import NewIncomePage from "./components/view/NewIncomePage";
 import LoginView from "./components/view/LoginView";
 import RegisterView from "./components/view/RegisterView";
+import ResetPasswordView from "./components/view/ResetPasswordView";
 import OverView from "./components/view/OverView";
 import AddExpenseView from "./components/view/AddExpenseView";
 import { useFonts } from "expo-font";
@@ -26,6 +27,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Login" component={LoginView} />
+          <Stack.Screen name="ResetPassword" component={ResetPasswordView} />
           <Stack.Screen name="Register" component={RegisterView} />
           <Stack.Screen name="Overview" component={OverView} />
           <Stack.Screen name="MyIncome" component={MyIncome} />

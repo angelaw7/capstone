@@ -104,6 +104,17 @@ const LoginView = ({ navigation }) => {
         <Text style={commonStyles.errorText}>{credentialError}</Text>
       )}
 
+      <Pressable
+        style={{ marginTop: "1rem" }}
+        onPress={() => {
+          navigation.navigate("ResetPassword");
+        }}
+      >
+        <Text style={{ textDecorationLine: "underline", color: "red" }}>
+          Forgot your password?
+        </Text>
+      </Pressable>
+
       <View style={styles.dividerContainer}>
         <View style={styles.dividerLine} />
         <View>
