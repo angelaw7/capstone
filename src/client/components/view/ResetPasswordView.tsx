@@ -2,16 +2,39 @@ import { useState } from "react";
 import { StyleSheet, Text, TextInput, Pressable, View } from "react-native";
 import { DEFAULT_COLOURS } from "../../styles/commonStyles";
 import { Button } from "tamagui";
+import { auth } from "../../firebase";
+import { sendPasswordResetEmail } from "firebase/auth";
 import BackArrow from "../../assets/icons/BackArrow";
 
 const ResetPasswordView = ({ navigation }) => {
   const [email, setEmail] = useState("");
+  const [sentEmail, setSentEmail] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
 
-  const resetPasswordHandler = () => {
-    /* Some logic to send out the email reset password link */
+  const resetPasswordHandler = async () => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setSentEmail(true);
+      setErrMessage("");
+    } catch (err) {
+      const errCode = err.code;
+      const errMessage = err.message;
 
-    /* Also perform some sort of validation on the email */
-    console.log(email);
+      setSentEmail(false);
+      switch (errCode) {
+        case "auth/missing-email":
+          setErrMessage(
+            "You must enter an email address in order to continue.",
+          );
+          break;
+        case "auth/invalid-email":
+          setErrMessage("The email address entered is invalid.");
+          break;
+        default:
+          setErrMessage("An error has occurred. Please try again later.");
+          break;
+      }
+    }
   };
 
   const returnHandler = () => {
@@ -34,6 +57,17 @@ const ResetPasswordView = ({ navigation }) => {
           value={email}
           onChangeText={setEmail}
         />
+        {sentEmail && (
+          <Text style={{ width: "50%", margin: 12, color: "red" }}>
+            If the email is associated with an account, a reset link will have
+            been sent.
+          </Text>
+        )}
+        {errMessage.length !== 0 && (
+          <Text style={{ width: "50%", margin: 12, color: "red" }}>
+            {errMessage}
+          </Text>
+        )}
         <Button
           onPress={resetPasswordHandler}
           backgroundColor={DEFAULT_COLOURS.primary}
