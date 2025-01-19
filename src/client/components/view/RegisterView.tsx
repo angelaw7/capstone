@@ -16,8 +16,6 @@ const RegisterView = ({ navigation }) => {
   const [registerErrorMessage, setRegisterErrorMessage] = useState("");
 
   const createAccountHandler = async () => {
-    console.log(password, confirmPassword, email);
-
     try {
       if (password !== confirmPassword) {
         const error = new Error("Passwords do not match.");
@@ -38,7 +36,6 @@ const RegisterView = ({ navigation }) => {
 
       const user = await createUserWithEmailAndPassword(auth, email, password);
       setRegisterErrorMessage("");
-      console.log("new user", user);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -68,7 +65,6 @@ const RegisterView = ({ navigation }) => {
           );
           break;
       }
-      console.log("error code and msg", errorCode, errorMessage);
     }
   };
 
