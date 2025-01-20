@@ -1,7 +1,8 @@
 import axios from "axios";
+import { IP_ADDRESS } from "@env";
 
 const api = axios.create({
-  baseURL: "http://127.0.0.1:5001/api",
+  baseURL: `http://${IP_ADDRESS}:5001/api`,
   timeout: 50000,
   headers: {
     "Content-Type": "application/json",
