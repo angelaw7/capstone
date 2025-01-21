@@ -4,8 +4,23 @@ import { DEFAULT_COLOURS } from "../../styles/commonStyles";
 import HorizontalRule from "../common/HorizontalRule";
 import { Button, Checkbox, Label } from "tamagui";
 import CheckMark from "../../assets/icons/CheckMark";
+import { useState } from "react";
+import { CheckboxStyledContext } from "@tamagui/checkbox";
 
 const OnboardingView = () => {
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [sex, setSex] = useState("");
+  const [dob, setDob] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [keepLogin, setKeepLogin] = useState(false);
+
+  const createAccountHandler = () => {
+    // add user to db
+    console.log(keepLogin);
+  };
+
   return (
     <View style={styles.onboardingBox}>
       <View style={styles.headerBox}>
@@ -17,16 +32,22 @@ const OnboardingView = () => {
           placeholder="First Name"
           style={styles.textInput}
           placeholderTextColor={DEFAULT_COLOURS.secondary}
+          value={firstName}
+          onChangeText={setFirstName}
         />
         <TextInput
           placeholder="Middle Name"
           style={styles.textInput}
           placeholderTextColor={DEFAULT_COLOURS.secondary}
+          value={middleName}
+          onChangeText={setMiddleName}
         />
         <TextInput
           placeholder="Last Name"
           style={styles.textInput}
           placeholderTextColor={DEFAULT_COLOURS.secondary}
+          value={lastName}
+          onChangeText={setLastName}
         />
       </View>
 
@@ -38,27 +59,38 @@ const OnboardingView = () => {
           placeholder="Sex/Gender"
           style={styles.textInput}
           placeholderTextColor={DEFAULT_COLOURS.secondary}
+          value={sex}
+          onChangeText={setSex}
         />
         <TextInput
           placeholder="Date of Birth"
           style={styles.textInput}
           placeholderTextColor={DEFAULT_COLOURS.secondary}
+          value={dob}
+          onChangeText={setDob}
         />
         <TextInput
           placeholder="Occupation/Industry"
           style={styles.textInput}
           placeholderTextColor={DEFAULT_COLOURS.secondary}
+          value={occupation}
+          onChangeText={setOccupation}
         />
       </View>
 
       <View style={styles.checkBox}>
-        <Checkbox marginRight={12} id="check">
+        <Checkbox
+          marginRight={12}
+          id="check"
+          checked={keepLogin}
+          onCheckedChange={() => setKeepLogin(!keepLogin)}
+        >
           <Checkbox.Indicator>
             <CheckMark size={20} />
           </Checkbox.Indicator>
         </Checkbox>
         <Label size={10} htmlFor="check">
-          Enable Notifications
+          Stay signed in on this device
         </Label>
       </View>
 
@@ -67,6 +99,7 @@ const OnboardingView = () => {
         width={"60%"}
         marginTop={20}
         marginHorizontal={"auto"}
+        onPress={createAccountHandler}
       >
         <Text>Create Account</Text>
       </Button>
