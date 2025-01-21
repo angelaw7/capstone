@@ -27,10 +27,10 @@ export default function App() {
     <TamaguiProvider config={config}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Onboarding" component={OnboardingView} />
           <Stack.Screen name="Login" component={LoginView} />
           <Stack.Screen name="ResetPassword" component={ResetPasswordView} />
           <Stack.Screen name="Register" component={RegisterView} />
+          <Stack.Screen name="Onboarding" component={OnboardingView} />
           <Stack.Screen name="Overview" component={OverView} />
           <Stack.Screen name="MyIncome" component={MyIncome} />
           <Stack.Screen name="NewIncome" component={NewIncomePage} />

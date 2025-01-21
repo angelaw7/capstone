@@ -1,13 +1,12 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View, Pressable } from "react-native";
 import BackArrow from "../../assets/icons/BackArrow";
 import { DEFAULT_COLOURS } from "../../styles/commonStyles";
 import HorizontalRule from "../common/HorizontalRule";
 import { Button, Checkbox, Label } from "tamagui";
 import CheckMark from "../../assets/icons/CheckMark";
 import { useState } from "react";
-import { CheckboxStyledContext } from "@tamagui/checkbox";
 
-const OnboardingView = () => {
+const OnboardingView = ({ navigation, route }) => {
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -16,15 +15,37 @@ const OnboardingView = () => {
   const [occupation, setOccupation] = useState("");
   const [keepLogin, setKeepLogin] = useState(false);
 
+  const returnHandler = () => {
+    navigation.navigate("Register", {
+      /* We can return the email back to the previous page and autofill in the text entry again
+		if we want or smth. */
+      email: route.params?.email,
+    });
+  };
+
   const createAccountHandler = () => {
-    // add user to db
-    console.log(keepLogin);
+    // TODO: add user to db
+
+    // Redirect user to overview page if user account is successful, else show error or smth idk
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: "Overview",
+          params: {
+            name: `${firstName} ${lastName}`,
+          },
+        },
+      ],
+    });
   };
 
   return (
     <View style={styles.onboardingBox}>
       <View style={styles.headerBox}>
-        <BackArrow size={20} style={styles.backArrow} />
+        <Pressable onPress={returnHandler} style={styles.backArrow}>
+          <BackArrow size={20} />
+        </Pressable>
         <Text style={styles.headerText}>Please Enter Your Information</Text>
       </View>
       <View style={styles.nameBox}>

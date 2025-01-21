@@ -8,8 +8,10 @@ import {
   validatePassword,
 } from "firebase/auth";
 
-const RegisterView = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+const RegisterView = ({ navigation, route }) => {
+  const [email, setEmail] = useState(
+    route.params?.email ? route.params?.email : "",
+  );
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -41,9 +43,9 @@ const RegisterView = ({ navigation }) => {
         /* Probably link a name attribute eventually */
         routes: [
           {
-            name: "Overview",
+            name: "Onboarding",
             params: {
-              name: user.user.displayName ? "User 123" : user.user.displayName,
+              email: email,
             },
           },
         ],
