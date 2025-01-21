@@ -11,6 +11,7 @@ import RegisterView from "./components/view/RegisterView";
 import ResetPasswordView from "./components/view/ResetPasswordView";
 import OverView from "./components/view/OverView";
 import AddExpenseView from "./components/view/AddExpenseView";
+import OnboardingView from "./components/view/OnboardingView";
 import { useFonts } from "expo-font";
 import { TamaguiProvider } from "tamagui";
 import config from "./tamagui.config";
@@ -26,6 +27,7 @@ export default function App() {
     <TamaguiProvider config={config}>
       <NavigationContainer>
         <Stack.Navigator>
+          <Stack.Screen name="Onboarding" component={OnboardingView} />
           <Stack.Screen name="Login" component={LoginView} />
           <Stack.Screen name="ResetPassword" component={ResetPasswordView} />
           <Stack.Screen name="Register" component={RegisterView} />
