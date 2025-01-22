@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Rect, Circle, Path } from "react-native-svg";
 
-const PhotoLibraryIcon = ({ size = 24, style }) => (
+const PhotoLibraryIcon = ({ size = 24, style = {} }) => (
   <Svg
     style={style}
     width={size}
