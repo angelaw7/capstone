@@ -10,8 +10,13 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../firebase";
+import { NavigationProps } from "../../types";
 
-const LoginView = ({ navigation }) => {
+interface LoginViewProps {
+  navigation: NavigationProps;
+}
+
+const LoginView = ({ navigation }: LoginViewProps) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [credentialError, setCredentialError] = useState("");

@@ -5,8 +5,14 @@ import HorizontalRule from "../common/HorizontalRule";
 import { Button, Checkbox, Label } from "tamagui";
 import CheckMark from "../../assets/icons/CheckMark";
 import { useState } from "react";
+import { NavigationProps, RouteProps } from "../../types";
 
-const OnboardingView = ({ navigation, route }) => {
+interface OnboardingViewProps {
+  navigation: NavigationProps;
+  route: RouteProps;
+}
+
+const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const [firstName, setFirstName] = useState("");
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");

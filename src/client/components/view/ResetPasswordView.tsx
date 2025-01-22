@@ -5,8 +5,13 @@ import { Button } from "tamagui";
 import { auth } from "../../firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import BackArrow from "../../assets/icons/BackArrow";
+import { NavigationProps } from "../../types";
 
-const ResetPasswordView = ({ navigation }) => {
+interface ResetPasswordViewProps {
+  navigation: NavigationProps;
+}
+
+const ResetPasswordView = ({ navigation }: ResetPasswordViewProps) => {
   const [email, setEmail] = useState("");
   const [sentEmail, setSentEmail] = useState(false);
   const [errMessage, setErrMessage] = useState("");

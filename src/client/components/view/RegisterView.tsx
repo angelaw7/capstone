@@ -7,8 +7,14 @@ import {
   createUserWithEmailAndPassword,
   validatePassword,
 } from "firebase/auth";
+import { NavigationProps } from "../../types";
 
-const RegisterView = ({ navigation, route }) => {
+interface RegisterViewProps {
+  navigation: NavigationProps;
+  route: any;
+}
+
+const RegisterView = ({ navigation, route }: RegisterViewProps) => {
   const [email, setEmail] = useState(
     route.params?.email ? route.params?.email : "",
   );
