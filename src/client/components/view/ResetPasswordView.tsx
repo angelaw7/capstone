@@ -77,8 +77,8 @@ const ResetPasswordView = ({ navigation }) => {
         </Button>
         <View style={styles.resend}>
           <Text>Did not receive an email?</Text>
-          <Pressable style={{ textDecorationLine: "underline" }}>
-            <Text>Resend</Text>
+          <Pressable>
+            <Text style={{ textDecorationLine: "underline" }}>Resend</Text>
           </Pressable>
         </View>
       </View>

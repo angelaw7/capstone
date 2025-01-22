@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image, TextInput, Pressable } from "react-native";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import { commonStyles, DEFAULT_COLOURS } from "../../styles/commonStyles";
 import { Button, Text } from "tamagui";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
@@ -105,7 +105,7 @@ const LoginView = ({ navigation }) => {
       )}
 
       <Pressable
-        style={{ marginTop: "1rem" }}
+        style={{ marginTop: 16 }}
         onPress={() => {
           navigation.navigate("ResetPassword");
         }}
@@ -149,7 +149,7 @@ const LoginView = ({ navigation }) => {
         <View style={styles.dividerLine} />
       </View>
       <Pressable
-        style={{ margin: "1rem" }}
+        style={{ margin: 16 }}
         onPress={() => {
           navigation.navigate("Register");
         }}
@@ -165,7 +165,7 @@ const LoginView = ({ navigation }) => {
 const styles = StyleSheet.create({
   loginContainer: {
     marginTop: 15,
-    display: "block",
+    display: "flex",
     backgroundColor: "#fff",
     alignItems: "center",
     alignSelf: "center",

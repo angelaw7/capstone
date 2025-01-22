@@ -159,7 +159,7 @@ const RegisterView = ({ navigation, route }) => {
         <View style={styles.dividerLine} />
       </View>
       <Pressable
-        style={{ margin: "1rem" }}
+        style={{ margin: 16 }}
         onPress={() => {
           navigation.navigate("Login");
         }}
@@ -204,17 +204,17 @@ const styles = StyleSheet.create({
   },
   createPasswordBox: {
     width: "60%",
-    height: "2rem",
+    height: "5%",
     textAlign: "center",
     fontSize: 20,
-    margin: "1rem",
+    margin: 16,
     display: "flex",
     justifyContent: "center",
   },
   passwordCriteriaText: {
     fontSize: 20,
     color: "red",
-    margin: "1rem",
+    margin: 16,
   },
   passwordCriteria: {
     margin: 0,

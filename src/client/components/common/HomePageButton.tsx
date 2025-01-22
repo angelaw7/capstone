@@ -6,7 +6,7 @@ interface HomePageButton {
   children: React.ReactNode;
   title: string;
   color: string;
-  routingHandler: VoidFunction;
+  routingHandler: (...args: any[]) => void;
 }
 
 const HomePageButton = ({

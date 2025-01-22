@@ -7,7 +7,7 @@ interface EntrySourceProps {
   description: string;
   additionalInfo: string;
   // Denotes if this input is a group expense
-  group: boolean;
+  group?: boolean;
 }
 
 const EntrySource = ({
