@@ -27,7 +27,8 @@ const RegisterView = ({ navigation, route }: RegisterViewProps) => {
     try {
       if (password !== confirmPassword) {
         const error = new Error("Passwords do not match.");
-        error.code = "password-mismatch";
+        /* We can directly do error.code = "password-mismatch" but typescript will complain */
+        Object.assign(error, { code: "password-mismatch" });
         throw error;
       }
       const status = await validatePassword(auth, password);
@@ -56,7 +57,7 @@ const RegisterView = ({ navigation, route }: RegisterViewProps) => {
           },
         ],
       });
-    } catch (error) {
+    } catch (error: any) {
       const errorCode = error.code;
       const errorMessage = error.message;
 

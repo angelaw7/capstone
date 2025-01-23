@@ -20,13 +20,18 @@ interface NewIncomePageProps {
   navigation: NavigationProps;
 }
 
+type DropdownItem = {
+  label: string;
+  value: number;
+};
+
 const NewIncomePage = ({ navigation }: NewIncomePageProps) => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [checked, setChecked] = React.useState("once");
   const [dropdownValue, setDropdownValue] = useState(1);
 
-  const dropdownChangeHandler = (item) => {
+  const dropdownChangeHandler = (item: DropdownItem) => {
     setDropdownValue(item.value);
   };
 

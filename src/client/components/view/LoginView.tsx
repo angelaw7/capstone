@@ -29,7 +29,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
         index: 0,
         routes: [{ name: "Overview", params: { name: username } }],
       });
-    } catch (e) {
+    } catch (e: any) {
       switch (e.code) {
         case "auth/invalid-email":
           setCredentialError(

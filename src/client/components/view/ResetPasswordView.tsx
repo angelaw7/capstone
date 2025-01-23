@@ -21,7 +21,7 @@ const ResetPasswordView = ({ navigation }: ResetPasswordViewProps) => {
       await sendPasswordResetEmail(auth, email);
       setSentEmail(true);
       setErrMessage("");
-    } catch (err) {
+    } catch (err: any) {
       const errCode = err.code;
       const errMessage = err.message;
 

@@ -6,17 +6,20 @@ type RootStackParamList = {
   ResetPassword: undefined;
   Register:
     | {
-        email: string;
+        name?: string;
+        email?: string;
       }
     | undefined;
   Onboarding:
     | {
-        email: string;
+        name?: string;
+        email?: string;
       }
     | undefined;
   Overview:
     | {
-        name: string;
+        name?: string;
+        email?: string;
         /* Some other types later when we plan to pass from onboarding to overview */
       }
     | undefined;
