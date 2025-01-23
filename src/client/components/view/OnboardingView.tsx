@@ -21,14 +21,6 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const [occupation, setOccupation] = useState("");
   const [keepLogin, setKeepLogin] = useState(false);
 
-  const returnHandler = () => {
-    navigation.navigate("Register", {
-      /* We can return the email back to the previous page and autofill in the text entry again
-		if we want or smth. */
-      email: route.params?.email,
-    });
-  };
-
   const createAccountHandler = () => {
     // TODO: add user to db
 
@@ -49,9 +41,6 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   return (
     <View style={styles.onboardingBox}>
       <View style={styles.headerBox}>
-        <Pressable onPress={returnHandler} style={styles.backArrow}>
-          <BackArrow size={20} />
-        </Pressable>
         <Text style={styles.headerText}>Please Enter Your Information</Text>
       </View>
       <View style={styles.nameBox}>
