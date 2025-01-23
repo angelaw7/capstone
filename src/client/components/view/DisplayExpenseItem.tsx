@@ -7,7 +7,16 @@ import {
   FlatList,
 } from "react-native";
 
-const DisplayExpenseItems = ({ items, onExpenseDelete }) => {
+interface DisplayExpenseItemsProps {
+  // Types TBD
+  items: any[];
+  onExpenseDelete: (...args: any[]) => void;
+}
+
+const DisplayExpenseItems = ({
+  items,
+  onExpenseDelete,
+}: DisplayExpenseItemsProps) => {
   if (items.length === 0) {
     return <Text style={styles.emptyText}>No items added yet!</Text>;
   }

@@ -5,8 +5,13 @@ import BackArrow from "../../assets/icons/BackArrow";
 import AddIcon from "../../assets/icons/AddIcon";
 import HorizontalRule from "../common/HorizontalRule";
 import EntrySource from "../common/EntrySource";
+import { NavigationProps } from "../../types";
 
-const MyIncome = ({ navigation }) => {
+interface MyIncomeProps {
+  navigation: NavigationProps;
+}
+
+const MyIncome = ({ navigation }: MyIncomeProps) => {
   const returnHandler = () => {
     navigation.navigate("Overview");
   };

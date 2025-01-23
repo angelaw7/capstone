@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
-const BudgetIcon = ({ size = 50, style }) => (
+const BudgetIcon = ({ size = 50, style = {} }) => (
   <Svg
     style={style}
     width={size}

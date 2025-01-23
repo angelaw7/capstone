@@ -17,30 +17,43 @@ import AddExpenseModal from "./AddExpenseModal";
 import DisplayExpenseItems from "./DisplayExpenseItem";
 import * as ImagePicker from "expo-image-picker";
 import ExpensesService from "../../services/expensesService";
+import { NavigationProps } from "../../types";
 
-const AddExpenseView = ({ navigation }) => {
+interface AddExpenseViewProps {
+  navigation: NavigationProps;
+}
+
+type Item = {
+  id: string;
+  rawName: string;
+  name: string;
+  cost: number;
+  category: string;
+};
+
+const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
   const [isModalVisible, setModalVisible] = useState(false);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState<Item[]>([]);
   const [date, setDate] = useState("");
   const [storeName, setStoreName] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState<string | undefined>();
 
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
 
-  const handleSaveItem = (item) => {
+  const handleSaveItem = (item: Item) => {
     setItems((prevItems) => [...prevItems, item]);
   };
 
-  const handleDateChange = (text) => {
+  const handleDateChange = (text: string) => {
     setDate(text);
   };
 
-  const handleStoreNameChange = (text) => {
+  const handleStoreNameChange = (text: string) => {
     setStoreName(text);
   };
 
-  const handleExpenseDelete = (itemId) => {
+  const handleExpenseDelete = (itemId: string) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
 
@@ -66,8 +79,8 @@ const AddExpenseView = ({ navigation }) => {
     if (!result.canceled) {
       const imageResult = result.assets[0];
       const fileUri = imageResult.uri;
-      const fileType = imageResult.file.type;
-      const fileName = imageResult.file.name;
+      const fileType = imageResult.file!.type;
+      const fileName = imageResult.file!.name;
       setImage(fileUri);
 
       try {
@@ -117,14 +130,14 @@ const AddExpenseView = ({ navigation }) => {
         </View>
         <View style={styles.imageOptions}>
           <TouchableOpacity style={styles.imageOptionButton}>
-            <CameraIcon size={24} style={styles.icon} />
+            <CameraIcon size={24} />
             <Text style={styles.imageOptionText}>Capture Photo</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.imageOptionButton}
             onPress={pickImage}
           >
-            <PhotoLibraryIcon size={24} style={styles.icon} />
+            <PhotoLibraryIcon size={24} />
             <Text style={styles.imageOptionText}>Photo Library</Text>
           </TouchableOpacity>
         </View>
@@ -155,7 +168,7 @@ const AddExpenseView = ({ navigation }) => {
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Items</Text>
           <TouchableOpacity style={styles.addItemButton} onPress={openModal}>
-            <AddCircleIcon size={24} style={styles.icon} />
+            <AddCircleIcon size={24} />
           </TouchableOpacity>
         </View>
         <View style={styles.scannedItemsContainer}>
@@ -168,9 +181,9 @@ const AddExpenseView = ({ navigation }) => {
 
       <View style={styles.bottomNav}>
         <StatsChartOutlineIcon size={32} color="black" />
-        <AddCircleIcon size={32} color="black" />
-        <PeopleIcon size={32} color="black" />
-        <PersonIcon size={32} color="black" />
+        <AddCircleIcon size={32} style={{ color: "black" }} />
+        <PeopleIcon size={32} style={{ color: "black" }} />
+        <PersonIcon size={32} style={{ color: "black" }} />
       </View>
 
       <AddExpenseModal

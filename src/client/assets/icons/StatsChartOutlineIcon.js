@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Line, Rect } from "react-native-svg";
 
-const StatsChartOutlineIcon = ({ size = 24, color = "black", style }) => (
+const StatsChartOutlineIcon = ({ size = 24, color = "black", style = {} }) => (
   <Svg
     style={style}
     width={size}

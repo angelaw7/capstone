@@ -7,8 +7,14 @@ import {
   createUserWithEmailAndPassword,
   validatePassword,
 } from "firebase/auth";
+import { NavigationProps } from "../../types";
 
-const RegisterView = ({ navigation, route }) => {
+interface RegisterViewProps {
+  navigation: NavigationProps;
+  route: any;
+}
+
+const RegisterView = ({ navigation, route }: RegisterViewProps) => {
   const [email, setEmail] = useState(
     route.params?.email ? route.params?.email : "",
   );
@@ -21,7 +27,8 @@ const RegisterView = ({ navigation, route }) => {
     try {
       if (password !== confirmPassword) {
         const error = new Error("Passwords do not match.");
-        error.code = "password-mismatch";
+        /* We can directly do error.code = "password-mismatch" but typescript will complain */
+        Object.assign(error, { code: "password-mismatch" });
         throw error;
       }
       const status = await validatePassword(auth, password);
@@ -50,7 +57,7 @@ const RegisterView = ({ navigation, route }) => {
           },
         ],
       });
-    } catch (error) {
+    } catch (error: any) {
       const errorCode = error.code;
       const errorMessage = error.message;
 
@@ -159,7 +166,7 @@ const RegisterView = ({ navigation, route }) => {
         <View style={styles.dividerLine} />
       </View>
       <Pressable
-        style={{ margin: "1rem" }}
+        style={{ margin: 16 }}
         onPress={() => {
           navigation.navigate("Login");
         }}
@@ -204,17 +211,17 @@ const styles = StyleSheet.create({
   },
   createPasswordBox: {
     width: "60%",
-    height: "2rem",
+    height: "5%",
     textAlign: "center",
     fontSize: 20,
-    margin: "1rem",
+    margin: 16,
     display: "flex",
     justifyContent: "center",
   },
   passwordCriteriaText: {
     fontSize: 20,
     color: "red",
-    margin: "1rem",
+    margin: 16,
   },
   passwordCriteria: {
     margin: 0,

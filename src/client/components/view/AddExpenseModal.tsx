@@ -1,9 +1,19 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, StyleSheet, Modal } from "react-native";
+import { Button, Modal, Text, TextInput, StyleSheet, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { v4 as uuidv4 } from "uuid";
 
-const AddExpenseModal = ({ visible, onClose, onSave }) => {
+interface AddExpenseModalProps {
+  visible: boolean;
+  onClose: VoidFunction;
+  onSave: (...args: any[]) => void;
+}
+
+const AddExpenseModal = ({
+  visible,
+  onClose,
+  onSave,
+}: AddExpenseModalProps) => {
   const [category, setCategory] = useState("Groceries");
   const [rawName, setRawName] = useState("");
   const [name, setName] = useState("");

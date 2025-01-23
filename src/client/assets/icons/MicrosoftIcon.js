@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
 
-const MicrosoftIcon = ({ size = 50, style }) => (
+const MicrosoftIcon = ({ size = 50, style = {} }) => (
   <Svg
     style={style}
     width={size}

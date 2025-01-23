@@ -4,6 +4,7 @@ import BackArrow from "../../assets/icons/BackArrow";
 import Slider from "@react-native-community/slider";
 import { Dropdown } from "react-native-element-dropdown";
 import AddCategoryBudgetModal from "./AddCategoryBudgetModal";
+import { NavigationProps } from "../../types";
 
 const currencies = [
   { label: "$", value: "$" },
@@ -14,7 +15,21 @@ const currencies = [
   { label: "₩", value: "₩" },
 ];
 
-const NewBudgetPage = ({ navigation }) => {
+interface NewBudgetPageProps {
+  navigation: NavigationProps;
+}
+
+type Category = {
+  category: string;
+  amount: number;
+};
+
+type Currency = {
+  label: string;
+  value: string;
+};
+
+const NewBudgetPage = ({ navigation }: NewBudgetPageProps) => {
   const [alertValue, setAlertValue] = useState(0);
   const [currency, setCurrency] = useState("$");
   const [openModal, setOpenModal] = useState(false);
@@ -26,11 +41,11 @@ const NewBudgetPage = ({ navigation }) => {
     { category: "Misc", amount: 0.0 },
   ]);
 
-  const addNewCategory = (newCategory) => {
+  const addNewCategory = (newCategory: Category) => {
     setCategories([...categories, newCategory]);
   };
 
-  const categoryUpdateHandler = (category, newValue) => {
+  const categoryUpdateHandler = (category: string, newValue: number) => {
     const newCategory = categories.map((entry) => {
       return entry.category === category
         ? { category: category, amount: newValue }
@@ -39,7 +54,7 @@ const NewBudgetPage = ({ navigation }) => {
     setCategories(newCategory);
   };
 
-  const dropdownChangeHandler = (item) => {
+  const dropdownChangeHandler = (item: Currency) => {
     setCurrency(item.value);
   };
 
@@ -82,7 +97,7 @@ const NewBudgetPage = ({ navigation }) => {
                 valueField="value"
                 style={styles.dropdown}
                 value={currency}
-                onChange={(item) => dropdownChangeHandler(item)}
+                onChange={(item: Currency) => dropdownChangeHandler(item)}
               />
             </View>
             <TextInput
@@ -90,7 +105,6 @@ const NewBudgetPage = ({ navigation }) => {
                 styles.textInput,
                 {
                   width: "80%",
-                  border: "none",
                   borderTopLeftRadius: 0,
                   borderBottomLeftRadius: 0,
                 },
@@ -114,14 +128,14 @@ const NewBudgetPage = ({ navigation }) => {
                     </View>
                     <TextInput
                       keyboardType="numeric"
-                      placeholder={entry.amount}
+                      placeholder={String(entry.amount)}
                       style={[
                         styles.textInput,
                         { width: "40%", textAlign: "right" },
                       ]}
-                      value={entry.value}
+                      value={String(entry.amount)}
                       onChangeText={(newValue) =>
-                        categoryUpdateHandler(entry.category, newValue)
+                        categoryUpdateHandler(entry.category, Number(newValue))
                       }
                     ></TextInput>
                   </View>

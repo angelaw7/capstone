@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Circle, Line } from "react-native-svg";
 
-const AddCircleIcon = ({ size = 24, style }) => (
+const AddCircleIcon = ({ size = 24, style = {} }) => (
   <Svg
     style={style}
     width={size}

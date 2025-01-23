@@ -1,8 +1,7 @@
 import React from "react";
 import Svg, { Path } from "react-native-svg";
-import ClipPath from "react-native-svg";
 
-const IncomeIcon = ({ size = 50, style }) => (
+const IncomeIcon = ({ size = 50, style = {} }) => (
   <Svg
     style={style}
     width={size}

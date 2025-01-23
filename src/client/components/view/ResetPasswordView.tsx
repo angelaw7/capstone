@@ -5,8 +5,13 @@ import { Button } from "tamagui";
 import { auth } from "../../firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
 import BackArrow from "../../assets/icons/BackArrow";
+import { NavigationProps } from "../../types";
 
-const ResetPasswordView = ({ navigation }) => {
+interface ResetPasswordViewProps {
+  navigation: NavigationProps;
+}
+
+const ResetPasswordView = ({ navigation }: ResetPasswordViewProps) => {
   const [email, setEmail] = useState("");
   const [sentEmail, setSentEmail] = useState(false);
   const [errMessage, setErrMessage] = useState("");
@@ -16,7 +21,7 @@ const ResetPasswordView = ({ navigation }) => {
       await sendPasswordResetEmail(auth, email);
       setSentEmail(true);
       setErrMessage("");
-    } catch (err) {
+    } catch (err: any) {
       const errCode = err.code;
       const errMessage = err.message;
 
@@ -77,8 +82,8 @@ const ResetPasswordView = ({ navigation }) => {
         </Button>
         <View style={styles.resend}>
           <Text>Did not receive an email?</Text>
-          <Pressable style={{ textDecorationLine: "underline" }}>
-            <Text>Resend</Text>
+          <Pressable>
+            <Text style={{ textDecorationLine: "underline" }}>Resend</Text>
           </Pressable>
         </View>
       </View>
