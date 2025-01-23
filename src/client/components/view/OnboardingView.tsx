@@ -1,5 +1,4 @@
-import { StyleSheet, Text, TextInput, View, Pressable } from "react-native";
-import BackArrow from "../../assets/icons/BackArrow";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 import { DEFAULT_COLOURS } from "../../styles/commonStyles";
 import HorizontalRule from "../common/HorizontalRule";
 import { Button, Checkbox, Label } from "tamagui";
@@ -187,7 +186,7 @@ const styles = StyleSheet.create({
     width: "60%",
     backgroundColor: "#EDEDED",
     height: 40,
-    padding: 14,
+    padding: 12,
     borderRadius: 10,
   },
   nameBox: {
