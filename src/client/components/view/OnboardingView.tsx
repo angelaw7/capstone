@@ -6,11 +6,38 @@ import { Button, Checkbox, Label } from "tamagui";
 import CheckMark from "../../assets/icons/CheckMark";
 import { useState } from "react";
 import { NavigationProps, RouteProps } from "../../types";
+import { Dropdown } from "react-native-element-dropdown";
 
 interface OnboardingViewProps {
   navigation: NavigationProps;
   route: RouteProps;
 }
+
+const sexData = [{ sex: "Male" }, { sex: "Female" }];
+
+const occupationData = [
+  { occupation: "Software Engineer" },
+  { occupation: "Graphic Designer" },
+  { occupation: "Product Manager" },
+  { occupation: "Data Scientist" },
+  { occupation: "Teacher" },
+  { occupation: "Nurse" },
+  { occupation: "Accountant" },
+  { occupation: "Marketing Specialist" },
+  { occupation: "Web Developer" },
+  { occupation: "Sales Manager" },
+  { occupation: "Project Manager" },
+  { occupation: "HR Specialist" },
+  { occupation: "Construction Worker" },
+  { occupation: "Financial Analyst" },
+  { occupation: "Chef" },
+  { occupation: "Customer Support Representative" },
+  { occupation: "Photographer" },
+  { occupation: "Consultant" },
+  { occupation: "Lawyer" },
+  { occupation: "Civil Engineer" },
+  { occupation: "Unemployed AF" },
+];
 
 const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const [firstName, setFirstName] = useState("");
@@ -71,12 +98,17 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
 
       {/* Replace these with the corresponding dropdowns later */}
       <View style={styles.demographicDataBox}>
-        <TextInput
-          placeholder="Sex/Gender"
+        <Dropdown
           style={styles.textInput}
-          placeholderTextColor={DEFAULT_COLOURS.secondary}
-          value={sex}
-          onChangeText={setSex}
+          data={sexData}
+          labelField="sex"
+          valueField="sex"
+          placeholder="Sex/Gender"
+          placeholderStyle={{ fontSize: 14 }}
+          selectedTextStyle={{ fontSize: 14 }}
+          onChange={({ sex }) => setSex(sex)}
+          itemTextStyle={{ fontSize: 14 }}
+          iconColor="black"
         />
         <TextInput
           placeholder="Date of Birth"
@@ -85,12 +117,18 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
           value={dob}
           onChangeText={setDob}
         />
-        <TextInput
-          placeholder="Occupation/Industry"
+        <Dropdown
           style={styles.textInput}
-          placeholderTextColor={DEFAULT_COLOURS.secondary}
-          value={occupation}
-          onChangeText={setOccupation}
+          data={occupationData}
+          labelField="occupation"
+          valueField="occupation"
+          placeholder="Occupation/Industry"
+          placeholderStyle={{ fontSize: 14 }}
+          selectedTextStyle={{ fontSize: 14 }}
+          onChange={({ occupation }) => setOccupation(occupation)}
+          itemTextStyle={{ fontSize: 14 }}
+          iconColor="black"
+          search
         />
       </View>
 
