@@ -70,65 +70,82 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
         <Text style={styles.headerText}>Please Enter Your Information</Text>
       </View>
       <View style={styles.nameBox}>
-        <TextInput
-          placeholder="First Name"
-          style={styles.textInput}
-          placeholderTextColor={DEFAULT_COLOURS.secondary}
-          value={firstName}
-          onChangeText={setFirstName}
-        />
-        <TextInput
-          placeholder="Middle Name"
-          style={styles.textInput}
-          placeholderTextColor={DEFAULT_COLOURS.secondary}
-          value={middleName}
-          onChangeText={setMiddleName}
-        />
-        <TextInput
-          placeholder="Last Name"
-          style={styles.textInput}
-          placeholderTextColor={DEFAULT_COLOURS.secondary}
-          value={lastName}
-          onChangeText={setLastName}
-        />
+        <View style={styles.nameInnerBox}>
+          <Text style={styles.required}>*</Text>
+          <TextInput
+            placeholder="First Name"
+            style={styles.textInput}
+            placeholderTextColor={DEFAULT_COLOURS.secondary}
+            value={firstName}
+            onChangeText={setFirstName}
+          />
+        </View>
+        <View style={styles.nameInnerBox}>
+          <TextInput
+            placeholder="Middle Name"
+            style={styles.textInput}
+            placeholderTextColor={DEFAULT_COLOURS.secondary}
+            value={middleName}
+            onChangeText={setMiddleName}
+          />
+        </View>
+        <View style={styles.nameInnerBox}>
+          <Text style={styles.required}>*</Text>
+          <TextInput
+            placeholder="Last Name"
+            style={styles.textInput}
+            placeholderTextColor={DEFAULT_COLOURS.secondary}
+            value={lastName}
+            onChangeText={setLastName}
+          />
+        </View>
       </View>
 
       <HorizontalRule />
 
       {/* Replace these with the corresponding dropdowns later */}
       <View style={styles.demographicDataBox}>
-        <Dropdown
-          style={styles.textInput}
-          data={sexData}
-          labelField="sex"
-          valueField="sex"
-          placeholder="Sex/Gender"
-          placeholderStyle={{ fontSize: 14 }}
-          selectedTextStyle={{ fontSize: 14 }}
-          onChange={({ sex }) => setSex(sex)}
-          itemTextStyle={{ fontSize: 14 }}
-          iconColor="black"
-        />
-        <TextInput
-          placeholder="Date of Birth"
-          style={styles.textInput}
-          placeholderTextColor={DEFAULT_COLOURS.secondary}
-          value={dob}
-          onChangeText={setDob}
-        />
-        <Dropdown
-          style={styles.textInput}
-          data={occupationData}
-          labelField="occupation"
-          valueField="occupation"
-          placeholder="Occupation/Industry"
-          placeholderStyle={{ fontSize: 14 }}
-          selectedTextStyle={{ fontSize: 14 }}
-          onChange={({ occupation }) => setOccupation(occupation)}
-          itemTextStyle={{ fontSize: 14 }}
-          iconColor="black"
-          search
-        />
+        <View style={styles.nameInnerBox}>
+          <Text style={styles.required}>*</Text>
+          <Dropdown
+            style={styles.textInput}
+            data={sexData}
+            labelField="sex"
+            valueField="sex"
+            placeholder="Sex/Gender"
+            placeholderStyle={{ fontSize: 14 }}
+            selectedTextStyle={{ fontSize: 14 }}
+            onChange={({ sex }) => setSex(sex)}
+            itemTextStyle={{ fontSize: 14 }}
+            iconColor="black"
+          />
+        </View>
+        <View style={styles.nameInnerBox}>
+          <Text style={styles.required}>*</Text>
+          <TextInput
+            placeholder="Date of Birth"
+            style={styles.textInput}
+            placeholderTextColor={DEFAULT_COLOURS.secondary}
+            value={dob}
+            onChangeText={setDob}
+          />
+        </View>
+        <View style={styles.nameInnerBox}>
+          <Text style={styles.required}>*</Text>
+          <Dropdown
+            style={styles.textInput}
+            data={occupationData}
+            labelField="occupation"
+            valueField="occupation"
+            placeholder="Occupation/Industry"
+            placeholderStyle={{ fontSize: 14 }}
+            selectedTextStyle={{ fontSize: 14 }}
+            onChange={({ occupation }) => setOccupation(occupation)}
+            itemTextStyle={{ fontSize: 14 }}
+            iconColor="black"
+            search
+          />
+        </View>
       </View>
 
       <View style={styles.checkBox}>
@@ -154,7 +171,7 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
         marginHorizontal={"auto"}
         onPress={createAccountHandler}
       >
-        <Text>Create Account</Text>
+        <Text style={{ color: "white" }}>Create Account</Text>
       </Button>
     </View>
   );
@@ -195,6 +212,11 @@ const styles = StyleSheet.create({
     rowGap: 16,
     marginBottom: 12,
   },
+  nameInnerBox: {
+    width: "100%",
+    alignItems: "center",
+    position: "relative",
+  },
   hRule: {
     margin: 12,
   },
@@ -211,6 +233,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "60%",
     alignSelf: "center",
+  },
+  required: {
+    position: "absolute",
+    left: "15%",
+    top: "30%",
+    color: "red",
   },
 });
 
