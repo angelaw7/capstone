@@ -6,8 +6,13 @@ import AddIcon from "../../assets/icons/AddIcon";
 import HorizontalRule from "../common/HorizontalRule";
 import EntrySource from "../common/EntrySource";
 import ExpensesService from "../../services/expensesService";
+import { NavigationProps } from "../../types";
 
-const MyExpenses = ({ navigation }) => {
+interface MyExpensesProp {
+  navigation: NavigationProps;
+}
+
+const MyExpenses = ({ navigation }: MyExpensesProp) => {
   const returnHandler = () => {
     navigation.navigate("Overview");
   };

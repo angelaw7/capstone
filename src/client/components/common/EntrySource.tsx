@@ -3,7 +3,18 @@ import { StyleSheet, Text, View } from "react-native";
 import RightArrow from "../../assets/icons/RightArrow";
 import GroupIcon from "../../assets/icons/GroupIcon";
 
-const EntrySource = ({ description, additionalInfo, group }) => {
+interface EntrySourceProps {
+  description: string;
+  additionalInfo: string;
+  // Denotes if this input is a group expense
+  group?: boolean;
+}
+
+const EntrySource = ({
+  description,
+  additionalInfo,
+  group,
+}: EntrySourceProps) => {
   return (
     <View style={styles.box}>
       <View style={styles.textBox}>

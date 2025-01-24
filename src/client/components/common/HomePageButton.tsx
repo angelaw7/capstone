@@ -2,7 +2,19 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import RightArrow from "../../assets/icons/RightArrow";
 
-const HomePageButton = ({ children, title, color, routingHandler }) => {
+interface HomePageButton {
+  children: React.ReactNode;
+  title: string;
+  color: string;
+  routingHandler: (...args: any[]) => void;
+}
+
+const HomePageButton = ({
+  children,
+  title,
+  color,
+  routingHandler,
+}: HomePageButton) => {
   return (
     <TouchableOpacity
       onPress={routingHandler}

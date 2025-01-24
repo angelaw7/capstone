@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Modal, Pressable } from "react-native";
+import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
+
+interface AddCategoryBudgetModalProps {
+  visible: boolean;
+  modalHandler: React.Dispatch<React.SetStateAction<boolean>>;
+  currency: string;
+  updateCategoryHandler: (...args: any[]) => void;
+}
 
 const AddCategoryBudgetModal = ({
   visible,
   modalHandler,
   currency,
   updateCategoryHandler,
-}) => {
+}: AddCategoryBudgetModalProps) => {
   const [categoryName, setCategoryName] = useState("");
   const [amount, setAmount] = useState("");
 
@@ -18,7 +25,7 @@ const AddCategoryBudgetModal = ({
   };
 
   useEffect(() => {
-    setValidField(amount && categoryName);
+    setValidField(amount.length !== 0 && categoryName.length !== 0);
   }, [categoryName, amount]);
 
   const submitHandler = () => {

@@ -2,12 +2,92 @@ import React, { useState } from "react";
 import { StyleSheet, View, TextInput, Pressable } from "react-native";
 import { commonStyles, DEFAULT_COLOURS } from "../../styles/commonStyles";
 import { Button, Text } from "tamagui";
+import { auth } from "../../firebase";
+import {
+  createUserWithEmailAndPassword,
+  validatePassword,
+} from "firebase/auth";
+import { NavigationProps } from "../../types";
 
-const RegisterView = ({ navigation }) => {
-  const [email, setEmail] = useState("");
+interface RegisterViewProps {
+  navigation: NavigationProps;
+  route: any;
+}
+
+const RegisterView = ({ navigation, route }: RegisterViewProps) => {
+  const [email, setEmail] = useState(
+    route.params?.email ? route.params?.email : "",
+  );
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [registerErrorMessage, setRegisterErrorMessage] = useState("");
+
+  const createAccountHandler = async () => {
+    try {
+      if (password !== confirmPassword) {
+        const error = new Error("Passwords do not match.");
+        /* We can directly do error.code = "password-mismatch" but typescript will complain */
+        Object.assign(error, { code: "password-mismatch" });
+        throw error;
+      }
+      const status = await validatePassword(auth, password);
+
+      /* We can choose to conditionally render which of the password criteria we show with these validation checks,
+	  or we can just show all YOLO lol */
+      const {
+        containsLowercaseLetter,
+        containsUppercaseLetter,
+        containsNonAlphanumericCharacter,
+        meetsMinPasswordLength,
+        // isValid,
+      } = status;
+
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      setRegisterErrorMessage("");
+      navigation.reset({
+        index: 0,
+        /* Probably link a name attribute eventually */
+        routes: [
+          {
+            name: "Onboarding",
+            params: {
+              email: email,
+            },
+          },
+        ],
+      });
+    } catch (error: any) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      /* Enum-ify this type later along with the error codes for login auth */
+      switch (errorCode) {
+        case "auth/invalid-email":
+          setRegisterErrorMessage("Email is invalid.");
+          break;
+        case "auth/email-already-in-use":
+          setRegisterErrorMessage(
+            "There already exists an account with this email.",
+          );
+          break;
+        case "auth/missing-password":
+          setRegisterErrorMessage("Password is missing.");
+          break;
+        case "auth/password-does-not-meet-requirements":
+          setRegisterErrorMessage("Password requirements not met.");
+          break;
+        case "password-mismatch":
+          setRegisterErrorMessage(errorMessage);
+          break;
+        default:
+          setRegisterErrorMessage(
+            "An error occurred while signing up. Please try again later.",
+          );
+          break;
+      }
+    }
+  };
 
   return (
     <View style={commonStyles.container}>
@@ -38,6 +118,13 @@ const RegisterView = ({ navigation }) => {
           secureTextEntry={!showPassword}
           placeholderTextColor={DEFAULT_COLOURS.secondary}
         />
+        {/* Note: Checked the length instead of just using the 'registerErrorMessage' boolean condition since when the component
+		compiles, it will be treated as plain text and React Native complains if you put plain text in a View node without a Text
+		Node. Doing registerErrorMessage.length && <Text>some text lol</Text> will cause errors
+		*/}
+        {registerErrorMessage.length !== 0 && (
+          <Text style={{ color: "red" }}>{registerErrorMessage}</Text>
+        )}
 
         {/* We can change this up later with a checkbox or like an eye icon */}
         <Pressable
@@ -54,14 +141,12 @@ const RegisterView = ({ navigation }) => {
       <View>
         <Text style={styles.passwordCriteriaText}>Password Criteria</Text>
         <View>
-          <ul>
-            <li style={styles.passwordCriteria}>Minimum 8 characters</li>
-            <li style={styles.passwordCriteria}>One lowercase character</li>
-            <li style={styles.passwordCriteria}>One uppercase character</li>
-            <li style={styles.passwordCriteria}>
-              One special Character [!,@,#,$,%,..]
-            </li>
-          </ul>
+          <Text style={styles.passwordCriteria}>Minimum 8 characters</Text>
+          <Text style={styles.passwordCriteria}>One lowercase character</Text>
+          <Text style={styles.passwordCriteria}>One uppercase character</Text>
+          <Text style={styles.passwordCriteria}>
+            One special Character [!,@,#,$,%,..]
+          </Text>
         </View>
       </View>
 
@@ -70,6 +155,7 @@ const RegisterView = ({ navigation }) => {
           backgroundColor={DEFAULT_COLOURS.primary}
           marginTop={20}
           paddingHorizontal="20%"
+          onPress={createAccountHandler}
         >
           <Text fontWeight="500" color="white">
             Continue
@@ -80,7 +166,7 @@ const RegisterView = ({ navigation }) => {
         <View style={styles.dividerLine} />
       </View>
       <Pressable
-        style={{ margin: "1rem" }}
+        style={{ margin: 16 }}
         onPress={() => {
           navigation.navigate("Login");
         }}
@@ -125,17 +211,17 @@ const styles = StyleSheet.create({
   },
   createPasswordBox: {
     width: "60%",
-    height: "2rem",
+    height: "5%",
     textAlign: "center",
     fontSize: 20,
-    margin: "1rem",
+    margin: 16,
     display: "flex",
     justifyContent: "center",
   },
   passwordCriteriaText: {
     fontSize: 20,
     color: "red",
-    margin: "1rem",
+    margin: 16,
   },
   passwordCriteria: {
     margin: 0,

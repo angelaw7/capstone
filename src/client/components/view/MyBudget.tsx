@@ -5,8 +5,13 @@ import BackArrow from "../../assets/icons/BackArrow";
 import AddIcon from "../../assets/icons/AddIcon";
 import HorizontalRule from "../common/HorizontalRule";
 import EntrySource from "../common/EntrySource";
+import { NavigationProps } from "../../types";
 
-const MyBudget = ({ navigation }) => {
+interface MyBudgetProps {
+  navigation: NavigationProps;
+}
+
+const MyBudget = ({ navigation }: MyBudgetProps) => {
   const returnHandler = () => {
     navigation.navigate("Overview");
   };

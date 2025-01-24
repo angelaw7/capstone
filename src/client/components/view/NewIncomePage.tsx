@@ -4,6 +4,7 @@ import { RadioButton } from "react-native-paper";
 import BackArrow from "../../assets/icons/BackArrow";
 
 import { Dropdown } from "react-native-element-dropdown";
+import { NavigationProps } from "../../types";
 
 const dropdownData = [
   { label: "Daily", value: 1 },
@@ -15,13 +16,22 @@ const dropdownData = [
   { label: "Annually", value: 7 },
 ];
 
-const NewIncomePage = ({ navigation }) => {
+interface NewIncomePageProps {
+  navigation: NavigationProps;
+}
+
+type DropdownItem = {
+  label: string;
+  value: number;
+};
+
+const NewIncomePage = ({ navigation }: NewIncomePageProps) => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [checked, setChecked] = React.useState("once");
   const [dropdownValue, setDropdownValue] = useState(1);
 
-  const dropdownChangeHandler = (item) => {
+  const dropdownChangeHandler = (item: DropdownItem) => {
     setDropdownValue(item.value);
   };
 

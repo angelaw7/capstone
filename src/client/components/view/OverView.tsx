@@ -6,8 +6,14 @@ import HomePageButton from "../common/HomePageButton";
 import ReceiptIcon from "../../assets/icons/ReceiptIcon";
 import IncomeIcon from "../../assets/icons/IncomeIcon";
 import BudgetIcon from "../../assets/icons/BudgetIcon";
+import { NavigationProps, RouteProps } from "../../types";
 
-const OverView = ({ navigation, route }) => {
+interface OverviewProps {
+  navigation: NavigationProps;
+  route: RouteProps;
+}
+
+const OverView = ({ navigation, route }: OverviewProps) => {
   /* Should store user name in state somewhere especially if we navigate back
   from the expense/income/budget page lool */
   const username = route.params?.name;

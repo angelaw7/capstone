@@ -1,7 +1,7 @@
 import React from "react";
 import Svg, { Path, Circle } from "react-native-svg";
 
-const PersonIcon = ({ size = 24, style }) => (
+const PersonIcon = ({ size = 24, style = {} }) => (
   <Svg
     style={style}
     width={size}

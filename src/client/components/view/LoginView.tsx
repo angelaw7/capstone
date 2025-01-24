@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image, TextInput, Pressable } from "react-native";
+import { Pressable, StyleSheet, TextInput, View } from "react-native";
 import { commonStyles, DEFAULT_COLOURS } from "../../styles/commonStyles";
 import { Button, Text } from "tamagui";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
@@ -10,8 +10,13 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../../firebase";
+import { NavigationProps } from "../../types";
 
-const LoginView = ({ navigation }) => {
+interface LoginViewProps {
+  navigation: NavigationProps;
+}
+
+const LoginView = ({ navigation }: LoginViewProps) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [credentialError, setCredentialError] = useState("");
@@ -24,7 +29,7 @@ const LoginView = ({ navigation }) => {
         index: 0,
         routes: [{ name: "Overview", params: { name: username } }],
       });
-    } catch (e) {
+    } catch (e: any) {
       switch (e.code) {
         case "auth/invalid-email":
           setCredentialError(
@@ -104,6 +109,17 @@ const LoginView = ({ navigation }) => {
         <Text style={commonStyles.errorText}>{credentialError}</Text>
       )}
 
+      <Pressable
+        style={{ marginTop: 16 }}
+        onPress={() => {
+          navigation.navigate("ResetPassword");
+        }}
+      >
+        <Text style={{ textDecorationLine: "underline", color: "red" }}>
+          Forgot your password?
+        </Text>
+      </Pressable>
+
       <View style={styles.dividerContainer}>
         <View style={styles.dividerLine} />
         <View>
@@ -138,7 +154,7 @@ const LoginView = ({ navigation }) => {
         <View style={styles.dividerLine} />
       </View>
       <Pressable
-        style={{ margin: "1rem" }}
+        style={{ margin: 16 }}
         onPress={() => {
           navigation.navigate("Register");
         }}
@@ -154,7 +170,7 @@ const LoginView = ({ navigation }) => {
 const styles = StyleSheet.create({
   loginContainer: {
     marginTop: 15,
-    display: "block",
+    display: "flex",
     backgroundColor: "#fff",
     alignItems: "center",
     alignSelf: "center",
