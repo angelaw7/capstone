@@ -79,8 +79,8 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
     if (!result.canceled) {
       const imageResult = result.assets[0];
       const fileUri = imageResult.uri;
-      const fileType = imageResult.file!.type;
-      const fileName = imageResult.file!.name;
+      const fileType = imageResult.type || "image/jpeg";
+      const fileName = fileUri.split("/").pop() || "uploaded_image.jpg";
       setImage(fileUri);
 
       try {
@@ -90,7 +90,11 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
           type: fileType,
         });
         const formData = new FormData();
-        formData.append("receipt", file);
+        formData.append("receipt", {
+          uri: fileUri,
+          name: fileName || "uploaded_image.jpg",
+          type: fileType || "image/jpeg",
+        });
 
         const responseData = await ExpensesService.createExpense(formData);
 
