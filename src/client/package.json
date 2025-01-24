@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
-    "prepare": "cd ../.. && husky install src/client/.husky"
+    "prepare": "cd ../.. && husky install src/client/.husky",
+    "db-setup": "bash ./database-setup.sh"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": "npx prettier --write"
