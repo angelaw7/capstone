@@ -11,11 +11,14 @@ if [ "$TABLE_EXISTS" != "Users" ]; then
   
   # Create the "User" table
   sqlite3 $DB_FILE "CREATE TABLE IF NOT EXISTS Users (
-    userId INTEGER PRIMARY KEY AUTOINCREMENT,
-    first_name VARCHAR(255) NOT NULL,
-    middle_name VARCHAR(255),
-    last_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE
+	userId INTEGER PRIMARY KEY AUTOINCREMENT,
+	first_name VARCHAR(255) NOT NULL,
+	middle_name VARCHAR(255),
+	last_name VARCHAR(255) NOT NULL,
+	email VARCHAR(255) NOT NULL UNIQUE,
+	dob VARCHAR(255) NOT NULL,
+	sex VARCHAR(255) NOT NULL,
+	occupation VARCHAR(255) NOT NULL
   );"
   
   echo "User table created."
