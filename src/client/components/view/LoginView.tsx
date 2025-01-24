@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
+import { useSQLiteContext } from "expo-sqlite";
 
 interface LoginViewProps {
   navigation: NavigationProps;
@@ -20,6 +21,13 @@ const LoginView = ({ navigation }: LoginViewProps) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [credentialError, setCredentialError] = useState("");
+
+  const db = useSQLiteContext();
+
+  const printDb = async () => {
+    const results = await db.getAllAsync("SELECT * FROM Users;");
+    console.log(results);
+  };
 
   // we can also do other login options like signing in with popup or redirect
   const loginWithEmailPassword = async () => {
@@ -130,7 +138,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
       <View style={styles.loginContainer}>
         <View style={styles.alternateSignInContainer}>
           <GoogleIcon size={30} style={{ marginTop: 15, marginRight: 15 }} />
-          <Button flex={1} marginTop={15}>
+          <Button flex={1} marginTop={15} onPress={printDb}>
             <Text fontWeight="bold">Continue with Google</Text>
           </Button>
         </View>
