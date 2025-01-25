@@ -6,6 +6,7 @@ import CheckMark from "../../assets/icons/CheckMark";
 import { useState } from "react";
 import { NavigationProps, RouteProps } from "../../types";
 import { Dropdown } from "react-native-element-dropdown";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 interface OnboardingViewProps {
   navigation: NavigationProps;
@@ -43,7 +44,7 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const [middleName, setMiddleName] = useState("");
   const [lastName, setLastName] = useState("");
   const [sex, setSex] = useState("");
-  const [dob, setDob] = useState("");
+  const [dob, setDob] = useState(new Date());
   const [occupation, setOccupation] = useState("");
   const [keepLogin, setKeepLogin] = useState(false);
 
@@ -71,7 +72,9 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
       </View>
       <View style={styles.nameBox}>
         <View style={styles.nameInnerBox}>
-          <Text style={styles.required}>*</Text>
+          <Text style={styles.fieldText}>
+            First name <Text style={styles.required}>*</Text>
+          </Text>
           <TextInput
             placeholder="First Name"
             style={styles.textInput}
@@ -81,6 +84,7 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
           />
         </View>
         <View style={styles.nameInnerBox}>
+          <Text style={styles.fieldText}>Middle name </Text>
           <TextInput
             placeholder="Middle Name"
             style={styles.textInput}
@@ -90,7 +94,9 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
           />
         </View>
         <View style={styles.nameInnerBox}>
-          <Text style={styles.required}>*</Text>
+          <Text style={styles.fieldText}>
+            Last name <Text style={styles.required}>*</Text>
+          </Text>
           <TextInput
             placeholder="Last Name"
             style={styles.textInput}
@@ -106,7 +112,9 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
       {/* Replace these with the corresponding dropdowns later */}
       <View style={styles.demographicDataBox}>
         <View style={styles.nameInnerBox}>
-          <Text style={styles.required}>*</Text>
+          <Text style={styles.fieldText}>
+            Sex/gender <Text style={styles.required}>*</Text>
+          </Text>
           <Dropdown
             style={styles.textInput}
             data={sexData}
@@ -121,17 +129,21 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
           />
         </View>
         <View style={styles.nameInnerBox}>
-          <Text style={styles.required}>*</Text>
-          <TextInput
-            placeholder="Date of Birth"
-            style={styles.textInput}
-            placeholderTextColor={DEFAULT_COLOURS.secondary}
+          <Text style={styles.fieldText}>
+            Date of Birth <Text style={styles.required}>*</Text>
+          </Text>
+          <DateTimePicker
+            style={styles.datePicker}
             value={dob}
-            onChangeText={setDob}
+            mode="date"
+            display="default"
+            onChange={(e, date) => setDob(date || dob)}
           />
         </View>
         <View style={styles.nameInnerBox}>
-          <Text style={styles.required}>*</Text>
+          <Text style={styles.fieldText}>
+            Occupation <Text style={styles.required}>*</Text>
+          </Text>
           <Dropdown
             style={styles.textInput}
             data={occupationData}
@@ -182,6 +194,7 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: "white",
     display: "flex",
+    gap: 16,
   },
   headerBox: {
     display: "flex",
@@ -195,27 +208,39 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "700",
   },
+  fieldText: {
+    width: "30%",
+  },
   backArrow: {
     position: "absolute",
     left: 12,
   },
   textInput: {
-    width: "60%",
+    flex: 1, // Make input take remaining space
     backgroundColor: "#EDEDED",
     height: 40,
-    padding: 12,
+    paddingHorizontal: 12,
     borderRadius: 10,
+    fontSize: 14,
   },
   nameBox: {
     display: "flex",
     alignItems: "center",
-    rowGap: 16,
+    rowGap: 24,
     marginBottom: 12,
   },
   nameInnerBox: {
-    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    width: "80%",
+    gap: 10,
     alignItems: "center",
     position: "relative",
+  },
+  datePicker: {
+    justifyContent: "flex-start",
+    marginLeft: -10,
   },
   hRule: {
     margin: 12,
@@ -223,7 +248,7 @@ const styles = StyleSheet.create({
   demographicDataBox: {
     display: "flex",
     alignItems: "center",
-    rowGap: 16,
+    rowGap: 24,
     marginVertical: 12,
   },
   checkBox: {
