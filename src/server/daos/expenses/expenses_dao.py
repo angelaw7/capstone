@@ -32,6 +32,8 @@ class ExpensesDao:
             
             print(f'Temporary file saved at: {tmp_filepath}')
             data = image_processor.process_image(tmp_filepath)
+            # TODO(ang): remove the temp file (keep it for now for debugging)
+
         except Exception as e:
             print(e)
             return {"error": "Error processing receipt"}

@@ -8,7 +8,7 @@ import os
 from server.imageProcessing.categorization import Categorizer
 import server.imageProcessing.utils as utils
 
-load_dotenv();
+load_dotenv()
 
 pytesseract.pytesseract.tesseract_cmd = os.getenv('TESSERACT_PATH')
 pd.set_option("display.max_rows", None)
@@ -38,10 +38,11 @@ class ImageProcessor:
 
         text = pytesseract.image_to_string(image_arr, config="--psm 4")
 
-        data = pytesseract.image_to_data(
-            image_arr, output_type=pytesseract.Output.DICT
-        )
-        print(pd.DataFrame(data).query("conf > 0"))
+        # TODO(ang): helpful for debugging for fixing model but keep commented for commits
+        # data = pytesseract.image_to_data(
+        #     image_arr, output_type=pytesseract.Output.DICT
+        # )
+        # print(pd.DataFrame(data).query("conf > 0"))
         print(text)
         return text.split("\n")
 
