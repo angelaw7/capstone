@@ -710,6 +710,19 @@ used to indicate the importance of the requirement to the system.
   privacy and security of user data.
   \item (H) The system must comply with Canada's Financial Administration Act to
   ensure the secure handling of financial information.
+
+  \item[] \textbf{Data Retention and Deletion Requirements}
+  \item (H) The system must retain user financial data for a maximum of 7 years, 
+  in compliance with regulatory requirements, and ensure all expired data is securely 
+  deleted within 24 hours of reaching the retention period, as verified through 
+  automated audit logs.
+  \item (H) The system must implement an automated deletion process for inactive 
+  accounts, ensuring all associated data is securely deleted after 12 months of 
+  inactivity, with notifications sent to users 30 days prior to deletion, verified 
+  through testing and monitoring.
+  \item (M) The system must allow users to initiate data deletion requests through 
+  the application, ensuring that all user-requested deletions are processed and 
+  completed within 7 days, as confirmed by system logs and user feedback during testing.
   
 \end{enumerate}
 
