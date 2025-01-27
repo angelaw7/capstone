@@ -25,15 +25,15 @@ class ImageProcessor:
     def __init__(self):
         self.categorizer = Categorizer()
 
-    def _extract_text_from_image(self, filename: str, show_image: bool = False):
-        image = Image.open(filename)
+    def _preprocess_image(self, image: Image.Image) -> Image.Image:
         image = image.convert("L")  # convert to greyscale
         enhancer = ImageEnhance.Contrast(image)
         image = enhancer.enhance(2)
 
         image = image.filter(ImageFilter.MedianFilter())
-        if show_image:
-            image.show()
+        return image
+
+    def _extract_text_from_image(self, image: Image.Image) -> list[str]:
         image_arr = np.array(image)
 
         text = pytesseract.image_to_string(image_arr, config="--psm 4")
@@ -43,7 +43,6 @@ class ImageProcessor:
         #     image_arr, output_type=pytesseract.Output.DICT
         # )
         # print(pd.DataFrame(data).query("conf > 0"))
-        print(text)
         return text.split("\n")
 
 
@@ -93,19 +92,10 @@ class ImageProcessor:
                     print("**error with item", item[0])
         return pd.DataFrame(items_cleaned, columns=["name", "price"])
 
-
-    def process_image(self, filepath: str):
-        text_arr = self._extract_text_from_image(filepath, show_image=False)
-        items, subtotal, calculated_total = self._process_items_list(text_arr)
-        data = self._jsonify_data(items, filepath)
-
-        categorized_data = self.categorizer.categorize(data)
-
+    def _format_item_results(self, categorized_data: pd.DataFrame) -> dict:
         items_formatted = []
         result = {
             "items": items_formatted,
-            "subtotal": subtotal,
-            "calculated_total": calculated_total,
         }
         for i, row in categorized_data.iterrows():
             items_formatted.append({
@@ -114,5 +104,21 @@ class ImageProcessor:
                 "price": row["price"],
                 "category": row["category"]
             })
+        
+        return result
+
+    def process_image(self, filepath: str):
+        image = Image.open(filepath)
+
+        # process image through OCR
+        text_arr = self._extract_text_from_image(image=image, show_image=False)
+        items, subtotal, calculated_total = self._process_items_list(text_arr)
+        data = self._jsonify_data(items, filepath)
+
+        # categorize data from image
+        categorized_data = self.categorizer.categorize(data)
+        result = self._format_item_results(categorized_data)
+        result["subtotal"] = subtotal
+        result["calculated_total"] = calculated_total
         
         return result
