@@ -13,7 +13,7 @@ interface MyIncomeProps {
 
 const MyIncome = ({ navigation }: MyIncomeProps) => {
   const returnHandler = () => {
-    navigation.navigate("Overview");
+    navigation.navigate("Manage");
   };
 
   const addNewIncomeHandler = () => {

@@ -16,7 +16,7 @@ type RootStackParamList = {
         email?: string;
       }
     | undefined;
-  Overview:
+  Manage:
     | {
         name?: string;
         email?: string;

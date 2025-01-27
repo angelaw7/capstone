@@ -13,7 +13,7 @@ interface MyBudgetProps {
 
 const MyBudget = ({ navigation }: MyBudgetProps) => {
   const returnHandler = () => {
-    navigation.navigate("Overview");
+    navigation.navigate("Manage");
   };
 
   const addNewBudgetHandler = () => {

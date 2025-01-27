@@ -22,25 +22,24 @@ const HomePageButton = ({
     >
       {children}
       <Text style={styles.buttonText}>{title}</Text>
-      <TouchableOpacity onPress={routingHandler}>
-        <RightArrow />
-      </TouchableOpacity>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   button: {
-    height: 80,
-    width: "100%",
-    borderRadius: 16,
+    height: 130,
+    width: 150,
+    borderRadius: 20,
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
+    padding: 20,
+    margin: 10,
   },
   buttonText: {
-    fontSize: 32,
+    fontSize: 20,
     fontWeight: "600",
   },
 });

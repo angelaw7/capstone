@@ -14,7 +14,7 @@ interface MyExpensesProp {
 
 const MyExpenses = ({ navigation }: MyExpensesProp) => {
   const returnHandler = () => {
-    navigation.navigate("Overview");
+    navigation.navigate("Manage");
   };
 
   // useEffect(() => {
