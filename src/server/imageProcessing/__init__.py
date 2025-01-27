@@ -1,1 +1,1 @@
-from server.imageProcessing.process import process_image
+from server.imageProcessing.process import ImageProcessor
