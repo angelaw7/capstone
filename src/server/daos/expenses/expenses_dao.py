@@ -1,4 +1,3 @@
-import tempfile
 from server.models.expenses.expense import Expense
 from server.imageProcessing import ImageProcessor
 

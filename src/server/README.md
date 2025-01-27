@@ -1,6 +1,6 @@
 ## Setup
 
-For windows, to start app:
+For windows:
 ```
 python -m venv venv
 venv\Scripts\activate
