@@ -96,7 +96,6 @@ const LoginView = ({ navigation }: LoginViewProps) => {
 
       <Button
         backgroundColor={DEFAULT_COLOURS.primary}
-        marginTop={20}
         paddingHorizontal="20%"
         onPress={loginWithEmailPassword}
       >
@@ -115,7 +114,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
           navigation.navigate("ResetPassword");
         }}
       >
-        <Text style={{ textDecorationLine: "underline", color: "red" }}>
+        <Text style={styles.forgotPasswordText}>
           Forgot your password?
         </Text>
       </Pressable>
@@ -150,6 +149,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
           </Button>
         </View>
       </View>
+      
       <View style={styles.dividerContainer}>
         <View style={styles.dividerLine} />
       </View>
@@ -159,7 +159,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
           navigation.navigate("Register");
         }}
       >
-        <Text style={{ textDecorationLine: "underline", color: "red" }}>
+        <Text style={styles.signUpText}>
           {"Don't have an account? Sign up!"}
         </Text>
       </Pressable>
@@ -169,18 +169,17 @@ const LoginView = ({ navigation }: LoginViewProps) => {
 
 const styles = StyleSheet.create({
   loginContainer: {
-    marginTop: 15,
-    display: "flex",
+    marginTop: 10,
+    marginBottom: 15,
+    display: "block",
     backgroundColor: "#fff",
     alignItems: "center",
     alignSelf: "center",
     width: "90%",
-    marginLeft: 50,
   },
   dividerContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 25,
     width: "80%",
   },
   dividerLine: {
@@ -192,11 +191,21 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    width: "75%",
-    justifyContent: "flex-start",
-    marginTop: 5,
-    marginBottom: 5,
+    width: "80%",
+    justifyContent: "flex-start"
   },
+  forgotPasswordText: {
+    textDecorationLine: "underline", 
+    color: "red",
+    marginTop: 15, 
+    marginBottom: 15
+  },
+  signUpText: {
+    textDecorationLine: "underline", 
+    color: "red",
+    marginTop: 15, 
+    marginBottom: 15
+  }
 });
 
 export default LoginView;
