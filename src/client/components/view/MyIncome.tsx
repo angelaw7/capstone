@@ -13,7 +13,7 @@ interface MyIncomeProps {
 
 const MyIncome = ({ navigation }: MyIncomeProps) => {
   const returnHandler = () => {
-    navigation.navigate("Manage");
+    navigation.goBack();
   };
 
   const addNewIncomeHandler = () => {
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 24,
     rowGap: 20,
+    paddingTop: "15%",
   },
   headerBox: {
     display: "flex",

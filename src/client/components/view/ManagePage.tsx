@@ -15,10 +15,6 @@ interface ManagePageProps {
 }
 
 const ManagePage = ({ navigation, route }: ManagePageProps) => {
-  /* TODO: Should store user name in state somewhere especially if we navigate back
-  from the expense/income/budget page lool */
-  // const username = route.params?.name;
-
   const incomePageHandler = () => {
     navigation.navigate("MyIncome");
   };

@@ -60,7 +60,7 @@ const NewBudgetPage = ({ navigation }: NewBudgetPageProps) => {
 
   const returnHandler = () => {
     // To-Do
-    navigation.navigate("MyBudget");
+    navigation.goBack();
   };
 
   const addBudgetHandler = () => {
@@ -184,8 +184,9 @@ const styles = StyleSheet.create({
   background: {
     height: "100%",
     backgroundColor: "white",
-    padding: 24,
+    paddingHorizontal: 32,
     rowGap: 20,
+    paddingTop: "15%",
   },
   header: {
     display: "flex",
