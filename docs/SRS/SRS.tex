@@ -600,9 +600,9 @@ used to indicate the importance of the requirement to the system.
   ensure 100\% consistency of financial data across all instances.
 
   \item[]\textbf{Performance Requirements}
-  \item (M) The application must load user data within five seconds.
-  \item (M) The application must be responsive to user actions (e.g., adding an
-  entry, generating a report) within two seconds.
+  \item (M) The application must load user account information and financial metrics within five seconds.
+  \item (M) The application must respond to user actions, such as adding a new entry or generating a report, by completing 
+  the requested operation and displaying the result within two seconds.
   \item (L) The system must be able to handle a minimum of 10 concurrent users without significant performance degradation.
 
   \item[]\textbf{Usability Requirements}
@@ -613,19 +613,20 @@ used to indicate the importance of the requirement to the system.
   core application features within five minutes.
   \item (L) The application shall provide users with an introductory tutorial and
   tooltips during their first use.
-  \item (M) The application should provide clear, informative error messages upon invalid
-  inputs.
-  \item (L) The application should guide users through corrective actions when
-  incorrect input is detected.
+  \item (M) The application shall display error messages within 1 second of invalid 
+  input submission.
+  \item (M) All error messages will include the error type, the invalid 
+  input, and a suggested corrective action.
   \item (L) Users should be able to recover from errors (e.g., wrong data entry)
   with no more than two steps.
   \item (M) Common user tasks, such as adding a new receipt or setting a budget
   limit, should be completable within 10 seconds on average, assuming all
   required information is readily available.
-  \item (M) Information displayed to users must be concise and relevant, minimizing
-  the cognitive effort needed to understand their financial data. Only essential
-  details should be shown on the main dashboard, with advanced options
-  accessible through menus.
+  \item (M) Information displayed to users shall be concise and relevant, with 
+  the main dashboard limited to no more than 5 key financial data points and advanced 
+  options accessible within 3 clicks or less
+  \item (M) User comprehension of the displayed information must exceed 85\%, as measured 
+  by task completion accuracy and speed during usability testing.
 
   \item[] \textbf{Security Requirements}
   \item (H) The system must implement secure password storage and authentication
@@ -710,6 +711,19 @@ used to indicate the importance of the requirement to the system.
   privacy and security of user data.
   \item (H) The system must comply with Canada's Financial Administration Act to
   ensure the secure handling of financial information.
+
+  \item[] \textbf{Data Retention and Deletion Requirements}
+  \item (H) The system must retain user financial data for a maximum of 7 years, 
+  in compliance with regulatory requirements, and ensure all expired data is securely 
+  deleted within 24 hours of reaching the retention period, as verified through 
+  automated audit logs.
+  \item (H) The system must implement an automated deletion process for inactive 
+  accounts, ensuring all associated data is securely deleted after 12 months of 
+  inactivity, with notifications sent to users 30 days prior to deletion, verified 
+  through testing and monitoring.
+  \item (M) The system must allow users to initiate data deletion requests through 
+  the application, ensuring that all user-requested deletions are processed and 
+  completed within 7 days, as confirmed by system logs and user feedback during testing.
   
 \end{enumerate}
 
