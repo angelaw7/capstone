@@ -27,7 +27,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
       const user = await signInWithEmailAndPassword(auth, username, password);
       navigation.reset({
         index: 0,
-        routes: [{ name: "Main", params: { initialTab: "Manage" } }],
+        routes: [{ name: "Main", params: { initialTab: "Home" } }],
       });
     } catch (e: any) {
       switch (e.code) {

@@ -4,11 +4,8 @@ import { Dimensions, StyleSheet } from "react-native";
 
 import ProfileIcon from "../../assets/icons/ProfileIcon";
 
+// TODO: implement real user data
 const ProfilePage = () => {
-  /* TODO: Should store user name in state somewhere especially if we navigate back
-  from the expense/income/budget page lool */
-  // const username = route.params?.name;
-
   return (
     <View alignItems="center" style={styles.background}>
       <View style={styles.headerContainer}>

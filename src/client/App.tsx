@@ -27,6 +27,7 @@ import ProfileIcon from "./assets/icons/ProfileIcon";
 import HomePage from "./components/view/HomePage";
 import { useEffect, useState } from "react";
 import ProfilePage from "./components/view/ProfilePage";
+import BudgetBoxDetails from "./components/common/BudgetBoxDetails";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -46,6 +47,15 @@ const ManageStack = () => {
   );
 };
 
+const HomeStack = () => {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home" component={HomePage} />
+      <Stack.Screen name="BudgetBoxDetails" component={BudgetBoxDetails} />
+    </Stack.Navigator>
+  );
+};
+
 const Navbar = () => {
   return (
     <Tab.Navigator
@@ -58,7 +68,7 @@ const Navbar = () => {
     >
       <Tab.Screen
         name="Home"
-        component={HomePage} // TODO: Replace with Home Page when implemented
+        component={HomeStack}
         options={{
           tabBarIcon: ({ color, size }) => (
             <HomeIcon size={size} color={color} />

@@ -1,47 +1,59 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import * as ProgressBar from "react-native-progress";
 import { MONTHS } from "../../constants";
+import { NavigationProps, RouteProps } from "../../types";
 
-const BudgetBox = () => {
+type BudgetBoxProps = {
+  navigation: NavigationProps;
+  route: RouteProps;
+};
+
+const BudgetBox = ({ navigation, route }: BudgetBoxProps) => {
   // TODO: replace values with real data
   const progress = 0.63;
   const currentMonth = MONTHS[new Date().getMonth()];
 
+  const navigateToBudgetDetails = () => {
+    navigation.navigate("BudgetBoxDetails");
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{`${currentMonth}'s Budget`}</Text>
-        <Text style={styles.percentage}>{`${progress * 100}%`}</Text>
-      </View>
-
-      <ProgressBar.Bar
-        progress={progress}
-        width={null}
-        color="#9E599A"
-        unfilledColor="#ddd"
-        borderWidth={0}
-        height={10}
-        borderRadius={5}
-        style={styles.progressBar}
-      />
-
-      {/* Budget Details */}
-      <View style={styles.details}>
-        <View>
-          <Text style={styles.label}>Budget:</Text>
-          <Text style={styles.value}>$1200</Text>
+    <TouchableOpacity onPress={navigateToBudgetDetails}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>{`${currentMonth}'s Budget`}</Text>
+          <Text style={styles.percentage}>{`${progress * 100}%`}</Text>
         </View>
-        <View>
-          <Text style={styles.label}>Spent:</Text>
-          <Text style={styles.value}>
-            {/* TODO: replace arrow with corresponding trend */}
-            $761.96 <Text style={styles.warning}>▲</Text>{" "}
-          </Text>
+
+        <ProgressBar.Bar
+          progress={progress}
+          width={null}
+          color="#9E599A"
+          unfilledColor="#ddd"
+          borderWidth={0}
+          height={10}
+          borderRadius={5}
+          style={styles.progressBar}
+        />
+
+        {/* Budget Details */}
+        <View style={styles.details}>
+          <View>
+            <Text style={styles.label}>Budget:</Text>
+            <Text style={styles.value}>$1200</Text>
+          </View>
+          <View>
+            <Text style={styles.label}>Spent:</Text>
+            <Text style={styles.value}>
+              {/* TODO: replace arrow with corresponding trend */}
+              $761.96 <Text style={styles.warning}>▲</Text>{" "}
+            </Text>
+          </View>
+          <Text style={styles.arrow}>›</Text>
         </View>
-        <Text style={styles.arrow}>›</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

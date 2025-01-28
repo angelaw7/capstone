@@ -4,8 +4,14 @@ import { Dimensions, StyleSheet } from "react-native";
 
 import BudgetBox from "../common/BudgetBox";
 import SpendingDetails from "../common/SpendingDetails";
+import { NavigationProps, RouteProps } from "../../types";
 
-const HomePage = () => {
+type HomePageProps = {
+  navigation: NavigationProps;
+  route: RouteProps;
+};
+
+const HomePage = ({ navigation, route }: HomePageProps) => {
   /* TODO: Should store user name in state somewhere especially if we navigate back
   from the expense/income/budget page lool */
   // const username = route.params?.name;
@@ -13,10 +19,11 @@ const HomePage = () => {
   return (
     <View alignItems="center" style={styles.background}>
       <View style={styles.headerContainer}>
+        {/* TODO: adjust user to be actual username */}
         <Text style={styles.title}>Welcome Back "user"</Text>
       </View>
       <View style={styles.homepage}>
-        <BudgetBox />
+        <BudgetBox navigation={navigation} route={route} />
         <SpendingDetails />
       </View>
     </View>
