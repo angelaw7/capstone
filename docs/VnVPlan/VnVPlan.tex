@@ -1392,10 +1392,15 @@ as adding a new receipt or setting a budget limit within 10 seconds on average.
 
 \textbf{Type:} Manual, Usability Testing
 					
-\textbf{Initial State:} The application is ready for user interaction.
+\textbf{Initial State:} The application is installed, running, and ready for user interaction.
 					
-\textbf{Input/Condition:} A user attempts to perform common tasks such as
-editing budgets or adding a new receipt using the interface.
+\textbf{Input/Condition:} A user with no prior experience attempts to complete key tasks (e.g., uploading a receipt, viewing expense summaries, setting a budget), 
+including scenarios where:
+  \begin{itemize}
+      \item A page fails to load due to network issues
+      \item A required field is left blank in a form
+      \item A button is disabled without clear explanation
+  \end{itemize}
 					
 \textbf{Output/Result:} Tasks should show completion and result corresponding
 outputs.
@@ -1415,8 +1420,12 @@ introductory tutorial and tooltips.
 \textbf{Initial State:} The application is installed and running. The state of
 the application is not authenticated.
 					
-\textbf{Input/Condition:} A user begins the account setup and interacts with
-the application.
+\textbf{Input/Condition:} A user performs various actions, including:
+  \begin{itemize}
+      \item Uploading a large receipt, causing a system processing delay
+      \item Entering an invalid file format for receipt upload
+      \item Attempting to categorize an expense while offline
+  \end{itemize}
 					
 \textbf{Output/Result:} The user should have a new account created and
 understand the core features of the application.
@@ -1436,7 +1445,13 @@ are shown on the main dashboard, with advanced options accessible through menus.
 \textbf{Initial State:} The application is displaying its main dashboard.
 					
 \textbf{Input/Condition:} The user/tester reviews the main dashboard and
-navigates through the menus.
+navigates through the menus. A user triggers different error conditions, such as:
+  \begin{itemize}
+      \item Uploading an unsupported file format (e.g., `.txt`)
+      \item Submitting a blank required field in an expense form
+      \item Experiencing a timeout when fetching past transactions
+      \item Entering an invalid number format (e.g., letters in a currency field)
+  \end{itemize}
 					
 \textbf{Output/Result:} All information is displayed and menus open upon
 command.
@@ -1447,22 +1462,28 @@ design aligns with the usability requirements.
 
 \item{test-USAB-4\\}
 
-\textbf{Description:} It should be easy for users to recover from errors and
-understand when an incorrect input is detected.
+\textbf{Description:} Users should be able to recognize and recover from errors with clear guidance.
 
 \textbf{Type:} Manual, Usability Testing
 					
 \textbf{Initial State:} The application is installed and running.
 					
-\textbf{Input/Condition:} A user attempts to perform an action that results in
-an error.
-					
-\textbf{Output/Result:} The user should understand the error and be able to
-make corrective actions to resolve it.
-					
-\textbf{How the Test Will Be Performed:} The user/tester will intentionally
-trigger errors and assess the clarity of error messages and the ease of
-corrective actions.
+\textbf{Input/Condition:} A user attempts to perform an action that results in an error, including but not limited to:
+\begin{itemize}
+    \item Network disconnection during receipt upload
+    \item Uploading an unsupported file format
+    \item System timeout during data processing
+    \item Uploading a corrupted or unreadable receipt image
+\end{itemize}
+
+\textbf{Output/Result:} The user should understand the error through clear messaging and be able to take corrective actions to resolve it.
+
+\textbf{How the Test Will Be Performed:} The user/tester will intentionally trigger different error scenarios and assess:
+\begin{itemize}
+    \item Whether the system correctly detects the error
+    \item The clarity of the displayed error message
+    \item The ease of taking corrective actions (e.g., retrying, re-uploading, or receiving alternative guidance)
+\end{itemize}
 
 \end{enumerate}
 
