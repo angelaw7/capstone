@@ -265,7 +265,7 @@ The project will be making the following critical assumptions:
     Non-human accounts exist on the server & 
     Increased traffic to the server, invalid inputs, performance deterioration & 
     A bot account logs into the application & 
-    Ensure account creation includes a captcha & 
+    Implement an automated captcha verification system during account creation to prevent bot accounts. & 
     FR3, SR1 & 
     H1-1 \\
     \cline{2-7}
@@ -286,7 +286,8 @@ The project will be making the following critical assumptions:
         \item The application is bugged out
     \end{enumerate} &
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
-        \item Prompt the user to allow camera access for the application
+        \item Integrate an automated prompt system that 
+        detects camera access issues and guides users through enabling access.
         \item The user should restart the application. 
     \end{enumerate} &
     FR7, NFR13, SR2 &
@@ -310,7 +311,7 @@ The project will be making the following critical assumptions:
         \item The image does not contain a receipt
     \end{enumerate} &
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
-        \item Prompt the user to retry due to poor photo quality and make sure that the input is actually a receipt
+        \item Incorporate an automated image quality assessment tool that provides real-time feedback and suggestions for improving photo quality before submission.
         \item Same as H3-1a
         \item Run image validation before passing the image through the ML model (e.g., check that there is a paper with text in the image)
     \end{enumerate} &
@@ -325,7 +326,7 @@ The project will be making the following critical assumptions:
         \item Receipt quality causes some letters to be difficult to recognize (e.g., 0 and O, T and I)
     \end{enumerate} &
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
-        \item Inform user that the OCR isn’t working after 3 failed attempts and ask user to manually input receipt expenses
+        \item Develop an automated fallback mechanism that suggests alternative input methods or manual entry if OCR fails after multiple attempts.
     \end{enumerate} &
     FR16, NFR4 &
     H3-2\\
@@ -374,7 +375,7 @@ The project will be making the following critical assumptions:
         \item Database server downtime
     \end{enumerate} &
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
-        \item Prompt the user to check their network connection
+        \item Implement an automated network status checker that alerts users to connectivity issues and suggests troubleshooting steps.
         \item Inform the user of the server error; system will try again at a later time (data will be stored locally and then backup up)
     \end{enumerate} &
     FR15, NFR13, SR5, SR8 &
@@ -407,7 +408,7 @@ The project will be making the following critical assumptions:
         \item Server downtime
     \end{enumerate} &
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
-        \item Implement data redundancy measures to ensure data is not lost during transmission.
+        \item Establish an automated data synchronization protocol that ensures data integrity and consistency during network disruptions.
         \item Establish real-time data backup protocols to maintain data integrity.
         \item Develop detailed protocols for data validation and synchronization after network recovery to ensure consistency.
     \end{enumerate} &
@@ -425,7 +426,7 @@ The project will be making the following critical assumptions:
         \item High processing times due to large image sizes or device limitations
     \end{enumerate} &
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
-        \item Provide clear and specific error messages indicating the issue with the image quality.
+        \item Integrate an automated error detection system that analyzes image quality and provides users with actionable tips to improve capture conditions.
         \item Implement visual cues and real-time guidance to assist users in troubleshooting image quality issues.
         \item Introduce a retry mechanism with tips for improving image capture (e.g., lighting, focus).
     \end{enumerate} &
