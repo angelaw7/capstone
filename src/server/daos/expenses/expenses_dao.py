@@ -1,12 +1,12 @@
-import tempfile
 from server.models.expenses.expense import Expense
-from server.imageProcessing import process_image
+from server.imageProcessing import ImageProcessor
 
 import os
 
 base_path = os.path.dirname(os.path.abspath(__file__))
 tmp_path = os.path.join(base_path, "tmp")
 
+image_processor = ImageProcessor()
 
 class ExpensesDao:
     @staticmethod
@@ -30,7 +30,9 @@ class ExpensesDao:
             file.save(tmp_filepath)
             
             print(f'Temporary file saved at: {tmp_filepath}')
-            data = process_image(tmp_filepath)
+            data = image_processor.process_image(tmp_filepath)
+            # TODO(ang): remove the temp file (keep it for now for debugging)
+
         except Exception as e:
             print(e)
             return {"error": "Error processing receipt"}

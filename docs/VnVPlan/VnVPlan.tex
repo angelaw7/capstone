@@ -56,6 +56,10 @@ In addition, the following abbreviations are used in this document:\\
   \textbf{symbol} & \textbf{description}\\
   \midrule 
   V\&V & Verification and Validation\\
+  UI & User Interface\\
+  OCR & Optical Character Recognition\\
+  SQL & Structured Query Language\\
+  GDPR & General Data Protection Regulation\\
   \bottomrule
 \end{tabular}\\
 
@@ -1259,7 +1263,8 @@ from images of receipts.
 					
 \textbf{Initial State:} The OCR model is set to process images of receipts.
 					
-\textbf{Input/Condition:} A set of receipt images with known text.
+\textbf{Input/Condition:} A set of receipt images with known text. Test images will include images taken 
+under poor lighting conditions, varying text clarity, and partial occlusion to evaluate robustness.
 					
 \textbf{Output/Result:} The OCR model's accuracy in recognizing text is
 calculated.
@@ -1387,10 +1392,15 @@ as adding a new receipt or setting a budget limit within 10 seconds on average.
 
 \textbf{Type:} Manual, Usability Testing
 					
-\textbf{Initial State:} The application is ready for user interaction.
+\textbf{Initial State:} The application is installed, running, and ready for user interaction.
 					
-\textbf{Input/Condition:} A user attempts to perform common tasks such as
-editing budgets or adding a new receipt using the interface.
+\textbf{Input/Condition:} A user with no prior experience attempts to complete key tasks (e.g., uploading a receipt, viewing expense summaries, setting a budget), 
+including scenarios where:
+  \begin{itemize}
+      \item A page fails to load due to network issues
+      \item A required field is left blank in a form
+      \item A button is disabled without clear explanation
+  \end{itemize}
 					
 \textbf{Output/Result:} Tasks should show completion and result corresponding
 outputs.
@@ -1410,8 +1420,12 @@ introductory tutorial and tooltips.
 \textbf{Initial State:} The application is installed and running. The state of
 the application is not authenticated.
 					
-\textbf{Input/Condition:} A user begins the account setup and interacts with
-the application.
+\textbf{Input/Condition:} A user performs various actions, including:
+  \begin{itemize}
+      \item Uploading a large receipt, causing a system processing delay
+      \item Entering an invalid file format for receipt upload
+      \item Attempting to categorize an expense while offline
+  \end{itemize}
 					
 \textbf{Output/Result:} The user should have a new account created and
 understand the core features of the application.
@@ -1431,7 +1445,13 @@ are shown on the main dashboard, with advanced options accessible through menus.
 \textbf{Initial State:} The application is displaying its main dashboard.
 					
 \textbf{Input/Condition:} The user/tester reviews the main dashboard and
-navigates through the menus.
+navigates through the menus. A user triggers different error conditions, such as:
+  \begin{itemize}
+      \item Uploading an unsupported file format (e.g., `.txt`)
+      \item Submitting a blank required field in an expense form
+      \item Experiencing a timeout when fetching past transactions
+      \item Entering an invalid number format (e.g., letters in a currency field)
+  \end{itemize}
 					
 \textbf{Output/Result:} All information is displayed and menus open upon
 command.
@@ -1442,22 +1462,28 @@ design aligns with the usability requirements.
 
 \item{test-USAB-4\\}
 
-\textbf{Description:} It should be easy for users to recover from errors and
-understand when an incorrect input is detected.
+\textbf{Description:} Users should be able to recognize and recover from errors with clear guidance.
 
 \textbf{Type:} Manual, Usability Testing
 					
 \textbf{Initial State:} The application is installed and running.
 					
-\textbf{Input/Condition:} A user attempts to perform an action that results in
-an error.
-					
-\textbf{Output/Result:} The user should understand the error and be able to
-make corrective actions to resolve it.
-					
-\textbf{How the Test Will Be Performed:} The user/tester will intentionally
-trigger errors and assess the clarity of error messages and the ease of
-corrective actions.
+\textbf{Input/Condition:} A user attempts to perform an action that results in an error, including but not limited to:
+\begin{itemize}
+    \item Network disconnection during receipt upload
+    \item Uploading an unsupported file format
+    \item System timeout during data processing
+    \item Uploading a corrupted or unreadable receipt image
+\end{itemize}
+
+\textbf{Output/Result:} The user should understand the error through clear messaging and be able to take corrective actions to resolve it.
+
+\textbf{How the Test Will Be Performed:} The user/tester will intentionally trigger different error scenarios and assess:
+\begin{itemize}
+    \item Whether the system correctly detects the error
+    \item The clarity of the displayed error message
+    \item The ease of taking corrective actions (e.g., retrying, re-uploading, or receiving alternative guidance)
+\end{itemize}
 
 \end{enumerate}
 
@@ -1470,80 +1496,108 @@ This subsection covers tests required to ensure the security and protection of u
 
 \item{test-SEC-1\\}
 
-\textbf{Description:} Verify that passwords are securely stored and
-authentication is required for all user actions.
+\textbf{Description:} Verify that authentication mechanisms prevent unauthorized access and that sensitive data, including passwords, are securely stored.
 
 \textbf{Type:} Inspection, Manual
 					
 \textbf{Initial State:} The system is fully deployed and operational.
-					
-\textbf{Input/Condition:} A tester attempts to use SQL injection to access
-the application.
-					
-\textbf{Output/Result:} The tester should be unable to access the application.
-					
-\textbf{How the Test Will Be Performed:} The tester will attempt to use SQL
-injection to access the application.
+
+\textbf{Input/Condition:} A tester attempts various security breaches, including:
+\begin{itemize}
+    \item SQL injection attacks through login and input fields
+    \item Brute-force login attempts with rapid credential entry
+    \item Session hijacking by stealing cookies or tokens
+    \item Attempting to access restricted user data without authentication
+\end{itemize}
+
+\textbf{Output/Result:} The system should prevent unauthorized access, detect suspicious login attempts, and lock out users after repeated failed logins. Error messages should be vague enough to avoid revealing system vulnerabilities.
+
+\textbf{How the Test Will Be Performed:} 
+\begin{itemize}
+    \item The tester will attempt SQL injection in form fields and verify that queries are properly sanitized.
+    \item Session tokens will be analyzed to ensure secure expiration policies.
+    \item Authentication bypass attempts will be performed to verify proper access controls.
+\end{itemize}
 
 \end{enumerate}
 
 \subsubsection{Maintainability Tests}
 
 This subsection covers tests required to verify the maintainability and compatibility of the application. \\
-\textit{Nonfunctional Requirements: NFR20 - NFR 22}
+\textit{Nonfunctional Requirements: NFR20 - NFR22}
 
 \begin{enumerate}
 
 \item{test-MTB-1\\}
 
-\textbf{Description:} New releases must maintain backward compatibility with
-previous versions.
+\textbf{Description:} New releases must maintain backward compatibility with previous versions and ensure system stability during updates.
 
-\textbf{Type:} Manual
-					
+\textbf{Type:} Manual, Automated
+
 \textbf{Initial State:} The application is ready for a new release.
-					
-\textbf{Input/Condition:} A new release is applied to the application, along
-with dependency updates.
-					
-\textbf{Output/Result:} The system must output a confirmation message indicating
-a successful update, and system logs should show no errors or disruptions.
-					
-\textbf{How the Test Will Be Performed:} The user/tester will apply the new
-release and perform typical user actions to verify that the application
-functions correctly with no errors or disruptions.
+
+\textbf{Input/Condition:} A new release is applied to the application, including:
+\begin{itemize}
+    \item Database schema changes
+    \item API endpoint modifications
+    \item Frontend framework or library updates
+    \item Dependency version upgrades
+\end{itemize}
+
+\textbf{Output/Result:} The system must provide a confirmation message indicating a successful update, maintain functionality across versions, and log errors if any incompatibilities occur.
+
+\textbf{How the Test Will Be Performed:} 
+\begin{itemize}
+    \item The tester will apply the new release and check logs for compatibility errors.
+    \item A rollback test will be performed to ensure users can revert to a stable version if needed.
+    \item User actions will be simulated post-update to verify that no regressions occurred.
+\end{itemize}
 
 \item{test-MTB-2\\}
 
-\textbf{Description:} Dependencies must be regularly updated.
+\textbf{Description:} Dependencies must be regularly updated while ensuring compatibility with the existing system.
 
 \textbf{Type:} Automatic
-					
+
 \textbf{Initial State:} Dependencies are out of date.
-					
-\textbf{Input/Condition:} A new patch is applied to the application.
-					
-\textbf{Output/Result:} Dependencies are updated.
-					
-\textbf{How the Test Will Be Performed:} Regularly scheduled updates will be
-applied to the application.
+
+\textbf{Input/Condition:} A new patch is applied to the application, including:
+\begin{itemize}
+    \item Security patches for third-party libraries
+    \item Framework or SDK version updates
+\end{itemize}
+
+\textbf{Output/Result:} The system updates dependencies while ensuring no breaking changes occur. If incompatibilities are detected, developers are alerted.
+
+\textbf{How the Test Will Be Performed:}
+\begin{itemize}
+    \item Automated dependency scanning tools will check for vulnerabilities.
+    \item Test suites will run after updates to verify compatibility.
+\end{itemize}
 
 \item{test-MTB-3\\}
 
-\textbf{Description:} The codebase must be covered by automated tests.
+\textbf{Description:} The codebase must be covered by automated tests to detect regressions before deployment.
 
 \textbf{Type:} Automatic
-					
+
 \textbf{Initial State:} The application is up to date.
-					
-\textbf{Input/Condition:} A new code change is made.
-					
-\textbf{Output/Result:} The pipeline runs automated tests and checks for
-coverage. 
-					
-\textbf{How the Test Will Be Performed:} Tests and coverage will be monitored
-using GitHub Actions. If coverage criteria is not met or if any tests fail, the
-change will be blocked from merging.
+
+\textbf{Input/Condition:} A new code change is made, triggering the CI/CD pipeline.
+
+\textbf{Output/Result:} The pipeline runs automated tests, checking for:
+\begin{itemize}
+    \item Unit test coverage across core components
+    \item Integration tests ensuring API and database interactions work correctly
+    \item Performance tests identifying bottlenecks in system response times
+\end{itemize}
+
+\textbf{How the Test Will Be Performed:} 
+\begin{itemize}
+    \item Automated tests will be executed through GitHub Actions.
+    \item Code coverage reports will be generated, and any PR failing minimum coverage will be blocked.
+    \item Manual review will be conducted for critical code paths.
+\end{itemize}
 
 \end{enumerate}
 

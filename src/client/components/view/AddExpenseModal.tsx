@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Modal, Text, TextInput, StyleSheet, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 
 interface AddExpenseModalProps {
@@ -20,8 +21,9 @@ const AddExpenseModal = ({
   const [cost, setCost] = useState("");
 
   const handleSave = () => {
+    const id = uuidv4();
     const newItem = {
-      id: uuidv4(),
+      id: id,
       category,
       rawName,
       name,

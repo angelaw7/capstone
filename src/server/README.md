@@ -8,3 +8,5 @@ pip install -r requirements.txt
 
 python app.py
 ```
+
+Make sure to also create a `.env` file (follow .env.example's format)
