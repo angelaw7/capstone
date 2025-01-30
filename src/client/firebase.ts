@@ -1,12 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { initializeAuth } from "firebase/auth";
-/*
-	Related issue:
-	https://github.com/firebase/firebase-js-sdk/issues/7584#issuecomment-1785705367
-lol seems like firebase didn't wanna get shot up by the ops
-*/
-// @ts-ignore
-import { getReactNativePersistence } from "@firebase/auth/dist/rn/index.js";
+import { initializeAuth, getReactNativePersistence } from "firebase/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
