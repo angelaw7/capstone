@@ -1,4 +1,4 @@
-name: Check that latex files compile without errors
+name: Check LaTeX files are valid
 
 on:
   pull_request:

@@ -1,4 +1,4 @@
-name: Compile LaTeX
+name: Compile and push LaTeX files
 
 on:
   push:
@@ -38,6 +38,6 @@ jobs:
 
       - name: Push changes
         run: |
-          git push origin HEAD:refs/heads/${{ github.head_ref }}
+          git push origin $GITHUB_REF
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
