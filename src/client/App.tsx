@@ -28,6 +28,8 @@ import HomePage from "./components/view/HomePage";
 import { useEffect, useState } from "react";
 import ProfilePage from "./components/view/ProfilePage";
 import BudgetBoxDetails from "./components/common/BudgetBoxDetails";
+import DefaultLayout from "./components/common/DefaultLayout";
+import { NavigationProps } from "./types";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -112,7 +114,14 @@ const MainApp = () => {
     <View style={styles.app}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         {/* Authentication Screens */}
-        <Stack.Screen name="Login" component={LoginView} />
+        <Stack.Screen
+          name="Login"
+          component={(navigation: NavigationProps) => (
+            <DefaultLayout>
+              {<LoginView navigation={navigation} />}
+            </DefaultLayout>
+          )}
+        />
         <Stack.Screen name="ResetPassword" component={ResetPasswordView} />
         <Stack.Screen name="Register" component={RegisterView} />
         <Stack.Screen name="Onboarding" component={OnboardingView} />
@@ -128,6 +137,7 @@ const styles = StyleSheet.create({
   app: {
     flex: 1,
     backgroundColor: "white",
+    height: "10%",
   },
   bottomNav: {
     paddingTop: 5,
