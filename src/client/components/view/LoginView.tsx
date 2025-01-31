@@ -26,7 +26,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
     // Can enable RLS once I set up auth table to connect as primary/foreign key constraint
     const { data, error, status } = await supabase
       .from("users")
-      .select("first_name", "last_name");
+      .select("first_name, last_name");
     //   .eq("userid", 2);
 
     console.log(data, status);
