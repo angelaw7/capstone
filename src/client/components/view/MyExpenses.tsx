@@ -14,7 +14,7 @@ interface MyExpensesProp {
 
 const MyExpenses = ({ navigation }: MyExpensesProp) => {
   const returnHandler = () => {
-    navigation.navigate("Overview");
+    navigation.goBack();
   };
 
   // useEffect(() => {
@@ -30,7 +30,6 @@ const MyExpenses = ({ navigation }: MyExpensesProp) => {
   // }, []);
 
   const addNewExpenseHandler = () => {
-    // TO DO
     navigation.navigate("NewExpense");
   };
 

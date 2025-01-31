@@ -2,6 +2,8 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RouteProp } from "@react-navigation/native";
 
 type RootStackParamList = {
+  Home: undefined;
+  BudgetBoxDetails: undefined;
   Login: undefined;
   ResetPassword: undefined;
   Register:
@@ -16,13 +18,15 @@ type RootStackParamList = {
         email?: string;
       }
     | undefined;
-  Overview:
+  Manage:
     | {
         name?: string;
         email?: string;
         /* Some other types later when we plan to pass from onboarding to overview */
       }
     | undefined;
+  Profile: undefined;
+  Main: undefined;
   MyIncome: undefined;
   NewIncome: undefined;
   MyExpenses: undefined;

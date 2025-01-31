@@ -9,9 +9,6 @@ import {
 import CameraIcon from "../../assets/icons/CameraIcon";
 import PhotoLibraryIcon from "../../assets/icons/PhotoLibraryIcon";
 import AddCircleIcon from "../../assets/icons/AddCircleIcon";
-import PersonIcon from "../../assets/icons/PersonIcon";
-import PeopleIcon from "../../assets/icons/PeopleIcon";
-import StatsChartOutlineIcon from "../../assets/icons/StatsChartOutlineIcon";
 
 import AddExpenseModal from "./AddExpenseModal";
 import DisplayExpenseItems from "./DisplayExpenseItem";
@@ -183,13 +180,6 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
         </View>
       </View>
 
-      <View style={styles.bottomNav}>
-        <StatsChartOutlineIcon size={32} color="black" />
-        <AddCircleIcon size={32} style={{ color: "black" }} />
-        <PeopleIcon size={32} style={{ color: "black" }} />
-        <PersonIcon size={32} style={{ color: "black" }} />
-      </View>
-
       <AddExpenseModal
         visible={isModalVisible}
         onClose={closeModal}
@@ -273,18 +263,6 @@ const styles = StyleSheet.create({
   },
   addItemButton: {
     alignSelf: "flex-start",
-  },
-  bottomNav: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    paddingVertical: 10,
-    borderTopWidth: 1,
-    borderColor: "#ccc",
-    backgroundColor: "#fff",
   },
 });
 
