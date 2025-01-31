@@ -51,12 +51,12 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const createAccountHandler = () => {
     // TODO: add user to db
 
-    // Redirect user to overview page if user account is successful, else show error or smth idk
+    // Redirect user to Home page if user account is successful, else show error or smth idk
     navigation.reset({
       index: 0,
       routes: [
         {
-          name: "Overview",
+          name: "Manage",
           params: {
             name: `${firstName} ${lastName}`,
           },
