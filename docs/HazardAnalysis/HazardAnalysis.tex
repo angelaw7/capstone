@@ -46,6 +46,8 @@
 10/25/2024 & Jason & Table for section 5 \\
 10/25/2024 & Payton, Eric, Fondson, Jason, Angela & Final Rev 0 \\
 10/28/2024 & Eric & Update section 3\\
+01/29/2025 & Payton & Revising sections 3 \& 5\\
+01/29/2025 & Payton & Revising sections 3 \& 5\\
 ... & ... & ... \\
 \bottomrule
 \end{tabularx}
@@ -142,6 +144,66 @@ The system will be divided into the following components:
         itemized receipt.
     \end{enumerate}
     \item The user’s mobile device and camera setup
+    \item Several links to external systems:
+    \begin{enumerate}
+        \item Plutos will interact with various external APIs and services, which can 
+        impact its reliability and security. 
+		\begin{itemize}
+			\item Hazards:
+				\begin{enumerate}
+					\item Data exchange vulnerabilities with third-party services.
+                    \item Dependency on external service availability, which may lead to system downtime.
+                    \item Inadequate authentication mechanisms for external API calls.
+				\end{enumerate}
+			\item Mitigation:
+				\begin{enumerate}
+					\item Implement robust authentication and authorization protocols for all external API interactions.
+                    \item Regularly audit and monitor third-party services for security compliance and performance reliability.
+                    \item Establish fallback mechanisms to handle failures in external services, ensuring minimal disruption 
+                    to the Plutos system.
+                \end{enumerate}
+        \end{itemize}
+    \end{enumerate}
+    \item Several links to external systems:
+    \begin{enumerate}
+        \item Plutos will interact with various external APIs and services, which can 
+        impact its reliability and security. 
+		\begin{itemize}
+			\item Hazards:
+				\begin{enumerate}
+					\item Data exchange vulnerabilities with third-party services.
+                    \item Dependency on external service availability, which may lead to system downtime.
+                    \item Inadequate authentication mechanisms for external API calls.
+				\end{enumerate}
+			\item Mitigation:
+				\begin{enumerate}
+					\item Implement robust authentication and authorization protocols for all external API interactions.
+                    \item Regularly audit and monitor third-party services for security compliance and performance reliability.
+                    \item Establish fallback mechanisms to handle failures in external services, ensuring minimal disruption 
+                    to the Plutos system.
+                \end{enumerate}
+        \end{itemize}
+    \end{enumerate}
+    \item Several links to external systems:
+    \begin{enumerate}
+        \item Plutos will interact with various external APIs and services, which can 
+        impact its reliability and security. 
+		\begin{itemize}
+			\item Hazards:
+				\begin{enumerate}
+					\item Data exchange vulnerabilities with third-party services.
+                    \item Dependency on external service availability, which may lead to system downtime.
+                    \item Inadequate authentication mechanisms for external API calls.
+				\end{enumerate}
+			\item Mitigation:
+				\begin{enumerate}
+					\item Implement robust authentication and authorization protocols for all external API interactions.
+                    \item Regularly audit and monitor third-party services for security compliance and performance reliability.
+                    \item Establish fallback mechanisms to handle failures in external services, ensuring minimal disruption 
+                    to the Plutos system.
+                \end{enumerate}
+        \end{itemize}
+    \end{enumerate}
 \end{enumerate}
 
 
@@ -156,6 +218,11 @@ The project will be making the following critical assumptions:
     that do not contain a receipt). While it is anticipated that users may
     occasionally submit an invalid image, it is assumed to not be a significant
     concern.
+    \item The project assumes that users' cameras will function properly and produce 
+    images of adequate quality for analysis.
+    \item Issues such as low-quality images or invalid pictures may arise from the 
+    user's equipment (e.g., a malfunctioning camera) and are considered outside the 
+    project's scope.
 \end{enumerate}  
 
 
@@ -198,7 +265,7 @@ The project will be making the following critical assumptions:
     Non-human accounts exist on the server & 
     Increased traffic to the server, invalid inputs, performance deterioration & 
     A bot account logs into the application & 
-    Ensure account creation includes a captcha & 
+    Implement an automated captcha verification system during account creation to prevent bot accounts. & 
     FR3, SR1 & 
     H1-1 \\
     \cline{2-7}
@@ -219,7 +286,8 @@ The project will be making the following critical assumptions:
         \item The application is bugged out
     \end{enumerate} &
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
-        \item Prompt the user to allow camera access for the application
+        \item Integrate an automated prompt system that 
+        detects camera access issues and guides users through enabling access.
         \item The user should restart the application. 
     \end{enumerate} &
     FR7, NFR13, SR2 &
@@ -243,7 +311,7 @@ The project will be making the following critical assumptions:
         \item The image does not contain a receipt
     \end{enumerate} &
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
-        \item Prompt the user to retry due to poor photo quality and make sure that the input is actually a receipt
+        \item Incorporate an automated image quality assessment tool that provides real-time feedback and suggestions for improving photo quality before submission.
         \item Same as H3-1a
         \item Run image validation before passing the image through the ML model (e.g., check that there is a paper with text in the image)
     \end{enumerate} &
@@ -258,7 +326,7 @@ The project will be making the following critical assumptions:
         \item Receipt quality causes some letters to be difficult to recognize (e.g., 0 and O, T and I)
     \end{enumerate} &
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
-        \item Inform user that the OCR isn’t working after 3 failed attempts and ask user to manually input receipt expenses
+        \item Develop an automated fallback mechanism that suggests alternative input methods or manual entry if OCR fails after multiple attempts.
     \end{enumerate} &
     FR16, NFR4 &
     H3-2\\
@@ -307,7 +375,7 @@ The project will be making the following critical assumptions:
         \item Database server downtime
     \end{enumerate} &
     \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
-        \item Prompt the user to check their network connection
+        \item Implement an automated network status checker that alerts users to connectivity issues and suggests troubleshooting steps.
         \item Inform the user of the server error; system will try again at a later time (data will be stored locally and then backup up)
     \end{enumerate} &
     FR15, NFR13, SR5, SR8 &
@@ -327,6 +395,43 @@ The project will be making the following critical assumptions:
     \end{enumerate} &
     NFR5 &
     H5-1\\
+    \hline
+    Data Synchronization &
+    Network failure during data transmission &
+    \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
+        \item Loss of data integrity
+        \item Inconsistent user experience
+        \item Potential data loss
+    \end{enumerate} &
+    \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
+        \item Poor network connectivity
+        \item Server downtime
+    \end{enumerate} &
+    \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
+        \item Establish an automated data synchronization protocol that ensures data integrity and consistency during network disruptions.
+        \item Establish real-time data backup protocols to maintain data integrity.
+        \item Develop detailed protocols for data validation and synchronization after network recovery to ensure consistency.
+    \end{enumerate} &
+    NFR20 &
+    H6-1 \\
+    \hline
+    Image Processing Errors &
+    Repeated image rejection due to poor quality or prolonged processing times &
+    \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
+        \item User frustration leading to potential abandonment of the application
+        \item Decreased user satisfaction and retention
+    \end{enumerate} &
+    \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
+        \item Poor quality of input images (e.g., blurry, low lighting)
+        \item High processing times due to large image sizes or device limitations
+    \end{enumerate} &
+    \begin{enumerate}[label=(\alph*), leftmargin=0.5cm]
+        \item Integrate an automated error detection system that analyzes image quality and provides users with actionable tips to improve capture conditions.
+        \item Implement visual cues and real-time guidance to assist users in troubleshooting image quality issues.
+        \item Introduce a retry mechanism with tips for improving image capture (e.g., lighting, focus).
+    \end{enumerate} &
+    NFR16, NFR17 &
+    H7-1 \\
 \end{longtable}
     \newpage{}
 \end{landscape}

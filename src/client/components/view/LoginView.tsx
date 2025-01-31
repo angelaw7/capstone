@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
+import { supabase } from "../../supabase";
 
 interface LoginViewProps {
   navigation: NavigationProps;
@@ -20,6 +21,20 @@ const LoginView = ({ navigation }: LoginViewProps) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [credentialError, setCredentialError] = useState("");
+
+  const testClick = async () => {
+    // Can enable RLS once I set up auth table to connect as primary/foreign key constraint
+    const { data, error, status } = await supabase
+      .from("users")
+      .select("first_name, last_name");
+    //   .eq("userid", 2);
+
+    console.log(data, status);
+
+    if (error && status !== 406) {
+      console.error(error);
+    }
+  };
 
   // we can also do other login options like signing in with popup or redirect
   const loginWithEmailPassword = async () => {
@@ -96,7 +111,6 @@ const LoginView = ({ navigation }: LoginViewProps) => {
 
       <Button
         backgroundColor={DEFAULT_COLOURS.primary}
-        marginTop={20}
         paddingHorizontal="20%"
         onPress={loginWithEmailPassword}
       >
@@ -110,14 +124,12 @@ const LoginView = ({ navigation }: LoginViewProps) => {
       )}
 
       <Pressable
-        style={{ marginTop: 16 }}
+        style={{ marginTop: 15 }}
         onPress={() => {
           navigation.navigate("ResetPassword");
         }}
       >
-        <Text style={{ textDecorationLine: "underline", color: "red" }}>
-          Forgot your password?
-        </Text>
+        <Text style={styles.forgotPasswordText}>Forgot your password?</Text>
       </Pressable>
 
       <View style={styles.dividerContainer}>
@@ -131,7 +143,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
       <View style={styles.loginContainer}>
         <View style={styles.alternateSignInContainer}>
           <GoogleIcon size={30} style={{ marginTop: 15, marginRight: 15 }} />
-          <Button flex={1} marginTop={15}>
+          <Button flex={1} marginTop={15} onPress={testClick}>
             <Text fontWeight="bold">Continue with Google</Text>
           </Button>
         </View>
@@ -150,6 +162,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
           </Button>
         </View>
       </View>
+
       <View style={styles.dividerContainer}>
         <View style={styles.dividerLine} />
       </View>
@@ -159,7 +172,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
           navigation.navigate("Register");
         }}
       >
-        <Text style={{ textDecorationLine: "underline", color: "red" }}>
+        <Text style={styles.signUpText}>
           {"Don't have an account? Sign up!"}
         </Text>
       </Pressable>
@@ -169,18 +182,17 @@ const LoginView = ({ navigation }: LoginViewProps) => {
 
 const styles = StyleSheet.create({
   loginContainer: {
-    marginTop: 15,
+    marginTop: 10,
+    marginBottom: 15,
     display: "flex",
     backgroundColor: "#fff",
     alignItems: "center",
     alignSelf: "center",
     width: "90%",
-    marginLeft: 50,
   },
   dividerContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop: 25,
     width: "80%",
   },
   dividerLine: {
@@ -192,10 +204,20 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    width: "75%",
+    width: "80%",
     justifyContent: "flex-start",
-    marginTop: 5,
-    marginBottom: 5,
+  },
+  forgotPasswordText: {
+    textDecorationLine: "underline",
+    color: "red",
+    marginTop: 15,
+    marginBottom: 15,
+  },
+  signUpText: {
+    textDecorationLine: "underline",
+    color: "red",
+    marginTop: 15,
+    marginBottom: 15,
   },
 });
 
