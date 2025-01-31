@@ -186,7 +186,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingHorizontal: 32,
     rowGap: 20,
-    paddingTop: "15%",
   },
   header: {
     display: "flex",

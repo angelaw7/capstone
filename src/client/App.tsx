@@ -28,6 +28,8 @@ import HomePage from "./components/view/HomePage";
 import { useEffect, useState } from "react";
 import ProfilePage from "./components/view/ProfilePage";
 import BudgetBoxDetails from "./components/common/BudgetBoxDetails";
+import { NavigationProps } from "./types";
+import DefaultLayout from "./components/common/DefaultLayout";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -37,12 +39,48 @@ const ManageStack = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Manage" component={ManagePage} />
-      <Stack.Screen name="MyIncome" component={MyIncome} />
-      <Stack.Screen name="MyExpenses" component={MyExpenses} />
-      <Stack.Screen name="MyBudget" component={MyBudget} />
-      <Stack.Screen name="NewIncome" component={NewIncomePage} />
-      <Stack.Screen name="NewBudget" component={NewBudgetPage} />
-      <Stack.Screen name="NewExpense" component={AddExpenseView} />
+      <Stack.Screen name="MyIncome">
+        {({ navigation }) => (
+          <DefaultLayout>
+            <MyIncome navigation={navigation} />
+          </DefaultLayout>
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="MyExpenses">
+        {({ navigation }) => (
+          <DefaultLayout>
+            <MyExpenses navigation={navigation} />
+          </DefaultLayout>
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="MyBudget">
+        {({ navigation }) => (
+          <DefaultLayout>
+            <MyBudget navigation={navigation} />
+          </DefaultLayout>
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="NewIncome">
+        {({ navigation }) => (
+          <DefaultLayout>
+            <NewIncomePage navigation={navigation} />
+          </DefaultLayout>
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="NewBudget">
+        {({ navigation }) => (
+          <DefaultLayout>
+            <NewBudgetPage navigation={navigation} />
+          </DefaultLayout>
+        )}
+      </Stack.Screen>
+      <Stack.Screen name="NewExpense">
+        {({ navigation }) => (
+          <DefaultLayout>
+            <AddExpenseView navigation={navigation} />
+          </DefaultLayout>
+        )}
+      </Stack.Screen>
     </Stack.Navigator>
   );
 };

@@ -64,7 +64,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: 24,
     rowGap: 20,
-    paddingTop: "15%",
   },
   headerBox: {
     display: "flex",
