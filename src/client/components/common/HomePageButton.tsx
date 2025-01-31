@@ -28,7 +28,7 @@ const HomePageButton = ({
 
 const styles = StyleSheet.create({
   button: {
-    height: 130,
+    minHeight: 130,
     width: 150,
     borderRadius: 20,
     display: "flex",

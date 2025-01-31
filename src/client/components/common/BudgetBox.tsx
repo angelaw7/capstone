@@ -1,5 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Pressable,
+} from "react-native";
 import * as ProgressBar from "react-native-progress";
 import { MONTHS } from "../../constants";
 import { NavigationProps, RouteProps } from "../../types";
@@ -19,7 +25,7 @@ const BudgetBox = ({ navigation, route }: BudgetBoxProps) => {
   };
 
   return (
-    <TouchableOpacity onPress={navigateToBudgetDetails}>
+    <Pressable onPress={navigateToBudgetDetails}>
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>{`${currentMonth}'s Budget`}</Text>
@@ -53,7 +59,7 @@ const BudgetBox = ({ navigation, route }: BudgetBoxProps) => {
           <Text style={styles.arrow}>›</Text>
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
