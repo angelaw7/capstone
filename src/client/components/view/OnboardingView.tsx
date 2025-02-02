@@ -7,6 +7,7 @@ import { useState } from "react";
 import { NavigationProps, RouteProps } from "../../types";
 import { Dropdown } from "react-native-element-dropdown";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { occupationData } from "../../occupations";
 import ManageUserService from "../../services/managerUserService";
 
 interface OnboardingViewProps {
@@ -15,30 +16,6 @@ interface OnboardingViewProps {
 }
 
 const sexData = [{ sex: "Male" }, { sex: "Female" }];
-
-const occupationData = [
-  { occupation: "Software Engineer" },
-  { occupation: "Graphic Designer" },
-  { occupation: "Product Manager" },
-  { occupation: "Data Scientist" },
-  { occupation: "Teacher" },
-  { occupation: "Nurse" },
-  { occupation: "Accountant" },
-  { occupation: "Marketing Specialist" },
-  { occupation: "Web Developer" },
-  { occupation: "Sales Manager" },
-  { occupation: "Project Manager" },
-  { occupation: "HR Specialist" },
-  { occupation: "Construction Worker" },
-  { occupation: "Financial Analyst" },
-  { occupation: "Chef" },
-  { occupation: "Customer Support Representative" },
-  { occupation: "Photographer" },
-  { occupation: "Consultant" },
-  { occupation: "Lawyer" },
-  { occupation: "Civil Engineer" },
-  { occupation: "Unemployed AF" },
-];
 
 const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const [firstName, setFirstName] = useState("");
