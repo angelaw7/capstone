@@ -8,7 +8,6 @@ class IncomesController:
 
     @staticmethod
     def create_income(data):
-        # Add logic to create income (probs from the image or manual input)
         return IncomesDao.create_income(data.json)
     
     @staticmethod

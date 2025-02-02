@@ -8,7 +8,7 @@ def getIncomes(userEmail):
     return jsonify(IncomesController.get_all_incomes(userEmail))
 
 @incomes.route('/', methods=['POST', 'OPTIONS'])
-def addIncomes():
+def createIncome():
     new_income = IncomesController.create_income(request)
     return jsonify(new_income), 201
 

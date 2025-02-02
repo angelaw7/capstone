@@ -9,17 +9,10 @@ class IncomesDao:
 
     @staticmethod
     def create_income(data):
-        new_income = Income(title=data['title'], amount=data['amount'], recurring=data['recurring'], frequency=data['frequency'], email=data['email'], created_at=data['created_at'])
-        # TODO: add expense data to db and adjust return logic 
-        return {
-            "id": 3, 
-            "title": new_income.title, 
-            "amount": new_income.amount, 
-            "recurring": new_income.recurring, 
-            "frequency": new_income.frequency,
-            "email": new_income.email,
-            "created_at": new_income.created_at,
-        }
+        new_income = Income(title=data['title'], amount=data['amount'], recurring=data['recurring'], frequency=data['frequency'], email=data['email'])
+        # Income email must match a user email to match foreign key constraint
+        response = db.table("incomes").insert(new_income.to_dict()).execute()
+        return response.data
 
     @staticmethod
     def update_income(incomeId, updatedData):

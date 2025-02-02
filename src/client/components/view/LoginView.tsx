@@ -24,7 +24,13 @@ const LoginView = ({ navigation }: LoginViewProps) => {
 
   const testClick = async () => {
     try {
-      const incomes = await IncomeService.deleteIncome(1);
+      const incomes = await IncomeService.createIncome({
+        title: "hello",
+        amount: 10230,
+        recurring: false,
+        frequency: null,
+        email: "fondsonlu@test.com",
+      });
       console.log(incomes);
     } catch (e) {
       throw e;
