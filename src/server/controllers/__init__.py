@@ -1,2 +1,3 @@
 from server.controllers.expenses.expenses_controller import ExpensesController
 from server.controllers.incomes.incomes_controller import IncomesController
+from server.controllers.users.users_controller import UsersController

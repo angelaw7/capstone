@@ -8,6 +8,7 @@ import {
   validatePassword,
 } from "firebase/auth";
 import { NavigationProps } from "../../types";
+import { AuthErrorCode, errorMessages } from "../../enums";
 
 interface RegisterViewProps {
   navigation: NavigationProps;
@@ -22,6 +23,26 @@ const RegisterView = ({ navigation, route }: RegisterViewProps) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [registerErrorMessage, setRegisterErrorMessage] = useState("");
+  const [passwordCriteriaStatus, setPasswordCriteriaStatus] = useState({
+    minLength: false,
+    lowercase: false,
+    uppercase: false,
+    specialChar: false,
+  });
+
+  const validatePasswordCriteria = (password: string) => {
+    const minLength = password.length >= 8;
+    const lowercase = /[a-z]/.test(password);
+    const uppercase = /[A-Z]/.test(password);
+    const specialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    setPasswordCriteriaStatus({
+      minLength,
+      lowercase,
+      uppercase,
+      specialChar,
+    });
+  };
 
   const createAccountHandler = async () => {
     try {
@@ -31,59 +52,72 @@ const RegisterView = ({ navigation, route }: RegisterViewProps) => {
         Object.assign(error, { code: "password-mismatch" });
         throw error;
       }
+
       const status = await validatePassword(auth, password);
 
-      /* We can choose to conditionally render which of the password criteria we show with these validation checks,
-	  or we can just show all YOLO lol */
       const {
         containsLowercaseLetter,
         containsUppercaseLetter,
         containsNonAlphanumericCharacter,
         meetsMinPasswordLength,
-        // isValid,
       } = status;
 
-      const user = await createUserWithEmailAndPassword(auth, email, password);
-      setRegisterErrorMessage("");
-      navigation.reset({
-        index: 0,
-        /* Probably link a name attribute eventually */
-        routes: [
-          {
-            name: "Onboarding",
-            params: {
-              email: email,
+      if (
+        meetsMinPasswordLength &&
+        containsLowercaseLetter &&
+        containsUppercaseLetter &&
+        containsNonAlphanumericCharacter
+      ) {
+        const user = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password,
+        );
+        setRegisterErrorMessage("");
+        navigation.reset({
+          index: 0,
+          /* Probably link a name attribute eventually */
+          routes: [
+            {
+              name: "Onboarding",
+              params: {
+                email: email,
+              },
             },
-          },
-        ],
-      });
+          ],
+        });
+      } else {
+        throw new Error("Password doesn't meet the criteria.");
+      }
     } catch (error: any) {
       const errorCode = error.code;
       const errorMessage = error.message;
 
-      /* Enum-ify this type later along with the error codes for login auth */
       switch (errorCode) {
-        case "auth/invalid-email":
-          setRegisterErrorMessage("Email is invalid.");
+        case AuthErrorCode.InvalidEmail:
+          setRegisterErrorMessage(errorMessages[AuthErrorCode.InvalidEmail]);
           break;
-        case "auth/email-already-in-use":
+        case AuthErrorCode.EmailAlreadyInUse:
           setRegisterErrorMessage(
-            "There already exists an account with this email.",
+            errorMessages[AuthErrorCode.EmailAlreadyInUse],
           );
           break;
-        case "auth/missing-password":
-          setRegisterErrorMessage("Password is missing.");
+        case AuthErrorCode.MissingPassword:
+          setRegisterErrorMessage(errorMessages[AuthErrorCode.MissingPassword]);
           break;
-        case "auth/password-does-not-meet-requirements":
-          setRegisterErrorMessage("Password requirements not met.");
+        case AuthErrorCode.PasswordDoesNotMeetRequirements:
+          setRegisterErrorMessage(
+            errorMessages[AuthErrorCode.PasswordDoesNotMeetRequirements],
+          );
           break;
-        case "password-mismatch":
-          setRegisterErrorMessage(errorMessage);
+        case AuthErrorCode.PasswordMismatch:
+          setRegisterErrorMessage(
+            errorMessages[AuthErrorCode.PasswordMismatch](errorMessage),
+          );
           break;
+
         default:
-          setRegisterErrorMessage(
-            "An error occurred while signing up. Please try again later.",
-          );
+          setRegisterErrorMessage(errorMessages.default);
           break;
       }
     }
@@ -105,7 +139,10 @@ const RegisterView = ({ navigation, route }: RegisterViewProps) => {
           placeholder="Enter Password"
           style={commonStyles.input}
           value={password}
-          onChangeText={setPassword}
+          onChangeText={(text) => {
+            setPassword(text);
+            validatePasswordCriteria(text);
+          }}
           secureTextEntry={!showPassword}
           placeholderTextColor={DEFAULT_COLOURS.secondary}
         />
@@ -141,11 +178,37 @@ const RegisterView = ({ navigation, route }: RegisterViewProps) => {
       <View>
         <Text style={styles.passwordCriteriaText}>Password Criteria</Text>
         <View>
-          <Text style={styles.passwordCriteria}>Minimum 8 characters</Text>
-          <Text style={styles.passwordCriteria}>One lowercase character</Text>
-          <Text style={styles.passwordCriteria}>One uppercase character</Text>
-          <Text style={styles.passwordCriteria}>
-            One special Character [!,@,#,$,%,..]
+          <Text
+            style={{
+              ...styles.passwordCriteria,
+              color: passwordCriteriaStatus.minLength ? "green" : "red",
+            }}
+          >
+            Minimum 8 characters
+          </Text>
+          <Text
+            style={{
+              ...styles.passwordCriteria,
+              color: passwordCriteriaStatus.lowercase ? "green" : "red",
+            }}
+          >
+            One lowercase character
+          </Text>
+          <Text
+            style={{
+              ...styles.passwordCriteria,
+              color: passwordCriteriaStatus.uppercase ? "green" : "red",
+            }}
+          >
+            One uppercase character
+          </Text>
+          <Text
+            style={{
+              ...styles.passwordCriteria,
+              color: passwordCriteriaStatus.specialChar ? "green" : "red",
+            }}
+          >
+            One special character [!,@,#,$,%,..]
           </Text>
         </View>
       </View>
@@ -162,6 +225,7 @@ const RegisterView = ({ navigation, route }: RegisterViewProps) => {
           </Text>
         </Button>
       </View>
+
       <View style={styles.dividerContainer}>
         <View style={styles.dividerLine} />
       </View>
@@ -225,7 +289,6 @@ const styles = StyleSheet.create({
   },
   passwordCriteria: {
     margin: 0,
-    color: "red",
   },
   showPassword: {
     display: "flex",
