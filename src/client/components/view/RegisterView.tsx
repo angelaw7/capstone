@@ -232,7 +232,7 @@ const RegisterView = ({ navigation, route }: RegisterViewProps) => {
       <Pressable
         style={{ margin: 16 }}
         onPress={() => {
-          navigation.navigate("Login");
+          navigation.goBack();
         }}
       >
         <Text style={{ textDecorationLine: "underline", color: "green" }}>
