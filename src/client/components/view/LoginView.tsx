@@ -24,7 +24,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
 
   const testClick = async () => {
     try {
-      const incomes = await IncomeService.getUserIncomes("fondsonlu@test.com");
+      const incomes = await IncomeService.deleteIncome(1);
       console.log(incomes);
     } catch (e) {
       throw e;
