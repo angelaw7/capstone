@@ -48,10 +48,28 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const [dob, setDob] = useState(new Date());
   const [occupation, setOccupation] = useState("");
   const [keepLogin, setKeepLogin] = useState(false);
+  const [fieldsValid, setFieldsValid] = useState(true);
 
   const email = route.params?.email;
 
+  const validateSelections = () => {
+    const validFirstName = firstName.length >= 2;
+    const validLastName = lastName.length >= 2;
+    const validOccupation = occupation.length > 0; // also check that its in occupationData
+    const validSex =
+      sex.toLowerCase() === "female" || sex.toLowerCase() === "male";
+
+    return validFirstName && validLastName && validSex && validOccupation;
+  };
+
   const createAccountHandler = async () => {
+    if (!validateSelections()) {
+      setFieldsValid(false);
+      return;
+    }
+
+    setFieldsValid(true);
+
     try {
       const result = await ManageUserService.createUser({
         first_name: firstName,
@@ -190,6 +208,13 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
           Stay signed in on this device
         </Label>
       </View>
+      {!fieldsValid && (
+        <View style={styles.requiredFields}>
+          <Text style={{ color: "red" }}>
+            Make sure all required fields are filled.
+          </Text>
+        </View>
+      )}
 
       <Button
         backgroundColor={DEFAULT_COLOURS.primary}
@@ -279,6 +304,10 @@ const styles = StyleSheet.create({
     left: "15%",
     top: "30%",
     color: "red",
+  },
+  requiredFields: {
+    display: "flex",
+    alignItems: "center",
   },
 });
 
