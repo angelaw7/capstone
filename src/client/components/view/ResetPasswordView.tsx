@@ -43,7 +43,7 @@ const ResetPasswordView = ({ navigation }: ResetPasswordViewProps) => {
   };
 
   const returnHandler = () => {
-    navigation.navigate("Login");
+    navigation.goBack();
   };
 
   return (
