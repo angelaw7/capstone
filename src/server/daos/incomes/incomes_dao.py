@@ -1,35 +1,11 @@
 from server.models.incomes.income import Income
+from server.db import db
 
 class IncomesDao:
     @staticmethod
-    def get_all_user_incomes(userId):
-        # TODO: implement logic to get incomes for given users
-        return [
-            {
-                "id": 1,
-                "title": "Freelance Work",
-                "amount": 500.00,
-                "recurring": True,
-                "email": "user@example.com",
-                "created_at": "2025-01-30T14:45:00Z"
-			},
-            {
-				"id": 2,
-				"title": "Part-Time Job",
-				"amount": 1200.00,
-				"recurring": True,
-				"email": "user@example.com",
-				"created_at": "2025-01-25T09:30:00Z"
-			},
-            {
-				"id": 3,
-				"title": "Affiliate Marketing",
-				"amount": 150.00,
-				"recurring": True,
-				"email": "user@example.com",
-				"created_at": "2025-01-28T16:00:00Z"
-			}
-        ]
+    def get_all_user_incomes(email):
+        response = db.table("incomes").select("*").eq("email", email).execute()
+        return response.data
 
     @staticmethod
     def create_income(data):
