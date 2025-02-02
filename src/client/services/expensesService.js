@@ -15,9 +15,9 @@ const ExpensesService = {
     }
   },
 
-  getUserExpenses: async (userId) => {
+  getUserExpenses: async (userEmail) => {
     try {
-      const response = await api.get(`/expenses/${userId}`);
+      const response = await api.get(`/expenses/${userEmail}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching expenses:", error.message);

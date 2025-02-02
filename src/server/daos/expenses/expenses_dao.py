@@ -1,5 +1,6 @@
 from server.models.expenses.expense import Expense
 from server.imageProcessing import ImageProcessor
+from server.db import db
 
 import os
 
@@ -10,18 +11,28 @@ image_processor = ImageProcessor()
 
 class ExpensesDao:
     @staticmethod
-    def get_all_user_expenses(userId):
-        # TODO: implement logic to get expenses for given users
-        return [
-            {"id": 1, "name": "Milk", "date": "2024-11-01", "price": "$4.00", "category": "Groceries"},
-            {"id": 2, "name": "Cheese", "date": "2024-11-01", "price": "$2.00", "category": "Groceries"}
-        ]
+    def get_all_user_expenses(email):
+        expenses = db.table("expenses") \
+            .select("*") \
+            .eq("email", email) \
+            .order("transaction_date", desc=False) \
+            .execute()
+        return expenses.data
 
     @staticmethod
     def create_expense(data):
-        new_expense = Expense(name=data['name'], date=data['date'], price=data['price'], category=data['category'])
-        # TODO: add expense data to db and adjust return logic 
-        return {"id": 3, "name": new_expense.name, "price": new_expense.price, "date": new_expense.date, "category": new_expense.category}
+        expense_data = Expense(
+            raw_name=data['raw_name'], 
+            name=data['name'], 
+            transaction_date=data['transaction_date'], 
+            cost=data['cost'], 
+            category=data['category'],
+            email=data['email']
+        )
+        new_expense = db.table("expenses") \
+            .insert(expense_data.to_dict()) \
+            .execute()
+        return new_expense.data
 
     @staticmethod
     def process_receipt(file):

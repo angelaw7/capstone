@@ -7,27 +7,31 @@ import HorizontalRule from "../common/HorizontalRule";
 import EntrySource from "../common/EntrySource";
 import ExpensesService from "../../services/expensesService";
 import { NavigationProps } from "../../types";
+import { useUser } from "../../contexts/UserContext";
 
 interface MyExpensesProp {
   navigation: NavigationProps;
 }
 
 const MyExpenses = ({ navigation }: MyExpensesProp) => {
+  const { user, loading } = useUser();
+
   const returnHandler = () => {
     navigation.goBack();
   };
 
-  // useEffect(() => {
-  //   const getExpenses = async () => {
-  //     try {
-  //       const expenses = await ExpensesService.getUserExpenses(1);
-  //       console.log(expenses);
-  //     } catch (error) {
-  //       throw error;
-  //     }
-  //   };
-  //   getExpenses();
-  // }, []);
+  useEffect(() => {
+    const getExpenses = async () => {
+      try {
+        console.log(user);
+        // const expenses = await ExpensesService.getUserExpenses(1);
+        // console.log(expenses);
+      } catch (error) {
+        throw error;
+      }
+    };
+    getExpenses();
+  }, [user]);
 
   const addNewExpenseHandler = () => {
     navigation.navigate("NewExpense");
