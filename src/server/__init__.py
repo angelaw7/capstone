@@ -8,6 +8,7 @@ def create_app():
 
     from server.routes.expenses.expensesRoutes import expenses
     app.register_blueprint(expenses, url_prefix='/api/expenses')
+    
     from server.routes.incomes.incomesRoutes import incomes
     app.register_blueprint(incomes, url_prefix='/api/incomes')
 
