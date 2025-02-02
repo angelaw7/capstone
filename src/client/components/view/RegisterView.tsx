@@ -92,29 +92,51 @@ const RegisterView = ({ navigation, route }: RegisterViewProps) => {
       const errorCode = error.code;
       const errorMessage = error.message;
 
-      /* Enum-ify this type later along with the error codes for login auth */
+      enum AuthErrorCode {
+        InvalidEmail = "auth/invalid-email",
+        EmailAlreadyInUse = "auth/email-already-in-use",
+        MissingPassword = "auth/missing-password",
+        PasswordDoesNotMeetRequirements = "auth/password-does-not-meet-requirements",
+        PasswordMismatch = "password-mismatch",
+      }
+
+      const errorMessages = {
+        [AuthErrorCode.InvalidEmail]: "Email is invalid.",
+        [AuthErrorCode.EmailAlreadyInUse]:
+          "There already exists an account with this email.",
+        [AuthErrorCode.MissingPassword]: "Password is missing.",
+        [AuthErrorCode.PasswordDoesNotMeetRequirements]:
+          "Password requirements not met.",
+        [AuthErrorCode.PasswordMismatch]: (errorMessage: string) =>
+          errorMessage,
+        default: "An error occurred while signing up. Please try again later.",
+      };
+
       switch (errorCode) {
-        case "auth/invalid-email":
-          setRegisterErrorMessage("Email is invalid.");
+        case AuthErrorCode.InvalidEmail:
+          setRegisterErrorMessage(errorMessages[AuthErrorCode.InvalidEmail]);
           break;
-        case "auth/email-already-in-use":
+        case AuthErrorCode.EmailAlreadyInUse:
           setRegisterErrorMessage(
-            "There already exists an account with this email.",
+            errorMessages[AuthErrorCode.EmailAlreadyInUse],
           );
           break;
-        case "auth/missing-password":
-          setRegisterErrorMessage("Password is missing.");
+        case AuthErrorCode.MissingPassword:
+          setRegisterErrorMessage(errorMessages[AuthErrorCode.MissingPassword]);
           break;
-        case "auth/password-does-not-meet-requirements":
-          setRegisterErrorMessage("Password requirements not met.");
+        case AuthErrorCode.PasswordDoesNotMeetRequirements:
+          setRegisterErrorMessage(
+            errorMessages[AuthErrorCode.PasswordDoesNotMeetRequirements],
+          );
           break;
-        case "password-mismatch":
-          setRegisterErrorMessage(errorMessage);
+        case AuthErrorCode.PasswordMismatch:
+          setRegisterErrorMessage(
+            errorMessages[AuthErrorCode.PasswordMismatch](errorMessage),
+          );
           break;
+
         default:
-          setRegisterErrorMessage(
-            "An error occurred while signing up. Please try again later.",
-          );
+          setRegisterErrorMessage(errorMessages.default);
           break;
       }
     }
