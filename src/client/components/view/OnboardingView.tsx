@@ -7,6 +7,7 @@ import { useState } from "react";
 import { NavigationProps, RouteProps } from "../../types";
 import { Dropdown } from "react-native-element-dropdown";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import ManageUserService from "../../services/managerUserService";
 
 interface OnboardingViewProps {
   navigation: NavigationProps;
@@ -48,8 +49,25 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const [occupation, setOccupation] = useState("");
   const [keepLogin, setKeepLogin] = useState(false);
 
-  const createAccountHandler = () => {
+  const email = route.params?.email;
+
+  const createAccountHandler = async () => {
     // TODO: add user to db
+
+    try {
+      const result = await ManageUserService.createUser({
+        first_name: firstName,
+        middle_name: middleName,
+        last_name: lastName,
+        dob: dob,
+        sex: sex.toLowerCase(),
+        email: email,
+        occupation: occupation,
+      });
+      console.log("New user created", result);
+    } catch (e) {
+      console.error(e.message);
+    }
 
     // Redirect user to Home page if user account is successful, else show error or smth idk
     navigation.reset({
