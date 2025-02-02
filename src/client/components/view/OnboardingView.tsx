@@ -52,8 +52,6 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const email = route.params?.email;
 
   const createAccountHandler = async () => {
-    // TODO: add user to db
-
     try {
       const result = await ManageUserService.createUser({
         first_name: firstName,
@@ -64,23 +62,22 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
         email: email,
         occupation: occupation,
       });
-      console.log("New user created", result);
-    } catch (e) {
+
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: "Main",
+            params: {
+              name: `${firstName} ${lastName}`,
+              initialTab: "Manage",
+            },
+          },
+        ],
+      });
+    } catch (e: any) {
       console.error(e.message);
     }
-
-    // Redirect user to Home page if user account is successful, else show error or smth idk
-    navigation.reset({
-      index: 0,
-      routes: [
-        {
-          name: "Manage",
-          params: {
-            name: `${firstName} ${lastName}`,
-          },
-        },
-      ],
-    });
   };
 
   return (
