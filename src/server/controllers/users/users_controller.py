@@ -2,8 +2,8 @@ from server.daos.users.users_dao import UsersDao
 
 class UsersController:
     @staticmethod
-    def get_user(email):
-        return UsersDao.get_user(email)
+    def get_user_by_email(email):
+        return UsersDao.get_user_by_email(email)
 
     @staticmethod
     def create_user(data):

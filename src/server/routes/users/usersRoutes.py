@@ -5,7 +5,7 @@ users = Blueprint('users', __name__)
 
 @users.route('/<email>', methods=['GET'])
 def getUser(email):
-    return jsonify(UsersController.get_user(email))
+    return jsonify(UsersController.get_user_by_email(email))
 
 @users.route('/', methods=['POST', 'OPTIONS'])
 def createUser():

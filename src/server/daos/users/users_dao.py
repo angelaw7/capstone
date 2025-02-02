@@ -3,7 +3,7 @@ from server.db import db
 
 class UsersDao:
     @staticmethod
-    def get_user(email):
+    def get_user_by_email(email):
         response = db.table("users").select("*").eq("email", email).execute()
         return response.data
 
