@@ -16,25 +16,8 @@ class IncomesDao:
 
     @staticmethod
     def update_income(incomeId, updatedData):
-        # TODO: implement logic to update income for given user
-        return {
-            "oldIncome": {
-                "id": 1,
-                "title": "Freelance Work",
-                "amount": 500.00,
-                "recurring": True,
-                "email": "user@example.com",
-                "created_at": "2025-01-30T14:45:00Z"
-            },
-            "newIncome" :  {
-                "id": 1,
-                "title": "Freelance Work",
-                "amount": 750.00,
-                "recurring": True,
-                "email": "user@example.com",
-                "created_at": "2025-02-01T14:45:00Z"
-            },
-        }
+        response = db.table("incomes").update(updatedData).eq("id", incomeId).execute()
+        return response.data
     
     @staticmethod
     def delete_income(incomeId):

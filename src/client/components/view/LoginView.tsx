@@ -24,12 +24,12 @@ const LoginView = ({ navigation }: LoginViewProps) => {
 
   const testClick = async () => {
     try {
-      const incomes = await IncomeService.createIncome({
-        title: "hello",
-        amount: 10230,
+      const incomes = await IncomeService.updateIncome(12, {
+        title: "testing",
+        amount: 1,
         recurring: false,
         frequency: null,
-        email: "fondsonlu@test.com",
+        email: "ericchen@test.com",
       });
       console.log(incomes);
     } catch (e) {

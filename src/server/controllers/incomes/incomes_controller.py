@@ -12,7 +12,7 @@ class IncomesController:
     
     @staticmethod
     def update_income(incomeId, updatedData):
-        return IncomesDao.update_income(incomeId, updatedData)
+        return IncomesDao.update_income(incomeId, updatedData.json)
     
     @staticmethod
     def delete_income(incomeId):

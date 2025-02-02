@@ -13,8 +13,8 @@ def createIncome():
     return jsonify(new_income), 201
 
 @incomes.route('/<incomeId>', methods=['PUT'])
-def updateIncome(incomeId, updatedData):
-    return jsonify(IncomesController.update_income(incomeId, updatedData))
+def updateIncome(incomeId):
+    return jsonify(IncomesController.update_income(incomeId, request))
 
 @incomes.route('/<incomeId>', methods=['DELETE'])
 def deleteIncome(incomeId):
