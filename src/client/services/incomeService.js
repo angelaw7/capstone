@@ -15,9 +15,9 @@ const IncomeService = {
     }
   },
 
-  getUserIncomes: async (userId) => {
+  getUserIncomes: async (userEmail) => {
     try {
-      const response = await api.get(`/incomes/${userId}`);
+      const response = await api.get(`/incomes/${userEmail}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching income:", error.message);
