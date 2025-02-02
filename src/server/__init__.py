@@ -11,5 +11,8 @@ def create_app():
     
     from server.routes.incomes.incomesRoutes import incomes
     app.register_blueprint(incomes, url_prefix='/api/incomes')
+    
+    from server.routes.users.usersRoutes import users
+    app.register_blueprint(users, url_prefix='/api/users')
 
     return app
