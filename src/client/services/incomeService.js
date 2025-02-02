@@ -3,11 +3,7 @@ import api from "../api/api";
 const IncomeService = {
   createIncome: async (incomeData) => {
     try {
-      const response = await api.post("/incomes/", incomeData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await api.post("/incomes/", incomeData);
       return response.data;
     } catch (error) {
       console.error("Error creating income:", error.message);
@@ -15,9 +11,9 @@ const IncomeService = {
     }
   },
 
-  getUserIncomes: async (userId) => {
+  getUserIncomes: async (userEmail) => {
     try {
-      const response = await api.get(`/incomes/${userId}`);
+      const response = await api.get(`/incomes/${userEmail}`);
       return response.data;
     } catch (error) {
       console.error("Error fetching income:", error.message);

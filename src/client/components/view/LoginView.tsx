@@ -11,7 +11,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
-import { supabase } from "../../supabase";
+import IncomeService from "../../services/incomeService";
 
 interface LoginViewProps {
   navigation: NavigationProps;
@@ -23,16 +23,17 @@ const LoginView = ({ navigation }: LoginViewProps) => {
   const [credentialError, setCredentialError] = useState("");
 
   const testClick = async () => {
-    // Can enable RLS once I set up auth table to connect as primary/foreign key constraint
-    const { data, error, status } = await supabase
-      .from("users")
-      .select("first_name, last_name");
-    //   .eq("userid", 2);
-
-    console.log(data, status);
-
-    if (error && status !== 406) {
-      console.error(error);
+    try {
+      const incomes = await IncomeService.updateIncome(12, {
+        title: "testing",
+        amount: 1,
+        recurring: false,
+        frequency: null,
+        email: "ericchen@test.com",
+      });
+      console.log(incomes);
+    } catch (e) {
+      throw e;
     }
   };
 
