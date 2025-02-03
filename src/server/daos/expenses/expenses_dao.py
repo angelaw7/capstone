@@ -13,14 +13,13 @@ image_processor = ImageProcessor()
 
 class ExpensesDao:
     @staticmethod
-    def get_all_user_expenses(userId):
+    def get_all_user_expenses(email):
         try:
             expenses = db.table("expenses") \
                 .select("*, users(*)") \
-                .eq("users.userid", userId) \
+                .eq("email", email) \
                 .order("transaction_date", desc=True) \
                 .execute()
-
 
             if "error" in expenses and expenses["error"]:
                 raise Exception(f"Supabase Query Error: {expenses['error']}")

@@ -23,7 +23,7 @@ const MyExpenses = ({ navigation }: MyExpensesProp) => {
   useEffect(() => {
     const getExpenses = async () => {
       try {
-        const expenses = await ExpensesService.getUserExpenses(user?.userid);
+        const expenses = await ExpensesService.getUserExpenses(user?.email);
         setExpenses(expenses);
       } catch (error) {
         throw error;
