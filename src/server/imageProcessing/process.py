@@ -111,7 +111,7 @@ class ImageProcessor:
         image = Image.open(filepath)
 
         # process image through OCR
-        text_arr = self._extract_text_from_image(image=image, show_image=False)
+        text_arr = self._extract_text_from_image(image=image)
         items, subtotal, calculated_total = self._process_items_list(text_arr)
         data = self._jsonify_data(items, filepath)
 
