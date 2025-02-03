@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import CameraIcon from "../../assets/icons/CameraIcon";
 import PhotoLibraryIcon from "../../assets/icons/PhotoLibraryIcon";
@@ -38,6 +39,7 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
   const [date, setDate] = useState("");
   const [storeName, setStoreName] = useState("");
   const [image, setImage] = useState<string | undefined>();
+  const [loading, setLoading] = useState(false);
 
   const { user } = useUser();
 
@@ -89,6 +91,7 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
       const fileType = imageResult.type || "image/jpeg";
       const fileName = fileUri.split("/").pop() || "uploaded_image.jpg";
       setImage(fileUri);
+      setLoading(true);
 
       try {
         const res = await fetch(fileUri);
@@ -123,6 +126,7 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
       } catch (error) {
         console.error("Error converting image to file:", error);
       }
+      setLoading(false);
     }
   };
 
@@ -140,7 +144,14 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
 
       <View style={styles.imageUploadContainer}>
         <View style={styles.imagePlaceholder}>
-          <Text>Your image here</Text>
+          {image ? (
+            <Image
+              source={{ uri: image }}
+              style={{ width: 150, height: 150 }}
+            />
+          ) : (
+            <Text>Your image here</Text>
+          )}
         </View>
         <View style={styles.imageOptions}>
           <TouchableOpacity style={styles.imageOptionButton}>
@@ -189,6 +200,7 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
           <DisplayExpenseItems
             items={items}
             onExpenseDelete={handleExpenseDelete}
+            loading={loading}
           />
         </View>
       </View>
