@@ -9,6 +9,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { occupationData } from "../../occupations";
 import ManageUserService from "../../services/managerUserService";
+import { useUser } from "../../contexts/UserContext";
 
 interface OnboardingViewProps {
   navigation: NavigationProps;
@@ -26,6 +27,8 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const [occupation, setOccupation] = useState("");
   const [keepLogin, setKeepLogin] = useState(false);
   const [fieldsValid, setFieldsValid] = useState(true);
+
+  const { setUser } = useUser();
 
   const email = route.params?.email;
 
@@ -57,6 +60,8 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
         email: email,
         occupation: occupation,
       });
+
+      setUser(result[0]);
 
       navigation.reset({
         index: 0,
