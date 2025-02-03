@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-
+import { useFocusEffect } from "@react-navigation/native";
 import BackArrow from "../../assets/icons/BackArrow";
 import AddIcon from "../../assets/icons/AddIcon";
 import HorizontalRule from "../common/HorizontalRule";
 import EntrySource from "../common/EntrySource";
 import { NavigationProps } from "../../types";
+import IncomeService from "../../services/incomeService";
 
 interface MyIncomeProps {
   navigation: NavigationProps;
 }
 
+interface Income {
+  id: number;
+  amount: number;
+  created_at: string;
+  email: string;
+  frequency: string | null;
+  recurring: boolean;
+  title: string;
+}
+
 const MyIncome = ({ navigation }: MyIncomeProps) => {
+  const [incomes, setIncomes] = useState<Income[]>([]);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchIncomes = async () => {
+        try {
+          const data = await IncomeService.getUserIncomes("nosdnof@gmail.com");
+          setIncomes(data);
+        } catch (error) {
+          console.error("Failed to fetch incomes:", error);
+        }
+      };
+      fetchIncomes();
+    }, []),
+  );
+
   const returnHandler = () => {
     navigation.goBack();
   };
@@ -36,26 +63,33 @@ const MyIncome = ({ navigation }: MyIncomeProps) => {
         <View style={styles.recurring}>
           <Text style={styles.sectionTitle}>Recurring</Text>
           <HorizontalRule />
-
-          <EntrySource description="$40 - Biweekly" additionalInfo="Tutoring" />
-          <HorizontalRule />
+          {incomes
+            .filter((income) => income.recurring)
+            .map((income) => (
+              <React.Fragment key={income.id}>
+                <EntrySource
+                  description={`$${income.amount} - ${income.frequency}`}
+                  additionalInfo={income.title}
+                />
+                <HorizontalRule />
+              </React.Fragment>
+            ))}
         </View>
 
         <View>
           <Text style={styles.sectionTitle}>History</Text>
           <HorizontalRule />
-
-          <EntrySource
-            description="$40 (recurring)"
-            additionalInfo={"Tutoring \nNov 11, 2024"}
-          />
-          <HorizontalRule />
-
-          <EntrySource
-            description="$100"
-            additionalInfo={"Raffle \nNov 6, 2024"}
-          />
-          <HorizontalRule />
+          {incomes
+            .filter((income) => !income.recurring)
+            .map((income) => (
+              <React.Fragment key={income.id}>
+                <EntrySource
+                  description={`$${income.amount}${income.recurring ? " (recurring)" : ""}`}
+                  additionalInfo={`${income.title} \n${new Date(income.created_at).toLocaleDateString()}`}
+                />
+                <HorizontalRule />
+              </React.Fragment>
+            ))}
         </View>
       </View>
     </View>
