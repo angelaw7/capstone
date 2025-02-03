@@ -6,6 +6,7 @@ import BackArrow from "../../assets/icons/BackArrow";
 import { Dropdown } from "react-native-element-dropdown";
 import { NavigationProps } from "../../types";
 import IncomeService from "../../services/incomeService";
+import { useUser } from "../../contexts/UserContext";
 
 const dropdownData = [
   { label: "Daily", value: 1 },
@@ -29,36 +30,44 @@ type DropdownItem = {
 const NewIncomePage = ({ navigation }: NewIncomePageProps) => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
-  const [checked, setChecked] = React.useState("once");
+  const [checked, setChecked] = React.useState<"once" | "periodically">("once");
   const [dropdownValue, setDropdownValue] = useState(1);
+  const { user } = useUser();
 
   const dropdownChangeHandler = (item: DropdownItem) => {
     setDropdownValue(item.value);
+  };
+
+  const grabLabelFromDropdownValue = (num: number) => {
+    const entry = dropdownData.find((entry) => entry.value === num);
+    return entry ? entry.label.toLowerCase() : null;
   };
 
   const returnHandler = () => {
     navigation.goBack();
   };
 
-  const addIncomeHandler = async () => {
-    // const incomeData = {
-    //   title,
-    //   amount: parseFloat(amount),
-    //   frequency: checked === "periodically" ? dropdownValue : "daily",
-    //   recurring: false, //temp
-    //   email: "nosdnof@gmail.com", //temp
-    // };
+  const validationCheck = () => {
+    const validAmount = Number(amount) > 0;
+    const validTitle = title.length > 0;
+    return validAmount && validTitle;
+  };
 
-    const demoData = {
-      title: "test",
-      amount: 2000,
-      frequency: "bi-weekly",
-      recurring: false, //temp
-      email: "nosdnof@gmail.com", //temp
+  const addIncomeHandler = async () => {
+    // probably put like an html indicator or smth idk
+    if (!validationCheck()) return;
+
+    const incomeData = {
+      title,
+      amount: Number(amount),
+      frequency:
+        checked === "once" ? null : grabLabelFromDropdownValue(dropdownValue),
+      recurring: checked === "once" ? false : true,
+      email: user!.email,
     };
 
     try {
-      await IncomeService.createIncome(demoData);
+      await IncomeService.createIncome(incomeData);
       returnHandler();
     } catch (error) {
       console.error("Error updating income:", error);

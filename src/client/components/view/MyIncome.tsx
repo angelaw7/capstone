@@ -17,7 +17,7 @@ interface Income {
   amount: number;
   created_at: string;
   email: string;
-  frequency: string;
+  frequency: string | null;
   recurring: boolean;
   title: string;
 }
@@ -79,15 +79,17 @@ const MyIncome = ({ navigation }: MyIncomeProps) => {
         <View>
           <Text style={styles.sectionTitle}>History</Text>
           <HorizontalRule />
-          {incomes.map((income) => (
-            <React.Fragment key={income.id}>
-              <EntrySource
-                description={`$${income.amount}${income.recurring ? " (recurring)" : ""}`}
-                additionalInfo={`${income.title} \n${new Date(income.created_at).toLocaleDateString()}`}
-              />
-              <HorizontalRule />
-            </React.Fragment>
-          ))}
+          {incomes
+            .filter((income) => !income.recurring)
+            .map((income) => (
+              <React.Fragment key={income.id}>
+                <EntrySource
+                  description={`$${income.amount}${income.recurring ? " (recurring)" : ""}`}
+                  additionalInfo={`${income.title} \n${new Date(income.created_at).toLocaleDateString()}`}
+                />
+                <HorizontalRule />
+              </React.Fragment>
+            ))}
         </View>
       </View>
     </View>
