@@ -15,6 +15,8 @@ import DisplayExpenseItems from "./DisplayExpenseItem";
 import * as ImagePicker from "expo-image-picker";
 import ExpensesService from "../../services/expensesService";
 import { NavigationProps } from "../../types";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { useUser } from "../../contexts/UserContext";
 
 interface AddExpenseViewProps {
   navigation: NavigationProps;
@@ -35,11 +37,16 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
   const [storeName, setStoreName] = useState("");
   const [image, setImage] = useState<string | undefined>();
 
+  const { user } = useUser();
+
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
 
   const handleSaveItem = (item: Item) => {
-    setItems((prevItems) => [...prevItems, item]);
+    setItems((prevItems) => [
+      ...prevItems,
+      { ...item, transaction_date: date, email: user?.email },
+    ]);
   };
 
   const handleDateChange = (text: string) => {
@@ -54,8 +61,9 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
 
-  const saveExpenseHandler = () => {
+  const saveExpenseHandler = async () => {
     // To-do
+    await ExpensesService.createExpense(items);
     navigation.navigate("MyExpenses");
   };
 

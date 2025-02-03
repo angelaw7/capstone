@@ -8,13 +8,16 @@ class ExpensesController:
 
     @staticmethod
     def create_expense(data):
-        if data.files:
+        if 'files' in data:
             if 'receipt' not in data.files:
                 return jsonify({"error": "No receipt file provided"}), 400
             
             return ExpensesDao.process_receipt(data.files['receipt'])
         
-        return ExpensesDao.create_expense(data.json)
+        if type(data) is list:
+            return ExpensesDao.bulk_create_expenses(data) 
+        else:
+            return ExpensesDao.create_expense(data)
     
 
     @staticmethod

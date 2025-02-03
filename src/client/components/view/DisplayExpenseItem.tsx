@@ -37,7 +37,6 @@ const DisplayExpenseItems = ({
             </TouchableOpacity>
           </View>
           <Text style={styles.itemText}>Name: {item.name}</Text>
-          <Text style={styles.itemText}>Raw Name: {item.rawName}</Text>
           <Text style={styles.itemText}>Cost: ${item.cost}</Text>
         </View>
       )}

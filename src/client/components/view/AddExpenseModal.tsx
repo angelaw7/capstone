@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal, Text, TextInput, StyleSheet, View } from "react-native";
-import { Picker } from "@react-native-picker/picker";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
+import { Dropdown } from "react-native-element-dropdown";
 
 interface AddExpenseModalProps {
   visible: boolean;
@@ -25,15 +25,16 @@ const AddExpenseModal = ({
     const newItem = {
       id: id,
       category,
-      rawName,
+      raw_name: rawName,
       name,
-      cost,
+      cost: Number(cost),
     };
     onSave(newItem);
     onClose();
     setRawName("");
     setName("");
     setCost("");
+    setCategory("Groceries");
   };
 
   return (
@@ -42,29 +43,43 @@ const AddExpenseModal = ({
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>Add Item</Text>
 
-          <Text>Category:</Text>
-          <Picker
-            selectedValue={category}
-            onValueChange={(itemValue) => setCategory(itemValue)}
-          >
-            <Picker.Item label="Groceries" value="Groceries" />
-            <Picker.Item label="Cleaning" value="Cleaning" />
-            <Picker.Item label="Clothes" value="Clothes" />
-            <Picker.Item label="Misc" value="Misc" />
-          </Picker>
+          <Text style={styles.label}>Category:</Text>
+          <Dropdown
+            data={[
+              { label: "Groceries", value: "Groceries" },
+              { label: "Entertainment", value: "Entertainment" },
+              { label: "Electronics", value: "Electronics" },
+              { label: "Miscellaneous", value: "Miscellaneous" },
+              { label: "Home", value: "Home" },
+              { label: "Other", value: "Other" },
+            ]}
+            search
+            searchPlaceholder={"Groceries"}
+            labelField="label"
+            valueField="value"
+            value={category}
+            onChange={(item) => setCategory(item.value)}
+            style={{ minWidth: "35%", marginBottom: "5%" }}
+          />
 
-          <Text>Raw Name:</Text>
+          <Text style={styles.label}>Raw Name:</Text>
           <TextInput
             style={styles.input}
             value={rawName}
             onChangeText={setRawName}
           />
 
-          <Text>Name:</Text>
+          <Text style={styles.label}>Name:</Text>
           <TextInput style={styles.input} value={name} onChangeText={setName} />
 
-          <Text>Cost:</Text>
-          <TextInput style={styles.input} value={cost} onChangeText={setCost} />
+          <Text style={styles.label}>Cost:</Text>
+          <TextInput
+            keyboardType="numeric"
+            maxLength={10}
+            style={styles.input}
+            value={cost}
+            onChangeText={setCost}
+          />
 
           <View style={styles.modalButtons}>
             <Button title="Cancel" onPress={onClose} />
@@ -93,6 +108,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     marginBottom: 10,
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 4,
+    fontWeight: 500,
   },
   input: {
     height: 40,

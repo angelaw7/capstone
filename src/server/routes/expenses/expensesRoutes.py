@@ -7,11 +7,11 @@ expenses = Blueprint('expenses', __name__)
 def getExpenses(userId):
     return jsonify(ExpensesController.get_all_expenses(userId))
 
-
-@expenses.route('/', methods=['POST', 'OPTIONS'])
+@expenses.route('/', methods=['POST'])
 def addExpenses():
-    new_expense = ExpensesController.create_expense(request)
-    return jsonify(new_expense), 201
+    data = request.get_json()
+    new_expense = ExpensesController.create_expense(data)
+    return new_expense, 201
 
 @expenses.route('/<expenseId>', methods=['PUT', 'OPTIONS'])
 def updateExpense(expenseId):
