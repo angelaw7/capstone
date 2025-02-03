@@ -107,9 +107,10 @@ class ImageProcessor:
         for i, row in categorized_data.iterrows():
             expense = Expense(
                 name=row["name"],
-                date=None,
-                price=row["price"],
-                category=row["category"]
+                transaction_date=None,
+                cost=row["price"],
+                category=row["category"],
+                email=None,
             )
             receipt.add_item(expense)
         

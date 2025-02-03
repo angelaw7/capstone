@@ -1,15 +1,16 @@
 class Expense:
-    def __init__(self, name, date, price,category):
+    def __init__(self, name, cost, category, transaction_date, email):
         self.name = name
-        self.date = date
-        self.price = price
+        self.transaction_date = transaction_date
+        self.cost = cost
         self.category = category
+        self.email = email
 
     def to_dict(self):
-        return {
+        return  {
             "name": self.name,
-            "date": self.date,
-            "price": self.price,
-            "category": self.category
+            "cost": self.cost,
+            "category": self.category,
+            "transaction_date": self.transaction_date,
+            "email": self.email
         }
-    

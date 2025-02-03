@@ -11,5 +11,4 @@ SUPABASE_KEY = os.environ.get("supabaseAnonKey")
 if not SUPABASE_URL or not SUPABASE_KEY:
     raise ValueError("Supabase URL or Key not set in the environment variables")
 
-print(os.environ.get("SSL_CERT_FILE"))
 db = create_client(SUPABASE_URL, SUPABASE_KEY)

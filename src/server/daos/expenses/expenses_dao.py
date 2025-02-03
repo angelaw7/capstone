@@ -1,5 +1,6 @@
 from server.models.expenses.expense import Expense
 from server.imageProcessing import ImageProcessor
+from server.db import db
 
 import os
 import json
@@ -12,17 +13,60 @@ image_processor = ImageProcessor()
 class ExpensesDao:
     @staticmethod
     def get_all_user_expenses(userId):
-        # TODO: implement logic to get expenses for given users
-        return [
-            {"id": 1, "name": "Milk", "date": "2024-11-01", "price": "$4.00", "category": "Groceries"},
-            {"id": 2, "name": "Cheese", "date": "2024-11-01", "price": "$2.00", "category": "Groceries"}
-        ]
+        try:
+            expenses = db.table("expenses") \
+                .select("*, users(*)") \
+                .eq("users.userid", userId) \
+                .order("transaction_date", desc=True) \
+                .execute()
+
+
+            if "error" in expenses and expenses["error"]:
+                raise Exception(f"Supabase Query Error: {expenses['error']}")
+
+        except Exception as e:
+            print(f"Unexpected Error: {e}")
+        
+        return expenses.data
 
     @staticmethod
     def create_expense(data):
-        new_expense = Expense(name=data['name'], date=data['date'], price=data['price'], category=data['category'])
-        # TODO: add expense data to db and adjust return logic 
-        return {"id": 3, "name": new_expense.name, "price": new_expense.price, "date": new_expense.date, "category": new_expense.category}
+        expense_data = Expense(
+            raw_name=data['raw_name'], 
+            name=data['name'], 
+            transaction_date=data['transaction_date'], 
+            cost=data['cost'], 
+            category=data['category'],
+            email=data['email']
+        )
+        new_expense = db.table("expenses") \
+            .insert(expense_data.to_dict()) \
+            .execute()
+        return new_expense.data
+    
+    @staticmethod
+    def update_expense(data, expense_id):
+        expense_data = Expense(
+            raw_name=data['raw_name'], 
+            name=data['name'], 
+            transaction_date=data['transaction_date'], 
+            cost=data['cost'], 
+            category=data['category'],
+            email=data['email']
+        )
+        updated_expense = db.table("expenses") \
+            .update(expense_data.to_dict()) \
+            .eq("id", expense_id) \
+            .execute()
+        return updated_expense.data
+    
+    @staticmethod
+    def delete_expense(expense_id):
+        db.table("expenses") \
+            .delete() \
+            .eq("id", expense_id) \
+            .execute()
+        return expense_id
 
     @staticmethod
     def process_receipt(file):

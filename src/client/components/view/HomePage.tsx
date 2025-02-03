@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text } from "tamagui";
 import { Dimensions, StyleSheet } from "react-native";
 
 import BudgetBox from "../common/BudgetBox";
 import SpendingDetails from "../common/SpendingDetails";
 import { NavigationProps, RouteProps } from "../../types";
+import { nameCase } from "../../utils";
+import { useUser } from "../../contexts/UserContext";
 
 type HomePageProps = {
   navigation: NavigationProps;
@@ -12,15 +14,23 @@ type HomePageProps = {
 };
 
 const HomePage = ({ navigation, route }: HomePageProps) => {
-  /* TODO: Should store user name in state somewhere especially if we navigate back
-  from the expense/income/budget page lool */
-  // const username = route.params?.name;
+  const { user } = useUser();
+  const [fullName, setFullName] = useState("");
+
+  useEffect(() => {
+    const fName = user!.first_name;
+    const mName = user!.middle_name;
+    const lName = user!.last_name;
+
+    const fullName = nameCase(`${fName}${mName ? ` ${mName} ` : " "}${lName}`);
+
+    setFullName(fullName);
+  }, []);
 
   return (
     <View alignItems="center" style={styles.background}>
       <View style={styles.headerContainer}>
-        {/* TODO: adjust user to be actual username */}
-        <Text style={styles.title}>Welcome Back "user"</Text>
+        <Text style={styles.title}>Welcome Back {fullName}</Text>
       </View>
       <View style={styles.homepage}>
         <BudgetBox navigation={navigation} route={route} />

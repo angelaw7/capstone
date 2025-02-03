@@ -5,13 +5,12 @@ import { Button, Text } from "tamagui";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
 import MicrosoftIcon from "../../assets/icons/MicrosoftIcon";
 import AppleIcon from "../../assets/icons/AppleIcon";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
 import IncomeService from "../../services/incomeService";
+import { useUser } from "../../contexts/UserContext";
+import ManageUserService from "../../services/managerUserService";
 
 interface LoginViewProps {
   navigation: NavigationProps;
@@ -21,6 +20,8 @@ const LoginView = ({ navigation }: LoginViewProps) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [credentialError, setCredentialError] = useState("");
+
+  const { setUser } = useUser();
 
   const testClick = async () => {
     try {
@@ -40,7 +41,15 @@ const LoginView = ({ navigation }: LoginViewProps) => {
   // we can also do other login options like signing in with popup or redirect
   const loginWithEmailPassword = async () => {
     try {
-      const user = await signInWithEmailAndPassword(auth, username, password);
+      const fireBaseUser = await signInWithEmailAndPassword(
+        auth,
+        username,
+        password,
+      );
+      const user = await ManageUserService.getUserByEmail(
+        fireBaseUser.user.email,
+      );
+      setUser(user[0]);
       navigation.reset({
         index: 0,
         routes: [{ name: "Main", params: { initialTab: "Home" } }],
