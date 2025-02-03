@@ -1,9 +1,10 @@
-from PIL import Image, ImageEnhance, ImageFilter
-import pandas as pd
-import pytesseract
-import numpy as np
 from dotenv import load_dotenv
 import os
+
+import cv2
+import numpy as np
+import pandas as pd
+import pytesseract
 
 from server.imageProcessing.categorization import Categorizer
 import server.imageProcessing.utils as utils
@@ -25,18 +26,15 @@ class ImageProcessor:
     def __init__(self):
         self.categorizer = Categorizer()
 
-    def _preprocess_image(self, image: Image.Image) -> Image.Image:
-        image = image.convert("L")  # convert to greyscale
-        enhancer = ImageEnhance.Contrast(image)
-        image = enhancer.enhance(2)
+    def _preprocess_image(self, image: np.array) -> np.array:
+        gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        denoised = cv2.fastNlMeansDenoising(gray, None, 30, 7, 21)
+        threshold_img = cv2.adaptiveThreshold(denoised, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+        return threshold_img
 
-        image = image.filter(ImageFilter.MedianFilter())
-        return image
-
-    def _extract_text_from_image(self, image: Image.Image) -> list[str]:
-        image_arr = np.array(image)
-
-        text = pytesseract.image_to_string(image_arr, config="--psm 4")
+    def _extract_text_from_image(self, image: np.array) -> list[str]:
+        text = pytesseract.image_to_string(image, config="--psm 4")
+        print(text)
 
         # TODO(ang): helpful for debugging for fixing model but keep commented for commits
         # data = pytesseract.image_to_data(
@@ -108,7 +106,8 @@ class ImageProcessor:
         return result
 
     def process_image(self, filepath: str):
-        image = Image.open(filepath)
+        image = cv2.imread(filepath)
+        image = self._preprocess_image(image)
 
         # process image through OCR
         text_arr = self._extract_text_from_image(image=image)
