@@ -24,6 +24,7 @@ import HomePage from "./components/view/HomePage";
 import ProfilePage from "./components/view/ProfilePage";
 import BudgetBoxDetails from "./components/common/BudgetBoxDetails";
 import DefaultLayout from "./components/common/DefaultLayout";
+import { UserProvider } from "./contexts/UserContext";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -141,30 +142,32 @@ export default function App() {
 
 const MainApp = () => {
   return (
-    <View style={styles.app}>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* Authentication Screens */}
-        <Stack.Screen name="Login" component={LoginView} />
-        <Stack.Screen name="ResetPassword">
-          {(props: any) => (
-            <DefaultLayout>
-              <ResetPasswordView {...props} />
-            </DefaultLayout>
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="Register" component={RegisterView} />
-        <Stack.Screen name="Onboarding">
-          {(props: any) => (
-            <DefaultLayout>
-              <OnboardingView {...props} />
-            </DefaultLayout>
-          )}
-        </Stack.Screen>
+    <UserProvider>
+      <View style={styles.app}>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          {/* Authentication Screens */}
+          <Stack.Screen name="Login" component={LoginView} />
+          <Stack.Screen name="ResetPassword">
+            {(props: any) => (
+              <DefaultLayout>
+                <ResetPasswordView {...props} />
+              </DefaultLayout>
+            )}
+          </Stack.Screen>
+          <Stack.Screen name="Register" component={RegisterView} />
+          <Stack.Screen name="Onboarding">
+            {(props: any) => (
+              <DefaultLayout>
+                <OnboardingView {...props} />
+              </DefaultLayout>
+            )}
+          </Stack.Screen>
 
-        {/* Main App */}
-        <Stack.Screen name="Main" component={Navbar} />
-      </Stack.Navigator>
-    </View>
+          {/* Main App */}
+          <Stack.Screen name="Main" component={Navbar} />
+        </Stack.Navigator>
+      </View>
+    </UserProvider>
   );
 };
 

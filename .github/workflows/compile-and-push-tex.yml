@@ -1,7 +1,9 @@
-name: Check LaTeX files are valid
+name: Compile and push LaTeX files
 
 on:
-  pull_request:
+  push:
+    branches:
+        - main
     paths:
       - 'docs/**/*.tex'
 
@@ -27,4 +29,15 @@ jobs:
       - name: Compile PDFs
         run: cd docs && make
 
-      # if there are no errors, the PDFs should be good to go
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Add generated PDF files" || echo "No changes to commit"
+
+      - name: Push changes
+        run: |
+          git push origin $GITHUB_REF
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
