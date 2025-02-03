@@ -47,28 +47,5 @@ def parse_date(text: str):
     """
     for month in list_months:
         if month.lower() in text.lower()[:3]:
-            print("DATE", text)
             return True
     return False
-    # pattern = r'\s*([a-zA-Z]{3,4})?\s*(\d{1,2})?\s*(\d{4})?\s*(\d{1,2}:\d{2})?\s*'
-    # match = re.match(pattern, text.strip())
-    # if match:
-    #     if sum(1 for group in match.groups() if group) < 3:
-    #         return None
-    #     month_str, day, year, time_str = match.groups()
-    #     try:
-    #         month = list(calendar.month_abbr).index(month_str[:3]) if month_str else 1
-    #     except:
-    #         month = 1
-    #     day = int(day) if day else 1
-    #     year = int(year) if year else datetime.datetime.now().year
-    #     if time_str:
-    #         hour, minute = map(int, time_str.split(':'))
-    #         if hour < 24 and minute < 60:
-    #             time = datetime.time(hour, minute)
-    #         else:
-    #             time = datetime.time(0, 0)
-    #     else:
-    #         time = datetime.time(0, 0)
-
-    #     print(datetime.datetime(year, month, day, time.hour, time.minute))
