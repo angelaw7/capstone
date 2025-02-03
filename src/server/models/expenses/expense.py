@@ -4,3 +4,12 @@ class Expense:
         self.date = date
         self.price = price
         self.category = category
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "date": self.date,
+            "price": self.price,
+            "category": self.category
+        }
+    

@@ -5,9 +5,11 @@ import cv2
 import numpy as np
 import pandas as pd
 import pytesseract
+import Levenshtein as lev
 
 from server.imageProcessing.categorization import Categorizer
 import server.imageProcessing.utils as utils
+from server.models import Receipt, Expense
 
 load_dotenv()
 
@@ -35,47 +37,58 @@ class ImageProcessor:
     def _extract_text_from_image(self, image: np.array) -> list[str]:
         text = pytesseract.image_to_string(image, config="--psm 4")
         print(text)
-
-        # TODO(ang): helpful for debugging for fixing model but keep commented for commits
-        # data = pytesseract.image_to_data(
-        #     image_arr, output_type=pytesseract.Output.DICT
-        # )
-        # print(pd.DataFrame(data).query("conf > 0"))
         return text.split("\n")
 
 
     def _process_items_list(self, text_arr: list) -> tuple:
         subtotal = 0
+        date = None
 
         items = []
         curr_item = None
         for i, line in enumerate(text_arr):
-            if "subtotal" in line.lower():
-                subtotal = line.split(" ")[-1]
-                break
             if line != "":
                 line_arr = line.split(" ")
-                if line_arr[0] == "Saving":
-                    items[-1].append(line)
+                if lev.distance(line_arr[0].lower(), "subtotal") <= 1:
+                    subtotal = utils.split_item(line)[1]
                     continue
-                if "points" in line.lower():
-                    continue
-                if not curr_item:
-                    curr_item = line
-                else:
-                    curr_item += " " + line
-                if utils.is_float(line_arr[-1]) or (
-                    len(line_arr) > 2 and utils.is_float(line_arr[-2])
-                ):
-                    items.append([curr_item])
+                if utils.parse_date(line):
+                    date = line
                     curr_item = None
+                    continue
+                if subtotal == 0:
+                    if lev.distance(line_arr[0].lower(), "saving") <= 1:
+                        items[-1].append(line)
+                        continue
+                    if "points" in line.lower():
+                        continue
+                    if not curr_item:
+                        curr_item = line
+                    else:
+                        curr_item += " " + line
+                    if utils.is_float(line_arr[-1]) or (
+                        len(line_arr) > 2 and utils.is_float(line_arr[-2])
+                    ):
+                        items.append([curr_item])
+                        curr_item = None
+                if subtotal > 0 and date:
+                    break
+
         calculated_total = 0
         for item in items:
             item_name, item_price = utils.split_item(item[0])
+
             if item_price:
                 calculated_total += item_price
 
-        return items, subtotal, calculated_total
+        receipt = Receipt(
+            merchent_name="",
+            date=date,
+            calculated_total=round(calculated_total, 2),
+            subtotal=subtotal,
+            items=[]
+        )
+        return receipt, items
 
 
     def _jsonify_data(self, items: list, filename: str, write_to_file: bool = False):
@@ -90,34 +103,29 @@ class ImageProcessor:
                     print("**error with item", item[0])
         return pd.DataFrame(items_cleaned, columns=["name", "price"])
 
-    def _format_item_results(self, categorized_data: pd.DataFrame) -> dict:
-        items_formatted = []
-        result = {
-            "items": items_formatted,
-        }
+    def _format_item_results(self, receipt: Receipt, categorized_data: pd.DataFrame) -> None:
         for i, row in categorized_data.iterrows():
-            items_formatted.append({
-                "id": i + 1,
-                "name": row["name"],
-                "price": row["price"],
-                "category": row["category"]
-            })
+            expense = Expense(
+                name=row["name"],
+                date=None,
+                price=row["price"],
+                category=row["category"]
+            )
+            receipt.add_item(expense)
         
-        return result
-
     def process_image(self, filepath: str):
         image = cv2.imread(filepath)
         image = self._preprocess_image(image)
 
         # process image through OCR
         text_arr = self._extract_text_from_image(image=image)
-        items, subtotal, calculated_total = self._process_items_list(text_arr)
-        data = self._jsonify_data(items, filepath)
+
+        # make sense of the text
+        receipt, raw_items = self._process_items_list(text_arr)
+        data = self._jsonify_data(raw_items, filepath)
 
         # categorize data from image
         categorized_data = self.categorizer.categorize(data)
-        result = self._format_item_results(categorized_data)
-        result["subtotal"] = subtotal
-        result["calculated_total"] = calculated_total
-        
-        return result
+        self._format_item_results(receipt, categorized_data)
+
+        return receipt
