@@ -153,9 +153,21 @@ const MainApp = () => {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {/* Authentication Screens */}
           <Stack.Screen name="Login" component={LoginView} />
-          <Stack.Screen name="ResetPassword" component={ResetPasswordView} />
+          <Stack.Screen name="ResetPassword">
+            {(props: any) => (
+              <DefaultLayout>
+                <ResetPasswordView {...props} />
+              </DefaultLayout>
+            )}
+          </Stack.Screen>
           <Stack.Screen name="Register" component={RegisterView} />
-          <Stack.Screen name="Onboarding" component={OnboardingView} />
+          <Stack.Screen name="Onboarding">
+            {(props: any) => (
+              <DefaultLayout>
+                <OnboardingView {...props} />
+              </DefaultLayout>
+            )}
+          </Stack.Screen>
 
           {/* Main App */}
           <Stack.Screen name="Main" component={Navbar} />

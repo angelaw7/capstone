@@ -7,6 +7,8 @@ import { useState } from "react";
 import { NavigationProps, RouteProps } from "../../types";
 import { Dropdown } from "react-native-element-dropdown";
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { occupationData } from "../../occupations";
+import ManageUserService from "../../services/managerUserService";
 
 interface OnboardingViewProps {
   navigation: NavigationProps;
@@ -14,30 +16,6 @@ interface OnboardingViewProps {
 }
 
 const sexData = [{ sex: "Male" }, { sex: "Female" }];
-
-const occupationData = [
-  { occupation: "Software Engineer" },
-  { occupation: "Graphic Designer" },
-  { occupation: "Product Manager" },
-  { occupation: "Data Scientist" },
-  { occupation: "Teacher" },
-  { occupation: "Nurse" },
-  { occupation: "Accountant" },
-  { occupation: "Marketing Specialist" },
-  { occupation: "Web Developer" },
-  { occupation: "Sales Manager" },
-  { occupation: "Project Manager" },
-  { occupation: "HR Specialist" },
-  { occupation: "Construction Worker" },
-  { occupation: "Financial Analyst" },
-  { occupation: "Chef" },
-  { occupation: "Customer Support Representative" },
-  { occupation: "Photographer" },
-  { occupation: "Consultant" },
-  { occupation: "Lawyer" },
-  { occupation: "Civil Engineer" },
-  { occupation: "Unemployed AF" },
-];
 
 const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const [firstName, setFirstName] = useState("");
@@ -47,22 +25,54 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
   const [dob, setDob] = useState(new Date());
   const [occupation, setOccupation] = useState("");
   const [keepLogin, setKeepLogin] = useState(false);
+  const [fieldsValid, setFieldsValid] = useState(true);
 
-  const createAccountHandler = () => {
-    // TODO: add user to db
+  const email = route.params?.email;
 
-    // Redirect user to Home page if user account is successful, else show error or smth idk
-    navigation.reset({
-      index: 0,
-      routes: [
-        {
-          name: "Manage",
-          params: {
-            name: `${firstName} ${lastName}`,
+  const validateSelections = () => {
+    const validFirstName = firstName.length >= 2;
+    const validLastName = lastName.length >= 2;
+    const validOccupation = occupation.length > 0; // also check that its in occupationData
+    const validSex =
+      sex.toLowerCase() === "female" || sex.toLowerCase() === "male";
+
+    return validFirstName && validLastName && validSex && validOccupation;
+  };
+
+  const createAccountHandler = async () => {
+    if (!validateSelections()) {
+      setFieldsValid(false);
+      return;
+    }
+
+    setFieldsValid(true);
+
+    try {
+      const result = await ManageUserService.createUser({
+        first_name: firstName,
+        middle_name: middleName,
+        last_name: lastName,
+        dob: dob,
+        sex: sex.toLowerCase(),
+        email: email,
+        occupation: occupation,
+      });
+
+      navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: "Main",
+            params: {
+              name: `${firstName} ${lastName}`,
+              initialTab: "Manage",
+            },
           },
-        },
-      ],
-    });
+        ],
+      });
+    } catch (e: any) {
+      console.error(e.message);
+    }
   };
 
   return (
@@ -175,6 +185,13 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
           Stay signed in on this device
         </Label>
       </View>
+      {!fieldsValid && (
+        <View style={styles.requiredFields}>
+          <Text style={{ color: "red" }}>
+            Make sure all required fields are filled.
+          </Text>
+        </View>
+      )}
 
       <Button
         backgroundColor={DEFAULT_COLOURS.primary}
@@ -264,6 +281,10 @@ const styles = StyleSheet.create({
     left: "15%",
     top: "30%",
     color: "red",
+  },
+  requiredFields: {
+    display: "flex",
+    alignItems: "center",
   },
 });
 
