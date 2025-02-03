@@ -28,6 +28,8 @@ type Item = {
   name: string;
   cost: number;
   category: string;
+  email: string | "";
+  transactionDate: string;
 };
 
 const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
@@ -45,7 +47,7 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
   const handleSaveItem = (item: Item) => {
     setItems((prevItems) => [
       ...prevItems,
-      { ...item, transaction_date: date, email: user?.email },
+      { ...item, transactionDate: date, email: user?.email || "" },
     ]);
   };
 
@@ -101,7 +103,7 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
           type: fileType || "image/jpeg",
         });
 
-        const responseData = await ExpensesService.createExpense(formData);
+        const responseData = await ExpensesService.parseExpense(formData);
 
         const receipt_items = responseData.items;
         for (let i = 0; i < receipt_items.length; i++) {
@@ -109,12 +111,15 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
             id: Math.random().toString(),
             rawName: receipt_items[i].name,
             name: receipt_items[i].name,
-            cost: receipt_items[i].price,
+            cost: receipt_items[i].cost,
             category: receipt_items[i].category,
+            email: user?.email || "",
+            transactionDate: receipt_items[i].transaction_date,
           };
           setItems((prevItems) => [...prevItems, item]);
         }
         console.log("responseData:", responseData);
+        console.log("items:", items);
       } catch (error) {
         console.error("Error converting image to file:", error);
       }

@@ -107,6 +107,7 @@ class ImageProcessor:
         for i, row in categorized_data.iterrows():
             expense = Expense(
                 name=row["name"],
+                raw_name=row["name"],
                 transaction_date=None,
                 cost=row["price"],
                 category=row["category"],

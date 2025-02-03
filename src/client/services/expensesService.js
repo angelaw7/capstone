@@ -19,6 +19,20 @@ const ExpensesService = {
     }
   },
 
+  parseExpense: async (receiptImage) => {
+    try {
+      const response = await api.post("/expenses/parse", receiptImage, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error("Error parsing expense:", error.message);
+      throw error;
+    }
+  },
+
   getUserExpenses: async (userid) => {
     try {
       const response = await api.get(`/expenses/${userid}`);

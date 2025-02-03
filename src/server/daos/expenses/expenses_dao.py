@@ -1,9 +1,9 @@
+from flask import jsonify
+import os
+
 from server.models.expenses.expense import Expense
 from server.imageProcessing import ImageProcessor
 from server.db import db
-
-import os
-from flask import jsonify
 
 
 base_path = os.path.dirname(os.path.abspath(__file__))
@@ -32,14 +32,7 @@ class ExpensesDao:
 
     @staticmethod
     def create_expense(data):
-        expense_data = Expense(
-            raw_name=data['raw_name'], 
-            name=data['name'], 
-            transaction_date=data['transaction_date'], 
-            cost=data['cost'], 
-            category=data['category'],
-            email=data['email']
-        )
+        expense_data = Expense.from_dict(data)
         new_expense = db.table("expenses") \
             .insert(expense_data.to_dict()) \
             .execute()
@@ -48,16 +41,10 @@ class ExpensesDao:
     @staticmethod
     def bulk_create_expenses(data):
         expense_data = []
+
         for expense in data:
             expense_data.append(
-                Expense(
-                    raw_name=expense['raw_name'],
-                    name=expense['name'], 
-                    transaction_date=expense['transaction_date'], 
-                    cost=expense['cost'], 
-                    category=expense['category'],
-                    email=expense['email']
-                ).to_dict()
+                Expense.from_dict(expense).to_dict()
             )
         
         new_expenses = db.table("expenses") \
