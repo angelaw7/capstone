@@ -6,9 +6,10 @@ import ProfileIcon from "../../assets/icons/ProfileIcon";
 import ManageUserService from "../../services/managerUserService";
 import { DEFAULT_COLOURS } from "../../styles/commonStyles";
 
-import { signOut, onAuthStateChanged } from "firebase/auth";
+import { signOut, getAuth } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
+import { nameCase } from "../../utils";
 
 type User = {
   first_name: string;
@@ -33,9 +34,9 @@ const ProfilePage = ({ navigation }: ProfilePageProps) => {
     const fetchData = async () => {
       /* Find this email from auth state */
       try {
-        const response = await ManageUserService.getUser(
-          "ericc.sune@gmail.com",
-        );
+        const curAuth = getAuth();
+        const userEmail = curAuth.currentUser!.email;
+        const response = await ManageUserService.getUser(userEmail);
         setUserData(response[0]);
       } catch (e: any) {
         console.error(e.message);
@@ -60,13 +61,6 @@ const ProfilePage = ({ navigation }: ProfilePageProps) => {
   };
 
   if (loading) return <Text>Loading...</Text>;
-
-  const nameCase = (name: string) => {
-    return name
-      .split(" ")
-      .map((name) => name.charAt(0).toUpperCase() + name.slice(1))
-      .join(" ");
-  };
 
   const { dob, email, sex, occupation } = userData as User;
 
