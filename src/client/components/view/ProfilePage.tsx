@@ -139,13 +139,13 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   field: {
-    width: "30%",
+    width: "35%",
     fontWeight: 700,
     fontSize: 18,
   },
   fieldValue: {
     fontSize: 18,
-    width: "70%",
+    width: "65%",
   },
   manageAccountButtons: {
     margin: 12,
