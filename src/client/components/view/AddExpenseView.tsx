@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import CameraIcon from "../../assets/icons/CameraIcon";
 import PhotoLibraryIcon from "../../assets/icons/PhotoLibraryIcon";
@@ -15,6 +16,8 @@ import DisplayExpenseItems from "./DisplayExpenseItem";
 import * as ImagePicker from "expo-image-picker";
 import ExpensesService from "../../services/expensesService";
 import { NavigationProps } from "../../types";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { useUser } from "../../contexts/UserContext";
 
 interface AddExpenseViewProps {
   navigation: NavigationProps;
@@ -26,6 +29,8 @@ type Item = {
   name: string;
   cost: number;
   category: string;
+  email: string | "";
+  transactionDate: string;
 };
 
 const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
@@ -34,12 +39,18 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
   const [date, setDate] = useState("");
   const [storeName, setStoreName] = useState("");
   const [image, setImage] = useState<string | undefined>();
+  const [loading, setLoading] = useState(false);
+
+  const { user } = useUser();
 
   const openModal = () => setModalVisible(true);
   const closeModal = () => setModalVisible(false);
 
   const handleSaveItem = (item: Item) => {
-    setItems((prevItems) => [...prevItems, item]);
+    setItems((prevItems) => [
+      ...prevItems,
+      { ...item, transactionDate: date, email: user?.email || "" },
+    ]);
   };
 
   const handleDateChange = (text: string) => {
@@ -54,8 +65,9 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
     setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   };
 
-  const saveExpenseHandler = () => {
+  const saveExpenseHandler = async () => {
     // To-do
+    await ExpensesService.createExpense(items);
     navigation.navigate("MyExpenses");
   };
 
@@ -79,6 +91,7 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
       const fileType = imageResult.type || "image/jpeg";
       const fileName = fileUri.split("/").pop() || "uploaded_image.jpg";
       setImage(fileUri);
+      setLoading(true);
 
       try {
         const res = await fetch(fileUri);
@@ -93,7 +106,7 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
           type: fileType || "image/jpeg",
         });
 
-        const responseData = await ExpensesService.createExpense(formData);
+        const responseData = await ExpensesService.parseExpense(formData);
 
         const receipt_items = responseData.items;
         for (let i = 0; i < receipt_items.length; i++) {
@@ -101,15 +114,19 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
             id: Math.random().toString(),
             rawName: receipt_items[i].name,
             name: receipt_items[i].name,
-            cost: receipt_items[i].price,
+            cost: receipt_items[i].cost,
             category: receipt_items[i].category,
+            email: user?.email || "",
+            transactionDate: receipt_items[i].transaction_date,
           };
           setItems((prevItems) => [...prevItems, item]);
         }
         console.log("responseData:", responseData);
+        console.log("items:", items);
       } catch (error) {
         console.error("Error converting image to file:", error);
       }
+      setLoading(false);
     }
   };
 
@@ -127,7 +144,14 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
 
       <View style={styles.imageUploadContainer}>
         <View style={styles.imagePlaceholder}>
-          <Text>Your image here</Text>
+          {image ? (
+            <Image
+              source={{ uri: image }}
+              style={{ width: 150, height: 150 }}
+            />
+          ) : (
+            <Text>Your image here</Text>
+          )}
         </View>
         <View style={styles.imageOptions}>
           <TouchableOpacity style={styles.imageOptionButton}>
@@ -176,6 +200,7 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
           <DisplayExpenseItems
             items={items}
             onExpenseDelete={handleExpenseDelete}
+            loading={loading}
           />
         </View>
       </View>

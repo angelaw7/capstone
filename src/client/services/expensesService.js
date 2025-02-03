@@ -3,14 +3,32 @@ import api from "../api/api";
 const ExpensesService = {
   createExpense: async (expenseData) => {
     try {
-      const response = await api.post("/expenses/", expenseData, {
+      const response = await api.post(
+        "/expenses/",
+        JSON.stringify(expenseData),
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error creating expense:", error.message);
+      throw error;
+    }
+  },
+
+  parseExpense: async (receiptImage) => {
+    try {
+      const response = await api.post("/expenses/parse", receiptImage, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
       return response.data;
     } catch (error) {
-      console.error("Error creating expense:", error.message);
+      console.error("Error parsing expense:", error.message);
       throw error;
     }
   },

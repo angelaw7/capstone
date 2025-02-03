@@ -5,18 +5,24 @@ import {
   StyleSheet,
   TouchableOpacity,
   FlatList,
+  ActivityIndicator,
 } from "react-native";
 
 interface DisplayExpenseItemsProps {
   // Types TBD
   items: any[];
+  loading: boolean;
   onExpenseDelete: (...args: any[]) => void;
 }
 
 const DisplayExpenseItems = ({
   items,
   onExpenseDelete,
+  loading,
 }: DisplayExpenseItemsProps) => {
+  if (loading) {
+    return <ActivityIndicator size="large" />;
+  }
   if (items.length === 0) {
     return <Text style={styles.emptyText}>No items added yet!</Text>;
   }
@@ -37,7 +43,6 @@ const DisplayExpenseItems = ({
             </TouchableOpacity>
           </View>
           <Text style={styles.itemText}>Name: {item.name}</Text>
-          <Text style={styles.itemText}>Raw Name: {item.rawName}</Text>
           <Text style={styles.itemText}>Cost: ${item.cost}</Text>
         </View>
       )}
