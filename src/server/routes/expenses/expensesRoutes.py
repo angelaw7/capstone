@@ -12,3 +12,13 @@ def getExpenses(userId):
 def addExpenses():
     new_expense = ExpensesController.create_expense(request)
     return jsonify(new_expense), 201
+
+@expenses.route('/<expenseId>', methods=['PUT', 'OPTIONS'])
+def updateExpense(expenseId):
+    updated_expense = ExpensesController.update_expense(request, expenseId)
+    return jsonify(updated_expense), 201
+
+@expenses.route('/<expenseId>', methods=['DELETE'])
+def deleteExpense(expenseId):
+    ExpensesController.delete_expense(expenseId)
+    return jsonify(expenseId), 201

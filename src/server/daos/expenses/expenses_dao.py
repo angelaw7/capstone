@@ -42,6 +42,30 @@ class ExpensesDao:
             .insert(expense_data.to_dict()) \
             .execute()
         return new_expense.data
+    
+    @staticmethod
+    def update_expense(data, expense_id):
+        expense_data = Expense(
+            raw_name=data['raw_name'], 
+            name=data['name'], 
+            transaction_date=data['transaction_date'], 
+            cost=data['cost'], 
+            category=data['category'],
+            email=data['email']
+        )
+        updated_expense = db.table("expenses") \
+            .update(expense_data.to_dict()) \
+            .eq("id", expense_id) \
+            .execute()
+        return updated_expense.data
+    
+    @staticmethod
+    def delete_expense(expense_id):
+        db.table("expenses") \
+            .delete() \
+            .eq("id", expense_id) \
+            .execute()
+        return expense_id
 
     @staticmethod
     def process_receipt(file):
