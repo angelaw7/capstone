@@ -6,6 +6,10 @@ import ProfileIcon from "../../assets/icons/ProfileIcon";
 import ManageUserService from "../../services/managerUserService";
 import { DEFAULT_COLOURS } from "../../styles/commonStyles";
 
+import { signOut, onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../firebase";
+import { NavigationProps } from "../../types";
+
 type User = {
   first_name: string;
   middle_name?: string;
@@ -17,7 +21,11 @@ type User = {
   userid: number;
 };
 
-const ProfilePage = () => {
+interface ProfilePageProps {
+  navigation: NavigationProps;
+}
+
+const ProfilePage = ({ navigation }: ProfilePageProps) => {
   const [userData, setUserData] = useState<User>();
   const [loading, setLoading] = useState(true);
 
@@ -38,6 +46,18 @@ const ProfilePage = () => {
 
     fetchData();
   }, []);
+
+  const handleLogOut = async () => {
+    try {
+      await signOut(auth);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Login" }],
+      });
+    } catch (e: any) {
+      console.error("There was an error logging you out", e.message);
+    }
+  };
 
   if (loading) return <Text>Loading...</Text>;
 
@@ -97,7 +117,7 @@ const ProfilePage = () => {
         <Button
           backgroundColor={DEFAULT_COLOURS.primary}
           paddingHorizontal="20%"
-          onPress={() => {}}
+          onPress={handleLogOut}
         >
           <Text fontWeight="500" color="white">
             Log Out
