@@ -3,8 +3,8 @@ from flask import jsonify
 
 class ExpensesController:
     @staticmethod
-    def get_all_expenses(email):
-        return ExpensesDao.get_all_user_expenses(email)
+    def get_all_expenses(userId):
+        return ExpensesDao.get_all_user_expenses(userId)
 
     @staticmethod
     def create_expense(data):

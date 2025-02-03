@@ -3,9 +3,9 @@ from server.controllers.expenses.expenses_controller import ExpensesController
 
 expenses = Blueprint('expenses', __name__)
 
-@expenses.route('/<userEmail>', methods=['GET'])
-def getExpenses(userEmail):
-    return jsonify(ExpensesController.get_all_expenses(userEmail))
+@expenses.route('/<userId>', methods=['GET'])
+def getExpenses(userId):
+    return jsonify(ExpensesController.get_all_expenses(userId))
 
 
 @expenses.route('/', methods=['POST', 'OPTIONS'])

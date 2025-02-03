@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import BackArrow from "../../assets/icons/BackArrow";
 import AddIcon from "../../assets/icons/AddIcon";
-import HorizontalRule from "../common/HorizontalRule";
-import EntrySource from "../common/EntrySource";
 import ExpensesService from "../../services/expensesService";
 import { NavigationProps } from "../../types";
 import { useUser } from "../../contexts/UserContext";
+import ExpensesList from "../common/ExpensesList";
 
 interface MyExpensesProp {
   navigation: NavigationProps;
@@ -15,6 +14,7 @@ interface MyExpensesProp {
 
 const MyExpenses = ({ navigation }: MyExpensesProp) => {
   const { user, loading } = useUser();
+  const [expenses, setExpenses] = useState([]);
 
   const returnHandler = () => {
     navigation.goBack();
@@ -23,9 +23,8 @@ const MyExpenses = ({ navigation }: MyExpensesProp) => {
   useEffect(() => {
     const getExpenses = async () => {
       try {
-        console.log(user);
-        // const expenses = await ExpensesService.getUserExpenses(1);
-        // console.log(expenses);
+        const expenses = await ExpensesService.getUserExpenses(user?.userid);
+        setExpenses(expenses);
       } catch (error) {
         throw error;
       }
@@ -49,23 +48,7 @@ const MyExpenses = ({ navigation }: MyExpensesProp) => {
         </Pressable>
       </View>
 
-      <View>
-        <View style={styles.recurring}>
-          <Text style={styles.sectionTitle}>November 11, 2024</Text>
-
-          <EntrySource description="Groceries" additionalInfo="-$52.37" />
-          <EntrySource description="Movie Tickets" additionalInfo="-$25.77" />
-          <HorizontalRule />
-        </View>
-
-        <View>
-          <Text style={styles.sectionTitle}>November 10, 2024</Text>
-
-          <EntrySource description="Lunch" additionalInfo="-$13.22" group />
-          <EntrySource description="Coffee" additionalInfo="-$4.92" group />
-          <HorizontalRule />
-        </View>
-      </View>
+      <ExpensesList transactions={expenses} />
     </View>
   );
 };
@@ -95,12 +78,6 @@ const styles = StyleSheet.create({
   addIcon: {
     position: "absolute",
     right: 24,
-  },
-  sectionTitle: {
-    fontSize: 20,
-  },
-  recurring: {
-    marginBottom: 24,
   },
 });
 

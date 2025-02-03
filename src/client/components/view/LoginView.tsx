@@ -13,6 +13,7 @@ import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
 import IncomeService from "../../services/incomeService";
 import { useUser } from "../../contexts/UserContext";
+import ManageUserService from "../../services/managerUserService";
 
 interface LoginViewProps {
   navigation: NavigationProps;
@@ -48,8 +49,10 @@ const LoginView = ({ navigation }: LoginViewProps) => {
         username,
         password,
       );
-
-      // setUser(user);
+      const user = await ManageUserService.getUserByEmail(
+        fireBaseUser.user.email,
+      );
+      setUser(user[0]);
       navigation.reset({
         index: 0,
         routes: [{ name: "Main", params: { initialTab: "Home" } }],

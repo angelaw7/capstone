@@ -1,12 +1,4 @@
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  ReactNode,
-} from "react";
-import { auth } from "../firebase";
-import { User as FirebaseUser, onAuthStateChanged } from "firebase/auth";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface User {
   email: string | null;
@@ -16,11 +8,12 @@ interface User {
   sex: string | null;
   dob: string | null;
   occupation: string | null;
+  userid: number | null;
 }
 
 interface UserContextType {
   user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>; // Allow updates from LoginView
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
   loading: boolean;
 }
 
