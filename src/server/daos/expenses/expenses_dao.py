@@ -5,6 +5,7 @@ from server.db import db
 import os
 from flask import jsonify
 
+
 base_path = os.path.dirname(os.path.abspath(__file__))
 tmp_path = os.path.join(base_path, "tmp")
 
@@ -101,4 +102,4 @@ class ExpensesDao:
         except Exception as e:
             print(e)
             return {"error": "Error processing receipt"}
-        return data
+        return data.to_dict()
