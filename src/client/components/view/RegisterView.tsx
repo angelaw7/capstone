@@ -16,9 +16,7 @@ interface RegisterViewProps {
 }
 
 const RegisterView = ({ navigation, route }: RegisterViewProps) => {
-  const [email, setEmail] = useState(
-    route.params?.email ? route.params?.email : "",
-  );
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);

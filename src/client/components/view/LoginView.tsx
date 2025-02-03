@@ -5,10 +5,7 @@ import { Button, Text } from "tamagui";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
 import MicrosoftIcon from "../../assets/icons/MicrosoftIcon";
 import AppleIcon from "../../assets/icons/AppleIcon";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
 import IncomeService from "../../services/incomeService";

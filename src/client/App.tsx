@@ -1,8 +1,4 @@
-import {
-  NavigationContainer,
-  RouteProp,
-  useNavigation,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -25,10 +21,8 @@ import AddIcon from "./assets/icons/AddIcon";
 import HomeIcon from "./assets/icons/HomeIcon";
 import ProfileIcon from "./assets/icons/ProfileIcon";
 import HomePage from "./components/view/HomePage";
-import { useEffect, useState } from "react";
 import ProfilePage from "./components/view/ProfilePage";
 import BudgetBoxDetails from "./components/common/BudgetBoxDetails";
-import { NavigationProps } from "./types";
 import DefaultLayout from "./components/common/DefaultLayout";
 import { UserProvider } from "./contexts/UserContext";
 
