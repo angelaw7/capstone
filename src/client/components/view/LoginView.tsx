@@ -5,10 +5,7 @@ import { Button, Text } from "tamagui";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
 import MicrosoftIcon from "../../assets/icons/MicrosoftIcon";
 import AppleIcon from "../../assets/icons/AppleIcon";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
 import IncomeService from "../../services/incomeService";
@@ -41,10 +38,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
   const loginWithEmailPassword = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, username, password);
-      navigation.reset({
-        index: 0,
-        routes: [{ name: "Main", params: { initialTab: "Home" } }],
-      });
+      navigation.reset({ index: 0, routes: [{ name: "Main" }] });
     } catch (e: any) {
       switch (e.code) {
         case "auth/invalid-email":

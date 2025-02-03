@@ -63,10 +63,7 @@ const OnboardingView = ({ navigation, route }: OnboardingViewProps) => {
         routes: [
           {
             name: "Main",
-            params: {
-              name: `${firstName} ${lastName}`,
-              initialTab: "Manage",
-            },
+            params: { name: `${firstName} ${lastName}` },
           },
         ],
       });

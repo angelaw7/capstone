@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text } from "tamagui";
 import { Dimensions, StyleSheet } from "react-native";
 
 import BudgetBox from "../common/BudgetBox";
 import SpendingDetails from "../common/SpendingDetails";
 import { NavigationProps, RouteProps } from "../../types";
+import { getAuth } from "firebase/auth";
+import { nameCase } from "../../utils";
+import ManageUserService from "../../services/managerUserService";
 
 type HomePageProps = {
   navigation: NavigationProps;
@@ -12,15 +15,32 @@ type HomePageProps = {
 };
 
 const HomePage = ({ navigation, route }: HomePageProps) => {
-  /* TODO: Should store user name in state somewhere especially if we navigate back
-  from the expense/income/budget page lool */
-  // const username = route.params?.name;
+  const [fullName, setFullName] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const curAuth = getAuth();
+      const userEmail = curAuth.currentUser!.email;
+      const response = await ManageUserService.getUser(userEmail);
+
+      const firstName = response[0].first_name;
+      const middleName = response[0].middle_name;
+      const lastName = response[0].last_name;
+
+      const fullName = nameCase(
+        `${firstName}${middleName ? ` ${middleName} ` : " "}${lastName}`,
+      );
+
+      setFullName(fullName);
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <View alignItems="center" style={styles.background}>
       <View style={styles.headerContainer}>
-        {/* TODO: adjust user to be actual username */}
-        <Text style={styles.title}>Welcome Back "user"</Text>
+        <Text style={styles.title}>Welcome Back {fullName}</Text>
       </View>
       <View style={styles.homepage}>
         <BudgetBox navigation={navigation} route={route} />
