@@ -1,14 +1,14 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-interface User {
-  email: string | null;
-  firstName: string | null;
-  middleName?: string | null;
-  lastName: string | null;
-  sex: string | null;
-  dob: string | null;
-  occupation: string | null;
-  userid: number | null;
+export interface User {
+  email: string;
+  first_name: string;
+  middle_name?: string | null;
+  last_name: string;
+  sex: string;
+  dob: string;
+  occupation: string;
+  userid: number;
 }
 
 interface UserContextType {

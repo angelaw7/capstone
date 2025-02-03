@@ -8,6 +8,7 @@ import { NavigationProps, RouteProps } from "../../types";
 import { getAuth } from "firebase/auth";
 import { nameCase } from "../../utils";
 import ManageUserService from "../../services/managerUserService";
+import { useUser } from "../../contexts/UserContext";
 
 type HomePageProps = {
   navigation: NavigationProps;
@@ -15,26 +16,17 @@ type HomePageProps = {
 };
 
 const HomePage = ({ navigation, route }: HomePageProps) => {
+  const { user } = useUser();
   const [fullName, setFullName] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      const curAuth = getAuth();
-      const userEmail = curAuth.currentUser!.email;
-      const response = await ManageUserService.getUser(userEmail);
+    const fName = user!.first_name;
+    const mName = user!.middle_name;
+    const lName = user!.last_name;
 
-      const firstName = response[0].first_name;
-      const middleName = response[0].middle_name;
-      const lastName = response[0].last_name;
+    const fullName = nameCase(`${fName}${mName ? ` ${mName} ` : " "}${lName}`);
 
-      const fullName = nameCase(
-        `${firstName}${middleName ? ` ${middleName} ` : " "}${lastName}`,
-      );
-
-      setFullName(fullName);
-    };
-
-    fetchData();
+    setFullName(fullName);
   }, []);
 
   return (

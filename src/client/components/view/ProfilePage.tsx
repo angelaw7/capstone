@@ -3,49 +3,29 @@ import { View, Text, Button } from "tamagui";
 import { Dimensions, StyleSheet } from "react-native";
 
 import ProfileIcon from "../../assets/icons/ProfileIcon";
-import ManageUserService from "../../services/managerUserService";
 import { DEFAULT_COLOURS } from "../../styles/commonStyles";
 
 import { signOut, getAuth } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
 import { nameCase } from "../../utils";
-
-type User = {
-  first_name: string;
-  middle_name?: string;
-  last_name: string;
-  dob: string;
-  email: string;
-  occupation: string;
-  sex: "male" | "female";
-  userid: number;
-};
+import { useUser, User } from "../../contexts/UserContext";
 
 interface ProfilePageProps {
   navigation: NavigationProps;
 }
 
 const ProfilePage = ({ navigation }: ProfilePageProps) => {
-  const [userData, setUserData] = useState<User>();
-  const [loading, setLoading] = useState(true);
+  const { user } = useUser();
+  const [name, setName] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      /* Find this email from auth state */
-      try {
-        const curAuth = getAuth();
-        const userEmail = curAuth.currentUser!.email;
-        const response = await ManageUserService.getUser(userEmail);
-        setUserData(response[0]);
-      } catch (e: any) {
-        console.error(e.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const fName = user!.first_name;
+    const mName = user!.middle_name;
+    const lName = user!.last_name;
 
-    fetchData();
+    const fullName = nameCase(`${fName}${mName ? ` ${mName} ` : " "}${lName}`);
+    setName(fullName);
   }, []);
 
   const handleLogOut = async () => {
@@ -60,23 +40,13 @@ const ProfilePage = ({ navigation }: ProfilePageProps) => {
     }
   };
 
-  if (loading) return <Text>Loading...</Text>;
-
-  const { dob, email, sex, occupation } = userData as User;
-
-  const firstName = userData!.first_name;
-  const middleName = userData!.middle_name;
-  const lastName = userData!.last_name;
-
-  const fullName = nameCase(
-    `${firstName}${middleName ? ` ${middleName} ` : " "}${lastName}`,
-  );
+  const { dob, email, sex, occupation } = user as User;
 
   return (
     <View alignItems="center" style={styles.background}>
       <View style={styles.headerContainer}>
         <ProfileIcon size={100} style={{ alignSelf: "center" }} />
-        <Text style={styles.title}>{fullName}</Text>
+        <Text style={styles.title}>{name}</Text>
       </View>
 
       <View style={styles.homepage}>
