@@ -5,9 +5,7 @@ import { Dimensions, StyleSheet } from "react-native";
 import BudgetBox from "../common/BudgetBox";
 import SpendingDetails from "../common/SpendingDetails";
 import { NavigationProps, RouteProps } from "../../types";
-import { getAuth } from "firebase/auth";
 import { nameCase } from "../../utils";
-import ManageUserService from "../../services/managerUserService";
 import { useUser } from "../../contexts/UserContext";
 
 type HomePageProps = {

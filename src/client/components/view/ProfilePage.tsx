@@ -5,11 +5,12 @@ import { Dimensions, StyleSheet } from "react-native";
 import ProfileIcon from "../../assets/icons/ProfileIcon";
 import { DEFAULT_COLOURS } from "../../styles/commonStyles";
 
-import { signOut, getAuth } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
 import { nameCase } from "../../utils";
 import { useUser, User } from "../../contexts/UserContext";
+import DeleteProfileModal from "./DeleteProfileModal";
 
 interface ProfilePageProps {
   navigation: NavigationProps;
@@ -18,6 +19,7 @@ interface ProfilePageProps {
 const ProfilePage = ({ navigation }: ProfilePageProps) => {
   const { user } = useUser();
   const [name, setName] = useState("");
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     const fName = user!.first_name;
@@ -72,9 +74,9 @@ const ProfilePage = ({ navigation }: ProfilePageProps) => {
         <Button
           backgroundColor={"red"}
           paddingHorizontal="20%"
-          onPress={() => {}}
+          onPress={() => setModal(true)}
         >
-          <Text fontWeight="500" color="white">
+          <Text fontWeight="500" color="white" fontSize={18}>
             Delete Account
           </Text>
         </Button>
@@ -83,11 +85,16 @@ const ProfilePage = ({ navigation }: ProfilePageProps) => {
           paddingHorizontal="20%"
           onPress={handleLogOut}
         >
-          <Text fontWeight="500" color="white">
+          <Text fontWeight="500" color="white" fontSize={18}>
             Log Out
           </Text>
         </Button>
       </View>
+      <DeleteProfileModal
+        navigation={navigation}
+        visible={modal}
+        closeModalHandler={setModal}
+      />
     </View>
   );
 };
@@ -121,7 +128,8 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     textAlign: "center",
-    fontSize: 24,
+    fontSize: 36,
+    marginTop: 10,
     color: "white",
   },
   entry: {
@@ -133,10 +141,10 @@ const styles = StyleSheet.create({
   field: {
     width: "30%",
     fontWeight: 700,
-    fontSize: 16,
+    fontSize: 18,
   },
   fieldValue: {
-    fontSize: 16,
+    fontSize: 18,
     width: "70%",
   },
   manageAccountButtons: {
