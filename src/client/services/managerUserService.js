@@ -23,6 +23,17 @@ const ManageUserService = {
     }
   },
 
+  // READ
+  getUserByEmail: async (email) => {
+    try {
+      const response = await api.get(`/users/${email}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching user data:", error.message);
+      throw error;
+    }
+  },
+
   // UPDATE
   updateUser: async (userId, userData) => {
     try {

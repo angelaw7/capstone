@@ -16,3 +16,11 @@ class ExpensesController:
         
         return ExpensesDao.create_expense(data.json)
     
+
+    @staticmethod
+    def update_expense(data, expenseId):
+        return ExpensesDao.update_expense(data.json, expenseId)
+        
+    @staticmethod
+    def delete_expense(expenseId):
+        return ExpensesDao.delete_expense(expenseId)
