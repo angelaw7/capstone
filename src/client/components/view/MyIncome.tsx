@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import BackArrow from "../../assets/icons/BackArrow";
 import AddIcon from "../../assets/icons/AddIcon";
 import HorizontalRule from "../common/HorizontalRule";
@@ -24,17 +25,19 @@ interface Income {
 const MyIncome = ({ navigation }: MyIncomeProps) => {
   const [incomes, setIncomes] = useState<Income[]>([]);
 
-  useEffect(() => {
-    const fetchIncomes = async () => {
-      try {
-        const data = await IncomeService.getUserIncomes("nosdnof@gmail.com");
-        setIncomes(data);
-      } catch (error) {
-        console.error("Failed to fetch incomes:", error);
-      }
-    };
-    fetchIncomes();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchIncomes = async () => {
+        try {
+          const data = await IncomeService.getUserIncomes("nosdnof@gmail.com");
+          setIncomes(data);
+        } catch (error) {
+          console.error("Failed to fetch incomes:", error);
+        }
+      };
+      fetchIncomes();
+    }, []),
+  );
 
   const returnHandler = () => {
     navigation.goBack();

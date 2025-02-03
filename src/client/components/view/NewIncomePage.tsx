@@ -5,6 +5,7 @@ import BackArrow from "../../assets/icons/BackArrow";
 
 import { Dropdown } from "react-native-element-dropdown";
 import { NavigationProps } from "../../types";
+import IncomeService from "../../services/incomeService";
 
 const dropdownData = [
   { label: "Daily", value: 1 },
@@ -39,9 +40,29 @@ const NewIncomePage = ({ navigation }: NewIncomePageProps) => {
     navigation.goBack();
   };
 
-  const addIncomeHandler = () => {
-    // Handle some logic to update state
-    returnHandler();
+  const addIncomeHandler = async () => {
+    // const incomeData = {
+    //   title,
+    //   amount: parseFloat(amount),
+    //   frequency: checked === "periodically" ? dropdownValue : "daily",
+    //   recurring: false, //temp
+    //   email: "nosdnof@gmail.com", //temp
+    // };
+
+    const demoData = {
+      title: "test",
+      amount: 2000,
+      frequency: "bi-weekly",
+      recurring: false, //temp
+      email: "nosdnof@gmail.com", //temp
+    };
+
+    try {
+      await IncomeService.createIncome(demoData);
+      returnHandler();
+    } catch (error) {
+      console.error("Error updating income:", error);
+    }
   };
 
   return (
