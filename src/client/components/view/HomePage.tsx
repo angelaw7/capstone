@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Text } from "tamagui";
-import { Dimensions, StyleSheet } from "react-native";
+import { ActivityIndicator, Dimensions, StyleSheet } from "react-native";
 
 import BudgetBox from "../common/BudgetBox";
 import SpendingDetails from "../common/SpendingDetails";
@@ -18,14 +18,16 @@ const HomePage = ({ navigation, route }: HomePageProps) => {
   const [fullName, setFullName] = useState("");
 
   useEffect(() => {
-    const fName = user!.first_name;
-    const mName = user!.middle_name;
-    const lName = user!.last_name;
+    const fName = user?.first_name;
+    const mName = user?.middle_name;
+    const lName = user?.last_name;
 
     const fullName = nameCase(`${fName}${mName ? ` ${mName} ` : " "}${lName}`);
 
     setFullName(fullName);
-  }, []);
+  }, [user]);
+
+  if (!user) return <ActivityIndicator size="large" />;
 
   return (
     <View alignItems="center" style={styles.background}>

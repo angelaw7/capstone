@@ -7,6 +7,7 @@ import HorizontalRule from "../common/HorizontalRule";
 import EntrySource from "../common/EntrySource";
 import { NavigationProps } from "../../types";
 import IncomeService from "../../services/incomeService";
+import { useUser } from "../../contexts/UserContext";
 
 interface MyIncomeProps {
   navigation: NavigationProps;
@@ -24,12 +25,13 @@ interface Income {
 
 const MyIncome = ({ navigation }: MyIncomeProps) => {
   const [incomes, setIncomes] = useState<Income[]>([]);
+  const { user } = useUser();
 
   useFocusEffect(
     React.useCallback(() => {
       const fetchIncomes = async () => {
         try {
-          const data = await IncomeService.getUserIncomes("nosdnof@gmail.com");
+          const data = await IncomeService.getUserIncomes(user?.email);
           setIncomes(data);
         } catch (error) {
           console.error("Failed to fetch incomes:", error);

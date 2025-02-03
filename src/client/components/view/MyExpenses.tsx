@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
 import BackArrow from "../../assets/icons/BackArrow";
 import AddIcon from "../../assets/icons/AddIcon";
@@ -13,8 +19,9 @@ interface MyExpensesProp {
 }
 
 const MyExpenses = ({ navigation }: MyExpensesProp) => {
-  const { user, loading } = useUser();
+  const { user } = useUser();
   const [expenses, setExpenses] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const returnHandler = () => {
     navigation.goBack();
@@ -23,8 +30,10 @@ const MyExpenses = ({ navigation }: MyExpensesProp) => {
   useEffect(() => {
     const getExpenses = async () => {
       try {
+        setLoading(true);
         const expenses = await ExpensesService.getUserExpenses(user?.userid);
         setExpenses(expenses);
+        setLoading(false);
       } catch (error) {
         throw error;
       }
@@ -35,6 +44,13 @@ const MyExpenses = ({ navigation }: MyExpensesProp) => {
   const addNewExpenseHandler = () => {
     navigation.navigate("NewExpense");
   };
+
+  if (loading)
+    return (
+      <View style={styles.background}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
 
   return (
     <View style={styles.background}>
@@ -48,14 +64,18 @@ const MyExpenses = ({ navigation }: MyExpensesProp) => {
         </Pressable>
       </View>
 
-      <ExpensesList transactions={expenses} />
+      {expenses.length > 0 ? (
+        <ExpensesList transactions={expenses} />
+      ) : (
+        <Text>No Expenses</Text>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   background: {
-    height: "100%",
+    flex: 1,
     backgroundColor: "white",
     padding: 24,
     rowGap: 20,
