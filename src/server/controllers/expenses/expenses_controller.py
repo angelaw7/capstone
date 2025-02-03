@@ -7,15 +7,21 @@ class ExpensesController:
         return ExpensesDao.get_all_user_expenses(userId)
 
     @staticmethod
-    def create_expense(data):
+    def parse_expense(data):
         if data.files:
             if 'receipt' not in data.files:
                 return jsonify({"error": "No receipt file provided"}), 400
             
             return ExpensesDao.process_receipt(data.files['receipt'])
+        else:
+            return jsonify({"error": "No file provided"}), 400
         
-        return ExpensesDao.create_expense(data.json)
-    
+    @staticmethod
+    def add_expense(data):
+        if type(data) is list:
+            return ExpensesDao.bulk_create_expenses(data) 
+        else:
+            return ExpensesDao.create_expense(data)
 
     @staticmethod
     def update_expense(data, expenseId):
