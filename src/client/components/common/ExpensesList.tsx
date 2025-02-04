@@ -61,7 +61,7 @@ const ExpensesList = ({ transactions }: ExpensesListProps) => {
 
   return (
     <SectionList
-      style={{ maxHeight: "50%", paddingBottom: "5%" }}
+      style={{ maxHeight: "80%", paddingBottom: "5%" }}
       sections={transFormedExpenses}
       keyExtractor={(item) => item.category}
       renderSectionHeader={({ section: { title } }) => (

@@ -15,8 +15,8 @@ class ExpensesDao:
     @staticmethod
     def get_all_user_expenses(userId):
         try:
-            expenses = db.table("expenses") \
-                .select("*, users(*)") \
+            expenses = db.from_("expenses") \
+                .select("*, users!inner(email, userid)") \
                 .eq("users.userid", userId) \
                 .order("transaction_date", desc=True) \
                 .execute()
