@@ -4,7 +4,6 @@ import { StyleSheet } from "react-native";
 
 import HomePageButton from "../common/HomePageButton";
 import ReceiptIcon from "../../assets/icons/ReceiptIcon";
-import IncomeIcon from "../../assets/icons/IncomeIcon";
 import BudgetIcon from "../../assets/icons/BudgetIcon";
 import { NavigationProps, RouteProps } from "../../types";
 import { FlatList } from "react-native-gesture-handler";
@@ -15,10 +14,6 @@ interface ManagePageProps {
 }
 
 const ManagePage = ({ navigation, route }: ManagePageProps) => {
-  const incomePageHandler = () => {
-    navigation.navigate("MyIncome");
-  };
-
   const expensePageHandler = () => {
     navigation.navigate("MyExpenses");
   };
