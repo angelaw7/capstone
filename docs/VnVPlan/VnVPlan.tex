@@ -27,15 +27,18 @@
 
 \section*{Revision History}
 
+\begin{table}[h!]
+\caption{Revision History}
 \begin{tabularx}{\textwidth}{p{3cm}p{2cm}X}
 \toprule {\bf Date} & {\bf Version} & {\bf Notes}\\
 \midrule
 11/01/2024 & 0.1 & Add: 3.1, 3.2, 3.3, 3.6\\
 11/02/2024 & 0.2 & Update Rev0 draft\\
 11/03/2024 & 0.3 & Add 4.1 for Rev0\\
-... & ... & ...\\
+\ldots & \ldots & \ldots\\
 \bottomrule
 \end{tabularx}
+\end{table}
 
 \newpage
 
@@ -51,7 +54,9 @@ for the list of symbols, abbreviations, and acronyms.
 In addition, the following abbreviations are used in this document:\\
 
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
+\begin{table}[h!]
+\caption{Symbols, Abbreviations, and Acronyms}
+\begin{tabularx}{\textwidth}{l l}
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
@@ -61,7 +66,8 @@ In addition, the following abbreviations are used in this document:\\
   SQL & Structured Query Language\\
   GDPR & General Data Protection Regulation\\
   \bottomrule
-\end{tabular}\\
+\end{tabularx}
+\end{table}
 
 \newpage
 
@@ -429,6 +435,8 @@ as it should. \\
 \newpage
 
 \subsubsection{SRS Quality Checklist for Verification}
+\begin{table}[h!]
+\caption{SRS Quality Checklist}
 \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{9cm}|>{\raggedright\arraybackslash}p{2cm}|}
 	\hline
 	\textbf{Checklist Item} & \textbf{Description} & \textbf{Pass/Fail} \\
@@ -455,6 +463,7 @@ as it should. \\
 	\hline
 
 \end{tabular}
+\end{table}
 
 \newpage
 
@@ -462,6 +471,8 @@ as it should. \\
 
 \subsubsection{Specification Verification}
 
+\begin{table}[h!]
+\caption{Specification Verification Checklist}
 \noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|p{1cm}|p{2.25cm}|}
 	\hline
 	\textbf{Checklist Items} & \textbf{Description} & \textbf{Verification Method} & \textbf{Pass /Fail} & \textbf{Comments} \\ 
@@ -475,11 +486,14 @@ as it should. \\
 	Security Requirements & Confirm that the security design follows the requirements, especially for data privacy and user information. & Security Audit & & \\
 	\hline
 \end{tabular}
+\end{table}
 
 \newpage
 
 \subsubsection{Functional Verification}
 
+\begin{table}[h!]
+	\caption{Functional Verification Checklist}
 \noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|p{1cm}|p{2.25cm}|}
 	\hline
 	\textbf{Checklist Items} & \textbf{Description} & \textbf{Verification Method} & \textbf{Pass /Fail} & \textbf{Comments} \\ 
@@ -495,11 +509,14 @@ as it should. \\
 	Integration with External Services & Confirm integration with any third-party services (e.g., cloud storage or payment platforms). & Integration Testing & & \\
 	\hline
 \end{tabular}
+\end{table}
 
 \newpage
 
 \subsubsection{Performance Validation}
 
+\begin{table}[h!]
+\caption{Performance Validation Checklist}
 \noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|p{1cm}|p{2.25cm}|}
 	\hline
 	\textbf{Checklist Items} & \textbf{Description} & \textbf{Verification Method} & \textbf{Pass /Fail} & \textbf{Comments} \\ 
@@ -515,11 +532,14 @@ as it should. \\
 	Latency for Real-Time Features & Measure latency in real-time features, ensuring a smooth user experience. & Latency Testing & & \\
 	\hline
 \end{tabular}
+\end{table}
 
 \newpage
 
 \subsubsection{Document Validation}
 
+\begin{table}[h!]
+\caption{Document Validation Checklist}
 \noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{4cm}|>{\raggedright\arraybackslash}p{3cm}|p{1cm}|p{2.25cm}|}
 	\hline
 	\textbf{Checklist Items} & \textbf{Description} & \textbf{Verification Method} & \textbf{Pass /Fail} & \textbf{Comments} \\ 
@@ -535,6 +555,7 @@ as it should. \\
 	Change Log and Version History & Ensure that the change log and version history are comprehensive and well-documented. & Change Log Review & & \\ 
 	\hline
 \end{tabular}
+\end{table}
 
 \subsection{Verification and Validation Plan Verification Plan}
 
@@ -774,7 +795,8 @@ Below is a comprehensive list of recommended V\&V techniques and a corresponding
 	\end{enumerate}
 
 	\item \textbf{Validation Schedule} \\
-
+	\begin{table}[h!]
+	\caption{Validation Schedule}
 	\noindent \begin{tabular}{|>{\raggedright\arraybackslash}p{3cm}|p{2cm}|>{\raggedright\arraybackslash}p{7cm}|}
 		\hline
 		\textbf{Phase} & \textbf{Duration} & \textbf{Activities} \\
@@ -794,6 +816,7 @@ Below is a comprehensive list of recommended V\&V techniques and a corresponding
 		\textbf{Regression Testing} & Ongoing & Run regression tests after updates to ensure consistent functionality \\
 		\hline
 	\end{tabular}
+	\end{table}
 	\newpage
 	\item \textbf{Deliverables}
 	\begin{itemize}
