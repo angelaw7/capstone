@@ -4,6 +4,7 @@ import os
 from server.models.expenses.expense import Expense
 from server.imageProcessing import ImageProcessor
 from server.db import db
+import datetime
 
 
 base_path = os.path.dirname(os.path.abspath(__file__))
@@ -11,7 +12,27 @@ tmp_path = os.path.join(base_path, "tmp")
 
 image_processor = ImageProcessor()
 
+current_month_start = datetime.datetime.utcnow().replace(day=1, hour=0, minute=0, second=0, microsecond=0).isoformat()
 class ExpensesDao:
+    @staticmethod
+    def get_all_user_expenses_for_current_month(userId):
+        try:
+            expenses = db.from_("expenses") \
+                .select("*, users(*)") \
+                .order("transaction_date", desc=True) \
+                .eq("users.userid", userId) \
+                .gte("transaction_date", current_month_start) \
+                .execute()
+
+
+            if "error" in expenses and expenses["error"]:
+                raise Exception(f"Supabase Query Error: {expenses['error']}")
+
+        except Exception as e:
+            print(f"Unexpected Error: {e}")
+        
+        return expenses.data
+    
     @staticmethod
     def get_all_user_expenses(userId):
         try:

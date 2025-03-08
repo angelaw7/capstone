@@ -6,7 +6,6 @@ import MyIncome from "./components/view/MyIncome";
 import MyExpenses from "./components/view/MyExpenses";
 import MyBudget from "./components/view/MyBudget";
 import NewBudgetPage from "./components/view/NewBudgetPage";
-import NewIncomePage from "./components/view/NewIncomePage";
 import LoginView from "./components/view/LoginView";
 import RegisterView from "./components/view/RegisterView";
 import ResetPasswordView from "./components/view/ResetPasswordView";
@@ -52,13 +51,6 @@ const ManageStack = () => {
         {({ navigation }) => (
           <DefaultLayout>
             <MyBudget navigation={navigation} />
-          </DefaultLayout>
-        )}
-      </Stack.Screen>
-      <Stack.Screen name="NewIncome">
-        {({ navigation }) => (
-          <DefaultLayout>
-            <NewIncomePage navigation={navigation} />
           </DefaultLayout>
         )}
       </Stack.Screen>

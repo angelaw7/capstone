@@ -1,10 +1,14 @@
 from server.models.incomes.income import Income
 from server.db import db
+import datetime
 
 class IncomesDao:
     @staticmethod
     def get_all_user_incomes(email):
-        response = db.table("incomes").select("*").eq("email", email).execute()
+        current_month_start = datetime.date.today().replace(day=1).isoformat()
+        response = db.table("incomes").select("*").or_(
+        "recurring.eq.true, created_at.gte.{}".format(current_month_start)
+        ).eq("email", email).execute()
         return response.data
 
     @staticmethod

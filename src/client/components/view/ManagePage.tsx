@@ -30,28 +30,16 @@ const ManagePage = ({ navigation, route }: ManagePageProps) => {
   const buttonData = (type: string) => {
     const buttons: { [key: string]: any } = {
       expense: {
-        title: "Expense",
+        title: "Expenses",
         color: "#6A90C1",
         routingHandler: expensePageHandler,
-        icon: <ReceiptIcon />,
-      },
-      income: {
-        title: "Income",
-        color: "#70B278",
-        routingHandler: incomePageHandler,
-        icon: <IncomeIcon />,
+        icon: <ReceiptIcon size={60} />,
       },
       budget: {
         title: "Budget",
-        color: "#C6C56C",
+        color: "#70B278",
         routingHandler: budgetPageHandler,
-        icon: <BudgetIcon />,
-      },
-      goals: {
-        title: "Goals",
-        color: "#C67E6C",
-        routingHandler: () => {},
-        icon: <BudgetIcon />, // TODO: update this
+        icon: <BudgetIcon size={55} />,
       },
     };
     return buttons[type];
@@ -73,7 +61,7 @@ const ManagePage = ({ navigation, route }: ManagePageProps) => {
     );
   };
 
-  const buttons = ["expense", "income", "budget", "goals"];
+  const buttons = ["expense", "budget"];
 
   return (
     <View alignItems="center" style={styles.background}>
@@ -85,7 +73,7 @@ const ManagePage = ({ navigation, route }: ManagePageProps) => {
           style={styles.buttonsContainer}
           data={buttons}
           keyExtractor={(item, index) => index.toString()}
-          numColumns={2}
+          numColumns={1}
           renderItem={({ item }) => <ButtonComponent type={item} />}
         />
       </View>
@@ -129,9 +117,10 @@ const styles = StyleSheet.create({
     color: "white",
   },
   buttonsContainer: {
-    marginTop: 40,
     alignContent: "center",
     alignSelf: "center",
+    width: "80%",
+    top: "10%",
   },
 });
 

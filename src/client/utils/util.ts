@@ -11,3 +11,11 @@ export const formatDate = (dateString: string): string => {
     year: "numeric",
   }).format(date);
 };
+
+export const wrapText = (text: string, maxLength: number) => {
+  if (text.length > maxLength) {
+    const index = text.lastIndexOf(" ", maxLength);
+    return text.substring(0, index) + "\n" + text.substring(index + 1);
+  }
+  return text;
+};

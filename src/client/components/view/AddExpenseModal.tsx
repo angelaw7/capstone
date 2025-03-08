@@ -46,11 +46,12 @@ const AddExpenseModal = ({
           <Text style={styles.label}>Category:</Text>
           <Dropdown
             data={[
+              { label: "Rent", value: "Rent" },
               { label: "Groceries", value: "Groceries" },
               { label: "Entertainment", value: "Entertainment" },
               { label: "Electronics", value: "Electronics" },
               { label: "Miscellaneous", value: "Miscellaneous" },
-              { label: "Home", value: "Home" },
+              { label: "Internet", value: "Internet" },
               { label: "Other", value: "Other" },
             ]}
             search
