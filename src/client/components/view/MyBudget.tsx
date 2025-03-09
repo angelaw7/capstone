@@ -20,6 +20,8 @@ import ExpensesService from "../../services/expensesService";
 import { ActivityIndicator } from "react-native-paper";
 import IncomeBox from "../common/IncomeBox";
 import NewIncomeModal from "../common/NewIncomeModal";
+import MyBudgetsBox from "../common/MyBudgetsBox";
+import NewBudgetModal from "../common/NewBudgetModal";
 
 interface MyBudgetProps {
   navigation: NavigationProps;
@@ -59,7 +61,11 @@ const MyBudget = ({ navigation }: MyBudgetProps) => {
   const [incomes, setIncomes] = useState<Income[]>([]);
   const [budgets, setBudgets] = useState<Budget[]>([]);
   const [expenses, setExpenses] = useState<Expense[]>([]);
-  const [openModal, setOpenModal] = useState(false);
+
+  const [currentIncome, setCurrentIncome] = useState<Income>();
+  const [openIncomeModal, setOpenIncomeModal] = useState(false);
+  const [currentBudget, setCurrentBudget] = useState<Budget>();
+  const [openBudgetModal, setOpenBudgetModal] = useState(false);
 
   const [loading, setLoading] = useState(false);
 
@@ -71,8 +77,30 @@ const MyBudget = ({ navigation }: MyBudgetProps) => {
     navigation.navigate("NewBudget");
   };
 
-  const handleCloseModal = () => {
-    setOpenModal(false);
+  const handleOpenIncomeModal = (income?: Income) => {
+    if (income) {
+      setCurrentIncome(income);
+    } else {
+      setCurrentIncome(undefined);
+    }
+    setOpenIncomeModal(true);
+  };
+
+  const handleCloseIncomeModal = () => {
+    setOpenIncomeModal(false);
+  };
+
+  const handleOpenBudgetModal = (budget?: Budget) => {
+    if (budget) {
+      setCurrentBudget(budget);
+    } else {
+      setCurrentBudget(undefined);
+    }
+    setOpenBudgetModal(true);
+  };
+
+  const handleCloseBudgetModal = () => {
+    setOpenBudgetModal(false);
   };
 
   useEffect(() => {
@@ -127,15 +155,28 @@ const MyBudget = ({ navigation }: MyBudgetProps) => {
         <BudgetBox incomes={incomes} expenses={expenses} budgets={budgets} />
         <IncomeBox
           incomes={incomes}
-          addIncome={() => setOpenModal(true)}
+          addIncome={handleOpenIncomeModal}
           setIncomes={setIncomes}
+        />
+        <MyBudgetsBox
+          budgets={budgets}
+          addBudget={handleOpenBudgetModal}
+          setBudgets={setBudgets}
         />
       </ScrollView>
 
       <NewIncomeModal
         setIncomes={setIncomes}
-        visible={openModal}
-        onClose={handleCloseModal}
+        visible={openIncomeModal}
+        onClose={handleCloseIncomeModal}
+        currentIncome={currentIncome}
+      />
+
+      <NewBudgetModal
+        setBudgets={setBudgets}
+        visible={openBudgetModal}
+        onClose={handleCloseBudgetModal}
+        currentBudget={currentBudget}
       />
     </View>
   );

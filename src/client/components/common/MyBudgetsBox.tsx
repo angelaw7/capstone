@@ -7,32 +7,30 @@ import {
   Animated,
   Pressable,
 } from "react-native";
-import IncomeIcon from "../../assets/icons/IncomeIcon";
 import { wrapText } from "../../utils/util";
-import IncomeService from "../../services/incomeService";
 import { Swipeable } from "react-native-gesture-handler";
+import BudgetService from "../../services/budgetService";
+import { ICON_CATEGORY_MAPPING } from "../../constants";
 
-interface Income {
+interface Budget {
   id: number;
   amount: number;
   created_at: string;
   email: string;
-  frequency: string | null;
-  recurring: boolean;
-  title: string;
+  category: string;
 }
 
-interface IncomeBoxProps {
-  incomes: Income[];
-  addIncome: (income?: Income) => void;
-  setIncomes: Function;
+interface MyBudgetBoxProps {
+  budgets: Budget[];
+  addBudget: (budget?: Budget) => void;
+  setBudgets: Function;
 }
 
-const IncomeBox = ({ incomes, addIncome, setIncomes }: IncomeBoxProps) => {
-  const handleDeleteIncome = (incomeId: number) => {
-    incomes = incomes.filter((income) => income.id != incomeId);
-    setIncomes(incomes);
-    IncomeService.deleteIncome(incomeId);
+const MyBudgetsBox = ({ budgets, addBudget, setBudgets }: MyBudgetBoxProps) => {
+  const handleDeleteBudget = (budgetId: number) => {
+    budgets = budgets.filter((budget) => budget.id != budgetId);
+    setBudgets(budgets);
+    BudgetService.deleteBudget(budgetId);
   };
 
   const renderRightActions = (
@@ -43,7 +41,7 @@ const IncomeBox = ({ incomes, addIncome, setIncomes }: IncomeBoxProps) => {
     return (
       <TouchableOpacity
         style={styles.deleteButton}
-        onPress={() => handleDeleteIncome(id)}
+        onPress={() => handleDeleteBudget(id)}
       >
         <Text style={styles.deleteText}>Delete</Text>
       </TouchableOpacity>
@@ -52,31 +50,34 @@ const IncomeBox = ({ incomes, addIncome, setIncomes }: IncomeBoxProps) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Income</Text>
+      <Text style={styles.title}>Budgets</Text>
 
-      {incomes.map((income) => {
+      {budgets.map((budget) => {
+        const IconComponent =
+          ICON_CATEGORY_MAPPING[budget.category] ??
+          ICON_CATEGORY_MAPPING["misc"];
         return (
           <Swipeable
-            key={income.id}
+            key={budget.id}
             renderRightActions={(progress, dragX) =>
-              renderRightActions(progress, dragX, income.id)
+              renderRightActions(progress, dragX, budget.id)
             }
           >
             <View style={styles.row}>
               <View style={styles.leftContainer}>
                 <View style={styles.iconContainer}>
-                  <IncomeIcon size={16} />
+                  <IconComponent size={16} />
                 </View>
                 <Text style={styles.categoryText}>
-                  {wrapText(`Income - ${income.title}`, 25)}
+                  {wrapText(`Budget - ${budget.category}`, 25)}
                 </Text>
               </View>
               <Pressable
-                onPress={() => addIncome(income)}
+                onPress={() => addBudget(budget)}
                 style={styles.amountContainer}
               >
                 <Text style={styles.amountText}>
-                  ${income?.amount?.toLocaleString()}
+                  ${budget?.amount?.toLocaleString()}
                 </Text>
               </Pressable>
             </View>
@@ -84,12 +85,12 @@ const IncomeBox = ({ incomes, addIncome, setIncomes }: IncomeBoxProps) => {
         );
       })}
 
-      <TouchableOpacity style={styles.add} onPress={() => addIncome()}>
+      <TouchableOpacity style={styles.add} onPress={() => addBudget()}>
         <View style={styles.leftContainer}>
           <View style={styles.iconContainerDark}>
             <Text style={styles.plusText}>+</Text>
           </View>
-          <Text style={styles.categoryText}>Add income</Text>
+          <Text style={styles.categoryText}>Add budget</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: "#A0D468",
+    backgroundColor: "#D6B6D3",
     justifyContent: "center",
     alignItems: "center",
     marginRight: 10,
@@ -193,4 +194,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default IncomeBox;
+export default MyBudgetsBox;

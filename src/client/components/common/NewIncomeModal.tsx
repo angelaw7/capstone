@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -11,7 +11,6 @@ import {
 } from "react-native";
 import { ActivityIndicator, RadioButton } from "react-native-paper";
 import { Dropdown } from "react-native-element-dropdown";
-import BackArrow from "../../assets/icons/BackArrow";
 import IncomeService from "../../services/incomeService";
 import { useUser } from "../../contexts/UserContext";
 import CancelIcon from "../../assets/icons/CancelIcon";
@@ -40,6 +39,7 @@ interface NewIncomeModalProps {
   visible: boolean;
   onClose: () => void;
   setIncomes: Function;
+  currentIncome?: Income;
 }
 
 type DropdownItem = {
@@ -51,13 +51,38 @@ const NewIncomeModal = ({
   visible,
   onClose,
   setIncomes,
+  currentIncome,
 }: NewIncomeModalProps) => {
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
-  const [checked, setChecked] = useState<"once" | "periodically">("once");
+  const [checked, setChecked] = useState<"once" | "periodically">(
+    currentIncome?.frequency ? "periodically" : "once",
+  );
   const [dropdownValue, setDropdownValue] = useState(1);
   const { user } = useUser();
+
+  useEffect(() => {
+    if (currentIncome) {
+      setTitle(currentIncome.title);
+      setAmount(currentIncome.amount.toString());
+      setDropdownValue(
+        dropdownData.find(
+          (data) =>
+            data.label.toLowerCase() == currentIncome?.frequency?.toLowerCase(),
+        )?.value ?? 1,
+      );
+      setChecked(currentIncome.frequency ? "periodically" : "once");
+    }
+  }, [currentIncome]);
+
+  const handleClose = () => {
+    setAmount("");
+    setTitle("");
+    setChecked("once");
+    setDropdownValue(1);
+    onClose();
+  };
 
   const dropdownChangeHandler = (item: DropdownItem) => {
     setDropdownValue(item.value);
@@ -86,9 +111,24 @@ const NewIncomeModal = ({
     };
 
     try {
-      const newIncome = await IncomeService.createIncome(incomeData);
+      let newIncome: Income[] = [];
+      if (currentIncome) {
+        newIncome = await IncomeService.updateIncome(
+          currentIncome.id,
+          incomeData,
+        );
+        setIncomes((prevIncomes: Income[]) => {
+          const updatedIncomes = prevIncomes.filter(
+            (income) => income.id != currentIncome.id,
+          );
+          updatedIncomes.push(newIncome[0]);
+          return updatedIncomes;
+        });
+      } else {
+        newIncome = await IncomeService.createIncome(incomeData);
+        setIncomes((prevIncomes: Income[]) => [...prevIncomes, newIncome[0]]);
+      }
       setLoading(false);
-      setIncomes((prevIncomes: Income[]) => [...prevIncomes, newIncome[0]]);
 
       setAmount("");
       setTitle("");
@@ -104,7 +144,7 @@ const NewIncomeModal = ({
         <View style={styles.modalBackground}>
           <View style={styles.modalContainer}>
             <View style={styles.header}>
-              <Pressable style={styles.backArrow} onPress={onClose}>
+              <Pressable style={styles.backArrow} onPress={handleClose}>
                 <CancelIcon size={30} />
               </Pressable>
               <Text style={styles.headerTitle}>New Income</Text>
@@ -149,7 +189,7 @@ const NewIncomeModal = ({
 
               {checked === "periodically" && (
                 <View style={styles.dropdownBox}>
-                  <Text style={styles.dropdownText}>How often?:</Text>
+                  <Text style={styles.dropdownText}>Period:</Text>
                   <Dropdown
                     data={dropdownData}
                     labelField="label"
@@ -165,7 +205,13 @@ const NewIncomeModal = ({
 
               <Pressable style={styles.submit} onPress={addIncomeHandler}>
                 <Text style={styles.submitText}>
-                  {loading ? <ActivityIndicator /> : `Add Income`}
+                  {loading ? (
+                    <ActivityIndicator />
+                  ) : currentIncome ? (
+                    `Update Income`
+                  ) : (
+                    `Add Income`
+                  )}
                 </Text>
               </Pressable>
             </View>
@@ -254,7 +300,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     padding: 12,
-    width: "70%",
+    width: "75%",
   },
 });
 
