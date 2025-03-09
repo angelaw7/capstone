@@ -130,7 +130,7 @@ const MainApp = () => {
       <View style={styles.app}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           {/* Authentication Screens */}
-          <Stack.Screen name="NewIncome" component={NewIncomePage} />
+          <Stack.Screen name="Login" component={LoginView} />
           <Stack.Screen name="ResetPassword">
             {(props: any) => (
               <DefaultLayout>
