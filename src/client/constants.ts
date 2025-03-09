@@ -2,6 +2,7 @@ import CartIcon from "./assets/icons/CartIcon";
 import CoinIcon from "./assets/icons/CoinIcon";
 import ComputerIcon from "./assets/icons/ComputerIcon";
 import HouseIcon from "./assets/icons/HouseIcon";
+import LaundryIcon from "./assets/icons/LaundryIcon";
 import MoviesIcon from "./assets/icons/MoviesIcon";
 import WifiIcon from "./assets/icons/WifiIcon";
 
@@ -30,4 +31,5 @@ export const ICON_CATEGORY_MAPPING: Record<
   misc: CoinIcon,
   entertainment: MoviesIcon,
   internet: WifiIcon,
+  home: LaundryIcon,
 };

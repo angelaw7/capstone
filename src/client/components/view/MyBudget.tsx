@@ -146,9 +146,6 @@ const MyBudget = ({ navigation }: MyBudgetProps) => {
         <Text
           style={styles.title}
         >{`${MONTHS[date.getMonth()]} ${date.getFullYear()}`}</Text>
-        <Pressable style={styles.addIcon} onPress={addNewBudgetHandler}>
-          <AddIcon size={35} />
-        </Pressable>
       </View>
 
       <ScrollView style={styles.infoContainer}>
@@ -203,10 +200,6 @@ const styles = StyleSheet.create({
   backIcon: {
     position: "absolute",
     left: 0,
-  },
-  addIcon: {
-    position: "absolute",
-    right: 24,
   },
   sectionTitle: {
     fontSize: 20,

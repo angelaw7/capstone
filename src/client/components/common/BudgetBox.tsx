@@ -25,14 +25,6 @@ interface Expense {
   raw_name: string;
 }
 
-type GroupedExpense = {
-  name: string;
-  amount: number;
-  color: string;
-  legendFontColor: string;
-  legendFontSize: number;
-};
-
 interface Budget {
   id: number;
   amount: number;
@@ -48,9 +40,13 @@ type BudgetBoxProps = {
 };
 
 const categoryColours: Record<string, string> = {
-  groceries: "#21A179",
-  electronics: "#2DBB8F",
-  rent: "#38D9A9",
+  groceries: "#FF928A",
+  electronics: "#FFDA8A",
+  rent: "#8A9FE3",
+  entertainment: "#c497f7",
+  miscellanious: "#adf55f",
+  internet: "#f56788",
+  home: "#716ded",
 };
 
 const BudgetBox = ({ incomes, expenses, budgets }: BudgetBoxProps) => {
@@ -72,7 +68,7 @@ const BudgetBox = ({ incomes, expenses, budgets }: BudgetBoxProps) => {
     data.push({
       name: "Left to\nbudget",
       amount: totalIncome - totalExpenses,
-      colour: "#888888",
+      colour: "#e8f1fa",
       legendFontColour: "#333",
       legendFontSize: 8,
     });
