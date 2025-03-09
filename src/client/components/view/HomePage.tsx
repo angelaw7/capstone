@@ -5,7 +5,7 @@ import { ActivityIndicator, Dimensions, StyleSheet } from "react-native";
 import HomePageMetricsBox from "../common/HomePageMetricsBox";
 import SpendingDetails from "../common/SpendingDetails";
 import { Budget, Expense, NavigationProps, RouteProps } from "../../types";
-import { nameCase } from "../../utils";
+import { nameCase } from "../../utils/util";
 import { useUser } from "../../contexts/UserContext";
 import BudgetService from "../../services/budgetService";
 import ExpensesService from "../../services/expensesService";
