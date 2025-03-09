@@ -303,7 +303,21 @@ classify items based on the input data.
 \end{itemize}
 
 \subsubsection{Local Functions}
-N/A
+\noindent \_\_train\_model(csv: File):
+\begin{itemize}
+  \item transition: N/A
+  \item input: csv -- a CSV file containing labeled data (item\_name, category)
+  from parsed receipt item names and manually verified categories.
+  \item output: three .pkl files (model, vectorizer, encoder) for item
+  categorization. These files are opened and loaded during the initialization of
+  the Categorization class and are used within categorize(). It is assumed that
+  this model has been trained and does not need to be modified during runtime.
+  \item model: The model will use multiclass logistic regression to predict the
+  item categories based on the item names. A vectorizer will be used to convert
+  the item names into a format that the model can understand. An encoder will be
+  used to convert the predicted category back into a human-readable format. The
+  expected accuracy of the model is 90\%.
+\end{itemize}
 
 \newpage
 
