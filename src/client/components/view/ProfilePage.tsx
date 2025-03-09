@@ -8,7 +8,7 @@ import { DEFAULT_COLOURS } from "../../styles/commonStyles";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavigationProps } from "../../types";
-import { nameCase } from "../../utils";
+import { nameCase } from "../../utils/util";
 import { useUser, User } from "../../contexts/UserContext";
 import DeleteProfileModal from "./DeleteProfileModal";
 

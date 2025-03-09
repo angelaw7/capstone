@@ -5,7 +5,7 @@ import { ActivityIndicator, Dimensions, StyleSheet } from "react-native";
 import HomePageMetricsBox from "../common/HomePageMetricsBox";
 import SpendingDetails from "../common/SpendingDetails";
 import { NavigationProps, RouteProps } from "../../types";
-import { nameCase } from "../../utils";
+import { nameCase } from "../../utils/util";
 import { useUser } from "../../contexts/UserContext";
 
 type HomePageProps = {
