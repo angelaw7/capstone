@@ -58,7 +58,7 @@ urlcolor=cyan          % color of external links
 \midrule
 01/13/2024 & 0.1 & Sections 2--5 \\
 01/17/2024 & 0.2 & Section 6\\
-03/09/2025 & 0.3 & Updates to Item/Expense modules\\
+03/09/2025 & 0.3 & Updates to Item, Expense, Income, Budget, Categorization modules\\
 \ldots & \ldots & \ldots \\
 \bottomrule
 \end{tabularx}
@@ -898,6 +898,137 @@ N/A
 
 \newpage
 % end of expense module
+
+% start of income module
+\section{MIS of Income}\label{income_module}
+
+\subsection{Module}
+
+Income module
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+\begin{itemize}
+  \item \textbf{name}: string
+  \item \textbf{amount}: float
+  \item \textbf{recurring}: bool
+  \item \textbf{frequency}: Optional[string]
+  \item \textbf{start}: datetime
+  \item \textbf{user\_id}: Uuid
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{table}[H]
+    \caption{Income Module Access Programs}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+income & name: string &  &  \\
+  & amount: float &  &  \\
+  & recurring: bool &  &  \\
+  & frequency: Optional[string] &  &  \\
+  & start: datetime &  &  \\
+  & user\_id: Uuid &  &  \\
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent income(name: string, amount: float, recurring: bool, frequency:
+Optional[string], start: datetime, user\_id: Uuid):
+\begin{itemize}
+\item transition: N/A
+\item output: Income
+\item exception: InvalidInputError -- thrown if the input is not valid
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+% end of income module
+
+% start of budget module
+\section{MIS of Budget}\label{budget_module}
+
+\subsection{Module}
+
+Budget module
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+\begin{itemize}
+  \item \textbf{category}: string
+  \item \textbf{amount}: float
+  \item \textbf{user\_id}: Uuid
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{table}[H]
+    \caption{Budget Module Access Programs}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+budget & category: string &  & InvalidInputError \\
+  & amount: float &  &  \\
+  & user\_id: Uuid &  &  \\
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent budget(category: string, amount: float, user\_id: Uuid):
+\begin{itemize}
+\item transition: N/A
+\item output: Budget
+\item exception: InvalidInputError -- thrown if the input is not valid
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+% end of budget module
 
 
 % % start of MIS template
