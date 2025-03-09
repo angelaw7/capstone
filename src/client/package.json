@@ -16,7 +16,10 @@
     "**/*.{js,jsx,ts,tsx}": "npx prettier --write"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "!node_modules/"
+    ]
   },
   "dependencies": {
     "@expo/metro-runtime": "~4.0.0",
