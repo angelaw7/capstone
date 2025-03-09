@@ -29,14 +29,14 @@ const HomePageButton = ({
 const styles = StyleSheet.create({
   button: {
     minHeight: 130,
-    width: 150,
+    width: "100%",
     borderRadius: 20,
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
     padding: 20,
-    margin: 10,
+    marginBottom: 20,
   },
   buttonText: {
     fontSize: 20,

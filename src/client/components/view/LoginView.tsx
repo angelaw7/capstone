@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  StyleSheet,
+  TextInput,
+  View,
+} from "react-native";
 import { commonStyles, DEFAULT_COLOURS } from "../../styles/commonStyles";
 import { Button, Text } from "tamagui";
 import GoogleIcon from "../../assets/icons/GoogleIcon";
@@ -20,6 +26,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [credentialError, setCredentialError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { setUser } = useUser();
 
@@ -41,6 +48,7 @@ const LoginView = ({ navigation }: LoginViewProps) => {
   // we can also do other login options like signing in with popup or redirect
   const loginWithEmailPassword = async () => {
     try {
+      setLoading(true);
       const fireBaseUser = await signInWithEmailAndPassword(
         auth,
         username,
@@ -77,6 +85,8 @@ const LoginView = ({ navigation }: LoginViewProps) => {
           );
           break;
       }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -124,9 +134,13 @@ const LoginView = ({ navigation }: LoginViewProps) => {
         paddingHorizontal="20%"
         onPress={loginWithEmailPassword}
       >
-        <Text fontWeight="500" color="white">
-          Continue
-        </Text>
+        {loading ? (
+          <ActivityIndicator color={"white"} />
+        ) : (
+          <Text fontWeight="500" color="white">
+            Continue
+          </Text>
+        )}
       </Button>
 
       {credentialError.length !== 0 && (

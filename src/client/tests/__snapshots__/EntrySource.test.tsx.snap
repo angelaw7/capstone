@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EntrySource component should match snapshot for entry source component 1`] = `
+<View
+  style={
+    {
+      "display": "flex",
+      "flexDirection": "row",
+      "marginVertical": 8,
+      "position": "relative",
+    }
+  }
+>
+  <View
+    style={
+      {
+        "alignItems": "center",
+        "display": "flex",
+        "flexDirection": "row",
+        "height": 50,
+        "justifyContent": "space-between",
+        "marginLeft": 5,
+        "width": "100%",
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "fontSize": 18,
+          },
+          {
+            "width": "65%",
+          },
+        ]
+      }
+    >
+      description test
+    </Text>
+    <Text
+      style={
+        [
+          {
+            "fontSize": 18,
+          },
+          {
+            "textAlign": "center",
+            "width": "35%",
+          },
+        ]
+      }
+    >
+      additionalInfo test
+    </Text>
+  </View>
+</View>
+`;

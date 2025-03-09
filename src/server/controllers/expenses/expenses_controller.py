@@ -3,7 +3,9 @@ from flask import jsonify
 
 class ExpensesController:
     @staticmethod
-    def get_all_expenses(userId):
+    def get_all_expenses(userId, flag):
+        if flag:
+            return ExpensesDao.get_all_user_expenses_for_current_month(userId)
         return ExpensesDao.get_all_user_expenses(userId)
 
     @staticmethod

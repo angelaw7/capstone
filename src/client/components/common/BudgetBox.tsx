@@ -1,130 +1,162 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
-import * as ProgressBar from "react-native-progress";
-import { MONTHS } from "../../constants";
-import { NavigationProps, RouteProps } from "../../types";
+import { View, StyleSheet, Text, Dimensions } from "react-native";
+import { PieChart } from "react-native-chart-kit";
+import { capitalizeFirstLetter } from "../../utils/util";
+
+const screenWidth = Dimensions.get("window").width;
+
+interface Income {
+  id: number;
+  amount: number;
+  created_at: string;
+  email: string;
+  frequency: string | null;
+  recurring: boolean;
+  title: string;
+}
+interface Expense {
+  id: number;
+  cost: number;
+  name: string;
+  category: string;
+  email: string;
+  created_at: string;
+  transaction_date: string;
+  raw_name: string;
+}
+
+interface Budget {
+  id: number;
+  amount: number;
+  created_at: string;
+  email: string;
+  category: string;
+}
 
 type BudgetBoxProps = {
-  navigation: NavigationProps;
-  route: RouteProps;
+  expenses: Expense[];
+  incomes: Income[];
+  budgets: Budget[];
 };
 
-const BudgetBox = ({ navigation, route }: BudgetBoxProps) => {
-  // TODO: replace values with real data
-  const progress = 0.63;
-  const currentMonth = MONTHS[new Date().getMonth()];
+const categoryColours: Record<string, string> = {
+  groceries: "#FF928A",
+  electronics: "#FFDA8A",
+  rent: "#8A9FE3",
+  entertainment: "#c497f7",
+  miscellanious: "#adf55f",
+  internet: "#f56788",
+  home: "#716ded",
+};
 
-  const navigateToBudgetDetails = () => {
-    navigation.navigate("BudgetBoxDetails");
-  };
+const BudgetBox = ({ incomes, expenses, budgets }: BudgetBoxProps) => {
+  const totalExpenses = expenses.reduce(
+    (sum, expense) => sum + expense.cost,
+    0,
+  );
+  const totalIncome = incomes.reduce((sum, income) => sum + income.amount, 0);
+
+  const data = budgets.map((budget) => ({
+    name: capitalizeFirstLetter(budget.category),
+    amount: budget.amount,
+    colour: categoryColours[budget.category],
+    legendFontColour: "#333",
+    legendFontSize: 8,
+  }));
+
+  if (totalIncome - totalExpenses > 0)
+    data.push({
+      name: "Left to\nbudget",
+      amount: totalIncome - totalExpenses,
+      colour: "#e8f1fa",
+      legendFontColour: "#333",
+      legendFontSize: 8,
+    });
 
   return (
-    <Pressable onPress={navigateToBudgetDetails}>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Text style={styles.title}>{`${currentMonth}'s Budget`}</Text>
-          <Text style={styles.percentage}>{`${progress * 100}%`}</Text>
-        </View>
-
-        <ProgressBar.Bar
-          progress={progress}
-          width={null}
-          color="#9E599A"
-          unfilledColor="#ddd"
-          borderWidth={0}
-          height={10}
-          borderRadius={5}
-          style={styles.progressBar}
+    <View style={styles.container}>
+      <View style={styles.chartWrapper}>
+        <PieChart
+          data={data.map((d) => ({
+            name: `${d.name} `,
+            population: d.amount,
+            color: d.colour,
+            legendFontColor: d.legendFontColour,
+            legendFontSize: d.legendFontSize,
+          }))}
+          width={screenWidth * 0.8}
+          height={150}
+          chartConfig={{
+            backgroundColor: "#FFF",
+            backgroundGradientFrom: "#FFF",
+            backgroundGradientTo: "#FFF",
+            color: () => "#000",
+          }}
+          accessor="population"
+          backgroundColor="transparent"
+          paddingLeft="10"
+          absolute
         />
-
-        {/* Budget Details */}
-        <View style={styles.details}>
-          <View>
-            <Text style={styles.label}>Budget:</Text>
-            <Text style={styles.value}>$1200</Text>
-          </View>
-          <View>
-            <Text style={styles.label}>Spent:</Text>
-            <Text style={styles.value}>
-              {/* TODO: replace arrow with corresponding trend */}
-              $761.96 <Text style={styles.warning}>▲</Text>{" "}
-            </Text>
-          </View>
-          <Text style={styles.arrow}>›</Text>
-        </View>
       </View>
-    </Pressable>
+
+      <View style={styles.infoContainer}>
+        <Text style={styles.title}>TOTAL EXPENSES</Text>
+        <Text style={styles.totalAmount}>${totalExpenses}</Text>
+        <Text style={styles.overIncome}>
+          $
+          {totalIncome - totalExpenses > 0
+            ? `${totalIncome - totalExpenses} left to budget`
+            : `${totalExpenses - totalIncome} over budget`}
+        </Text>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
-    borderRadius: 15,
-    padding: 15,
-    margin: 10,
+    backgroundColor: "#FFF",
+    borderRadius: 16,
+    padding: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    alignSelf: "center",
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
-    borderWidth: 1,
-    borderColor: "#eee",
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
+    marginBottom: 30,
   },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  chartWrapper: {
+    backgroundColor: "#FFF",
+    borderRadius: 10,
+    padding: 10,
     alignItems: "center",
-    marginBottom: 10,
+    justifyContent: "center",
+  },
+  infoContainer: {
+    marginTop: 10,
   },
   title: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#333",
-  },
-  percentage: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#333",
-  },
-  progressBar: {
-    marginBottom: 15,
-  },
-  progress: {
-    flex: 0.63, // Fill 63% of the bar
-    backgroundColor: "#9E599A",
-  },
-  remaining: {
-    flex: 0.37, // Remaining percentage
-    backgroundColor: "#eee",
-  },
-  details: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  label: {
-    fontSize: 14,
     color: "#555",
-  },
-  value: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: "bold",
-    color: "#333",
+    marginBottom: 5,
+    textAlign: "center",
   },
-  warning: {
-    color: "red",
+  totalAmount: {
+    color: "#000",
+    fontSize: 28,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  overIncome: {
+    color: "#777",
     fontSize: 14,
-  },
-  arrow: {
-    fontSize: 24,
-    color: "#ccc",
+    textAlign: "center",
+    marginTop: 5,
   },
 });
 

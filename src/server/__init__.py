@@ -15,4 +15,7 @@ def create_app():
     from server.routes.users.usersRoutes import users
     app.register_blueprint(users, url_prefix='/api/users')
 
+    from server.routes.budget.budgetRoutes import budget
+    app.register_blueprint(budget, url_prefix='/api/budget')
+
     return app
