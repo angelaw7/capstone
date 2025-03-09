@@ -166,24 +166,26 @@ const NewIncomeModal = ({
               />
               <View style={styles.radioButtonBox}>
                 <View style={styles.radioButton}>
-                  <RadioButton
+                  <RadioButton.Item
+                    label="Once"
+                    testID="once"
                     value="once"
                     status={checked === "once" ? "checked" : "unchecked"}
                     onPress={() => setChecked("once")}
+                    position="leading"
                   />
-                  <Text onPress={() => setChecked("once")}>Once</Text>
                 </View>
                 <View style={styles.radioButton}>
-                  <RadioButton
+                  <RadioButton.Item
+                    label="Periodically"
+                    testID="periodically"
                     value="periodically"
                     status={
                       checked === "periodically" ? "checked" : "unchecked"
                     }
                     onPress={() => setChecked("periodically")}
+                    position="leading"
                   />
-                  <Text onPress={() => setChecked("periodically")}>
-                    Periodically
-                  </Text>
                 </View>
               </View>
 

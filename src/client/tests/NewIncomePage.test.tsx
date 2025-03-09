@@ -1,7 +1,7 @@
 import { render, fireEvent } from "@testing-library/react-native";
-import NewIncomePage from "../components/view/NewIncomePage";
+import NewIncomeModal from "../components/common/NewIncomeModal";
 
-describe("NewIncomePage component", () => {
+describe("NewIncomeModal component", () => {
   it("should match snapshot for new income page", () => {
     /* mock the navigation and route params */
     const navigation = jest.fn();
@@ -9,7 +9,7 @@ describe("NewIncomePage component", () => {
 
     const tree = render(
       // @ts-ignore
-      <NewIncomePage navigation={navigation} route={route} />,
+      <NewIncomeModal navigation={navigation} route={route} />,
     ).toJSON();
 
     expect(tree).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe("NewIncomePage component", () => {
 
     const page = render(
       // @ts-ignore
-      <NewIncomePage navigation={navigation} route={route} />,
+      <NewIncomeModal navigation={navigation} route={route} />,
     );
 
     /* technically should replace getByPlaceholderText with getByTestId but then
@@ -52,7 +52,7 @@ describe("NewIncomePage component", () => {
 
     const page = render(
       // @ts-ignore
-      <NewIncomePage navigation={navigation} route={route} />,
+      <NewIncomeModal navigation={navigation} route={route} />,
     );
 
     const { getByPlaceholderText } = page;
@@ -75,7 +75,7 @@ describe("NewIncomePage component", () => {
 
     const page = render(
       // @ts-ignore
-      <NewIncomePage navigation={navigation} route={route} />,
+      <NewIncomeModal navigation={navigation} route={route} />,
     );
 
     const { getByTestId, queryByText } = page;
@@ -90,7 +90,7 @@ describe("NewIncomePage component", () => {
     expect(onceButton.props.accessibilityState.checked).toBeTruthy();
     expect(periodicallyButton.props.accessibilityState.checked).toBeFalsy();
 
-    const howOftenText = queryByText("How often?:");
+    const howOftenText = queryByText("Period:");
     expect(howOftenText).toBeFalsy();
   });
 
@@ -101,7 +101,7 @@ describe("NewIncomePage component", () => {
 
     const page = render(
       // @ts-ignore
-      <NewIncomePage navigation={navigation} route={route} />,
+      <NewIncomeModal navigation={navigation} route={route} />,
     );
 
     const { getByTestId, queryByText } = page;
@@ -119,7 +119,7 @@ describe("NewIncomePage component", () => {
     expect(onceButton.props.accessibilityState.checked).toBeFalsy();
     expect(periodicallyButton.props.accessibilityState.checked).toBeTruthy();
 
-    const howOftenText = queryByText("How often?:");
+    const howOftenText = queryByText("Period:");
     expect(howOftenText).toBeTruthy();
 
     const occurrence = [
