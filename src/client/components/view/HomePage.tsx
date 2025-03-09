@@ -58,7 +58,15 @@ const HomePage = ({ navigation, route }: HomePageProps) => {
     }, [user]),
   );
 
-  if (!user || loading) return <ActivityIndicator size="large" />;
+  if (!user || loading)
+    return (
+      <View
+        alignItems="center"
+        style={{ ...styles.background, justifyContent: "center" }}
+      >
+        <ActivityIndicator size="large" />
+      </View>
+    );
 
   return (
     <View alignItems="center" style={styles.background}>
@@ -72,7 +80,7 @@ const HomePage = ({ navigation, route }: HomePageProps) => {
           navigation={navigation}
           route={route}
         />
-        <SpendingDetails />
+        <SpendingDetails expenses={expenses} />
       </View>
     </View>
   );
