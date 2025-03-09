@@ -77,7 +77,7 @@ const BudgetBoxDetails = ({ navigation }: BudgetBoxDetailsProps) => {
             >
               {remaining >= 0
                 ? `$${remaining.toLocaleString()} left`
-                : `$${remaining.toLocaleString()} over limit`}
+                : `$${Math.abs(remaining).toLocaleString()} over limit`}
             </Text>
           </View>
 
