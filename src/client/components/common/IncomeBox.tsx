@@ -11,16 +11,7 @@ import IncomeIcon from "../../assets/icons/IncomeIcon";
 import { wrapText } from "../../utils/util";
 import IncomeService from "../../services/incomeService";
 import { Swipeable } from "react-native-gesture-handler";
-
-interface Income {
-  id: number;
-  amount: number;
-  created_at: string;
-  email: string;
-  frequency: string | null;
-  recurring: boolean;
-  title: string;
-}
+import { Income } from "../../types";
 
 interface IncomeBoxProps {
   incomes: Income[];

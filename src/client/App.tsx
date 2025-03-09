@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import MyExpenses from "./components/view/MyExpenses";
 import MyBudget from "./components/view/MyBudget";
-import NewBudgetPage from "./components/view/NewBudgetPage";
 import LoginView from "./components/view/LoginView";
 import RegisterView from "./components/view/RegisterView";
 import ResetPasswordView from "./components/view/ResetPasswordView";
@@ -43,13 +42,6 @@ const ManageStack = () => {
         {({ navigation }) => (
           <DefaultLayout>
             <MyBudget navigation={navigation} />
-          </DefaultLayout>
-        )}
-      </Stack.Screen>
-      <Stack.Screen name="NewBudget">
-        {({ navigation }) => (
-          <DefaultLayout>
-            <NewBudgetPage navigation={navigation} />
           </DefaultLayout>
         )}
       </Stack.Screen>

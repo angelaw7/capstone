@@ -2,164 +2,288 @@ import React, { useState } from "react";
 import {
   View,
   Text,
-  Button,
-  Dimensions,
   StyleSheet,
-  TouchableOpacity,
+  FlatList,
+  SafeAreaView,
+  Pressable,
+  Modal,
 } from "react-native";
-import { LineChart } from "react-native-chart-kit";
-import { NavigationProps, RouteProps } from "../../types";
-import { Divider } from "react-native-paper";
-import { Dropdown } from "react-native-element-dropdown";
+import { ProgressCircle } from "react-native-svg-charts";
+import { CATEGORY_COLOURS, ICON_CATEGORY_MAPPING } from "../../constants";
+import { Budget, Expense, NavigationProps } from "../../types";
+import { useRoute } from "@react-navigation/native";
+import CancelIcon from "../../assets/icons/CancelIcon";
+import { capitalizeFirstLetter } from "../../utils/util";
 import BackArrow from "../../assets/icons/BackArrow";
 
-const screenWidth = Dimensions.get("window").width;
-
-type BudgetBoxDetailsProps = {
+interface BudgetBoxDetailsProps {
   navigation: NavigationProps;
-  route: RouteProps;
-};
+}
 
-const BudgetBoxDetails = ({ navigation, route }: BudgetBoxDetailsProps) => {
-  const [dropdownField, setDropdownField] = useState("Last week");
-
-  // TODO: replace data and expenses with real expense data
-  // TODO: filter data based on dropdownField time range
-  const data = {
-    labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    datasets: [
-      {
-        data: [10, 20, 15, 25, 45, 35, 20],
-        strokeWidth: 2,
-      },
-    ],
+const BudgetBoxDetails = ({ navigation }: BudgetBoxDetailsProps) => {
+  const route = useRoute();
+  const { budgets, expenses } = route.params as {
+    budgets: Budget[];
+    expenses: Expense[];
   };
 
-  const expenses = [
-    {
-      date: "November 11, 2024",
-      items: [
-        { label: "Groceries", amount: -52.37 },
-        { label: "Movie tickets", amount: -25.77 },
-      ],
-    },
-    {
-      date: "November 10, 2024",
-      items: [
-        { label: "Lunch", amount: -13.22 },
-        { label: "Coffee", amount: -4.92 },
-      ],
-    },
-  ];
+  const returnHandler = () => {
+    navigation.goBack();
+  };
+
+  const [openBudgetInfo, setOpenBudgetInfo] = useState(false);
+  const [currentBudget, setCurrentBudget] = useState<Budget>();
+
+  const calculateRemaining = (budget: Budget) => {
+    const totalExpensesForCategory = expenses.reduce((sum, expense) => {
+      if (expense.category.toLowerCase() == budget.category) {
+        return sum + expense.cost;
+      }
+      return sum;
+    }, 0);
+    return budget.amount - totalExpensesForCategory;
+  };
+
+  const handleOpenBudgetInfo = (budget: Budget) => {
+    setCurrentBudget(budget);
+    setOpenBudgetInfo(true);
+  };
+
+  const renderBudgetItem = ({ item }: { item: Budget }) => {
+    const remaining = calculateRemaining(item);
+    const progress = item.amount > 0 ? remaining / item.amount : 0;
+    const IconComponent =
+      ICON_CATEGORY_MAPPING[item.category] || ICON_CATEGORY_MAPPING["misc"];
+
+    return (
+      <Pressable onPress={() => handleOpenBudgetInfo(item)}>
+        <View style={styles.budgetCard}>
+          <View
+            style={{
+              ...styles.iconContainer,
+              backgroundColor: CATEGORY_COLOURS[item.category],
+            }}
+          >
+            {IconComponent && <IconComponent size={32} />}
+          </View>
+
+          <View style={styles.details}>
+            <Text style={styles.categoryText}>{item.category}</Text>
+            <Text
+              style={{
+                ...styles.amountText,
+                color: remaining > 0 ? "#21A179" : "#FF5C5C",
+              }}
+            >
+              {remaining >= 0
+                ? `$${remaining.toLocaleString()} left`
+                : `$${remaining.toLocaleString()} over limit`}
+            </Text>
+          </View>
+
+          <ProgressCircle
+            style={styles.progressCircle}
+            progress={progress}
+            progressColor={progress > 0.5 ? "#21A179" : "#FF5C5C"}
+            backgroundColor={"#EAEAEA"}
+            strokeWidth={6}
+          />
+        </View>
+      </Pressable>
+    );
+  };
+
+  const renderExpenseItem = ({ item }: { item: Expense }) => {
+    if (item.category.toLowerCase() != currentBudget?.category) return null;
+
+    const IconComponent =
+      ICON_CATEGORY_MAPPING[item.category.toLowerCase()] ||
+      ICON_CATEGORY_MAPPING["misc"];
+    return (
+      <View style={styles.expenseCard}>
+        <View style={styles.iconContainer}>
+          {IconComponent && <IconComponent size={32} />}
+        </View>
+
+        <View style={styles.details}>
+          <Text style={styles.categoryText}>{item.name}</Text>
+          <Text style={styles.amountText}>{`$${item.cost}`}</Text>
+        </View>
+      </View>
+    );
+  };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <BackArrow size={25} style={{ marginLeft: 10, marginTop: 2 }} />
-        </TouchableOpacity>
-        <Dropdown
-          data={[
-            { label: "Last week", value: "Last week" },
-            { label: "Last month", value: "Last month" },
-            { label: "Last year", value: "Last year" },
-          ]}
-          search
-          searchPlaceholder={"Last week"}
-          labelField="label"
-          valueField="value"
-          value={dropdownField}
-          onChange={(item) => setDropdownField(item.value)}
-          style={{ minWidth: "35%", marginTop: 2 }}
-        />
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headerBox}>
+        <Pressable style={styles.backIcon} onPress={returnHandler}>
+          <BackArrow size={25} />
+        </Pressable>
+        <Text style={styles.header}>Remaining Budget</Text>
       </View>
+      <FlatList
+        data={budgets}
+        renderItem={renderBudgetItem}
+        keyExtractor={(item) => item.id.toString()}
+        contentContainerStyle={styles.list}
+      />
 
-      <View style={styles.card}>
-        <Text style={styles.title}>Expense Tracker</Text>
-        <LineChart
-          data={data}
-          width={screenWidth * 0.75}
-          height={200}
-          chartConfig={{
-            backgroundColor: "transparent",
-            backgroundGradientFrom: "white",
-            backgroundGradientTo: "white",
-            decimalPlaces: 0,
-            color: (opacity = 1) => `rgba(128, 0, 128, ${opacity})`,
-            labelColor: (opacity = 1) => `black`,
-          }}
-          bezier
-        />
-      </View>
+      {openBudgetInfo && currentBudget && (
+        <Modal visible={openBudgetInfo} transparent>
+          <View style={styles.modalBackground}>
+            <View style={styles.modalContainer}>
+              <View style={styles.headerModal}>
+                <Pressable
+                  style={styles.cancelIcon}
+                  onPress={() => {
+                    setCurrentBudget(undefined);
+                    setOpenBudgetInfo(false);
+                  }}
+                >
+                  <CancelIcon size={30} />
+                </Pressable>
+                <Text style={styles.headercategory}>
+                  {capitalizeFirstLetter(currentBudget?.category)}
+                </Text>
+              </View>
 
-      <Text style={styles.title}>Recent Expenses</Text>
-      <Divider style={{ marginVertical: 10 }} />
-      {expenses.map((expense, index) => (
-        <View key={index} style={styles.expenseContainer}>
-          <Text style={styles.expenseDate}>{expense.date}</Text>
-          {expense.items.map((item, i) => (
-            <View key={i} style={styles.expenseItem}>
-              <Text>{item.label}</Text>
-              <Text style={styles.amount}>{item.amount.toFixed(2)}</Text>
+              <Text
+                style={{
+                  ...styles.categoryText,
+                  marginBottom: 20,
+                  marginTop: 10,
+                }}
+              >
+                Expenses
+              </Text>
+              <FlatList
+                data={expenses}
+                renderItem={renderExpenseItem}
+                keyExtractor={(item) => item.id.toString()}
+                contentContainerStyle={styles.list}
+              />
             </View>
-          ))}
-          {index != expenses.length - 1 ? (
-            <Divider style={{ marginVertical: 10 }} />
-          ) : (
-            <></>
-          )}
-        </View>
-      ))}
-    </View>
+          </View>
+        </Modal>
+      )}
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#FFF",
     padding: 20,
-    backgroundColor: "#fff",
-    paddingTop: "15%",
   },
   header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 20,
+    fontSize: 24,
+    fontWeight: "bold",
+    marginVertical: 20,
+    color: "#333",
+    alignSelf: "center",
   },
-  card: {
-    backgroundColor: "#fff",
-    borderRadius: 20,
+  headerBox: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
+    marginBottom: 5,
+  },
+  backIcon: {
+    position: "absolute",
+    left: 20,
+  },
+  list: {
+    paddingBottom: 20,
+  },
+  budgetCard: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+    backgroundColor: "#F7F7F7",
     padding: 15,
-    margin: 10,
-    marginBottom: 40,
+    borderRadius: 12,
+    marginBottom: 20,
+    elevation: 2,
+    width: "90%",
+  },
+  expenseCard: {
+    flexDirection: "row",
+    alignItems: "center",
+    alignSelf: "center",
+    backgroundColor: "white",
+    padding: 15,
+    borderRadius: 12,
+    marginBottom: 20,
+    elevation: 2,
+    width: "90%",
+    borderWidth: 0.5,
+  },
+  iconContainer: {
+    width: 50,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 25,
+    backgroundColor: "#EAEAEA",
+    marginRight: 15,
+  },
+  details: {
+    flex: 1,
+  },
+  categoryText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#333",
+  },
+  amountText: {
+    fontSize: 14,
+    color: "#666",
+  },
+  progressCircle: {
+    width: 50,
+    height: 50,
+  },
+
+  modalBackground: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+  },
+  modalContainer: {
+    backgroundColor: "#FFF",
+    width: "90%",
+    borderRadius: 16,
+    padding: 24,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 5,
-    borderWidth: 1,
-    borderColor: "#eee",
+    shadowRadius: 4,
+    elevation: 3,
+    paddingBottom: 30,
+    maxHeight: "75%",
   },
-  title: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
+  cancelIcon: {
+    position: "absolute",
+    left: 0,
   },
-  expenseContainer: {
-    marginBottom: 15,
-  },
-  expenseDate: {
-    fontWeight: "bold",
-    marginBottom: 5,
-  },
-  expenseItem: {
+
+  headerModal: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 5,
-    paddingLeft: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 20,
   },
-  amount: {
-    color: "red",
+  backArrow: {
+    position: "absolute",
+    left: 0,
+  },
+  headercategory: {
+    fontWeight: "600",
+    fontSize: 24,
   },
 });
 

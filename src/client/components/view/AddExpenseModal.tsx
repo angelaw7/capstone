@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Button, Modal, Text, TextInput, StyleSheet, View } from "react-native";
+import {
+  Button,
+  Modal,
+  Text,
+  TextInput,
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { Dropdown } from "react-native-element-dropdown";
@@ -39,55 +48,61 @@ const AddExpenseModal = ({
 
   return (
     <Modal visible={visible} animationType="slide" transparent={true}>
-      <View style={styles.modalOverlay}>
-        <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Add Item</Text>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Add Item</Text>
 
-          <Text style={styles.label}>Category:</Text>
-          <Dropdown
-            data={[
-              { label: "Rent", value: "Rent" },
-              { label: "Groceries", value: "Groceries" },
-              { label: "Entertainment", value: "Entertainment" },
-              { label: "Electronics", value: "Electronics" },
-              { label: "Miscellaneous", value: "Miscellaneous" },
-              { label: "Internet", value: "Internet" },
-              { label: "Other", value: "Other" },
-            ]}
-            search
-            searchPlaceholder={"Groceries"}
-            labelField="label"
-            valueField="value"
-            value={category}
-            onChange={(item) => setCategory(item.value)}
-            style={{ minWidth: "35%", marginBottom: "5%" }}
-          />
+            <Text style={styles.label}>Category:</Text>
+            <Dropdown
+              data={[
+                { label: "Rent", value: "Rent" },
+                { label: "Groceries", value: "Groceries" },
+                { label: "Entertainment", value: "Entertainment" },
+                { label: "Electronics", value: "Electronics" },
+                { label: "Miscellaneous", value: "Miscellaneous" },
+                { label: "Internet", value: "Internet" },
+                { label: "Other", value: "Other" },
+              ]}
+              search
+              searchPlaceholder={"Groceries"}
+              labelField="label"
+              valueField="value"
+              value={category}
+              onChange={(item) => setCategory(item.value)}
+              style={{ minWidth: "35%", marginBottom: "5%" }}
+            />
 
-          <Text style={styles.label}>Raw Name:</Text>
-          <TextInput
-            style={styles.input}
-            value={rawName}
-            onChangeText={setRawName}
-          />
+            <Text style={styles.label}>Raw Name:</Text>
+            <TextInput
+              style={styles.input}
+              value={rawName}
+              onChangeText={setRawName}
+            />
 
-          <Text style={styles.label}>Name:</Text>
-          <TextInput style={styles.input} value={name} onChangeText={setName} />
+            <Text style={styles.label}>Name:</Text>
+            <TextInput
+              style={styles.input}
+              value={name}
+              onChangeText={setName}
+            />
 
-          <Text style={styles.label}>Cost:</Text>
-          <TextInput
-            keyboardType="numeric"
-            maxLength={10}
-            style={styles.input}
-            value={cost}
-            onChangeText={setCost}
-          />
+            <Text style={styles.label}>Cost:</Text>
+            <TextInput
+              keyboardType="numeric"
+              maxLength={10}
+              style={styles.input}
+              value={cost}
+              onChangeText={setCost}
+            />
 
-          <View style={styles.modalButtons}>
-            <Button title="Cancel" onPress={onClose} />
-            <Button title="Save" onPress={handleSave} />
+            <View style={styles.modalButtons}>
+              <Button title="Cancel" onPress={onClose} />
+              <Button title="Save" onPress={handleSave} />
+            </View>
           </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 };

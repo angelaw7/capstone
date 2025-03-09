@@ -14,6 +14,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import { useUser } from "../../contexts/UserContext";
 import CancelIcon from "../../assets/icons/CancelIcon";
 import BudgetService from "../../services/budgetService";
+import { Budget } from "../../types";
 
 const dropdownData = [
   { label: "Groceries", value: "groceries" },
@@ -24,14 +25,6 @@ const dropdownData = [
   { label: "Miscellanious", value: "misc" },
   { label: "Entertainment", value: "entertainment" },
 ];
-
-interface Budget {
-  id: number;
-  amount: number;
-  created_at: string;
-  email: string;
-  category: string;
-}
 
 interface NewBudgetModalProps {
   visible: boolean;

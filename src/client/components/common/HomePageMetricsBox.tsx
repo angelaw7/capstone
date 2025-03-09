@@ -1,27 +1,36 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
+import { View, StyleSheet, Text, Pressable } from "react-native";
 import * as ProgressBar from "react-native-progress";
 import { MONTHS } from "../../constants";
-import { NavigationProps, RouteProps } from "../../types";
+import { Budget, Expense, NavigationProps, RouteProps } from "../../types";
 
 type BudgetBoxProps = {
   navigation: NavigationProps;
   route: RouteProps;
+  budgets: Budget[];
+  expenses: Expense[];
 };
 
-const HomePageMetricsBox = ({ navigation, route }: BudgetBoxProps) => {
-  // TODO: replace values with real data
-  const progress = 0.63;
+const HomePageMetricsBox = ({
+  navigation,
+  route,
+  budgets,
+  expenses,
+}: BudgetBoxProps) => {
+  const totalBudget = budgets.reduce((sum, budget) => sum + budget.amount, 0);
+  const totalExpenses = expenses.reduce(
+    (sum, expense) => sum + expense.cost,
+    0,
+  );
+
+  const progress = totalExpenses / totalBudget;
   const currentMonth = MONTHS[new Date().getMonth()];
 
   const navigateToBudgetDetails = () => {
-    navigation.navigate("BudgetBoxDetails");
+    navigation.navigate("BudgetBoxDetails", {
+      expenses,
+      budgets,
+    });
   };
 
   return (
@@ -29,7 +38,9 @@ const HomePageMetricsBox = ({ navigation, route }: BudgetBoxProps) => {
       <View style={styles.container}>
         <View style={styles.header}>
           <Text style={styles.title}>{`${currentMonth}'s Budget`}</Text>
-          <Text style={styles.percentage}>{`${progress * 100}%`}</Text>
+          <Text
+            style={styles.percentage}
+          >{`${Math.round(progress * 100)}%`}</Text>
         </View>
 
         <ProgressBar.Bar
@@ -43,18 +54,18 @@ const HomePageMetricsBox = ({ navigation, route }: BudgetBoxProps) => {
           style={styles.progressBar}
         />
 
-        {/* Budget Details */}
         <View style={styles.details}>
           <View>
             <Text style={styles.label}>Budget:</Text>
-            <Text style={styles.value}>$1200</Text>
+            <Text
+              style={styles.value}
+            >{`$${totalBudget.toLocaleString()}`}</Text>
           </View>
           <View>
             <Text style={styles.label}>Spent:</Text>
-            <Text style={styles.value}>
-              {/* TODO: replace arrow with corresponding trend */}
-              $761.96 <Text style={styles.warning}>▲</Text>{" "}
-            </Text>
+            <Text
+              style={styles.value}
+            >{`$${totalExpenses.toLocaleString()}`}</Text>
           </View>
           <Text style={styles.arrow}>›</Text>
         </View>

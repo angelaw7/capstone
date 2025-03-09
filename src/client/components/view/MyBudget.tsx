@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  Dimensions,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 
 import BackArrow from "../../assets/icons/BackArrow";
-import AddIcon from "../../assets/icons/AddIcon";
-import { NavigationProps } from "../../types";
+import { Budget, Expense, Income, NavigationProps } from "../../types";
 import { useUser } from "../../contexts/UserContext";
 import BudgetService from "../../services/budgetService";
 import IncomeService from "../../services/incomeService";
@@ -25,35 +17,6 @@ import NewBudgetModal from "../common/NewBudgetModal";
 
 interface MyBudgetProps {
   navigation: NavigationProps;
-}
-
-interface Budget {
-  id: number;
-  amount: number;
-  created_at: string;
-  email: string;
-  category: string;
-}
-
-interface Income {
-  id: number;
-  amount: number;
-  created_at: string;
-  email: string;
-  frequency: string | null;
-  recurring: boolean;
-  title: string;
-}
-
-interface Expense {
-  id: number;
-  cost: number;
-  name: string;
-  category: string;
-  email: string;
-  created_at: string;
-  transaction_date: string;
-  raw_name: string;
 }
 
 const MyBudget = ({ navigation }: MyBudgetProps) => {
@@ -71,10 +34,6 @@ const MyBudget = ({ navigation }: MyBudgetProps) => {
 
   const returnHandler = () => {
     navigation.goBack();
-  };
-
-  const addNewBudgetHandler = () => {
-    navigation.navigate("NewBudget");
   };
 
   const handleOpenIncomeModal = (income?: Income) => {
@@ -141,7 +100,7 @@ const MyBudget = ({ navigation }: MyBudgetProps) => {
     <View style={styles.background}>
       <View style={styles.headerBox}>
         <Pressable style={styles.backIcon} onPress={returnHandler}>
-          <BackArrow size={35} />
+          <BackArrow size={25} />
         </Pressable>
         <Text
           style={styles.title}

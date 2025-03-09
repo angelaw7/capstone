@@ -6,6 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from "react-native";
 import CameraIcon from "../../assets/icons/CameraIcon";
 import PhotoLibraryIcon from "../../assets/icons/PhotoLibraryIcon";
@@ -131,86 +133,88 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={returnHandler}>
-          <Text style={styles.headerButton}>Cancel</Text>
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Add Expense</Text>
-        <TouchableOpacity onPress={saveExpenseHandler}>
-          <Text style={styles.headerButton}>Save</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.imageUploadContainer}>
-        <View style={styles.imagePlaceholder}>
-          {image ? (
-            <Image
-              source={{ uri: image }}
-              style={{ width: 150, height: 150 }}
-            />
-          ) : (
-            <Text>Your image here</Text>
-          )}
-        </View>
-        <View style={styles.imageOptions}>
-          <TouchableOpacity style={styles.imageOptionButton}>
-            <CameraIcon size={24} />
-            <Text style={styles.imageOptionText}>Capture Photo</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.imageOptionButton}
-            onPress={pickImage}
-          >
-            <PhotoLibraryIcon size={24} />
-            <Text style={styles.imageOptionText}>Photo Library</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      <View style={styles.inputContainer}>
-        <View style={styles.inputRow}>
-          <Text style={styles.inputLabel}>Date:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter Date"
-            value={date}
-            onChangeText={handleDateChange}
-          />
-        </View>
-        <View style={styles.inputRow}>
-          <Text style={styles.inputLabel}>Store:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Enter Store Name"
-            value={storeName}
-            onChangeText={handleStoreNameChange}
-          />
-        </View>
-      </View>
-
-      <View style={styles.itemsContainer}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Items</Text>
-          <TouchableOpacity style={styles.addItemButton} onPress={openModal}>
-            <AddCircleIcon size={24} />
+          <TouchableOpacity onPress={returnHandler}>
+            <Text style={styles.headerButton}>Cancel</Text>
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>Add Expense</Text>
+          <TouchableOpacity onPress={saveExpenseHandler}>
+            <Text style={styles.headerButton}>Save</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.scannedItemsContainer}>
-          <DisplayExpenseItems
-            items={items}
-            onExpenseDelete={handleExpenseDelete}
-            loading={loading}
-          />
-        </View>
-      </View>
 
-      <AddExpenseModal
-        visible={isModalVisible}
-        onClose={closeModal}
-        onSave={handleSaveItem}
-      />
-    </View>
+        <View style={styles.imageUploadContainer}>
+          <View style={styles.imagePlaceholder}>
+            {image ? (
+              <Image
+                source={{ uri: image }}
+                style={{ width: 150, height: 150 }}
+              />
+            ) : (
+              <Text>Your image here</Text>
+            )}
+          </View>
+          <View style={styles.imageOptions}>
+            <TouchableOpacity style={styles.imageOptionButton}>
+              <CameraIcon size={24} />
+              <Text style={styles.imageOptionText}>Capture Photo</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.imageOptionButton}
+              onPress={pickImage}
+            >
+              <PhotoLibraryIcon size={24} />
+              <Text style={styles.imageOptionText}>Photo Library</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <View style={styles.inputContainer}>
+          <View style={styles.inputRow}>
+            <Text style={styles.inputLabel}>Date:</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter Date"
+              value={date}
+              onChangeText={handleDateChange}
+            />
+          </View>
+          <View style={styles.inputRow}>
+            <Text style={styles.inputLabel}>Store:</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Enter Store Name"
+              value={storeName}
+              onChangeText={handleStoreNameChange}
+            />
+          </View>
+        </View>
+
+        <View style={styles.itemsContainer}>
+          <View style={styles.header}>
+            <Text style={styles.headerTitle}>Items</Text>
+            <TouchableOpacity style={styles.addItemButton} onPress={openModal}>
+              <AddCircleIcon size={24} />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.scannedItemsContainer}>
+            <DisplayExpenseItems
+              items={items}
+              onExpenseDelete={handleExpenseDelete}
+              loading={loading}
+            />
+          </View>
+        </View>
+
+        <AddExpenseModal
+          visible={isModalVisible}
+          onClose={closeModal}
+          onSave={handleSaveItem}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
