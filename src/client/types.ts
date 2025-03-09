@@ -27,8 +27,6 @@ type RootStackParamList = {
     | undefined;
   Profile: undefined;
   Main: undefined;
-  MyIncome: undefined;
-  NewIncome: undefined;
   MyExpenses: undefined;
   NewExpense: undefined;
   MyBudget: undefined;

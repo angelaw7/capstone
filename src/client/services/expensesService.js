@@ -33,9 +33,14 @@ const ExpensesService = {
     }
   },
 
-  getUserExpenses: async (userid) => {
+  getUserExpenses: async (userid, flag = false) => {
     try {
-      const response = await api.get(`/expenses/${userid}`);
+      const response = await api.get(`/expenses/${userid}`, {
+        params: { flag },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return response.data;
     } catch (error) {
       console.error("Error fetching expenses:", error.message);

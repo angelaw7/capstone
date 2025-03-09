@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text } from "tamagui";
 import { ActivityIndicator, Dimensions, StyleSheet } from "react-native";
 
-import BudgetBox from "../common/BudgetBox";
+import HomePageMetricsBox from "../common/HomePageMetricsBox";
 import SpendingDetails from "../common/SpendingDetails";
 import { NavigationProps, RouteProps } from "../../types";
 import { nameCase } from "../../utils";
@@ -35,7 +35,7 @@ const HomePage = ({ navigation, route }: HomePageProps) => {
         <Text style={styles.title}>Welcome Back {fullName}</Text>
       </View>
       <View style={styles.homepage}>
-        <BudgetBox navigation={navigation} route={route} />
+        <HomePageMetricsBox navigation={navigation} route={route} />
         <SpendingDetails />
       </View>
     </View>
