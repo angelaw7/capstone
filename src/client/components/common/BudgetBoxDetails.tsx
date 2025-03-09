@@ -7,8 +7,9 @@ import {
   SafeAreaView,
   Pressable,
   Modal,
+  Dimensions,
 } from "react-native";
-import { ProgressCircle } from "react-native-svg-charts";
+import { ProgressChart } from "react-native-chart-kit";
 import { CATEGORY_COLOURS, ICON_CATEGORY_MAPPING } from "../../constants";
 import { Budget, Expense, NavigationProps } from "../../types";
 import { useRoute } from "@react-navigation/native";
@@ -36,7 +37,7 @@ const BudgetBoxDetails = ({ navigation }: BudgetBoxDetailsProps) => {
 
   const calculateRemaining = (budget: Budget) => {
     const totalExpensesForCategory = expenses.reduce((sum, expense) => {
-      if (expense.category.toLowerCase() == budget.category) {
+      if (expense.category.toLowerCase() === budget.category.toLowerCase()) {
         return sum + expense.cost;
       }
       return sum;
@@ -49,11 +50,18 @@ const BudgetBoxDetails = ({ navigation }: BudgetBoxDetailsProps) => {
     setOpenBudgetInfo(true);
   };
 
+  const screenWidth = Dimensions.get("window").width;
+
   const renderBudgetItem = ({ item }: { item: Budget }) => {
     const remaining = calculateRemaining(item);
-    const progress = item.amount > 0 ? remaining / item.amount : 0;
+    const progress =
+      item.amount > 0 && remaining >= 0 ? remaining / item.amount : 0;
     const IconComponent =
       ICON_CATEGORY_MAPPING[item.category] || ICON_CATEGORY_MAPPING["misc"];
+
+    const chartData = {
+      data: [progress],
+    };
 
     return (
       <Pressable onPress={() => handleOpenBudgetInfo(item)}>
@@ -61,7 +69,7 @@ const BudgetBoxDetails = ({ navigation }: BudgetBoxDetailsProps) => {
           <View
             style={{
               ...styles.iconContainer,
-              backgroundColor: CATEGORY_COLOURS[item.category],
+              backgroundColor: CATEGORY_COLOURS[item.category] || "#EAEAEA",
             }}
           >
             {IconComponent && <IconComponent size={32} />}
@@ -81,12 +89,23 @@ const BudgetBoxDetails = ({ navigation }: BudgetBoxDetailsProps) => {
             </Text>
           </View>
 
-          <ProgressCircle
-            style={styles.progressCircle}
-            progress={progress}
-            progressColor={progress > 0.5 ? "#21A179" : "#FF5C5C"}
-            backgroundColor={"#EAEAEA"}
-            strokeWidth={6}
+          <ProgressChart
+            data={chartData}
+            width={screenWidth * 0.15}
+            height={screenWidth * 0.15}
+            strokeWidth={8}
+            radius={20}
+            chartConfig={{
+              backgroundColor: "#F7F7F7",
+              backgroundGradientFrom: "#F7F7F7",
+              backgroundGradientTo: "#F7F7F7",
+              decimalPlaces: 2,
+              color: (opacity = 1) =>
+                progress >= 0.5
+                  ? `rgba(33, 161, 121, ${opacity})`
+                  : `rgba(255, 92, 92, ${opacity})`,
+            }}
+            hideLegend={true}
           />
         </View>
       </Pressable>
@@ -94,7 +113,8 @@ const BudgetBoxDetails = ({ navigation }: BudgetBoxDetailsProps) => {
   };
 
   const renderExpenseItem = ({ item }: { item: Expense }) => {
-    if (item.category.toLowerCase() != currentBudget?.category) return null;
+    if (item.category.toLowerCase() !== currentBudget?.category.toLowerCase())
+      return null;
 
     const IconComponent =
       ICON_CATEGORY_MAPPING[item.category.toLowerCase()] ||
@@ -107,7 +127,7 @@ const BudgetBoxDetails = ({ navigation }: BudgetBoxDetailsProps) => {
 
         <View style={styles.details}>
           <Text style={styles.categoryText}>{item.name}</Text>
-          <Text style={styles.amountText}>{`$${item.cost}`}</Text>
+          <Text style={styles.amountText}>{`$${item.cost.toFixed(2)}`}</Text>
         </View>
       </View>
     );
@@ -242,11 +262,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#666",
   },
-  progressCircle: {
-    width: 50,
-    height: 50,
-  },
-
   modalBackground: {
     flex: 1,
     justifyContent: "center",
@@ -258,10 +273,6 @@ const styles = StyleSheet.create({
     width: "90%",
     borderRadius: 16,
     padding: 24,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
     elevation: 3,
     paddingBottom: 30,
     maxHeight: "75%",
@@ -270,16 +281,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 0,
   },
-
   headerModal: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 20,
-  },
-  backArrow: {
-    position: "absolute",
-    left: 0,
   },
   headercategory: {
     fontWeight: "600",
