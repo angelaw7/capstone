@@ -140,7 +140,7 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
             <Text style={styles.headerButton}>Cancel</Text>
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Add Expense</Text>
-          <TouchableOpacity onPress={saveExpenseHandler}>
+          <TouchableOpacity onPress={saveExpenseHandler} testID="save-button">
             <Text style={styles.headerButton}>Save</Text>
           </TouchableOpacity>
         </View>
@@ -195,7 +195,11 @@ const AddExpenseView = ({ navigation }: AddExpenseViewProps) => {
         <View style={styles.itemsContainer}>
           <View style={styles.header}>
             <Text style={styles.headerTitle}>Items</Text>
-            <TouchableOpacity style={styles.addItemButton} onPress={openModal}>
+            <TouchableOpacity
+              style={styles.addItemButton}
+              onPress={openModal}
+              testID="add-item-button"
+            >
               <AddCircleIcon size={24} />
             </TouchableOpacity>
           </View>

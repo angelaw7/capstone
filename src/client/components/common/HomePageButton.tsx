@@ -19,9 +19,12 @@ const HomePageButton = ({
     <TouchableOpacity
       onPress={routingHandler}
       style={[styles.button, { backgroundColor: color }]}
+      testID="home-page-button"
     >
       {children}
-      <Text style={styles.buttonText}>{title}</Text>
+      <Text style={styles.buttonText} testID="button-text">
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };
