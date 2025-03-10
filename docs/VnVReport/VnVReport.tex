@@ -80,6 +80,80 @@ This section will not be appropriate for every project.
 
 \section{Unit Testing}
 
+\subsection{Front-end unit tests}
+
+Front-end unit tests can be found in the \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/client/tests}{test directory}
+
+\subsubsection{Component Rendering}
+
+\begin{itemize}
+  \item \textbf{Description:} Each component is rendered in their corresponding unit test to ensure it renders without error and with all corresponding mock information correctly
+  (i.e. the component rendered with mock expense data is expected to display the mock expense data)
+  \item \textbf{Inputs:} The component \& component props
+  \item \textbf{Expected Output:} Component renders without error and displays corresponding information
+  \item \textbf{Result:} Pass
+\end{itemize}
+
+\subsubsection{Metrics}
+
+This section describes the unit tests for calculating and displaying user metrics.
+
+\vspace{10pt}
+\textbf{Expense and Budget}
+
+\begin{itemize}
+  \item \textbf{Description:} Unit tests to render expense and budget metrics to validate: total expense value, total budget value, percentage of budget spent, and
+  how much value for each budget category is left
+  \item \textbf{Inputs:} Expense array, budget array
+  \item \textbf{Expected Output:} Corresponding metrics are correctly calculated and displayed to users
+  \item \textbf{Result:} Pass
+\end{itemize}
+
+\textbf{Expense categories}
+
+\begin{itemize}
+  \item \textbf{Description:} Unit test to render the expense metrics graph. This test validates that the graph correctly displays the top 5 expense categories by 
+  total cost and accurately shows the percentage of each category.
+  \item \textbf{Inputs:} Expense array
+  \item \textbf{Expected Output:} The metrics are correctly calculated and displayed to users
+  \item \textbf{Result:} Pass
+\end{itemize}
+
+\subsubsection{Manage resources}
+
+This section describes the unit tests for managing the CRUD functions of budgets, incomes and expenses.
+
+\vspace{10pt}
+\textbf{Manage Expenses}
+
+\begin{itemize}
+  \item \textbf{Description:} Unit tests to display user expenses and allow users to add expense
+  \item \textbf{Inputs:} Expenses array
+  \item \textbf{Expected Output:} Expenses correctly rendered and displayed, users are able enter expense information and then save corresponding expense information
+  \item \textbf{Result:} Pass
+\end{itemize}
+
+\textbf{Manage Budget}
+
+\begin{itemize}
+  \item \textbf{Description:} Unit tests to verify left over budget (or over budget if users have expensed more than their budget), total expenses, and budget for each expense category.
+  Also will validate actions for deleting, editing and adding new budget.
+  \item \textbf{Inputs:} Expenses array, budgets array
+  \item \textbf{Expected Output:} Corresponding remaining budget displayed along with total expenses. Budget for each expense category correctly rendered
+  \item \textbf{Result:} Pass
+\end{itemize}
+
+\textbf{Manage Income}
+
+\begin{itemize}
+  \item \textbf{Description:} Unit tests to validate user income(s) and how much more users are able to budget (if applicable). Also validates actions for deleting, editing and adding
+  new income.
+  \item \textbf{Inputs:} Incomes array, budgets array
+  \item \textbf{Expected Output:} Corresponding income displayed along with the remaining budget. Users are able to enter income information and save it correctly. 
+  Actions for deleting, editing, and adding new income are validated.
+  \item \textbf{Result:} Pass
+\end{itemize}
+
 \section{Changes Due to Testing}
 
 \wss{This section should highlight how feedback from the users and from 
