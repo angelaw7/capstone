@@ -75,6 +75,7 @@ const AddExpenseModal = ({
 
             <Text style={styles.label}>Raw Name:</Text>
             <TextInput
+              accessibilityLabel="Raw Name:"
               style={styles.input}
               value={rawName}
               onChangeText={setRawName}
@@ -82,6 +83,7 @@ const AddExpenseModal = ({
 
             <Text style={styles.label}>Name:</Text>
             <TextInput
+              accessibilityLabel="Name:"
               style={styles.input}
               value={name}
               onChangeText={setName}
@@ -89,6 +91,7 @@ const AddExpenseModal = ({
 
             <Text style={styles.label}>Cost:</Text>
             <TextInput
+              accessibilityLabel="Cost:"
               keyboardType="numeric"
               maxLength={10}
               style={styles.input}
