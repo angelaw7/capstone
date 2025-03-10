@@ -1231,19 +1231,24 @@ This subsection covers tests required to verify the accuracy of the system in pr
 \textbf{Description:} Verify the accuracy of the machine learning model in
 categorizing expenses into predefined categories.
 
-\textbf{Type:} Manual
+\textbf{Type:} Automatic
 					
 \textbf{Initial State:} Machine learning model is set to have predetermined
 expense categories.
 					
-\textbf{Input/Condition:} A set of receipt transactions with known categories.
+\textbf{Input/Condition:}
+\href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/categorization/receipt_items_without_categories.csv}{A
+CSV file with various receipt item names}
 					
 \textbf{Output/Result:} The model will output the categories of the given
-transactions, and the precision will be calculated from this.
+receipt items and compare it against the expected CSV file. The test passes if
+the model has a precision of at least 90\%.
 					
-\textbf{How test will be performed:} The model will process the set of
-transactions and compare the assigned categories to the correct ones. Precision
-will be measured to see if the 90\% threshold is met.
+\textbf{How test will be performed:} Testers will run the
+\href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/test_categorization.py}{code
+for testing item categorization}, which will output a CSV file with the assigned
+categories. 
+
 
 \item{test-ACC-2\\}
 
