@@ -2,51 +2,15 @@ import React from "react";
 import { View, StyleSheet, Text, Dimensions } from "react-native";
 import { PieChart } from "react-native-chart-kit";
 import { capitalizeFirstLetter } from "../../utils/util";
+import { CATEGORY_COLOURS } from "../../constants";
+import { Budget, Expense, Income } from "../../types";
 
 const screenWidth = Dimensions.get("window").width;
-
-interface Income {
-  id: number;
-  amount: number;
-  created_at: string;
-  email: string;
-  frequency: string | null;
-  recurring: boolean;
-  title: string;
-}
-interface Expense {
-  id: number;
-  cost: number;
-  name: string;
-  category: string;
-  email: string;
-  created_at: string;
-  transaction_date: string;
-  raw_name: string;
-}
-
-interface Budget {
-  id: number;
-  amount: number;
-  created_at: string;
-  email: string;
-  category: string;
-}
 
 type BudgetBoxProps = {
   expenses: Expense[];
   incomes: Income[];
   budgets: Budget[];
-};
-
-const categoryColours: Record<string, string> = {
-  groceries: "#FF928A",
-  electronics: "#FFDA8A",
-  rent: "#8A9FE3",
-  entertainment: "#c497f7",
-  miscellanious: "#adf55f",
-  internet: "#f56788",
-  home: "#716ded",
 };
 
 const BudgetBox = ({ incomes, expenses, budgets }: BudgetBoxProps) => {
@@ -59,15 +23,15 @@ const BudgetBox = ({ incomes, expenses, budgets }: BudgetBoxProps) => {
   const data = budgets.map((budget) => ({
     name: capitalizeFirstLetter(budget.category),
     amount: budget.amount,
-    colour: categoryColours[budget.category],
+    colour: CATEGORY_COLOURS[budget.category],
     legendFontColour: "#333",
     legendFontSize: 8,
   }));
 
   if (totalIncome - totalExpenses > 0)
     data.push({
-      name: "Left to\nbudget",
-      amount: totalIncome - totalExpenses,
+      name: "Left to budget",
+      amount: Math.round((totalIncome - totalExpenses) * 100) / 100,
       colour: "#e8f1fa",
       legendFontColour: "#333",
       legendFontSize: 8,
@@ -101,12 +65,14 @@ const BudgetBox = ({ incomes, expenses, budgets }: BudgetBoxProps) => {
 
       <View style={styles.infoContainer}>
         <Text style={styles.title}>TOTAL EXPENSES</Text>
-        <Text style={styles.totalAmount}>${totalExpenses}</Text>
+        <Text style={styles.totalAmount}>
+          ${totalExpenses.toLocaleString()}
+        </Text>
         <Text style={styles.overIncome}>
           $
           {totalIncome - totalExpenses > 0
-            ? `${totalIncome - totalExpenses} left to budget`
-            : `${totalExpenses - totalIncome} over budget`}
+            ? `${(totalIncome - totalExpenses).toLocaleString()} left to budget`
+            : `${(totalExpenses - totalIncome).toLocaleString()} over budget`}
         </Text>
       </View>
     </View>

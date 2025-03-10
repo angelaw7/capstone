@@ -26,3 +26,21 @@ export const nameCase = (name: string) => {
     .map((name) => name.charAt(0).toUpperCase() + name.slice(1))
     .join(" ");
 };
+
+export const isWithinLastWeek = (dateString: string) => {
+  const givenDate = new Date(dateString);
+  const today = new Date();
+
+  const sevenDaysAgo = new Date();
+  sevenDaysAgo.setDate(today.getDate() - 7);
+
+  return (
+    givenDate.getTime() >= sevenDaysAgo.getTime() &&
+    givenDate.getTime() <= today.getTime()
+  );
+};
+
+export const truncateString = (text: string, maxLength: number): string => {
+  if (text.length <= maxLength) return text;
+  return text.slice(0, maxLength) + "...";
+};

@@ -56,7 +56,7 @@ const MyExpenses = ({ navigation }: MyExpensesProp) => {
     <View style={styles.background}>
       <View style={styles.headerBox}>
         <Pressable style={styles.backIcon} onPress={returnHandler}>
-          <BackArrow size={35} />
+          <BackArrow size={25} />
         </Pressable>
         <Text style={styles.title}>My Expenses</Text>
         <Pressable style={styles.addIcon} onPress={addNewExpenseHandler}>

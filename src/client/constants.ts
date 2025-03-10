@@ -33,3 +33,13 @@ export const ICON_CATEGORY_MAPPING: Record<
   internet: WifiIcon,
   home: LaundryIcon,
 };
+
+export const CATEGORY_COLOURS: Record<string, string> = {
+  groceries: "#FF928A",
+  electronics: "#FFDA8A",
+  rent: "#8A9FE3",
+  entertainment: "#c497f7",
+  miscellanious: "#adf55f",
+  internet: "#f56788",
+  home: "#716ded",
+};

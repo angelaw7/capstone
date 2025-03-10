@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { View, Text } from "tamagui";
 import { ActivityIndicator, Dimensions, StyleSheet } from "react-native";
 
 import HomePageMetricsBox from "../common/HomePageMetricsBox";
 import SpendingDetails from "../common/SpendingDetails";
-import { NavigationProps, RouteProps } from "../../types";
+import { Budget, Expense, NavigationProps, RouteProps } from "../../types";
 import { nameCase } from "../../utils/util";
 import { useUser } from "../../contexts/UserContext";
+import BudgetService from "../../services/budgetService";
+import ExpensesService from "../../services/expensesService";
+import { useFocusEffect } from "@react-navigation/native";
 
 type HomePageProps = {
   navigation: NavigationProps;
@@ -16,18 +19,54 @@ type HomePageProps = {
 const HomePage = ({ navigation, route }: HomePageProps) => {
   const { user } = useUser();
   const [fullName, setFullName] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [budgets, setBudgets] = useState<Budget[]>([]);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
 
-  useEffect(() => {
-    const fName = user?.first_name;
-    const mName = user?.middle_name;
-    const lName = user?.last_name;
+  useFocusEffect(
+    useCallback(() => {
+      const fName = user?.first_name;
+      const mName = user?.middle_name;
+      const lName = user?.last_name;
 
-    const fullName = nameCase(`${fName}${mName ? ` ${mName} ` : " "}${lName}`);
+      const fullName = nameCase(
+        `${fName}${mName ? ` ${mName} ` : " "}${lName}`,
+      );
+      setFullName(fullName);
 
-    setFullName(fullName);
-  }, [user]);
+      const fetchData = async () => {
+        if (!user?.userid || !user?.email) return;
 
-  if (!user) return <ActivityIndicator size="large" />;
+        try {
+          setLoading(true);
+
+          const [budgets, expenses] = await Promise.all([
+            BudgetService.getUserBudgets(user.userid),
+            ExpensesService.getUserExpenses(user.userid, true),
+          ]);
+
+          setBudgets(budgets);
+          setExpenses(expenses);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchData();
+    }, [user]),
+  );
+
+  if (!user || loading)
+    return (
+      <View
+        alignItems="center"
+        style={{ ...styles.background, justifyContent: "center" }}
+      >
+        <ActivityIndicator size="large" />
+      </View>
+    );
 
   return (
     <View alignItems="center" style={styles.background}>
@@ -35,8 +74,13 @@ const HomePage = ({ navigation, route }: HomePageProps) => {
         <Text style={styles.title}>Welcome Back {fullName}</Text>
       </View>
       <View style={styles.homepage}>
-        <HomePageMetricsBox navigation={navigation} route={route} />
-        <SpendingDetails />
+        <HomePageMetricsBox
+          budgets={budgets}
+          expenses={expenses}
+          navigation={navigation}
+          route={route}
+        />
+        <SpendingDetails expenses={expenses} />
       </View>
     </View>
   );

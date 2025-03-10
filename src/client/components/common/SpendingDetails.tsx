@@ -1,6 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { BarChart } from "react-native-chart-kit";
+import { Expense } from "../../types";
+import { isWithinLastWeek, truncateString } from "../../utils/util";
+import { CATEGORY_COLOURS } from "../../constants";
 
 type ChartConfig = {
   backgroundColor: string;
@@ -12,25 +15,56 @@ type ChartConfig = {
   barPercentage?: number;
 };
 
-const SpendingDetails: React.FC = () => {
+interface SpendingDetailsProps {
+  expenses: Expense[];
+}
+
+const SpendingDetails = ({ expenses }: SpendingDetailsProps) => {
   const screenWidth = Dimensions.get("window").width;
 
+  const filteredExpenses = expenses.filter((expense) =>
+    isWithinLastWeek(expense.transaction_date),
+  );
+
+  const expenseCategoryTotals: Record<string, number> = {};
+
+  let totalSpent = 0;
+
+  filteredExpenses.forEach((expense) => {
+    if (!expenseCategoryTotals[expense.category]) {
+      expenseCategoryTotals[expense.category] = 0;
+    }
+    expenseCategoryTotals[expense.category] += expense.cost;
+    totalSpent += expense.cost;
+  });
+
+  const sortedCategories = Object.fromEntries(
+    Object.entries(expenseCategoryTotals)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 5),
+  );
+
+  const chartData = Object.entries(sortedCategories).map(
+    ([category, amount]) => ({
+      category,
+      percentage: totalSpent > 0 ? (amount / totalSpent) * 100 : 0,
+    }),
+  );
+
+  const colourData = chartData.map((data) => {
+    return () => CATEGORY_COLOURS[data.category.toLowerCase()] ?? "#dfdfdf";
+  });
+
   const data = {
-    labels: ["Groceries", "Leisure", "Misc.", "Hobbies"],
+    labels: chartData.map((item) => truncateString(item.category, 5)),
     datasets: [
       {
-        data: [72, 15, 12, 3], // TODO: adjust with actual data
-        colors: [
-          () => "#FF928A",
-          () => "#8A9FE3",
-          () => "#6CBC94",
-          () => "#FFDA8A",
-        ],
+        data: chartData.map((item) => item.percentage),
+        colors: colourData,
       },
     ],
   };
 
-  // Chart configuration
   const chartConfig: ChartConfig = {
     backgroundColor: "transparent",
     backgroundGradientFrom: "white",
@@ -45,13 +79,12 @@ const SpendingDetails: React.FC = () => {
     <View>
       <View style={styles.header}>
         <Text style={styles.title}>Spending Details</Text>
-        {/* TODO: add actual dropdown and change the data based on selected time margin */}
         <Text style={styles.dropdown}>Last week ▾</Text>
       </View>
       <View style={styles.container}>
         <BarChart
           data={data}
-          width={screenWidth * 0.75}
+          width={screenWidth * 0.8}
           height={220}
           yAxisLabel=""
           yAxisSuffix="%"

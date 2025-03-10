@@ -11,14 +11,7 @@ import { wrapText } from "../../utils/util";
 import { Swipeable } from "react-native-gesture-handler";
 import BudgetService from "../../services/budgetService";
 import { ICON_CATEGORY_MAPPING } from "../../constants";
-
-interface Budget {
-  id: number;
-  amount: number;
-  created_at: string;
-  email: string;
-  category: string;
-}
+import { Budget } from "../../types";
 
 interface MyBudgetBoxProps {
   budgets: Budget[];

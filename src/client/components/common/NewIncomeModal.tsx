@@ -14,6 +14,7 @@ import { Dropdown } from "react-native-element-dropdown";
 import IncomeService from "../../services/incomeService";
 import { useUser } from "../../contexts/UserContext";
 import CancelIcon from "../../assets/icons/CancelIcon";
+import { Income } from "../../types";
 
 const dropdownData = [
   { label: "Daily", value: 1 },
@@ -24,16 +25,6 @@ const dropdownData = [
   { label: "Bi-annually", value: 6 },
   { label: "Annually", value: 7 },
 ];
-
-interface Income {
-  id: number;
-  amount: number;
-  created_at: string;
-  email: string;
-  frequency: string | null;
-  recurring: boolean;
-  title: string;
-}
 
 interface NewIncomeModalProps {
   visible: boolean;
