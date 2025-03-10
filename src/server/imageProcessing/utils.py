@@ -20,7 +20,7 @@ def is_float(value):
     return value.isdigit()
 
 
-def split_item(item: str, has_id=False):
+def split_item(item: str, verbose=False):
     """
     (tries to) split a string into item name and price
     """
@@ -36,7 +36,8 @@ def split_item(item: str, has_id=False):
 
         return item_name, price
     else:
-        print("No match found.", item)
+        if verbose:
+            print("No match found.", item)
         return None, 0
 
 list_months = list(calendar.month_abbr)[1:]
