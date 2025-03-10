@@ -34,9 +34,10 @@ class ImageProcessor:
         threshold_img = cv2.adaptiveThreshold(denoised, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
         return threshold_img
 
-    def _extract_text_from_image(self, image: np.array) -> list[str]:
+    def _extract_text_from_image(self, image: np.array, verbose=False) -> list[str]:
         text = pytesseract.image_to_string(image, config="--psm 4")
-        print(text)
+        if verbose:
+            print(text)
         return text.split("\n")
 
 
@@ -58,7 +59,8 @@ class ImageProcessor:
                     continue
                 if subtotal == 0:
                     if lev.distance(line_arr[0].lower(), "saving") <= 1:
-                        items[-1].append(line)
+                        if items:
+                            items[-1].append(line)
                         continue
                     if "points" in line.lower():
                         continue
@@ -91,16 +93,16 @@ class ImageProcessor:
         return receipt, items
 
 
-    def _jsonify_data(self, items: list, filename: str, write_to_file: bool = False):
+    def _jsonify_data(self, items: list, verbose=False) -> pd.DataFrame:
         items_cleaned = []
-        with open(f"{filename}_results.csv", "w+") as f:
-            for item in items:
-                item_name, item_price = utils.split_item(item[0])
-                if item_name:
-                    items_cleaned.append([item_name, item_price])
-                    f.write(item_name + "\n")
-                else:
-                    print("**error with item", item[0])
+
+        for item in items:
+            item_name, item_price = utils.split_item(item[0])
+            if item_name:
+                items_cleaned.append([item_name, item_price])
+            elif verbose:
+                print("**error with item", item[0])
+
         return pd.DataFrame(items_cleaned, columns=["name", "price"])
 
     def _format_item_results(self, receipt: Receipt, categorized_data: pd.DataFrame) -> None:
@@ -114,8 +116,8 @@ class ImageProcessor:
                 email=None,
             )
             receipt.add_item(expense)
-        
-    def process_image(self, filepath: str):
+    
+    def _parse_image(self, filepath: str):
         image = cv2.imread(filepath)
         image = self._preprocess_image(image)
 
@@ -124,7 +126,13 @@ class ImageProcessor:
 
         # make sense of the text
         receipt, raw_items = self._process_items_list(text_arr)
-        data = self._jsonify_data(raw_items, filepath)
+        data = self._jsonify_data(raw_items)
+
+        return receipt, data
+
+    def process_image(self, filepath: str):
+        # parse data from image
+        receipt, data = self._parse_image(filepath)
 
         # categorize data from image
         categorized_data = self.categorizer.categorize(data)
