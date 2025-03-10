@@ -21,7 +21,7 @@ const DisplayExpenseItems = ({
   loading,
 }: DisplayExpenseItemsProps) => {
   if (loading) {
-    return <ActivityIndicator size="large" />;
+    return <ActivityIndicator size="large" testID="activity-indicator" />;
   }
   if (items.length === 0) {
     return <Text style={styles.emptyText}>No items added yet!</Text>;
