@@ -1845,30 +1845,26 @@ A traceability matrix between test cases and requirements can be found
 
 \section{Unit Test Description}
 
-This section will be filled after completion of the MIS document.
-% \wss{This section should not be filled in until after the MIS (detailed design
-%   document) has been completed.}
-
-% \wss{Reference your MIS (detailed design document) and explain your overall
-% philosophy for test case selection.}  
-
-% \wss{To save space and time, it may be an option to provide less detail in this section.  
-% For the unit tests you can potentially layout your testing strategy here.  That is, you 
-% can explain how tests will be selected for each module.  For instance, your test building 
-% approach could be test cases for each access program, including one test for normal behaviour 
-% and as many tests as needed for edge cases.  Rather than create the details of the input 
-% and output here, you could point to the unit testing code.  For this to work, you code 
-% needs to be well-documented, with meaningful names for all of the tests.}
+Test cases will be written for each module with access routine semantics (i.e.,
+functionality) outlined in the
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/Design/SoftArchitecture/MG.pdf}{Module
+Guide (MG)}. One test case will be written for normal behaviour, and additional
+test cases will be written for any exceptional/edge cases. Similarly, test cases
+will be written for each endpoint in the API. Additionally, the frontend will
+have unit tests written for each component and screen, with test cases covering
+normal behaviour and edge cases.\\
+Details for each unit test will refer directly to their respective test in the
+codebase.\\
 
 \subsection{Unit Testing Scope}
 
-This section will be filled after completion of the MIS document.
+\textbf{OCR Module}: While the accuracy of the parsed text from an image using
+the OCR will be tested, the actual OCR model will not be unit tested, as it is a
+third-party service. \\
+\textbf{Authentication Module}: The authentication module will be tested for
+correctly authenticating users and handling invalid credentials, but the actual 
+authentication service will not be unit tested, as it is a third-party service.
 
-% \wss{What modules are outside of the scope.  If there are modules that are
-%   developed by someone else, then you would say here if you aren't planning on
-%   verifying them.  There may also be modules that are part of your software, but
-%   have a lower priority for verification than others.  If this is the case,
-%   explain your rationale for the ranking of module importance.}
 
 \subsection{Tests for Functional Requirements}
 
