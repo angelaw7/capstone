@@ -4,9 +4,11 @@ interface DefaultLayoutProps {
 }
 const DefaultLayout = ({ children }: DefaultLayoutProps) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}></View>
-      <View style={styles.children}>{children}</View>
+    <View style={styles.container} testID="container">
+      <View style={styles.header} testID="header"></View>
+      <View style={styles.children} testID="children">
+        {children}
+      </View>
     </View>
   );
 };
