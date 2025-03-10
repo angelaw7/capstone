@@ -379,7 +379,7 @@ N/A
 \item output: Dict[string, float] -- a list of remaining budgets for each
 category and unallocated\\
 \[
-\text{Categories} := \{ \text{expense.category} \mid \text{expense} \in \text{Expenses} \}
+\text{Categories} := \{ \text{budget.category} \mid \text{budget} \in \text{Budget} \}
 \]
 \[
 \text{expenses}_C := \sum_{\substack{\text{expense}_i \in \text{Expenses} \\ \text{expense}_i.\text{category} == C}} \text{expense}_i.\text{cost}
@@ -388,13 +388,17 @@ category and unallocated\\
 \text{budget}_C := \text{budget[C]}.\text{amount}
 \]\\
 \[
+\text{remaining}_C := 
+\begin{cases} 
+\text{budget}_C - \text{expenses}_C & \text{if } C \in \text{Categories} \\
+0 & \text{otherwise}
+\end{cases}
+\]\\
+\[
 \text{total\_income} := \sum_{\text{income}_i \in \text{Income}} \text{income}_i
 \]\\
 \[
-\text{remaining}_C := \text{budget}_C - \text{expenses}_C
-\]\\
-\[
-\text{unallocated} := \text{total\_income} - \sum_{C \in \text{Categories}} \text{remaining}_C
+\text{unallocated} := \text{total\_income} - \sum_{C \in \text{Categories}} \text{budget}_C - \sum_{ \text{expenses}_C | C \notin \text{Categories}} \text{expenses}_C
 \]\\
 \[
 \text{output} := \bigcup_{C \in \text{Categories}} \left( \{\text{C} : \text{remaining}_C \} \right) \cup \{\text{unallocated}: \text{unallocated} \}
