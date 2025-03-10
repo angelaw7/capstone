@@ -126,7 +126,8 @@ and Validation Plan} document. These tests are all performed manually.
 
 The nonfunctional system tests can be found in Section 4.2 of the
 \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/VnVPlan/VnVPlan.pdf}{Verification
-and Validation Plan} document. These tests are all performed manually.
+and Validation Plan} document. Tests without comments are performed as described
+in the plan.
 
 
 \begin{longtable}{>{\centering\arraybackslash}p{0.2\textwidth} >{\centering\arraybackslash}p{0.2\textwidth} >{\centering\arraybackslash}p{0.5\textwidth}}
@@ -134,14 +135,17 @@ and Validation Plan} document. These tests are all performed manually.
     \toprule
     \textbf{Test ID} & \textbf{Pass/Fail} & \textbf{Comments} \\
     \midrule
-    test-ACC-1 & Pass &  \\
-    test-ACC-2 & Fail & Groceries are categorized with sufficient accuracy, but
-    the accuracy diminishes with other categories \\
+    test-ACC-1 & Pass &
+    \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/categorization/receipt_items_output.csv}{Actual
+    output}; accuracy threshold is met. \\
+    test-ACC-2 & Fail & By manually comparing the input
+    \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/parsing}{
+    (set of receipt images)} with the resulting output (same link as above,
+    files ending in $.csv$) and calculating the accuracy as descripted in the
+    V\&V Plan, the accuracy threshold is not met. \\
     test-ACC-3 & Pass &  \\
-    test-ACC-4 & Pass & Given a high quality receipt, this case passes. Lower
-    quality receipts are out-of-scope. \\
+    test-ACC-4 & Pass &  \\
     test-ACC-5 & Pass &  \\
-    test-ACC-6 & Pass &  \\
     \midrule
     test-PERF-1 & Pass &  \\
     test-PERF-2 & Pass &  \\
