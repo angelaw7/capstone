@@ -333,7 +333,9 @@ Budget Calculation Module
 
 \subsection{Uses}
 Categorization Module (\nameref{categorization_module})\\
-Expense Module (\nameref{expense_module})
+Expense Module (\nameref{expense_module})\\
+Income Module (\nameref{income_module})\\
+Budget Module (\nameref{budget_module})\\
 
 \subsection{Syntax}
 
@@ -349,9 +351,10 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-calculate\_budget & history: List[Expense] & suggested\_budget: List[Dict[string, float]]
+calculate\_budget & expenses: List[Expense] & suggested\_budget: List[Dict[string, float]]
 & InvalidInputError \\
-& savings\_goals: List[Dict[string, float]] & &  \\
+& income: List[Income] & &  \\
+& budget: List[Budget] & &  \\
 \hline
 \end{tabular}
 \end{table}
@@ -373,7 +376,29 @@ N/A
 \noindent calculate\_budget(history: List[Transaction], savings\_goals: List[Dict[string, float]]):
 \begin{itemize}
 \item transition: N/A
-\item output: List[Dict[string, float]] -- a list of suggested budgets for each category
+\item output: Dict[string, float] -- a list of remaining budgets for each
+category and unallocated\\
+\[
+\text{Categories} := \{ \text{expense.category} \mid \text{expense} \in \text{Expenses} \}
+\]
+\[
+\text{expenses}_C := \sum_{\substack{\text{expense}_i \in \text{Expenses} \\ \text{expense}_i.\text{category} == C}} \text{expense}_i.\text{cost}
+\]\\
+\[
+\text{budget}_C := \text{budget[C]}.\text{amount}
+\]\\
+\[
+\text{total\_income} := \sum_{\text{income}_i \in \text{Income}} \text{income}_i
+\]\\
+\[
+\text{remaining}_C := \text{budget}_C - \text{expenses}_C
+\]\\
+\[
+\text{unallocated} := \text{total\_income} - \sum_{C \in \text{Categories}} \text{remaining}_C
+\]\\
+\[
+\text{output} := \bigcup_{C \in \text{Categories}} \left( \{\text{C} : \text{remaining}_C \} \right) \cup \{\text{unallocated}: \text{unallocated} \}
+\]\\
 \item exception: InvalidInputError -- thrown if the input is not valid
 \end{itemize}
 
