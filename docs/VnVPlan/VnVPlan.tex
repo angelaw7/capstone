@@ -48,8 +48,10 @@
 
 \section{Symbols, Abbreviations, and Acronyms}
 
-Refer to Section 1.3 of the Software Requirements Specification (SRS) document
-for the list of symbols, abbreviations, and acronyms.
+Refer to Section 1.3 of the
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/SRS/SRS.pdf}{Software
+Requirements Specification (SRS)} document for the list of symbols,
+abbreviations, and acronyms.
 
 In addition, the following abbreviations are used in this document:\\
 
@@ -1093,7 +1095,8 @@ This subsection covers tests required to verify functionality for item recogniti
 \begin{enumerate}
 \item{test-RS-1\\}
 
-\textbf{Description:} Uploaded receipts should be processed and all items, their quantities and prices should all be correctly recognized with an accuracy of 90\%
+\textbf{Description:} Uploaded receipts should be processed and return a list of
+items with their corresponding name, category, and price.
 
 \textbf{Control:} Functional
 
@@ -1101,11 +1104,14 @@ This subsection covers tests required to verify functionality for item recogniti
 
 \textbf{Input:} Run item recognition on a sample receipt
 
-\textbf{Output:} Recognized items, quantities, and prices are displayed accurately
+\textbf{Output:} Recognized items, quantities, and prices are displayed to the
+user
 
-\textbf{Test Case Derivation:} The test verifies the accuracy of the OCR model by identifying items on the inputted receipt
+\textbf{Test Case Derivation:} The test verifies the end-to-end functionality  of the OCR model
+by identifying items on the inputted receipt
 
-\textbf{How test will be performed:} Process the receipt image and verify recognized details against the original receipt
+\textbf{How test will be performed:} Process the receipt image and verify
+recognized details against the original receipt
 
 \item{test-RS-2\\}
 
@@ -1156,7 +1162,7 @@ This subsection verifies the functionality of financial tracking features such h
 
 \item{test-FT-1\\}
 
-\textbf{Description:} Users should be able view spending their spending history by category and trends
+\textbf{Description:} Users should be able view their spending history by category and trends
 
 \textbf{Control:} Functional
 
