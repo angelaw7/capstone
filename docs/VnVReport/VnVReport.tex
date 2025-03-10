@@ -11,7 +11,7 @@
     urlcolor=blue
 }
 \usepackage[round]{natbib}
-
+\usepackage{longtable}
 \input{../Comments}
 \input{../Common}
 
@@ -39,16 +39,30 @@ Date 2 & 1.1 & Notes\\
 
 \section{Symbols, Abbreviations and Acronyms}
 
+
+Refer to Section 1.3 of the
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/SRS/SRS.pdf}{Software
+Requirements Specification (SRS)} document for the list of symbols,
+abbreviations, and acronyms.
+
+
+In addition, the following abbreviations are used in this document:\\
+
 \renewcommand{\arraystretch}{1.2}
-\begin{tabular}{l l} 
+\begin{table}[h!]
+\caption{Symbols, Abbreviations, and Acronyms}
+\begin{tabularx}{\textwidth}{l l}
   \toprule		
   \textbf{symbol} & \textbf{description}\\
   \midrule 
-  T & Test\\
+  V\&V & Verification and Validation\\
+  UI & User Interface\\
+  OCR & Optical Character Recognition\\
+  SQL & Structured Query Language\\
+  GDPR & General Data Protection Regulation\\
   \bottomrule
-\end{tabular}\\
-
-\wss{symbols, abbreviations or acronyms -- you can reference the SRS tables if needed}
+\end{tabularx}
+\end{table}
 
 \newpage
 
@@ -62,17 +76,111 @@ Date 2 & 1.1 & Notes\\
 
 \pagenumbering{arabic}
 
-This document ...
+This document reports the results of the Verification and Validation (V\&V)
+process for the \progname software. The V\&V plan is documented in the
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/VnVPlan/VnVPlan.pdf}{Verification
+and Validation Plan} document. 
 
 \section{Functional Requirements Evaluation}
 
+The functional system tests can be found in Section 4.1 of the
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/VnVPlan/VnVPlan.pdf}{Verification
+and Validation Plan} document. These tests are all performed manually.
+
+\begin{table}[h!]
+\centering
+\caption{Functional Requirements Evaluation}
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash}X >{\centering\arraybackslash}X >{\centering\arraybackslash}X}
+  \toprule
+  \textbf{Test ID} & \textbf{Pass/Fail} & \textbf{Comments} \\
+  \midrule
+  test-UAM-1 & Pass &  \\
+  test-UAM-2 & Pass &  \\
+  test-UAM-3 & Pass &  \\
+  test-UAM-4 & Fail & Not yet implemented \\
+  test-UAM-5 & Pass &  \\
+  test-UAM-6 & Pass &  \\
+  \midrule
+  test-IP-1 & Pass & \\
+  test-IP-2 & Pass & \\
+  test-IP-3 & Fail & Not yet implemented \\
+  \midrule
+  test-MIS-1 & Pass & \\
+  \midrule
+  test-DM-1 & Pass & \\
+  test-DM-2 & Pass & \\
+  \midrule
+  test-RS-1 & Pass & \\
+  test-RS-2 & Pass & \\
+  test-RS-3 & Pass & \\
+  \midrule
+  test-FT-1 & Fail & Not yet implemented \\
+  test-FT-2 & Pass & \\
+  test-FT-3 & Fail & Not yet implemented \\
+  \bottomrule
+\end{tabularx}
+\end{table}
+
+
 \section{Nonfunctional Requirements Evaluation}
 
-\subsection{Usability}
-		
-\subsection{Performance}
+The nonfunctional system tests can be found in Section 4.2 of the
+\href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/VnVPlan/VnVPlan.pdf}{Verification
+and Validation Plan} document. Tests without comments are performed as described
+in the plan.
 
-\subsection{etc.}
+
+\begin{longtable}{>{\centering\arraybackslash}p{0.2\textwidth} >{\centering\arraybackslash}p{0.2\textwidth} >{\centering\arraybackslash}p{0.5\textwidth}}
+  \caption{Nonfunctional Requirements Evaluation}\\
+    \toprule
+    \textbf{Test ID} & \textbf{Pass/Fail} & \textbf{Comments} \\
+    \midrule
+    test-ACC-1 & Pass &
+    \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/categorization/receipt_items_output.csv}{Actual
+    output}; accuracy threshold is met. \\
+    test-ACC-2 & Fail & By manually comparing the input
+    \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/parsing}{
+    (set of receipt images)} with the resulting output (same link as above,
+    files ending in $.csv$) and calculating the accuracy as descripted in the
+    V\&V Plan, the accuracy threshold is not met. \\
+    test-ACC-3 & Pass &  \\
+    test-ACC-4 & Pass &  \\
+    test-ACC-5 & Pass &  \\
+    \midrule
+    test-PERF-1 & Pass &  \\
+    test-PERF-2 & Pass &  \\
+    test-PERF-3 & Fail & Load testing has not yet been performed \\
+    \midrule
+    test-USAB-1 & Pass &  \\
+    test-USAB-2 & Pass &  \\
+    test-USAB-3 & Pass &  \\
+    test-USAB-4 & Pass &  \\
+    \midrule
+    test-SEC-1 & Pass &  \\
+    \midrule
+    test-MTB-1 & Pass & System stability has been tested, but application is not
+    backward compatible since it is still under active development. \\
+    test-MTB-2 & Pass &  \\
+    test-MTB-3 & Pass &  \\
+    \midrule
+    test-PORT-1 & Pass &  \\
+    test-PORT-2 & Pass &  \\
+    test-PORT-3 & Pass &  \\
+    \midrule
+    test-REUS-1 & Pass &  \\
+    test-REUS-2 & Pass &  \\
+    \midrule
+    test-UND-1 & Pass &  \\
+    test-UND-2 & Pass &  \\
+    test-UND-3 & Pass &  \\
+    \midrule
+    test-LEGAL-1 & Fail & The application is still under active development, so
+    it is still using the testing environment and not all security features are
+    active. \\
+    \bottomrule
+\end{longtable}
+
+
 	
 \section{Comparison to Existing Implementation}	
 
