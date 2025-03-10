@@ -57,6 +57,7 @@
 \midrule
 01/13/2025 & 0.1 & Section 2--8, 10--12\\
 01/14/2025 & 0.2 & Add details to Section 9 and 12\\
+03/09/2025 & 0.3 & Updates to Item, Expense, Income, Budget modules\\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -233,7 +234,7 @@ actually be implemented.
 \begin{description}
   \item[\refstepcounter{submnum} \mthesubmnum \label{mOCR}:] OCR Processing Module
   \item[\refstepcounter{submnum} \mthesubmnum \label{mML}:] Machine Learning Module
-  \item[\refstepcounter{submnum} \mthesubmnum \label{mBudget}:] Budget Calculation Module
+  \item[\refstepcounter{submnum} \mthesubmnum \label{mBudgetCalculation}:] Budget Calculation Module
 \end{description}
 \item [\refstepcounter{mnum} \mthemnum \label{mUI}:] User Interaction Module
 \begin{description}
@@ -243,8 +244,9 @@ actually be implemented.
 \item [\refstepcounter{mnum} \mthemnum \label{mAuth}:] Authentication Module
 \item [\refstepcounter{mnum} \mthemnum\label{mData}:] Data Module
 \begin{description}
-	\item [\refstepcounter{mnum} \mthemnum\label{mItem}:] Item Module
 	\item [\refstepcounter{mnum} \mthemnum\label{mExpense}:] Expense Module
+	\item [\refstepcounter{mnum} \mthemnum\label{mIncome}:] Income Module
+	\item [\refstepcounter{mnum} \mthemnum\label{mBudget}:] Budget Module
 \end{description}
 \end{description}
 
@@ -277,8 +279,9 @@ actually be implemented.
 {Authentication Module} & ~ \\
 \midrule
 
-\multirow{2}{0.3\textwidth}{Data Module} & {Item Module}\\
-& Expense Module\\
+\multirow{3}{0.3\textwidth}{Data Module} & Expense Module \\
+& Income Module \\
+& Budget Module \\
 
 \bottomrule
 
@@ -414,7 +417,7 @@ to be implemented.
 \item[Type of Module:] Abstract Object
 \end{description}
 
-\subsubsection{Budget Calculation Module (\mref{mBudget})}
+\subsubsection{Budget Calculation Module (\mref{mBudgetCalculation})}
 
 \begin{description}
 \item[Secrets:] The algorithms used for generating budget plans and financial suggestions based on input data.
@@ -466,22 +469,32 @@ to be implemented.
 \item[Implemented By:] --
 \end{description}
 
-\subsubsection{Item Module (\mref{mItem})}
-
-\begin{description}
-\item[Secrets:] N/A
-\item[Services:] Serves as a structured format for a receipt item.
-\item[Implemented By:] \progname
-\item[Type of Module:] Abstract Data Type
-\end{description}
 
 \subsubsection{Expense Module (\mref{mExpense})}
 
 \begin{description}
 \item[Secrets:] N/A
-\item[Services:] Serves as a structured format for a receipt.
+\item[Services:] Serves as a structured format for an expense.
 \item[Implemented By:] \progname
-\item[Type of Module:] Abstract Data Type
+\item[Type of Module:] Record
+\end{description}
+
+\subsubsection{Income Module (\mref{mIncome})}
+
+\begin{description}
+\item[Secrets:] N/A
+\item[Services:] Serves as a structured format for an income.
+\item[Implemented By:] \progname
+\item[Type of Module:] Record
+\end{description}
+
+\subsubsection{Budget Module (\mref{mBudget})}
+
+\begin{description}
+\item[Secrets:] N/A
+\item[Services:] Serves as a structured format for a budget.
+\item[Implemented By:] \progname
+\item[Type of Module:] Record
 \end{description}
 
 
@@ -514,15 +527,15 @@ FR12 & \mref{mUpload}\\
 FR13 & \mref{mUpload}\\
 FR14 & \mref{mOCR}, \mref{mML}\\
 FR15 & \mref{mOCR}, \mref{mML}\\
-FR16 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-FR17 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-FR18 & \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-FR19 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-FR20 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-FR21 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-FR22 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-FR23 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
-FR24 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudget}\\
+FR16 & \mref{mOCR}, \mref{mML}, \mref{mBudgetCalculation}\\
+FR17 & \mref{mOCR}, \mref{mML}, \mref{mBudgetCalculation}\\
+FR18 & \mref{mOCR}, \mref{mML}, \mref{mBudgetCalculation}\\
+FR19 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudgetCalculation}\\
+FR20 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudgetCalculation}\\
+FR21 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudgetCalculation}\\
+FR22 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudgetCalculation}\\
+FR23 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudgetCalculation}\\
+FR24 & \mref{mOutput}, \mref{mOCR}, \mref{mML}, \mref{mBudgetCalculation}\\
 NFR18 & \mref{mAuth}\\
 
 \bottomrule

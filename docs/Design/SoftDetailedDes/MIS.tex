@@ -58,6 +58,7 @@ urlcolor=cyan          % color of external links
 \midrule
 01/13/2024 & 0.1 & Sections 2--5 \\
 01/17/2024 & 0.2 & Section 6\\
+03/09/2025 & 0.3 & Updates to Item, Expense, Income, Budget, Categorization modules\\
 \ldots & \ldots & \ldots \\
 \bottomrule
 \end{tabularx}
@@ -168,7 +169,7 @@ OCR Processing Module
   \item Image processing libraries (OpenCV, PIL)
   \item Text parsing utilities (Pytesseract OCR)
   \item Input Format Module (\nameref{input_format_module})
-  \item Machine Learning Module (\nameref{ML_Module})
+  \item Categorization Module (\nameref{categorization_module})
 \end{itemize}
 
 \subsection{Syntax}
@@ -249,16 +250,15 @@ localTextExtraction():
 \newpage
 
 
-%% start of ML module ----------
+%% start of Categorization module ----------
 
-\section{MIS of Machine Learning Module}\label{ML_Module}
+\section{MIS of Categorization Module}\label{categorization_module}
 
 \subsection{Module}
-ML Module
+Categorization Module
 
 \subsection{Uses}
 OCR Processing Module (\nameref{OCR_Processing_Module})\\
-Item Module (\nameref{item_module})
 
 \subsection{Syntax}
 
@@ -269,7 +269,7 @@ N/A
 
 \begin{center}
   \begin{table}[H]
-    \caption{ML Module Access Programs}
+    \caption{Categorization Module Access Programs}
 \begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
@@ -303,11 +303,25 @@ classify items based on the input data.
 \end{itemize}
 
 \subsubsection{Local Functions}
-N/A
+\noindent \_\_train\_model(csv: File):
+\begin{itemize}
+  \item transition: N/A
+  \item input: csv -- a CSV file containing labeled data (item\_name, category)
+  from parsed receipt item names and manually verified categories.
+  \item output: three .pkl files (model, vectorizer, encoder) for item
+  categorization. These files are opened and loaded during the initialization of
+  the Categorization class and are used within categorize(). It is assumed that
+  this model has been trained and does not need to be modified during runtime.
+  \item model: The model will use multiclass logistic regression to predict the
+  item categories based on the item names. A vectorizer will be used to convert
+  the item names into a format that the model can understand. An encoder will be
+  used to convert the predicted category back into a human-readable format. The
+  expected accuracy of the model is 90\%.
+\end{itemize}
 
 \newpage
 
-% end of ML module
+% end of Categorization Module
 
 
 % start of budget calculation module
@@ -318,8 +332,10 @@ N/A
 Budget Calculation Module
 
 \subsection{Uses}
-Machine Learning Module (\nameref{ML_Module})\\
-Expense Module (\nameref{expense_module})
+Categorization Module (\nameref{categorization_module})\\
+Expense Module (\nameref{expense_module})\\
+Income Module (\nameref{income_module})\\
+Budget Module (\nameref{budget_module})\\
 
 \subsection{Syntax}
 
@@ -335,9 +351,10 @@ N/A
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-calculate\_budget & history: List[Expense] & suggested\_budget: List[Dict[string, float]]
+calculate\_budget & expenses: List[Expense] & suggested\_budget: List[Dict[string, float]]
 & InvalidInputError \\
-& savings\_goals: List[Dict[string, float]] & &  \\
+& income: List[Income] & &  \\
+& budget: List[Budget] & &  \\
 \hline
 \end{tabular}
 \end{table}
@@ -359,7 +376,33 @@ N/A
 \noindent calculate\_budget(history: List[Transaction], savings\_goals: List[Dict[string, float]]):
 \begin{itemize}
 \item transition: N/A
-\item output: List[Dict[string, float]] -- a list of suggested budgets for each category
+\item output: Dict[string, float] -- a list of remaining budgets for each
+category and unallocated\\
+\[
+\text{Categories} := \{ \text{budget.category} \mid \text{budget} \in \text{Budget} \}
+\]
+\[
+\text{expenses}_C := \sum_{\substack{\text{expense}_i \in \text{Expenses} \\ \text{expense}_i.\text{category} == C}} \text{expense}_i.\text{cost}
+\]\\
+\[
+\text{budget}_C := \text{budget[C]}.\text{amount}
+\]\\
+\[
+\text{remaining}_C := 
+\begin{cases} 
+\text{budget}_C - \text{expenses}_C & \text{if } C \in \text{Categories} \\
+0 & \text{otherwise}
+\end{cases}
+\]\\
+\[
+\text{total\_income} := \sum_{\text{income}_i \in \text{Income}} \text{income}_i
+\]\\
+\[
+\text{unallocated} := \text{total\_income} - \sum_{C \in \text{Categories}} \text{budget}_C - \sum_{ \text{expenses}_C | C \notin \text{Categories}} \text{expenses}_C
+\]\\
+\[
+\text{output} := \bigcup_{C \in \text{Categories}} \left( \{\text{C} : \text{remaining}_C \} \right) \cup \{\text{unallocated}: \text{unallocated} \}
+\]\\
 \item exception: InvalidInputError -- thrown if the input is not valid
 \end{itemize}
 
@@ -566,7 +609,7 @@ Results Display Module
 
 Input Format Module (\nameref{input_format_module})\\
 Budget Calculation Module (\nameref{budget_calculation_module})\\
-Machine Learning Module (\nameref{ML_Module})\\
+Categorization Module (\nameref{categorization_module})\\
 
 \subsection{Syntax}
 
@@ -652,7 +695,7 @@ Input Format Module
 
 Results Display Module (\nameref{results_display_module})\\
 Budget Calculation Module (\nameref{budget_calculation_module})\\
-Machine Learning Module (\nameref{ML_Module})\\
+Categorization Module (\nameref{categorization_module})\\
 
 \subsection{Syntax}
 
@@ -818,12 +861,12 @@ exportFile & ProcessedData, ExportType & ExportFile & ExportError \\
 % end of output generation module
 
 
-% start of item module
-\section{MIS of Item}\label{item_module}
+% start of expense module
+\section{MIS of Expense}\label{expense_module}
 
 \subsection{Module}
 
-Item module
+Expense module
 
 \subsection{Uses}
 N/A
@@ -833,72 +876,10 @@ N/A
 \subsubsection{Exported Constants}
 \begin{itemize}
   \item \textbf{name}: string
-  \item \textbf{price}: float
+  \item \textbf{cost}: float
   \item \textbf{category}: string
-\end{itemize}
-
-\subsubsection{Exported Access Programs}
-
-\begin{center}
-  \begin{table}[H]
-    \caption{Item Module Access Programs}
-\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
-\hline
-\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
-\hline
-item & name: string & Item & InvalidInputError \\
- & price: float &  &  \\
- & category: string &  &  \\
-\hline
-\end{tabular}
-\end{table}
-\end{center}
-
-\subsection{Semantics}
-
-\subsubsection{State Variables}
-N/A
-
-\subsubsection{Environment Variables}
-N/A
-
-\subsubsection{Assumptions}
-N/A
-
-\subsubsection{Access Routine Semantics}
-
-\noindent item(name: string, price: float, category: string):
-\begin{itemize}
-\item transition: N/A
-\item output: Item
-\item exception: InvalidInputError -- thrown if the input is not valid
-\end{itemize}
-
-\subsubsection{Local Functions}
-N/A
-
-\newpage
-% end of item module
-
-% start of expense module
-\section{MIS of Expense}\label{expense_module}
-
-\subsection{Module}
-
-Expense module
-
-\subsection{Uses}
-Item module (\nameref{item_module})
-
-\subsection{Syntax}
-
-\subsubsection{Exported Constants}
-\begin{itemize}
-  \item \textbf{items}: List[Item]
-  \item \textbf{timestamp}: datetime
-  \item \textbf{total}: float
-  \item \textbf{store}: string
-  \item \textbf{receipt\_image}: string
+  \item \textbf{transaction\_date}: datetime
+  \item \textbf{user\_id}: Uuid
 \end{itemize}
 
 \subsubsection{Exported Access Programs}
@@ -910,11 +891,11 @@ Item module (\nameref{item_module})
 \hline
 \textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
 \hline
-expense & item: List[Item] & Expense & InvalidInputError \\
-  & timestamp: datetime &  &  \\
-  & total: float &  &  \\
-  & store: string &  &  \\
-  & receipt\_image: string &  &  \\
+expense & name: string &  &  \\
+  & cost: float &  &  \\
+  & category: string &  &  \\
+  & transaction\_date: datetime &  &  \\
+  & user\_id: Uuid &  &  \\
 \hline
 \end{tabular}
 \end{table}
@@ -933,7 +914,8 @@ N/A
 
 \subsubsection{Access Routine Semantics}
 
-\noindent item(name: string, price: float, category: string):
+\noindent expense(name: string, cost: float, category: string,
+transaction\_date: datetime, user\_id: Uuid):
 \begin{itemize}
 \item transition: N/A
 \item output: Expense
@@ -945,6 +927,137 @@ N/A
 
 \newpage
 % end of expense module
+
+% start of income module
+\section{MIS of Income}\label{income_module}
+
+\subsection{Module}
+
+Income module
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+\begin{itemize}
+  \item \textbf{name}: string
+  \item \textbf{amount}: float
+  \item \textbf{recurring}: bool
+  \item \textbf{frequency}: Optional[string]
+  \item \textbf{start}: datetime
+  \item \textbf{user\_id}: Uuid
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{table}[H]
+    \caption{Income Module Access Programs}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+income & name: string &  &  \\
+  & amount: float &  &  \\
+  & recurring: bool &  &  \\
+  & frequency: Optional[string] &  &  \\
+  & start: datetime &  &  \\
+  & user\_id: Uuid &  &  \\
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent income(name: string, amount: float, recurring: bool, frequency:
+Optional[string], start: datetime, user\_id: Uuid):
+\begin{itemize}
+\item transition: N/A
+\item output: Income
+\item exception: InvalidInputError -- thrown if the input is not valid
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+% end of income module
+
+% start of budget module
+\section{MIS of Budget}\label{budget_module}
+
+\subsection{Module}
+
+Budget module
+
+\subsection{Uses}
+N/A
+
+\subsection{Syntax}
+
+\subsubsection{Exported Constants}
+\begin{itemize}
+  \item \textbf{category}: string
+  \item \textbf{amount}: float
+  \item \textbf{user\_id}: Uuid
+\end{itemize}
+
+\subsubsection{Exported Access Programs}
+
+\begin{center}
+  \begin{table}[H]
+    \caption{Budget Module Access Programs}
+\begin{tabular}{p{4cm} p{4cm} p{4cm} p{4cm}}
+\hline
+\textbf{Name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions} \\
+\hline
+budget & category: string &  & InvalidInputError \\
+  & amount: float &  &  \\
+  & user\_id: Uuid &  &  \\
+\hline
+\end{tabular}
+\end{table}
+\end{center}
+
+\subsection{Semantics}
+
+\subsubsection{State Variables}
+N/A
+
+\subsubsection{Environment Variables}
+N/A
+
+\subsubsection{Assumptions}
+N/A
+
+\subsubsection{Access Routine Semantics}
+
+\noindent budget(category: string, amount: float, user\_id: Uuid):
+\begin{itemize}
+\item transition: N/A
+\item output: Budget
+\item exception: InvalidInputError -- thrown if the input is not valid
+\end{itemize}
+
+\subsubsection{Local Functions}
+N/A
+
+\newpage
+% end of budget module
 
 
 % % start of MIS template
