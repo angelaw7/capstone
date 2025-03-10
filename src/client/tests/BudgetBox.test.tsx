@@ -1,6 +1,4 @@
 import { render } from "@testing-library/react-native";
-import { PieChart } from "react-native-chart-kit";
-import { capitalizeFirstLetter } from "../utils/util";
 import BudgetBox from "../components/common/BudgetBox";
 import { Expense, Income, Budget } from "../types";
 
