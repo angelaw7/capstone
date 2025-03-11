@@ -142,8 +142,16 @@ in the plan.
     \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/parsing/input}{
     (set of receipt images)} with the
     \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/parsing/input}{resulting
-    output} and calculating the accuracy as descripted in the V\&V Plan, the
-    accuracy threshold is not met. \\
+    output}, and calculating the accuracy as descripted in the V\&V Plan,
+    current accuracy is ~80\%, which does not meet the threshold of 90\%.
+    Further tuning or a change in specifications may be required.
+    \begin{itemize}
+      \item \textit{foodbasics\_1.jpg}: 13.5/15 = 90\%
+      \item \textit{foodbasics\_2.jpg}: 7/9 = 77.78\%
+      \item \textit{walmart\_1.jpg}: 7/10 = 70\%
+      \item \textit{costco\_1.jpg}: 17.5/23 = 76.09\%
+      \item Overall accuracy: 45/57 = 78.95\%
+    \end{itemize}\\
     test-ACC-3 & Pass &  \\
     test-ACC-4 & Pass &  \\
     test-ACC-5 & Pass &  \\
