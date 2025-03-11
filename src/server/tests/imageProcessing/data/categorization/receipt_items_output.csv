@@ -1,58 +1,116 @@
-name,category
-GROCERY CHEETOS BOLD CHS,groceries
-SELECTION MAC-CH,groceries
-NEAT LEAN GROUND BEEF,groceries
-PRODUCE SL.CREHINI HUSHR,groceries
-GRAPE GREEN SDLS,groceries
-BROCCOLI LOCAL,groceries
-GREEN ONION,groceries
-TOM.RED HOTHOUSE,groceries
-DELI PI COOKD CHICK.B,groceries
-FROZEN FOOD HAAGEN CHOC.PEAN H,groceries
-HCCAIN F.FRI.FRZ,groceries
-DAIRY BEATR.1% HILK,groceries
-SELECTION CH.BL.,groceries
-IRRS.0 PLAIN GR,groceries
-FAIRLIFE L.F.2%,groceries
-BROOKSIDE CHOC,personal
-SCHICK DISP RA,groceries
-NEUTROGENA CRM,personal
-SPINACH,groceries
-MANGOES,groceries
-BEEF MANDU,groceries
-KIT KAT BARS,groceries
-CHARMIN BATH,personal
-NNE 1N,personal
-VICL CRM,personal
-BASKET,home
-BATH MAT,home
-TRASH BAGS,home
-TABLECLOTH,home
-OVEN MITTS,home
-CURTAIN LINER,home
-SOFTSTREME GATHERED TEE,groceries
-GV OATMEAL,groceries
-M ATHLETICS,personal
-CHICK.BRST BNLS,groceries
-OSMIO RAVIOLI CH,groceries
-DRUMST.FRZ TREAT,groceries
-IRRS.2 VAN.YOG.S,groceries
-NATREL LACT.F.SK,groceries
-BANANAS,home
-CARROTS SHREDDED,groceries
-CREAMY SALTED PEANUT BUTTER,groceries
-EARBUDS,personal
-AVO VERDE,personal
-BTS DRY BLON,personal
-BAGELS,groceries
-CHEEZE IT,groceries
-RUFFLES,groceries
-DV RSE OIL M,groceries
-ROLLS,home
-PAPER TWLS,groceries
-JOKKA MILK,groceries
-BROCCOLI,groceries
-KFT SINGLES,personal
-BEVERAGE,home
-HAND CLEANER,home
-INJECTR CLEANR,personal
+name,category
+
+GROCERY CHEETOS BOLD CHS,groceries
+
+SELECTION MAC-CH,groceries
+
+NEAT LEAN GROUND BEEF,groceries
+
+PRODUCE SL.CREHINI HUSHR,groceries
+
+GRAPE GREEN SDLS,groceries
+
+BROCCOLI LOCAL,groceries
+
+GREEN ONION,groceries
+
+TOM.RED HOTHOUSE,groceries
+
+DELI PI COOKD CHICK.B,groceries
+
+FROZEN FOOD HAAGEN CHOC.PEAN H,groceries
+
+HCCAIN F.FRI.FRZ,groceries
+
+DAIRY BEATR.1% HILK,groceries
+
+SELECTION CH.BL.,groceries
+
+IRRS.0 PLAIN GR,groceries
+
+FAIRLIFE L.F.2%,groceries
+
+BROOKSIDE CHOC,personal
+
+SCHICK DISP RA,groceries
+
+NEUTROGENA CRM,personal
+
+SPINACH,groceries
+
+MANGOES,groceries
+
+BEEF MANDU,groceries
+
+KIT KAT BARS,groceries
+
+CHARMIN BATH,personal
+
+NNE 1N,personal
+
+VICL CRM,personal
+
+BASKET,home
+
+BATH MAT,home
+
+TRASH BAGS,home
+
+TABLECLOTH,home
+
+OVEN MITTS,home
+
+CURTAIN LINER,home
+
+SOFTSTREME GATHERED TEE,groceries
+
+GV OATMEAL,groceries
+
+M ATHLETICS,personal
+
+CHICK.BRST BNLS,groceries
+
+OSMIO RAVIOLI CH,groceries
+
+DRUMST.FRZ TREAT,groceries
+
+IRRS.2 VAN.YOG.S,groceries
+
+NATREL LACT.F.SK,groceries
+
+BANANAS,home
+
+CARROTS SHREDDED,groceries
+
+CREAMY SALTED PEANUT BUTTER,groceries
+
+EARBUDS,personal
+
+AVO VERDE,personal
+
+BTS DRY BLON,personal
+
+BAGELS,groceries
+
+CHEEZE IT,groceries
+
+RUFFLES,groceries
+
+DV RSE OIL M,groceries
+
+ROLLS,home
+
+PAPER TWLS,groceries
+
+JOKKA MILK,groceries
+
+BROCCOLI,groceries
+
+KFT SINGLES,personal
+
+BEVERAGE,home
+
+HAND CLEANER,home
+
+INJECTR CLEANR,personal
+
