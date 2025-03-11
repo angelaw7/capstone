@@ -7,7 +7,7 @@ import MoviesIcon from "./assets/icons/MoviesIcon";
 import WifiIcon from "./assets/icons/WifiIcon";
 
 export const MONTHS = [
-  "January",
+  "Januaryd",
   "February",
   "March",
   "April",
