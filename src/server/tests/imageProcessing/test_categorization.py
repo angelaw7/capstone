@@ -8,15 +8,16 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 from server.imageProcessing.categorization import Categorizer
 
 categorizer = Categorizer()
+base_path = os.path.dirname(os.path.abspath(__file__))
 
 def test_categorization():
-    with open("./data/categorization/receipt_items_input.csv", "r") as f:
+    with open(os.path.join(base_path, "data/categorization/receipt_items_input.csv"), "r") as f:
         items = pd.read_csv(f)
-    with open("./data/categorization/receipt_items_expected_output.csv", "r") as f:
+    with open(os.path.join(base_path, "data/categorization/receipt_items_expected_output.csv"), "r") as f:
         expected_output = pd.read_csv(f)
 
     output = categorizer.categorize(items=items)
-    with open("./data/categorization/receipt_items_output.csv", "w") as f:
+    with open(os.path.join(base_path, "data/categorization/receipt_items_output.csv"), "w") as f:
         f.write(output.to_csv(index=False))
     
     points = 0

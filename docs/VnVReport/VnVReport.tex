@@ -14,6 +14,7 @@
 \usepackage{longtable}
 \input{../Comments}
 \input{../Common}
+\usepackage{graphicx}
 
 \begin{document}
 
@@ -274,11 +275,27 @@ A traceability matrix between test cases and modules can be found
 \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/VnVPlan/requirements_to_modules_traceability.xlsx}{in
 this Excel sheet}.
 
+\newpage
 
 \section{Code Coverage Metrics}
 
+Backend coverage is 80\% according to pytest coverage report. See Figure \ref{fig:coverage-backend}.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\linewidth, height=0.85\textheight, keepaspectratio]{./coverage-backend.png}
+  \caption{Backend Code Coverage Metrics}\label{fig:coverage-backend}
+\end{figure}
 
 \newpage{}
+
+Frontend coverage metrics is calculated using Jest. See Figure \ref{fig:coverage-frontend}.
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=\linewidth, height=0.85\textheight, keepaspectratio]{./coverage-frontend.png}
+  \caption{Frontend Code Coverage Metrics}\label{fig:coverage-frontend}
+\end{figure}
+\newpage{}
+
 \section*{Appendix --- Reflection}
 
 The information in this section will be used to evaluate the team members on the
