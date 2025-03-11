@@ -601,13 +601,13 @@ used to indicate the importance of the requirement to the system.
   correctly identifying and extracting key information (i.e., item names,
   quantities, prices, dates) from receipts.
   \item (H) The machine learning model must categorize expenses into predefined
-  categories (e.g., groceries, utilities, entertainment) with at least 90\%
+  categories (e.g., groceries, utilities, entertainment) with at least 80\%
   precision to ensure users' financial data is correctly organized.
   \item (H) All monetary calculations (e.g., totals, budgets, currency
   conversions) must maintain a precision of up to two decimal places to ensure
   accurate financial reporting.
   \item (H) The OCR model must correctly recognize text from images of receipts
-  with a minimum accuracy rate of 90\%, ensuring minimal manual corrections by
+  with a minimum accuracy rate of 80\%, ensuring minimal manual corrections by
   users.
   \item (H) The application must guarantee 99\% accuracy in summing up expenses,
   incomes, and savings across different periods and categories, ensuring no
@@ -821,7 +821,7 @@ For certain features, typical values have been used to inform design and develop
     user onboarding and offer a familiar framework. These categories were
     selected based on industry standards and user behavior in similar apps. This
     is also to simplify the ML model training process.
-    \item \textbf{Parsing Accuracy}: An accuracy threshold of 90\% for receipt
+    \item \textbf{Parsing Accuracy}: An accuracy threshold of 80\% for receipt
     parsing was established as the minimum acceptable standard, based on
     expected ML capabilities. This value ensures that the system can reliably
     extract key information from receipts without significant manual

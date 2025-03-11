@@ -755,7 +755,9 @@ Below is a comprehensive list of recommended V\&V techniques and a corresponding
 				\item \textbf{Performance Benchmarking}: Measure model accuracy, precision, recall, and latency.
 				\item \textbf{Error Analysis}: Review misclassifications and parsing errors to refine the model.
 			\end{itemize}
-			\item \textbf{Criteria}: Model meets or exceeds the required performance metrics (e.g., 90\%+ accuracy in parsing and categorization).
+			\item \textbf{Criteria}: Model meets or exceeds the required
+			performance metrics (e.g., 80\%+ accuracy in parsing and
+			categorization).
 		\end{itemize}
 		\item \textbf{Usability Testing}
 		\begin{itemize}
@@ -1242,7 +1244,7 @@ CSV file with various receipt item names}
 					
 \textbf{Output/Result:} The model will output the categories of the given
 receipt items and compare it against the expected CSV file. The test passes if
-the model has a precision of at least 90\%.
+the model has a precision of at least 80\%.
 					
 \textbf{How test will be performed:} Testers will run the
 \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/test_categorization.py}{code

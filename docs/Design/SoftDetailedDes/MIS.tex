@@ -312,11 +312,9 @@ classify items based on the input data.
   categorization. These files are opened and loaded during the initialization of
   the Categorization class and are used within categorize(). It is assumed that
   this model has been trained and does not need to be modified during runtime.
-  \item model: The model will use multiclass logistic regression to predict the
-  item categories based on the item names. A vectorizer will be used to convert
-  the item names into a format that the model can understand. An encoder will be
-  used to convert the predicted category back into a human-readable format. The
-  expected accuracy of the model is 90\%.
+  \item model: The model will build off of Cohere's categorization classify
+  feature, using a dataset of receipt items and categories to fine-tune the
+  model. The expected accuracy of the model is 80\%.
 \end{itemize}
 
 \newpage
