@@ -14,7 +14,7 @@ image_processor = ImageProcessor()
 
 current_month_start = datetime.datetime.utcnow().replace(day=1, hour=0, minute=0, second=0, microsecond=0).isoformat()
 class ExpensesDao:
-    @staticmethod
+    @staticmethod 
     def get_all_user_expenses_for_current_month(userId):
         try:
             expenses = db.from_("expenses") \
