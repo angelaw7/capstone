@@ -31,11 +31,10 @@ jobs:
       - name: Run lint
         run: |
           pip install flake8
-          flake8 src/server
+          flake8 .
         working-directory: src/server
 
       - name: Run tests
         run: |
-          pip install pytest
           pytest
         working-directory: src/server

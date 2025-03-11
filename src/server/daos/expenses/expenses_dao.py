@@ -7,6 +7,7 @@ from server.db import db
 import datetime
 
 
+
 base_path = os.path.dirname(os.path.abspath(__file__))
 tmp_path = os.path.join(base_path, "tmp")
 
@@ -14,7 +15,7 @@ image_processor = ImageProcessor()
 
 current_month_start = datetime.datetime.utcnow().replace(day=1, hour=0, minute=0, second=0, microsecond=0).isoformat()
 class ExpensesDao:
-    @staticmethod
+    @staticmethod 
     def get_all_user_expenses_for_current_month(userId):
         try:
             expenses = db.from_("expenses") \
