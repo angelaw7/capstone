@@ -1,6 +1,5 @@
 import re
 import calendar
-import Levenshtein as lev
 
 
 def is_float(value):
