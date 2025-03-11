@@ -30,6 +30,5 @@ jobs:
         run: npm run lint
         working-directory: src/client
 
-      # When we start testing we can uncomment this loool
-      # - name: Run tests
-      #   run: npm test
+      - name: Run tests
+        run: npm test
