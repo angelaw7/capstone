@@ -137,20 +137,19 @@ in the plan.
     \midrule
     test-ACC-1 & Pass &
     \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/categorization/receipt_items_output.csv}{Actual
-    output}; accuracy threshold is met. \\
+    output}; accuracy is 47/57 = 82.46\%, which meets the threshold of 80\%. \\
     test-ACC-2 & Fail & By manually comparing the input
     \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/parsing/input}{
     (set of receipt images)} with the
     \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/parsing/input}{resulting
     output}, and calculating the accuracy as descripted in the V\&V Plan,
-    current accuracy is ~80\%, which does not meet the threshold of 90\%.
-    Further tuning or a change in specifications may be required.
+    current accuracy is ~80\%, which meets the threshold of 80\%.
     \begin{itemize}
       \item \textit{foodbasics\_1.jpg}: 13.5/15 = 90\%
       \item \textit{foodbasics\_2.jpg}: 7/9 = 77.78\%
       \item \textit{walmart\_1.jpg}: 7/10 = 70\%
-      \item \textit{costco\_1.jpg}: 17.5/23 = 76.09\%
-      \item Overall accuracy: 45/57 = 78.95\%
+      \item \textit{costco\_1.jpg}: 18.5/23 = 76.09\%
+      \item Overall accuracy: 46/57 = 80.70\%
     \end{itemize}\\
     test-ACC-3 & Pass &  \\
     test-ACC-4 & Pass &  \\
