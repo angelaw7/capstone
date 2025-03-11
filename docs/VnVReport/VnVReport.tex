@@ -126,8 +126,8 @@ and Validation Plan} document. These tests are all performed manually.
 
 The nonfunctional system tests can be found in Section 4.2 of the
 \href{https://github.com/PlutosCapstone/Plutos/blob/main/docs/VnVPlan/VnVPlan.pdf}{Verification
-and Validation Plan} document. Tests without comments are performed as described
-in the plan.
+and Validation Plan} document. \textbf{Tests without comments are performed as
+described in the plan.}
 
 
 \begin{longtable}{>{\centering\arraybackslash}p{0.2\textwidth} >{\centering\arraybackslash}p{0.2\textwidth} >{\centering\arraybackslash}p{0.5\textwidth}}
@@ -137,7 +137,10 @@ in the plan.
     \midrule
     test-ACC-1 & Pass &
     \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/categorization/receipt_items_output.csv}{Actual
-    output}; accuracy is 47/57 = 82.46\%, which meets the threshold of 80\%. \\
+    output}; accuracy is 47/57 = 82.46\%, which meets the threshold of 80\%.
+    Test can be found
+    \href{https://github.com/PlutosCapstone/Plutos/blob/main/src/server/tests/imageProcessing/test_categorization.py}{here}.
+    \\
     test-ACC-2 & Pass & By manually comparing the input
     \href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests/imageProcessing/data/parsing/input}{
     (set of receipt images)} with the
@@ -175,10 +178,12 @@ in the plan.
     test-PORT-2 & Pass &  \\
     test-PORT-3 & Pass &  \\
     \midrule
-    test-REUS-1 & Pass &  \\
-    test-REUS-2 & Pass &  \\
+    test-REUS-1 & Pass & Code walkthrough/review was performed with the team.
+    \href{https://github.com/PlutosCapstone/Plutos/issues/256}{See meeting
+    minutes}. \\
+    test-REUS-2 & Pass & See REUS-1 \\
     \midrule
-    test-UND-1 & Pass &  \\
+    test-UND-1 & Pass & See REUS-1 \\
     test-UND-2 & Pass &  \\
     test-UND-3 & Pass &  \\
     \midrule
