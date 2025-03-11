@@ -70,8 +70,6 @@ In addition, the following abbreviations are used in this document:\\
 
 \listoftables %if appropriate
 
-\listoffigures %if appropriate
-
 \newpage
 
 \pagenumbering{arabic}
@@ -252,6 +250,16 @@ the feedback from the Rev 0 demo to the supervisor (or to potential users)
 should be highlighted.}
 
 \section{Automated Testing}
+
+Automated testing is performed using Pytest for the backend and Jest for the
+frontend. The tests are run automatically on each push to the repository, as
+part of our
+\href{https://github.com/PlutosCapstone/Plutos/tree/main/.github/workflows}{continuous
+integration pipeline}. Frontend tests can be found
+\href{https://github.com/PlutosCapstone/Plutos/tree/main/src/client/tests}{here}
+and backend tests can be found
+\href{https://github.com/PlutosCapstone/Plutos/tree/main/src/server/tests}{here}.
+
 		
 \section{Trace to Requirements}
 		
@@ -259,8 +267,6 @@ should be highlighted.}
 
 \section{Code Coverage Metrics}
 
-\bibliographystyle{plainnat}
-\bibliography{../../refs/References}
 
 \newpage{}
 \section*{Appendix --- Reflection}
