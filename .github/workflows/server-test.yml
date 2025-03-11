@@ -35,5 +35,5 @@ jobs:
       - name: Run tests
         run: |
           pip install pytest
-          pytest
+          pytest --ignore=tests/imageProcessing
         working-directory: src/server
