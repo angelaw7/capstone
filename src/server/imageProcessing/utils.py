@@ -24,15 +24,28 @@ def split_item(item: str, verbose=False):
     """
     (tries to) split a string into item name and price
     """
-    pattern = r"(.+?)\s((\$)?\d+[\s\.]\d{2})"
+    pattern = r"(.+?)(\s\d+.*)?\s((\$)?\d+[\s\.\,]+\d{0,2})"
     match = re.search(pattern, item)
 
     if match:
-        item_name = match.group(1)
-        if match.group(2).startswith("$"):
-            price = float(match.group(2)[1:].replace(" ", "."))
-        else:
-            price = float(match.group(2).replace(" ", "."))
+        # clean up item name
+        item_name_raw = list(match.group(1))
+        item_name = "".join([ch for ch in item_name_raw if ch.isalnum() or ch in [" ", ".", "-"]])
+        if not any(ch.isalpha() for ch in item_name):
+            if verbose:
+                print("Item name does not contain any alphabetic characters, skipping", item)
+            return None, 0
+
+        # clean up price
+        value = []
+        for ch in match.group(3):
+            if ch.isdigit() or ch == ".":
+                value.append(ch)
+        price = float("".join(value))
+        if price > 100:
+            if verbose:
+                print("Price seems too high, skipping", item)
+            return None, 0
 
         return item_name, price
     else:
