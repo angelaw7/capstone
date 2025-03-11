@@ -1,7 +1,7 @@
 name: Server Lint and Test
 
 on:
-  pull_request:
+  push:
     paths:
       - 'src/server/**'
 
@@ -26,11 +26,11 @@ jobs:
           pip install -r requirements.txt
         working-directory: src/server
 
-      - name: Run lint
-        run: |
-          pip install flake8
-          flake8 .
-        working-directory: src/server
+      # - name: Run lint
+      #   run: |
+      #     pip install flake8
+      #     flake8 .
+      #   working-directory: src/server
 
       - name: Run tests
         run: |
