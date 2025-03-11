@@ -1,7 +1,9 @@
 import sys
 import os
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..')))
+sys.path.insert(
+    0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+)
 
 from server.imageProcessing.process import ImageProcessor
 
@@ -22,4 +24,3 @@ def test_parse_images():
     files = os.listdir(image_path)
     for file in files:
         _test_parse_image(os.path.join(image_path, file), file)
-
